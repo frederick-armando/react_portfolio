@@ -1,0 +1,8 @@
+node_modules/
+dist/
+_Archives/
+*.zip
+.DS_Store
+.vite/
+.env
+.env.*

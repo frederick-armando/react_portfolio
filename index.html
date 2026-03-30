@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#517bfc" />
+
+  <!-- Preload only the most used weight (500) -->
+  <link rel="preload" href="/fonts/core-sans/core-sans-c-55-medium.woff2" as="font" type="font/woff2" crossorigin />
+  <meta name="description"
+    content="Portfolio de Frederick Armando, Lead Product Designer passionné par la création d'expériences numériques innovantes. Explorez mes projets en UX/UI, Design Thinking et GenUI." />
+  <meta name="keywords"
+    content="Frédérick Armando, Frederick Armando, Armando, Product Designer, Lead Product Designer, UX Design, UI Design, Design Thinking, UXVR, Portfolio, Webdesign, Freelance, Paris, Lyon, Michelin, Masteos" />
+  <meta name="author" content="Frédérick Armando" />
+  <meta name="p:domain_verify" content="c0d61ea3ae744e6c982693bbd8e3fdb6" />
+  <link rel="canonical" href="http://frederickarmando.fr/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://frederickarmando.fr/" />
+  <meta property="og:title" content="Frederick Armando — Lead Product Designer Portfolio" />
+  <meta property="og:description"
+    content="Découvrez le portfolio de Frederick Armando, Lead Product Designer spécialisé dans la création d'expériences numériques innovantes et l'UX Design." />
+  <meta property="og:image" content="/Share_compressed.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="http://frederickarmando.fr/" />
+  <meta property="twitter:title" content="Frederick Armando — Lead Product Designer Portfolio" />
+  <meta property="twitter:description"
+    content="Découvrez le portfolio de Frederick Armando, Lead Product Designer spécialisé dans la création d'expériences numériques innovantes et l'UX Design." />
+  <meta property="twitter:image" content="/Share_compressed.png" />
+
+  <!-- Device Compatibility -->
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <title>Frederick Armando — Lead Product Designer Portfolio</title>
+  <style>
+    @font-face {
+      font-family: 'Core Sans C Fallback';
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+      font-style: normal;
+      font-weight: 400;
+      size-adjust: 99.2%;
+      ascent-override: 90%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C Fallback';
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+      font-style: normal;
+      font-weight: 500;
+      size-adjust: 99.6%;
+      ascent-override: 91%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C';
+      src: url('/fonts/core-sans/core-sans-c-45-regular.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 400;
+      font-display: optional;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C';
+      src: url('/fonts/core-sans/core-sans-c-55-medium.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C';
+      src: url('/fonts/core-sans/core-sans-c-65-bold.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 600;
+      font-display: optional;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C';
+      src: url('/fonts/core-sans/core-sans-c-65-bold.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 700;
+      font-display: optional;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C';
+      src: url('/fonts/core-sans/core-sans-c-75-extra-bold.woff2') format('woff2');
+      font-style: normal;
+      font-weight: 800;
+      font-display: optional;
+    }
+
+    :root {
+      --font-family: 'Core Sans C', 'Core Sans C Fallback', 'Segoe UI', sans-serif;
+      --color-surface: #ffffff;
+      --color-body: #3e4250;
+      --color-primary: #517bfc;
+      --color-primary-600: #3b50c4;
+      --header-height: 86px;
+      --gradient-start: #517bfc;
+      --gradient-end: #8728fe;
+    }
+
+    [data-theme="dark"] {
+      --color-surface: #14151f;
+      --color-body: #b0b3c4;
+      --color-primary: #6d93ff;
+      --color-primary-600: #5a7de8;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--color-surface);
+      color: var(--color-body);
+      font-family: var(--font-family);
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid var(--color-primary);
+      border-bottom-color: transparent;
+      border-radius: 50% !important;
+      display: inline-block;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script>
+    // FOUC prevention & CSS Deferral
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('themePreference'); } catch (e) { }
+      var theme = stored === 'dark' || stored === 'light' ? stored
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#14151f' : '#517bfc');
+    })();
+  </script>
+  <script>
+    // Detect webp/avif support early for conditional font loading
+    document.documentElement.className += ' js';
+  </script>
+  <noscript><style>.js-only{display:none!important}</style></noscript>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

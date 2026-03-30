@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Frédérick Armando - Product Designer</title>
+    
+    <!--infos-->
+    <meta name="description" content="Frédérick Armando, Product Designer de 29 ans, ex-Masteos et créateur du blog UXVR.fr" />
+    <meta name="keywords" content="Frédérick Armando, Frederick Armando, Armando, Frédérick, Armando Frederick, Frédérick, Armando, Frederic, Frédéric, Web, Site, Portfolio, CV, Contact, Webdesign, Infographie, Intégration, 2D, 3D, HTML, CSS, PHP, Responsive, Joomla, Référencement, E-mailing
+, Logo, Print, Montage Vidéo, MMI, SRC, compétences, polygon, virtua media, réalisation, UX, UX Design, UXVR, UXVR.fr">
+    <meta name="author" content="Frédérick Armando">
+    <link href="https://www.google.com/+Fr%C3%A9d%C3%A9rickArmando" rel="publisher" />
+    <meta name="p:domain_verify" content="c0d61ea3ae744e6c982693bbd8e3fdb6" />
+    
+    <!-- For IE <= 9 -->
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.location = "IE/index.html";
+    </script>
+    <![endif]-->
+    <!-- For IE > 9 -->
+    <script type="text/javascript">
+        if (window.navigator.msPointerEnabled) {
+            window.location = "index_ie.html";
+        }
+    </script>
+
+    <!--icones-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="image_src" href="img/logo.png" />
+    <link rel="apple-touch-icon" href="img/logo.png" />
+
+    <meta property="og:title" content="Frédérick Armando - UX Designer" />
+    <meta property="og:type" content="Frédérick Armando, Product Designer de 29 ans, ex-Masteos et créateur du blog UXVR.fr" />
+    <meta property="og:url" content="http://frederickarmando.fr/" />
+
+    <meta property="og:image" content="http://frederickarmando.fr/img/Share_compressed.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="3523">
+    <meta property="og:image:height" content="2372">
+
+    <meta property="og:image" content="http://frederickarmando.fr/img/Logo_Min_compressed.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+
+    <!--css-->
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
+    <link rel='stylesheet prefetch' href='https://unpkg.com/vue-material@0.8.1/dist/vue-material.css'>
+
+    <link rel="stylesheet" href="scss/style.min.css">
+
+    <!-- Hotjar Tracking Code for http://frederickarmando.fr/ -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:767129,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+  
+  	<script data-ad-client="ca-pub-1689358646724355" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</head>
+
+<body>
+
+<div id="main" v-cloak>
+    
+  <div v-if="loading" class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+    
+  <div v-else>
+
+	<md-toolbar>
+	<div class="me-head">
+		<img class="me-logo" alt="Logo Frédérick Armando" src="img/Logo_Full_White_V3.svg"/>
+	</div>
+        <div class="me-social">
+            <md-button class="md-icon-button md-raised md-dense" href="index_en.html">
+                <md-icon>language</md-icon> <!--apps-->
+                <md-tooltip md-direction="bottom">In English</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button md-raised md-dense" href="docs/fr_cv_frederick_armando.pdf" target="_blank">
+                <md-icon>assignment</md-icon> <!--get_app-->
+                <md-tooltip md-direction="bottom">Curriculum Vitae</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button md-raised md-dense" href="">
+                <md-icon>dashboard</md-icon>
+                <md-tooltip md-direction="bottom">Tous les projets (Bientôt)</md-tooltip>
+            </md-button>
+            <!--md-button class="md-icon-button md-raised md-dense" href="https://www.linkedin.com/in/frederickarmando" target="_blank">
+                <md-icon md-iconset="fab fa-linkedin"></md-icon>
+                <md-tooltip md-direction="bottom">Linkedin</md-tooltip>
+            </md-button-->
+            <md-button class="md-icon-button md-raised md-dense" href="http://uxvr.fr" target="_blank">
+                <md-icon>turned_in</md-icon>
+                <md-tooltip md-direction="bottom">Blog</md-tooltip>
+            </md-button>
+        </div>
+	</md-toolbar>
+	
+	<md-speed-dial md-open="hover" md-direction="top" class="md-fab-bottom-right" md-theme="purple">
+		<md-button class="md-fab" md-fab-trigger>
+			<md-icon md-icon-morph>close</md-icon>
+            <md-icon>share</md-icon>
+            <md-tooltip md-direction="bottom" class="network">Réseaux</md-tooltip>
+            <!--md-icon>group_add</md-icon>
+		 	<md-icon>bookmark_border</md-icon-->
+		</md-button>
+        <md-button href="https://www.linkedin.com/in/frederickarmando" target="_blank" class="md-fab md-primary md-mini md-clean">
+            <md-icon md-iconset="fab fa-linkedin-in me-icon-1"></md-icon>
+            <md-tooltip md-direction="left">Linkedin</md-tooltip>
+        </md-button>
+        <md-button href="https://x.com/Fred_Armando_" target="_blank" class="md-fab md-primary md-mini md-clean">
+            <md-icon md-iconset="fab fa-twitter me-icon-1"></md-icon>
+            <md-tooltip md-direction="left">X (Twitter)</md-tooltip>
+        </md-button>
+        <!--md-button href="https://www.behance.net/frederickarmando" target="_blank" class="md-fab md-primary md-mini md-clean">
+            <md-icon md-iconset="fab fa-behance me-icon-1"></md-icon>
+            <md-tooltip md-direction="left">Behance</md-tooltip>
+        </md-button-->
+        <md-button href="https://www.youtube.com/channel/UC7TFv4Y5TEsn9yYFJmjRHvQ?view_as=subscriber" target="_blank" class="md-fab md-primary md-mini md-clean">
+            <md-icon md-iconset="fab fa-youtube me-icon-1"></md-icon>
+            <md-tooltip md-direction="left">Youtube</md-tooltip>
+        </md-button>
+        <md-button href="https://github.com/frederick-armando" target="_blank" class="md-fab md-primary md-mini md-clean">
+            <md-icon md-iconset="fab fa-github me-icon-2"></md-icon>
+            <md-tooltip md-direction="left">Github</md-tooltip>
+        </md-button>
+	</md-speed-dial>
+
+	<md-tabs ref="tabs" :md-active-tab="activeTab" md-centered>
+	  <md-tab md-label="Accueil" md-icon="home">
+        <img src="img/Logo_Full2_compressed.svg" id="logo" alt="Logo Complet Frédérick Armando">        
+        <div class="chips">
+            <md-chip disabled class="md-accent">UX/UI Design</md-chip>
+            <md-chip disabled class="md-accent">Design Thinking</md-chip>
+            <md-chip disabled class="md-accent">Accessibilité</md-chip>
+            <md-chip disabled class="md-accent">Innovation produit</md-chip>
+        </div>
+        <h2 class="me-intro"><b>Product Designer avec <span id="monage"></span> ans d'expérience</b>, passionné par <b>la création d'expériences numériques innovantes.</b><!--br><b>À la recherche de nouvelles opportunités !</b> pour créer des produits qui conjuguent <b>excellence technique et impact positif.</b--></h2>
+        <div class="me-home">
+            <!--md-button class="md-raised md-accent">Currently working at Keluro</md-button-->
+                <!--md-button class="md-raised md-primary me-button"  href="mailto:frederickarmando@gmail.com?subject=[site] Prise de contact&body=Bonjour, je pense que vous pourriez être intéressé par ...">Me contacter</md-button-->
+                <!--md-button class="md-raised md-primary" @click="goToProjects">Découvrir mes projets</md-button-->
+                <md-button class="md-raised md-primary me-button"  href="https://rs8ja4rmc8i.typeform.com/to/k6c0r6xj" target="_blank">Prendre contact</md-button>
+            <!--<md-tooltip md-direction="bottom">From February to August 2018</md-tooltip>
+            <md-tooltip md-direction="top">Par mail</md-tooltip>-->
+        </div>
+
+        <script type="text/javascript">
+            // Workaround for bug in MS Edge with SVG images
+            // with `max-width` `max-height`. Remove this if
+            // the bug is resolved.
+            // Report: https://connect.microsoft.com/IE/feedback/details/1494666/scaling-an-svg-using-max-width-vs-width-in-microsoft-edge
+            document.addEventListener('DOMContentLoaded', function () {
+                'use strict';
+
+                var forEach = Array.prototype.forEach;
+
+                // Function that sets the width and height for each image
+                // by respecting `max-width` and `max-height`.
+                var setWidthHeight = function (svgImageEl) {
+
+                    var cssMaxWidth = getComputedStyle(svgImageEl)['max-width'];
+
+                    // Assume that `max-width` == `max-height`.
+                    var cssMaxHeight = cssMaxWidth;
+
+                    var imgAspectRatio = svgImageEl.naturalWidth /
+                        svgImageEl.naturalHeight;
+
+                    // If CSS `max-width` is set, calculate the the values for
+                    // `width` and `height` and set them as inline styles
+                    // to mimic the behaviour of `max-width` and `max-height`.
+                    if (cssMaxWidth !== 'none') {
+                        if (imgAspectRatio < 1) {
+
+                            svgImageEl.style.width = (parseInt(cssMaxWidth, 10) *
+                                imgAspectRatio) + 'px';
+                            svgImageEl.style.height = cssMaxHeight;
+
+                        } else {
+                            svgImageEl.style.width = cssMaxWidth;
+                            svgImageEl.style.height = (parseInt(cssMaxWidth, 10) /
+                                imgAspectRatio) + 'px';
+                        }
+                    }
+                };
+
+                // If the browser is Microsoft Edge,
+                // execute this workaround
+                if (navigator.userAgent.indexOf('Edge') !== -1) {
+
+                    // Select all SVG images on the page, then
+                    // call the forEach function (from array prototypes) to iterate over
+                    // the SVG image elements
+                    forEach.call(document.querySelectorAll('img[src$=".svg"]'),
+                        function (svgImageEl) {
+
+                            // Only proceed if the image has loaded,
+                            // otherwise `naturalWidth` and `naturalHeight`
+                            // will be 0
+                            svgImageEl.addEventListener('load', function () {
+                                setWidthHeight(svgImageEl);
+                            });
+
+                            // In case the image is loaded in cache
+                            if (svgImageEl.complete) {
+                                setWidthHeight(svgImageEl);
+                            }
+                        }
+                    );
+                }
+            });
+        </script>
+
+        <script type="text/javascript">
+            function getAge(dateString) {
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+                console.log('age: ' + getAge("1995/04/04"));
+            }
+
+            document.getElementById('monage').innerHTML = getAge("2017/02/27");
+        </script>
+      </md-tab>
+
+	  <md-tab md-label="Profil" md-icon="account_box"> <!--contacts-->
+      <div id="presentation"></div>
+        <div class="about__wrapper">
+            <div class="layout__dynamic-title-wrapper" >
+                <h1 class="layout__dynamic-title">Présentation &amp; Carrière</h1>
+            </div>
+            <div class="about__row">
+                <section class="about__section">
+                    <img src="img/frederickarmando_compressed_2x.png" id="frederickarmando" alt="Portrait Frédérick Armando">
+                    <!--<md-tooltip md-direction="bottom">Hi, it's nice to have you here!</md-tooltip>
+                    <a href="#background"><md-icon>arrow_drop_down</md-icon></a>-->
+                    <div class="me-arrow">
+                        <md-button class="md-icon-button md-raised md-dense" href="#background">
+                            <md-icon>arrow_drop_down</md-icon>
+                        </md-button>
+                    </div>
+                </section>
+                <section class="about__section" id="background">
+                    <h2 class="about__title">Parcours</h2>
+                    <!--p>Au fil des ans j'ai tenté de combiner plusieurs de mes centres d’intérêts tels que <b>le design graphique</b>, <b>le cinéma et les jeux vidéo</b> afin de travailler dans un domaine qui me correspond. C’est ainsi que j'ai découvert l’<b>UX Design</b>.</p>
+                    <p>J'ai débuté en 2012, à l’époque j'étais en charge du site internet de mon groupe de projet. Depuis, j'ai continué mon chemin avec divers projets tels qu'un <b><a href="http://virtua-media.fr/" target="_blank" class="link">jeu vidéo</a></b>, de l'<b><a href="http://d90.frederickarmando.com/" target="_blank" class="link">aide à la personne</a></b>, des <b><a href="http://ctpm.frederickarmando.com/" target="_blank" class="link">transports en communs</a></b>, un <b><a href="http://projets.frederickarmando.com/2016/GSixfours/guide-six-fours.com/2016prod/index.html" target="_blank" class="link">guide touristique</a></b> ainsi que le site d’une <b><a href="http://asc.frederickarmando.com/" target="_blank" class="link">agence de communication</a></b>. De plus, j'ai récemment travaillé sur une <b><a href="https://keluro.com/" target="_blank" class="link">application de gestion des emails</a></b>.</p--> 
+                        <p>Passionné par la fusion de la <b>technologie et de la créativité</b>, je suis un Product Designer expérimenté avec plus de <b>7 ans d'expérience</b>. Je me spécialise dans la création d'expériences utilisateur intuitives et engageantes pour les <b>applications web et mobiles.</b></p>
+                        <p>Mon expertise couvre la <b>recherche UX, la création de wireframes, le prototypage et le design d'interface utilisateur</b>, avec un accent particulier sur l'accessibilité et les principes de conception éthique.</p>
+                        <p><b>Ces responsabilités</b> m’ont permis d'étendre <b>mes connaissances</b> dans le but d'accroître <b>mon ouverture d'esprit et mon efficacité</b>.</p>
+                    <div class="me-before">
+                        <div class="me-arrow me-mid">
+                            <md-button class="md-icon-button md-raised md-dense" href="#presentation">
+                                <md-icon>arrow_drop_up</md-icon>
+                            </md-button>
+                        </div>
+                        <div class="me-arrow me-mid">
+                            <md-button class="md-icon-button md-raised md-dense" href="#studies">
+                                <md-icon>arrow_drop_down</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </section>
+                <section class="about__section" id="studies">
+                    <h2 class="about__title">Etudes</h2>
+                    <p>J'ai finalisé un <b>Master en Design d’Interface Multimédia et Internet</b> à la Faculté de Communication Sorbonne Paris Nord en 2018.</p> 
+                    <p>Cela fait suite à une <b>Licence Professionnelle en Web Design</b> à l'Université de Belfort, un <b>DUT dans les Métiers du Multimédia et de l’Internet</b> à l’Université de Toulon et à un <b>Bac S</b>.</p>
+                    <div class="me-arrow">
+                        <md-button class="md-icon-button md-raised md-dense" href="#background">
+                            <md-icon>arrow_drop_up</md-icon>
+                        </md-button>
+                    </div>
+                </section>
+            </div>
+        </div>
+      </md-tab>
+
+	  <md-tab md-label="Aptitudes" md-icon="equalizer">
+        <iframe id="iframe1" src="./skl/index_fr.html" frameborder="0"></iframe>
+	  </md-tab>
+
+	  <md-tab id="projects-tab" md-label="Projets" md-icon="view_agenda" :md-options="{new_badge: 3}">
+        <!--iframe id="iframe2" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FeGlocmH94b2hwT7NHnpryj%2FPortfolio-(2024)-(iFrame)%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D1613-1836%26viewport%3D-525%252C1074%252C0.27%26t%3Dj3elaHwztoFiSTrK-1%26scaling%3Dmin-zoom%26starting-point-node-id%3D1613%253A1836%26mode%3Ddesign" frameborder="0" class="mobile"></iframe>
+        <iframe id="iframe2" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FwVIdPXg1x4GDz1tqycoqk8%2FPortfolio-(2024)-(iFrame---desktop)%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D1613-1836%26viewport%3D-173%252C784%252C0.21%26t%3DtwCjS41sqahFO28e-1%26scaling%3Dmin-zoom%26starting-point-node-id%3D1613%253A1836%26mode%3Ddesign" frameborder="0" class="desktop"></iframe-->
+        
+        <iframe id="iframe2" src="https://embed.figma.com/proto/9BhqYXznPebGd9EjcyNBnH/Portfolio-2025?page-id=2106%3A4536&node-id=2504-661&node-type=frame&viewport=1%2C672%2C0.12&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2504%3A661&show-proto-sidebar=1&embed-host=share" frameborder="0" class="mobile"></iframe>
+        <iframe id="iframe2" src="https://embed.figma.com/proto/9BhqYXznPebGd9EjcyNBnH/Portfolio-2025?page-id=2106%3A4536&node-id=2502-561&node-type=frame&viewport=1%2C672%2C0.12&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2502%3A561&embed-host=share" frameborder="0" class="desktop"></iframe>
+    </md-tab>
+
+		<md-tab md-label="Contact" md-icon="email">
+            <div class="about__wrapper me-contact">
+                <div class="layout__dynamic-title-wrapper">
+                    <h1 class="layout__dynamic-title">Pour me contacter</h1>
+                </div>
+
+                <div class="about__row">
+                    <section class="about__section">
+                        <h2 class="about__title">Si vous souhaitez me rencontrer</h2>
+                        <p>J'ai toujours plaisir à découvrir de nouvelles personnes autour d'une tasse de café.</p>
+                        <p><b>Où me trouver :</b><br /><b><a href="https://maps.app.goo.gl/GVn3pry6q8jr63aWA" target="_blank" class="link">1 Villa des Gobelins, 75013 Paris</a></b></p>
+                        <p>Vous pouvez m’appeler ou m’envoyer un message.<br /> Je répondrais aussi vite que possible. <br /><b><a href="tel:+33659054369" class="link">06 59 05 43 69</a></b> - <!--b><a href="callto:frederick-armando" class="link">Skype</a></b--><b><a href="mailto:frederickarmando@gmail.com" class="link">frederickarmando@gmail.com</a></b></p>
+                        <p><b>Et également me retrouver sur :</b></p>
+                        <md-button href="https://www.linkedin.com/in/frederickarmando" target="_blank" class="md-fab md-primary md-mini md-clean me-social-2">
+                            <md-icon md-iconset="fab fa-linkedin-in me-icon-1"></md-icon>
+                            <md-tooltip md-direction="bottom">Linkedin</md-tooltip>
+                        </md-button>
+                        <md-button href="https://x.com/Fred_Armando_" target="_blank" class="md-fab md-primary md-mini md-clean me-social-2">
+                            <md-icon md-iconset="fab fa-twitter me-icon-1"></md-icon>
+                            <md-tooltip md-direction="bottom">X (Twitter)</md-tooltip>
+                        </md-button>
+                        <!--<md-button href="https://www.behance.net/frederickarmando" target="_blank" class="md-fab md-primary md-mini md-clean me-social-2">
+                            <md-icon md-iconset="fab fa-behance me-icon-1"></md-icon>
+                            <md-tooltip md-direction="bottom">Behance</md-tooltip>
+                        </md-button>-->
+                        <md-button href="https://www.youtube.com/channel/UC7TFv4Y5TEsn9yYFJmjRHvQ?view_as=subscriber" target="_blank" class="md-fab md-primary md-mini md-clean me-social-2">
+                            <md-icon md-iconset="fab fa-youtube me-icon-1"></md-icon>
+                            <md-tooltip md-direction="bottom">Youtube</md-tooltip>
+                        </md-button>
+                        <md-button href="https://github.com/frederick-armando" target="_blank" class="md-fab md-primary md-mini md-clean me-social-2">
+                            <md-icon md-iconset="fab fa-github me-icon-2"></md-icon>
+                            <md-tooltip md-direction="bottom">Github</md-tooltip>
+                        </md-button>
+                    </section>
+
+                    <section class="about__section">
+                        <h2 class="about__title">Sinon vous avez la possibilité de remplir le formulaire ci-dessous</h2>
+                        <form method="POST" action="http://formspree.io/frederickarmando@gmail.com">
+                            <md-input-container>
+                                <md-icon>mail_outline</md-icon>
+                                <label>Votre email</label>
+                                <md-input type="email" name="email"></md-input>
+                            </md-input-container>
+                            <md-input-container>
+                                <md-icon>title</md-icon>
+                                <label>Votre sujet</label>
+                                <md-input type="object" name="_subject"></md-input>
+                            </md-input-container>
+                            <md-input-container>
+                                <md-icon>subject</md-icon>
+                                <label>Votre message</label>
+                                <md-input name="message" maxlength="280"></md-input>
+                            </md-input-container>
+                            <md-button class="md-raised md-primary me-button" type="submit">Envoyer le message</md-button>
+                            <input type="hidden" name="_next" value="http://frederickarmando.fr/thx/index.html" />
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </md-tab>
+	</md-tabs>
+
+  </div>
+
+</div>
+
+<style>
+    .mobile { display: block; }
+    .desktop { display: none; }
+    @media (min-width: 768px) {
+      .mobile { display: none; }
+      .desktop { display: block; }
+    }
+  </style>
+
+<script src="js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-material@0.8.1/dist/vue-material.js"></script>
+
+<script src="js/index.js"></script>
+
+</body>
+
+<script type="text/javascript" id="cookiebanner"
+        src="https://cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.1/cookiebanner.min.js"
+        data-position="top"
+        data-bg="#eee"
+        data-fg="#000"
+        data-effect="fade"
+        data-font-family="CoreSansC-45, sans-serif"
+        data-message="Ce site utilise des cookies."
+        data-accept-on-click="true"
+        data-accept-on-scroll="true"
+        data-accept-on-timeout="15000"
+        data-accept-on-first-visit="true">
+</script>
+
+<noscript>Your browser does not support JavaScript!</noscript>
+
+</html>
