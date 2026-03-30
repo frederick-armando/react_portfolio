@@ -1827,6 +1827,11 @@
   mix-blend-mode: normal !important;
 }
 
+/* 404 page title readability */
+[data-theme="dark"] .not-found__title {
+  color: #eef2ff;
+}
+
 /* Case study page */
 [data-theme="dark"] .case-study-page {
   background: var(--color-surface);
