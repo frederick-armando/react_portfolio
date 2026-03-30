@@ -1051,6 +1051,180 @@
   line-height: 1.5;
 }
 
+/* Contact easter eggs: Paris / Lyon */
+.contact-detail__line .city-light {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  padding-inline: 2px;
+  transition:
+    color var(--motion-duration-medium) var(--motion-standard),
+    text-shadow var(--motion-duration-medium) var(--motion-standard);
+}
+
+.contact-detail__line .city-light::before,
+.contact-detail__line .city-light::after {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--motion-duration-medium) ease-in-out,
+    transform var(--motion-duration-medium) var(--motion-standard),
+    filter var(--motion-duration-medium) var(--motion-standard);
+}
+
+.contact-detail__line .city-light--paris {
+  isolation: isolate;
+}
+
+.contact-detail__line .city-light--paris::before {
+  content: attr(data-city);
+  inset: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background:
+    radial-gradient(circle at 14% 30%, rgba(255, 246, 196, 0.96) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 38% 64%, rgba(255, 233, 153, 0.9) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 64% 26%, rgba(255, 240, 177, 0.92) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 82% 58%, rgba(255, 226, 133, 0.88) 0 1.1px, transparent 1.9px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform: translateY(0.01em);
+}
+
+.contact-detail__line .city-light--paris::after {
+  content: '';
+  inset: -0.28em -0.38em;
+  border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 6% 40%, rgba(255, 238, 171, 0.7) 0 1.1px, transparent 2.1px),
+    radial-gradient(circle at 28% 8%, rgba(255, 228, 126, 0.62) 0 1.1px, transparent 2px),
+    radial-gradient(circle at 72% 92%, rgba(255, 232, 155, 0.66) 0 1.2px, transparent 2.1px),
+    radial-gradient(circle at 95% 44%, rgba(255, 214, 106, 0.58) 0 1px, transparent 1.9px);
+  transform: scale(0.94);
+  filter: blur(0.15px);
+}
+
+.contact-detail__line .city-light--paris:hover,
+.contact-detail__line .city-light--paris:focus-visible {
+  color: #af8731;
+  text-shadow: 0 0 6px rgba(255, 217, 126, 0.26);
+}
+
+.contact-detail__line .city-light--paris:hover::before,
+.contact-detail__line .city-light--paris:focus-visible::before {
+  opacity: 0.98;
+  animation: city-paris-sparkle 1.7s ease-in-out infinite;
+}
+
+.contact-detail__line .city-light--paris:hover::after,
+.contact-detail__line .city-light--paris:focus-visible::after {
+  opacity: 0.92;
+  transform: scale(1);
+  animation: city-paris-shimmer 2.3s ease-in-out infinite;
+}
+
+.contact-detail__line .city-light--lyon {
+  isolation: isolate;
+}
+
+.contact-detail__line .city-light--lyon::before {
+  content: '';
+  inset: -0.2em -0.46em;
+  border-radius: var(--radius-pill);
+  background: rgba(9, 14, 28, 0.16);
+  transform: scale(0.95);
+}
+
+.contact-detail__line .city-light--lyon::after {
+  content: '';
+  inset: -0.36em -0.5em;
+  border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 16% 54%, rgba(255, 97, 197, 0.35), transparent 54%),
+    radial-gradient(circle at 52% 42%, rgba(94, 234, 255, 0.34), transparent 58%),
+    radial-gradient(circle at 84% 52%, rgba(255, 229, 116, 0.31), transparent 56%);
+  filter: blur(7px);
+  transform: scale(0.9);
+}
+
+.contact-detail__line .city-light--lyon:hover,
+.contact-detail__line .city-light--lyon:focus-visible {
+  text-shadow:
+    0 0 4px rgba(255, 97, 197, 0.33),
+    0 0 8px rgba(94, 234, 255, 0.32),
+    0 0 12px rgba(255, 229, 116, 0.3);
+}
+
+.contact-detail__line .city-light--lyon:hover::before,
+.contact-detail__line .city-light--lyon:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.contact-detail__line .city-light--lyon:hover::after,
+.contact-detail__line .city-light--lyon:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+  animation: city-lyon-breathe 3s ease-in-out infinite;
+}
+
+@keyframes city-paris-sparkle {
+  0%,
+  100% {
+    filter: brightness(0.88);
+    transform: translateY(0.01em) scale(0.995);
+  }
+
+  35% {
+    filter: brightness(1.08);
+    transform: translateY(0.01em) scale(1.01);
+  }
+
+  68% {
+    filter: brightness(0.95);
+    transform: translateY(0.01em) scale(1);
+  }
+}
+
+@keyframes city-paris-shimmer {
+  0%,
+  100% {
+    filter: blur(0.2px) brightness(0.9);
+    transform: scale(0.97);
+  }
+
+  50% {
+    filter: blur(0.1px) brightness(1.08);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes city-lyon-breathe {
+  0%,
+  100% {
+    filter: blur(7px) saturate(1);
+    transform: scale(0.95);
+  }
+
+  50% {
+    filter: blur(9px) saturate(1.1);
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-detail__line .city-light--paris:hover::before,
+  .contact-detail__line .city-light--paris:hover::after,
+  .contact-detail__line .city-light--paris:focus-visible::before,
+  .contact-detail__line .city-light--paris:focus-visible::after,
+  .contact-detail__line .city-light--lyon:hover::after,
+  .contact-detail__line .city-light--lyon:focus-visible::after {
+    animation: none;
+  }
+}
+
 .contact-detail__line a {
   position: relative;
   display: inline-flex;
