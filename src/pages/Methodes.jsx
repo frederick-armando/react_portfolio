@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconBarChartBig } from '../components/icons.jsx';
+import { IconChartArea } from '../components/icons.jsx';
 import MethodsWave from '../components/MethodsWave.jsx';
 import '../styles/pages.css';
 import { pagesContent } from '../i18n/content/pages.jsx';
@@ -13,7 +13,7 @@ export default function Methodes() {
   return (
     <section className="section">
       <div className="section__header">
-        <IconBarChartBig />
+        <IconChartArea />
         <h2>{content.title}</h2>
       </div>
 

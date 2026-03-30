@@ -1,6 +1,5 @@
 import { m } from 'framer-motion';
 import {
-  IconChat,
   IconFigmaBrand,
   IconLinkedIn,
   IconGithub,

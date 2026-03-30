@@ -1,6 +1,5 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Link, Navigate, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Cog, Car, Hammer, KeySquare } from 'lucide-react';
+import { Navigate, useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   IconCog,
   IconCar,
@@ -9,7 +8,6 @@ import {
 } from '../components/icons.jsx';
 import ProjectArtwork from '../components/ProjectArtwork.jsx';
 import Button from '../components/Button.jsx';
-import LanguageToggleButton from '../components/LanguageToggleButton.jsx';
 import '../styles/pages.css';
 
 import masteosSitemap from '../assets/projects/masteos/masteos-sitemap.png';
@@ -18,39 +16,17 @@ import masteosLaunch2 from '../assets/projects/masteos/masteos-launch-2.png';
 import masteosValidation1 from '../assets/projects/masteos/masteos-validation-1.png';
 import masteosValidation2 from '../assets/projects/masteos/masteos-validation-2.png';
 import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
-import heliosWireframe1x2 from '../assets/projects/helios/helios-wireframe-1@2x.png';
-import heliosWireframe1x3 from '../assets/projects/helios/helios-wireframe-1@3x.png';
 import heliosWireframe2 from '../assets/projects/helios/helios-wireframe-2.png';
-import heliosWireframe2x2 from '../assets/projects/helios/helios-wireframe-2@2x.png';
-import heliosWireframe2x3 from '../assets/projects/helios/helios-wireframe-2@3x.png';
 import heliosMockup1 from '../assets/projects/helios/helios-mockup-1.png';
-import heliosMockup1x2 from '../assets/projects/helios/helios-mockup-1@2x.png';
-import heliosMockup1x3 from '../assets/projects/helios/helios-mockup-1@3x.png';
 import heliosMockup2 from '../assets/projects/helios/helios-mockup-2.png';
-import heliosMockup2x2 from '../assets/projects/helios/helios-mockup-2@2x.png';
-import heliosMockup2x3 from '../assets/projects/helios/helios-mockup-2@3x.png';
 import kirrkWireframe1 from '../assets/projects/kirrk/kirrk-wireframe-1.png';
-import kirrkWireframe1x2 from '../assets/projects/kirrk/kirrk-wireframe-1@2x.png';
-import kirrkWireframe1x3 from '../assets/projects/kirrk/kirrk-wireframe-1@3x.png';
 import kirrkWireframe2 from '../assets/projects/kirrk/kirrk-wireframe-2.png';
-import kirrkWireframe2x2 from '../assets/projects/kirrk/kirrk-wireframe-2@2x.png';
-import kirrkWireframe2x3 from '../assets/projects/kirrk/kirrk-wireframe-2@3x.png';
 import kirrkMockupFull from '../assets/projects/kirrk/kirrk-mockup-full.png';
-import kirrkMockupFullx2 from '../assets/projects/kirrk/kirrk-mockup-full@2x.png';
-import kirrkMockupFullx3 from '../assets/projects/kirrk/kirrk-mockup-full@3x.png';
 import kirrkDashboard from '../assets/projects/kirrk/kirrk-dashboard.png';
 import mobioosMockup1 from '../assets/projects/mobioos/mobioos-mockup-1.png';
-import mobioosMockup1x2 from '../assets/projects/mobioos/mobioos-mockup-1@2x.png';
-import mobioosMockup1x3 from '../assets/projects/mobioos/mobioos-mockup-1@3x.png';
 import mobioosMockup2 from '../assets/projects/mobioos/mobioos-mockup-2.png';
-import mobioosMockup2x2 from '../assets/projects/mobioos/mobioos-mockup-2@2x.png';
-import mobioosMockup2x3 from '../assets/projects/mobioos/mobioos-mockup-2@3x.png';
 import mobioosFull from '../assets/projects/mobioos/mobioos-full.png';
-import mobioosFullx2 from '../assets/projects/mobioos/mobioos-full@2x.png';
-import mobioosFullx3 from '../assets/projects/mobioos/mobioos-full@3x.png';
 import mobioosDashboard from '../assets/projects/mobioos/mobioos-dashboard.png';
-import mobioosDashboardx2 from '../assets/projects/mobioos/mobioos-dashboard@2x.png';
-import mobioosDashboardx3 from '../assets/projects/mobioos/mobioos-dashboard@3x.png';
 import myxpertFlow from '../assets/projects/myxpert/MyXpert Flow.png';
 import myxpertLegacyVsNew from '../assets/projects/myxpert/MyTechXpert vs MyXpert.png';
 import myxpertLegacyVsNew2x from '../assets/projects/myxpert/MyTechXpert vs MyXpert@2x.png';

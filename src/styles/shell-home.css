@@ -19,10 +19,7 @@ a {
   text-decoration: none;
 }
 
-button,
-input,
-textarea,
-select {
+button {
   font: inherit;
 }
 
@@ -279,12 +276,6 @@ button:focus-visible {
 }
 
 
-
-.chip--subtle {
-  background: #EEE7FF;
-  color: #7917EA;
-  opacity: 0.8;
-}
 
 .hero__lead {
   max-width: 760px;
@@ -613,11 +604,6 @@ button:focus-visible {
   }
 }
 
-.page-empty {
-  height: 360px;
-}
-
-
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -725,11 +711,6 @@ button:focus-visible {
 /* Chips */
 [data-theme="dark"] .chip {
   background: rgba(121, 23, 234, 0.18);
-  color: #c8a5ff;
-}
-
-[data-theme="dark"] .chip--subtle {
-  background: rgba(121, 23, 234, 0.14);
   color: #c8a5ff;
 }
 

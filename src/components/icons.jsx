@@ -1,37 +1,20 @@
 import { m } from 'framer-motion';
 import {
-  ArrowLeft,
-  ArrowRight,
   BookOpenCheck,
   BriefcaseBusiness,
   Building2,
   CalendarDays,
   CarFront,
   ChartArea,
-  ChartColumn,
-  CircleDot,
   Cloud,
   Cog,
   ClipboardType,
   CodeXml,
   LibraryBig,
   Database,
-  Download,
-  ExternalLink,
   Figma,
-  FolderKanban,
   Hammer,
-  House,
-  IdCard,
   KeySquare,
-  Languages,
-  LayoutGrid,
-  Linkedin,
-  Github,
-  Mail,
-  Menu,
-  MessageSquare,
-  MessageSquareMore,
   Mic,
   NotebookText,
   PencilRuler,
@@ -44,19 +27,10 @@ import {
   SquareKanban,
   StickyNote,
   Ticket,
-  Twitter,
-  User,
   Users,
-  Phone,
   Webcam,
-  Youtube,
-  Archive,
-  SquareUser,
-  ChartBarBig,
-  MessagesSquare,
   BotMessageSquare,
   Truck,
-  Bookmark,
   Waypoints,
   X,
 } from 'lucide-react';
@@ -244,16 +218,6 @@ export const IconLinkedIn = ({ ...props }) => (
   </m.svg>
 );
 
-export const IconTwitter = ({ ...props }) => (
-  <m.svg {...baseProps} {...interactiveIconProps} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
-    <m.path
-      d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
-      variants={pathVariants}
-      transition={transition}
-    />
-  </m.svg>
-);
-
 export const IconGithub = ({ ...props }) => (
   <m.svg {...baseProps} {...interactiveIconProps} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
     <m.path
@@ -296,34 +260,6 @@ export const IconLinkOut = ({ ...props }) => (
   </m.svg>
 );
 
-export const IconDownload = ({ ...props }) => (
-  <m.svg {...baseProps} {...interactiveIconProps} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-    <m.polyline
-      points="7 10 12 15 17 10"
-      variants={pathVariants}
-      transition={transition}
-    />
-    <m.line
-      x1="12"
-      x2="12"
-      y1="15"
-      y2="3"
-      variants={pathVariants}
-      transition={transition}
-    />
-  </m.svg>
-);
-
-export const IconGrid = ({ ...props }) => (
-  <m.svg {...baseProps} {...interactiveIconProps} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
-    <rect width="7" height="7" x="3" y="3" rx="1" />
-    <rect width="7" height="7" x="14" y="3" rx="1" />
-    <rect width="7" height="7" x="14" y="14" rx="1" />
-    <rect width="7" height="7" x="3" y="14" rx="1" />
-  </m.svg>
-);
-
 // Fallbacks using standard withLucide with a simple scale-up on hover for others
 function withLucideScale(Component) {
   return function Icon({ ...props }) {
@@ -344,11 +280,6 @@ function withLucideScale(Component) {
 export const IconHammer = withLucideScale(Hammer);
 export const IconKeySquare = withLucideScale(KeySquare);
 export const IconCog = withLucideScale(Cog);
-export const IconFlagUk = withLucideScale(Languages);
-export const IconUser = withLucideScale(User);
-export const IconChart = withLucideScale(ChartColumn);
-export const IconProjects = withLucideScale(FolderKanban);
-export const IconChat = withLucideScale(MessageSquareMore);
 export const IconBuilding = withLucideScale(Building2);
 export const IconUsers = withLucideScale(Users);
 export const IconCloud = withLucideScale(Cloud);
@@ -361,11 +292,7 @@ export const IconMic = withLucideScale(Mic);
 export const IconNote = withLucideScale(NotebookText);
 export const IconCode = withLucideScale(CodeXml);
 export const IconMobile = withLucideScale(Smartphone);
-export const IconSection = withLucideScale(Menu);
-export const IconTag = withLucideScale(CircleDot);
-export const IconMessage = withLucideScale(MessageSquare);
 export const IconClose = withLucideScale(X);
-export const IconBookmark = withLucideScale(Bookmark);
 
 export const IconChartArea = withLucideScale(ChartArea);
 export const IconPencilRuler = withLucideScale(PencilRuler);
@@ -382,7 +309,3 @@ export const IconFigma = withLucideScale(Figma);
 export const IconLibraryBig = withLucideScale(LibraryBig);
 export const IconBotMessageSquare = withLucideScale(BotMessageSquare);
 export const IconTruck = withLucideScale(Truck);
-
-// Aliases
-export const IconBarChartBig = IconChartArea; // Alias for the Methods icon
-export const IconUserSquare = IconProfile;

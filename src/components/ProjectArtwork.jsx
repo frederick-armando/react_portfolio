@@ -1,5 +1,3 @@
-import { useLanguage } from '../i18n/LanguageContext.jsx';
-
 import chatbotBg from '../assets/projects/Chatbot-bg.png';
 import chatbotDevice from '../assets/projects/Chatbot.png';
 import chatbotDevice2x from '../assets/projects/Chatbot@2x.png';

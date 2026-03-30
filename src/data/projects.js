@@ -261,7 +261,7 @@ export const projects = [
   },
 ];
 
-export function localizeProject(project, language = 'fr') {
+function localizeProject(project, language = 'fr') {
   const translation = project.translations[language] ?? project.translations.fr;
 
   return {

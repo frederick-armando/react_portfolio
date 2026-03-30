@@ -1,4 +1,3 @@
-import { YEARS_OF_EXPERIENCE } from '../../utils/experience';
 import { homeContent } from './home.jsx';
 
 export const pagesContent = {

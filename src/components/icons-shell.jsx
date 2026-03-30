@@ -18,36 +18,6 @@ function IconBase({ children, className, ...props }) {
   );
 }
 
-export function IconHome(props) {
-  return (
-    <IconBase {...props}>
-      <path d="m3 10 9-7 9 7" />
-      <path d="M5 10v11h14V10" />
-    </IconBase>
-  );
-}
-
-export function IconUserSquare(props) {
-  return (
-    <IconBase {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="2.5" />
-      <circle cx="12" cy="10" r="3" />
-      <path d="M7 18c.9-2 2.7-3 5-3s4.1 1 5 3" />
-    </IconBase>
-  );
-}
-
-export function IconBarChartBig(props) {
-  return (
-    <IconBase {...props}>
-      <path d="M3 3v18h18" />
-      <rect x="7" y="13" width="3" height="5" rx="1" />
-      <rect x="12" y="9" width="3" height="9" rx="1" />
-      <rect x="17" y="5" width="3" height="13" rx="1" />
-    </IconBase>
-  );
-}
-
 export function IconArchive(props) {
   return (
     <IconBase {...props}>
@@ -86,18 +56,6 @@ export function IconLanguages(props) {
       <path d="M7 2h1" />
       <path d="m22 22-5-10-5 10" />
       <path d="M14 18h6" />
-    </IconBase>
-  );
-}
-
-export function IconFlagUk(props) {
-  return (
-    <IconBase {...props}>
-      <path d="M5 4v16" />
-      <path d="m5 5 8 3-8 3" />
-      <path d="m13 8 6-3v6l-6-3Z" />
-      <path d="m5 14 8 3-8 3" />
-      <path d="m13 17 6-3v6l-6-3Z" />
     </IconBase>
   );
 }
