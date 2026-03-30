@@ -1328,16 +1328,72 @@
 
 .contact-detail__line .city-light--lyon::before {
   content: '';
-  inset: -0.2em -0.46em;
+  inset: -0.42em -0.74em;
   border-radius: var(--radius-pill);
-  background: rgba(9, 14, 28, 0.16);
-  transform: scale(0.95);
+  background: radial-gradient(
+    120% 98% at 50% 52%,
+    rgba(164, 180, 217, 0.28) 0%,
+    rgba(164, 180, 217, 0.15) 30%,
+    rgba(164, 180, 217, 0.06) 52%,
+    rgba(164, 180, 217, 0) 82%
+  );
+  filter: blur(6.1px);
+  transform: scale(0.9);
 }
 
 .contact-detail__line .city-light--lyon::after {
   content: '';
-  inset: -0.36em -0.5em;
+  inset: -0.52em -0.82em;
   border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 16% 54%, rgba(255, 107, 201, 0.23), transparent 61%),
+    radial-gradient(circle at 52% 42%, rgba(103, 225, 245, 0.22), transparent 64%),
+    radial-gradient(circle at 84% 52%, rgba(250, 219, 104, 0.2), transparent 62%);
+  filter: blur(6.9px);
+  transform: scale(0.88);
+}
+
+.contact-detail__line .city-light--lyon:hover,
+.contact-detail__line .city-light--lyon:focus-visible {
+  color: inherit;
+  text-shadow:
+    0 0 3px rgba(255, 107, 201, 0.23),
+    0 0 6px rgba(103, 225, 245, 0.22),
+    0 0 10px rgba(250, 219, 104, 0.2);
+}
+
+.contact-detail__line .city-light--lyon:hover::before,
+.contact-detail__line .city-light--lyon:focus-visible::before {
+  opacity: 0.84;
+  filter: blur(6.8px);
+  transform: scale(1.03);
+}
+
+.contact-detail__line .city-light--lyon:hover::after,
+.contact-detail__line .city-light--lyon:focus-visible::after {
+  opacity: 0.94;
+  transform: scale(1.02);
+  animation: city-lyon-breathe 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon:hover,
+[data-theme='dark'] .contact-detail__line .city-light--lyon:focus-visible {
+  color: inherit;
+  text-shadow:
+    0 0 4px rgba(255, 97, 197, 0.33),
+    0 0 8px rgba(94, 234, 255, 0.32),
+    0 0 12px rgba(255, 229, 116, 0.3);
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon::before {
+  inset: -0.2em -0.46em;
+  background: rgba(9, 14, 28, 0.18);
+  filter: none;
+  transform: scale(0.95);
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon::after {
+  inset: -0.36em -0.5em;
   background:
     radial-gradient(circle at 16% 54%, rgba(255, 97, 197, 0.35), transparent 54%),
     radial-gradient(circle at 52% 42%, rgba(94, 234, 255, 0.34), transparent 58%),
@@ -1346,25 +1402,9 @@
   transform: scale(0.9);
 }
 
-.contact-detail__line .city-light--lyon:hover,
-.contact-detail__line .city-light--lyon:focus-visible {
-  text-shadow:
-    0 0 4px rgba(255, 97, 197, 0.33),
-    0 0 8px rgba(94, 234, 255, 0.32),
-    0 0 12px rgba(255, 229, 116, 0.3);
-}
-
-.contact-detail__line .city-light--lyon:hover::before,
-.contact-detail__line .city-light--lyon:focus-visible::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.contact-detail__line .city-light--lyon:hover::after,
-.contact-detail__line .city-light--lyon:focus-visible::after {
-  opacity: 1;
-  transform: scale(1);
-  animation: city-lyon-breathe 3s ease-in-out infinite;
+[data-theme='dark'] .contact-detail__line .city-light--lyon:hover::after,
+[data-theme='dark'] .contact-detail__line .city-light--lyon:focus-visible::after {
+  animation: city-lyon-breathe-dark 3s ease-in-out infinite;
 }
 
 @keyframes city-paris-sparkle {
@@ -1399,6 +1439,19 @@
 }
 
 @keyframes city-lyon-breathe {
+  0%,
+  100% {
+    filter: blur(6.8px) saturate(1);
+    transform: scale(0.98);
+  }
+
+  50% {
+    filter: blur(7.8px) saturate(1.07);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes city-lyon-breathe-dark {
   0%,
   100% {
     filter: blur(7px) saturate(1);
