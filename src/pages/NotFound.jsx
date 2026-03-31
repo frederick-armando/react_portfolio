@@ -132,16 +132,17 @@ function buildInitialBricks(sceneWidth, sceneHeight) {
   const digitCols = DIGIT_PATTERNS[4][0].length;
   const digitGapCols = 1.6;
   const totalCols = digitCols * 3 + digitGapCols * 2;
-  const maxWidth = Math.min(sceneWidth * 0.6, 720);
-  const maxHeight = Math.min(sceneHeight * (isMobile ? 0.36 : 0.42), 300);
-  const cellSize = Math.min(maxWidth / totalCols, maxHeight / digitRows);
+  const maxWidth = Math.min(sceneWidth * (isMobile ? 0.74 : 0.6), 720);
+  const maxHeight = Math.min(sceneHeight * (isMobile ? 0.46 : 0.42), 300);
+  const baseCellSize = Math.min(maxWidth / totalCols, maxHeight / digitRows);
+  const cellSize = isMobile ? baseCellSize * 1.16 : baseCellSize;
   const usedWidth = totalCols * cellSize;
   const usedHeight = digitRows * cellSize;
-  const stageX = sceneWidth - usedWidth - Math.max(sceneWidth * 0.04, 18);
+  const stageX = sceneWidth - usedWidth - Math.max(sceneWidth * (isMobile ? 0.025 : 0.04), isMobile ? 12 : 18);
   const stageY = isMobile
     ? Math.min(
-      Math.max(44, sceneHeight * 0.14),
-      sceneHeight - usedHeight - 132,
+      Math.max(28, sceneHeight * 0.08),
+      sceneHeight - usedHeight - 154,
     )
     : Math.min(
       Math.max(68, sceneHeight * 0.23),
