@@ -3,57 +3,101 @@
 /* ========================================================================== */
 
 .not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 540px) 1fr;
+  align-items: center;
+  min-height: calc(100dvh - var(--header-height) - var(--nav-height) - 108px);
   overflow: hidden;
   width: 100%;
-  padding-block: var(--space-9);
+  padding: clamp(28px, 5.2vw, 60px) 0;
+}
+
+.not-found__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: auto;
 }
 
 .not-found__bg-code {
-  font-size: clamp(10rem, 30vw, 22rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0.08;
+  display: none;
   position: absolute;
+  right: clamp(4px, 2vw, 24px);
   top: 50%;
-  right: 0;
   transform: translateY(-50%);
+  font-size: clamp(11rem, 33vw, 26rem);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  color: #ece9f8;
+  opacity: 0.78;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
+  z-index: 1;
+}
+
+.not-found__lego-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+}
+
+.not-found__lego-canvas--ready {
+  cursor: pointer;
+}
+
+.not-found__lego-canvas--ready:active {
+  cursor: pointer;
+}
+
+.not-found__lego-canvas--grabbing {
+  cursor: grabbing;
+}
+
+.not-found__lego-canvas:active {
+  cursor: grabbing;
 }
 
 .not-found__inner {
+  grid-column: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-7);
+  align-items: flex-start;
+  gap: clamp(var(--space-5), 2.4vw, var(--space-7));
   position: relative;
-  z-index: 1;
-  max-width: 600px;
+  z-index: 4;
+  max-width: 540px;
+  pointer-events: none;
 }
 
 .not-found__header {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+}
+
+.not-found__chip {
+  background: #EEE7FF;
+  color: #7917EA;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .not-found__title {
   display: flex;
   flex-direction: column;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: clamp(2.6rem, 5vw, 5rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 0.98;
   letter-spacing: -0.03em;
-  color: var(--color-ink);
+  color: #10142a;
 }
 
 .not-found__title-line {
@@ -61,22 +105,179 @@
 }
 
 .not-found__body {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.7;
-  color: var(--color-body);
-  max-width: 48ch;
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.65;
+  color: #61677d;
+  max-width: 46ch;
 }
 
 .not-found__actions {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  pointer-events: auto;
+}
+
+.not-found__actions .btn {
+  min-height: 46px;
+  pointer-events: auto;
+}
+
+.lego-figure {
+  position: absolute;
+  z-index: 3;
+  width: 30px;
+  height: 52px;
+  --saber-core: #4be35f;
+  --saber-glow: rgba(75, 227, 95, 0.56);
+  transform: translate(-50%, -100%) rotate(-4deg);
+  pointer-events: none;
+  animation: lego-figure-pop 540ms cubic-bezier(0.2, 0.9, 0.2, 1.05);
+}
+
+.lego-figure--dark {
+  --saber-core: #ff4c4c;
+  --saber-glow: rgba(255, 76, 76, 0.58);
+}
+
+.lego-figure__head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #f4cc88;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+}
+
+.lego-figure__torso {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: 18px;
+  height: 20px;
+  border-radius: 4px;
+  background: #2f8e4e;
+  transform: translateX(-50%) rotate(-4deg);
+  transform-origin: 50% 92%;
+  box-shadow:
+    inset 0 -2px 0 rgba(0, 0, 0, 0.12),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.lego-figure__arm {
+  position: absolute;
+  top: 16px;
+  width: 6px;
+  height: 16px;
+  border-radius: 999px;
+  background: #f4cc88;
+}
+
+.lego-figure__arm--left {
+  top: 18px;
+  left: 3px;
+  transform: rotate(22deg);
+}
+
+.lego-figure__arm--right {
+  top: 14px;
+  right: 1px;
+  transform: rotate(-24deg);
+}
+
+.lego-figure__legs {
+  position: absolute;
+  top: 31px;
+  left: 50%;
+  width: 16px;
+  height: 20px;
+  border-radius: 4px;
+  background:
+    linear-gradient(to right, #2a3548 0 48%, #182030 48% 52%, #2a3548 52% 100%);
+  transform: translateX(-50%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.14);
+}
+
+.lego-figure__saber {
+  position: absolute;
+  left: 77%;
+  top: -8px;
+  width: 7px;
+  height: 42px;
+  border-radius: 999px;
+  background: linear-gradient(to top, #7f899d 0 16%, #dde4f4 16% 26%, var(--saber-core) 26% 100%);
+  transform: rotate(22deg);
+  transform-origin: 50% 100%;
+  box-shadow:
+    0 0 12px var(--saber-glow),
+    0 0 22px var(--saber-glow);
+  animation: saber-ready 1.1s ease-in-out infinite alternate;
+}
+
+.lego-figure__saber::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 12px;
+  height: 3px;
+  border-radius: 999px;
+  background: #d7dff1;
+  transform: translateX(-50%);
+}
+
+@keyframes lego-figure-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -62%) scale(0.72);
+  }
+
+  68% {
+    opacity: 1;
+    transform: translate(-50%, -104%) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+@keyframes saber-ready {
+  0% {
+    transform: rotate(18deg);
+  }
+
+  100% {
+    transform: rotate(27deg);
+  }
 }
 
 @media (max-width: 767px) {
+  .not-found {
+    min-height: calc(100dvh - var(--header-height) - var(--nav-height) - 42px);
+    grid-template-columns: 1fr;
+    padding: var(--space-7) 0 var(--space-9);
+  }
+
+  .not-found__inner {
+    max-width: 100%;
+  }
+
   .not-found__bg-code {
-    opacity: 0.1;
+    top: 56%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    font-size: clamp(9.6rem, 53vw, 13.4rem);
+    opacity: 0.74;
+  }
+
+  .not-found__body {
+    max-width: 40ch;
   }
 
   .not-found__actions {
@@ -1051,6 +1252,233 @@
   line-height: 1.5;
 }
 
+/* Contact easter eggs: Paris / Lyon */
+.contact-detail__line .city-light {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  padding-inline: 2px;
+  transition:
+    color var(--motion-duration-medium) var(--motion-standard),
+    text-shadow var(--motion-duration-medium) var(--motion-standard);
+}
+
+.contact-detail__line .city-light::before,
+.contact-detail__line .city-light::after {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--motion-duration-medium) ease-in-out,
+    transform var(--motion-duration-medium) var(--motion-standard),
+    filter var(--motion-duration-medium) var(--motion-standard);
+}
+
+.contact-detail__line .city-light--paris {
+  isolation: isolate;
+}
+
+.contact-detail__line .city-light--paris::before {
+  content: attr(data-city);
+  inset: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background:
+    radial-gradient(circle at 14% 30%, rgba(255, 246, 196, 0.96) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 38% 64%, rgba(255, 233, 153, 0.9) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 64% 26%, rgba(255, 240, 177, 0.92) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 82% 58%, rgba(255, 226, 133, 0.88) 0 1.1px, transparent 1.9px);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform: translateY(0.01em);
+}
+
+.contact-detail__line .city-light--paris::after {
+  content: '';
+  inset: -0.28em -0.38em;
+  border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 6% 40%, rgba(255, 238, 171, 0.7) 0 1.1px, transparent 2.1px),
+    radial-gradient(circle at 28% 8%, rgba(255, 228, 126, 0.62) 0 1.1px, transparent 2px),
+    radial-gradient(circle at 72% 92%, rgba(255, 232, 155, 0.66) 0 1.2px, transparent 2.1px),
+    radial-gradient(circle at 95% 44%, rgba(255, 214, 106, 0.58) 0 1px, transparent 1.9px);
+  transform: scale(0.94);
+  filter: blur(0.15px);
+}
+
+.contact-detail__line .city-light--paris:hover,
+.contact-detail__line .city-light--paris:focus-visible {
+  color: #af8731;
+  text-shadow: 0 0 6px rgba(255, 217, 126, 0.26);
+}
+
+.contact-detail__line .city-light--paris:hover::before,
+.contact-detail__line .city-light--paris:focus-visible::before {
+  opacity: 0.98;
+  animation: city-paris-sparkle 1.7s ease-in-out infinite;
+}
+
+.contact-detail__line .city-light--paris:hover::after,
+.contact-detail__line .city-light--paris:focus-visible::after {
+  opacity: 0.92;
+  transform: scale(1);
+  animation: city-paris-shimmer 2.3s ease-in-out infinite;
+}
+
+.contact-detail__line .city-light--lyon {
+  isolation: isolate;
+}
+
+.contact-detail__line .city-light--lyon::before {
+  content: '';
+  inset: -0.42em -0.74em;
+  border-radius: var(--radius-pill);
+  background: radial-gradient(
+    120% 98% at 50% 52%,
+    rgba(164, 180, 217, 0.28) 0%,
+    rgba(164, 180, 217, 0.15) 30%,
+    rgba(164, 180, 217, 0.06) 52%,
+    rgba(164, 180, 217, 0) 82%
+  );
+  filter: blur(6.1px);
+  transform: scale(0.9);
+}
+
+.contact-detail__line .city-light--lyon::after {
+  content: '';
+  inset: -0.52em -0.82em;
+  border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 16% 54%, rgba(255, 107, 201, 0.23), transparent 61%),
+    radial-gradient(circle at 52% 42%, rgba(103, 225, 245, 0.22), transparent 64%),
+    radial-gradient(circle at 84% 52%, rgba(250, 219, 104, 0.2), transparent 62%);
+  filter: blur(6.9px);
+  transform: scale(0.88);
+}
+
+.contact-detail__line .city-light--lyon:hover,
+.contact-detail__line .city-light--lyon:focus-visible {
+  color: inherit;
+  text-shadow:
+    0 0 3px rgba(255, 107, 201, 0.23),
+    0 0 6px rgba(103, 225, 245, 0.22),
+    0 0 10px rgba(250, 219, 104, 0.2);
+}
+
+.contact-detail__line .city-light--lyon:hover::before,
+.contact-detail__line .city-light--lyon:focus-visible::before {
+  opacity: 0.84;
+  filter: blur(6.8px);
+  transform: scale(1.03);
+}
+
+.contact-detail__line .city-light--lyon:hover::after,
+.contact-detail__line .city-light--lyon:focus-visible::after {
+  opacity: 0.94;
+  transform: scale(1.02);
+  animation: city-lyon-breathe 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon:hover,
+[data-theme='dark'] .contact-detail__line .city-light--lyon:focus-visible {
+  color: inherit;
+  text-shadow:
+    0 0 4px rgba(255, 97, 197, 0.33),
+    0 0 8px rgba(94, 234, 255, 0.32),
+    0 0 12px rgba(255, 229, 116, 0.3);
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon::before {
+  inset: -0.2em -0.46em;
+  background: rgba(9, 14, 28, 0.18);
+  filter: none;
+  transform: scale(0.95);
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon::after {
+  inset: -0.36em -0.5em;
+  background:
+    radial-gradient(circle at 16% 54%, rgba(255, 97, 197, 0.35), transparent 54%),
+    radial-gradient(circle at 52% 42%, rgba(94, 234, 255, 0.34), transparent 58%),
+    radial-gradient(circle at 84% 52%, rgba(255, 229, 116, 0.31), transparent 56%);
+  filter: blur(7px);
+  transform: scale(0.9);
+}
+
+[data-theme='dark'] .contact-detail__line .city-light--lyon:hover::after,
+[data-theme='dark'] .contact-detail__line .city-light--lyon:focus-visible::after {
+  animation: city-lyon-breathe-dark 3s ease-in-out infinite;
+}
+
+@keyframes city-paris-sparkle {
+  0%,
+  100% {
+    filter: brightness(0.88);
+    transform: translateY(0.01em) scale(0.995);
+  }
+
+  35% {
+    filter: brightness(1.08);
+    transform: translateY(0.01em) scale(1.01);
+  }
+
+  68% {
+    filter: brightness(0.95);
+    transform: translateY(0.01em) scale(1);
+  }
+}
+
+@keyframes city-paris-shimmer {
+  0%,
+  100% {
+    filter: blur(0.2px) brightness(0.9);
+    transform: scale(0.97);
+  }
+
+  50% {
+    filter: blur(0.1px) brightness(1.08);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes city-lyon-breathe {
+  0%,
+  100% {
+    filter: blur(6.8px) saturate(1);
+    transform: scale(0.98);
+  }
+
+  50% {
+    filter: blur(7.8px) saturate(1.07);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes city-lyon-breathe-dark {
+  0%,
+  100% {
+    filter: blur(7px) saturate(1);
+    transform: scale(0.95);
+  }
+
+  50% {
+    filter: blur(9px) saturate(1.1);
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-detail__line .city-light--paris:hover::before,
+  .contact-detail__line .city-light--paris:hover::after,
+  .contact-detail__line .city-light--paris:focus-visible::before,
+  .contact-detail__line .city-light--paris:focus-visible::after,
+  .contact-detail__line .city-light--lyon:hover::after,
+  .contact-detail__line .city-light--lyon:focus-visible::after {
+    animation: none;
+  }
+}
+
 .contact-detail__line a {
   position: relative;
   display: inline-flex;
@@ -1484,6 +1912,11 @@
 /* Methods wave: keep original colors by switching off multiply blend */
 [data-theme="dark"] .methods-wave path {
   mix-blend-mode: normal !important;
+}
+
+/* 404 page title readability */
+[data-theme="dark"] .not-found__title {
+  color: #eef2ff;
 }
 
 /* Case study page */
