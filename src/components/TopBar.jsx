@@ -6,7 +6,6 @@ import BookmarkButton from './BookmarkButton.jsx';
 import { IconDownload } from './icons-shell.jsx';
 import { uiContent } from '../i18n/content/ui.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import logoWhite from '../assets/Logo_Full_White_V3.svg';
 import logoWhiteMobile from '../assets/Logo_White_V3.svg';
 
 export default function TopBar() {
@@ -21,8 +20,7 @@ export default function TopBar() {
     <header className="topbar">
       <div className="topbar__inner container">
         <Link to="/" className="brand" aria-label={content.brandLabel}>
-          <img src={logoWhite} alt="Frederick Armando" className="brand__logo brand__logo--full" />
-          <img src={logoWhiteMobile} alt="Frederick Armando" className="brand__logo brand__logo--compact" />
+          <img src={logoWhiteMobile} alt="Frederick Armando" className="brand__logo" />
         </Link>
         <div className="topbar__actions">
           <ThemeToggleButton />

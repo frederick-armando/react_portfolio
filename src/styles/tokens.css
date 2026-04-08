@@ -76,6 +76,11 @@
   --color-purple-500: #6f5cff;
   --color-border: #e6e8ef;
   --color-surface: #ffffff;
+  --mesh-bg: #ffffff;
+  --mesh-blob-1: #b9ddff;
+  --mesh-blob-2: #eddcff;
+  --mesh-blob-3: #d4e6ff;
+  --mesh-blob-opacity: 0.44;
   --color-shadow: rgba(16, 24, 40, 0.08);
   --color-state-dark: rgba(18, 19, 26, 0.12);
   --color-state-light: rgba(255, 255, 255, 0.22);
@@ -133,7 +138,8 @@
 }
 
 /* ===== Dark Mode Tokens ===== */
-[data-theme="dark"] {
+[data-theme="dark"],
+:root.dark {
   --color-ink: #e4e5ed;
   --color-body: #b0b3c4;
   --color-muted: #7c809a;
@@ -146,6 +152,11 @@
   --color-purple-500: #8a7aff;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-surface: #14151f;
+  --mesh-bg: #0f111a;
+  --mesh-blob-1: #1a365d;
+  --mesh-blob-2: #44337a;
+  --mesh-blob-3: #2d4a79;
+  --mesh-blob-opacity: 0.5;
   --color-shadow: rgba(0, 0, 0, 0.32);
   --color-state-dark: rgba(255, 255, 255, 0.08);
   --color-state-light: rgba(255, 255, 255, 0.12);
@@ -189,6 +200,11 @@
     --color-purple-500: #8a7aff;
     --color-border: rgba(255, 255, 255, 0.08);
     --color-surface: #14151f;
+    --mesh-bg: #0f111a;
+    --mesh-blob-1: #1a365d;
+    --mesh-blob-2: #44337a;
+    --mesh-blob-3: #2d4a79;
+    --mesh-blob-opacity: 0.5;
     --color-shadow: rgba(0, 0, 0, 0.32);
     --color-state-dark: rgba(255, 255, 255, 0.08);
     --color-state-light: rgba(255, 255, 255, 0.12);
