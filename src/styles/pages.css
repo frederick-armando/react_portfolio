@@ -382,12 +382,12 @@
 .methods-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--elevation-1);
-  background: var(--color-primary-100);
+  background: #ffffff;
 }
 
-[data-theme="light"] .methods-card:hover,
-:root:not(.dark) .methods-card:hover {
-  background: #ffffff;
+[data-theme="dark"] .methods-card:hover,
+:root.dark .methods-card:hover {
+  background: var(--color-primary-100);
 }
 
 
