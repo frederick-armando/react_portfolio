@@ -77,10 +77,11 @@
   --color-border: #e6e8ef;
   --color-surface: #ffffff;
   --mesh-bg: #ffffff;
-  --mesh-blob-1: #b9ddff;
-  --mesh-blob-2: #eddcff;
-  --mesh-blob-3: #d4e6ff;
-  --mesh-blob-opacity: 0.44;
+  --mesh-blob-1: #8fc8ff;
+  --mesh-blob-2: #d9b8ff;
+  --mesh-blob-3: #abcfff;
+  --mesh-blob-opacity: 0.5;
+  --mesh-blob-saturation: 1.14;
   --color-shadow: rgba(16, 24, 40, 0.08);
   --color-state-dark: rgba(18, 19, 26, 0.12);
   --color-state-light: rgba(255, 255, 255, 0.22);
@@ -157,6 +158,7 @@
   --mesh-blob-2: #44337a;
   --mesh-blob-3: #2d4a79;
   --mesh-blob-opacity: 0.5;
+  --mesh-blob-saturation: 1;
   --color-shadow: rgba(0, 0, 0, 0.32);
   --color-state-dark: rgba(255, 255, 255, 0.08);
   --color-state-light: rgba(255, 255, 255, 0.12);
@@ -205,6 +207,7 @@
     --mesh-blob-2: #44337a;
     --mesh-blob-3: #2d4a79;
     --mesh-blob-opacity: 0.5;
+    --mesh-blob-saturation: 1;
     --color-shadow: rgba(0, 0, 0, 0.32);
     --color-state-dark: rgba(255, 255, 255, 0.08);
     --color-state-light: rgba(255, 255, 255, 0.12);

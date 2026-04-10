@@ -1,5 +1,5 @@
 import Button from '../components/Button.jsx';
-import { IconArchive, IconMessagesSquare } from '../components/icons-shell.jsx';
+import { IconFolderOpen, IconMessagesSquare } from '../components/icons-shell.jsx';
 
 import { homeContent } from '../i18n/content/home.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
@@ -55,7 +55,7 @@ export default function Home() {
       <p className="hero__lead">{content.lead}</p>
 
       <div className="hero__actions">
-        <Button variant="primary" to="/projets" icon={IconArchive}>
+        <Button variant="primary" to="/projets" icon={IconFolderOpen}>
           {content.projectsCta}
         </Button>
         <Button variant="secondary" to="/contact" icon={IconMessagesSquare}>

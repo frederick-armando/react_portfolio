@@ -6,7 +6,7 @@ import {
   IconHome, 
   IconProfile, 
   IconChartArea, 
-  IconArchive, 
+  IconFolderOpen, 
   IconMessagesSquare 
 } from './icons.jsx';
 
@@ -14,7 +14,7 @@ const navIcons = {
   home: IconHome,
   profile: IconProfile,
   methods: IconChartArea,
-  projects: IconArchive,
+  projects: IconFolderOpen,
   contact: IconMessagesSquare,
 };
 

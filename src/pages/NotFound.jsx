@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { IconArchive, IconHome } from '../components/icons.jsx';
+import { IconFolderOpen, IconHome } from '../components/icons.jsx';
 import Button from '../components/Button.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useTheme } from '../theme/ThemeContext.jsx';
@@ -904,11 +904,11 @@ export default function NotFound() {
         <p className="not-found__body">{content.body}</p>
 
         <div className="not-found__actions">
-          <Button variant="secondary" to="/projets" icon={IconArchive}>
-            {content.secondaryCta}
-          </Button>
-          <Button variant="primary" to="/" icon={IconHome}>
+          <Button variant="secondary" to="/" icon={IconHome}>
             {content.primaryCta}
+          </Button>
+          <Button variant="primary" to="/projets" icon={IconFolderOpen}>
+            {content.secondaryCta}
           </Button>
         </div>
       </div>

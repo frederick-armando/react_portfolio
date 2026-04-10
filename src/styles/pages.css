@@ -385,6 +385,12 @@
   background: var(--color-primary-100);
 }
 
+[data-theme="light"] .methods-card:hover,
+:root:not(.dark) .methods-card:hover {
+  background: #ffffff;
+}
+
+
 .methods-card--inactive {
   opacity: 0.35;
 }

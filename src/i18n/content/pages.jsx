@@ -17,6 +17,7 @@ export const pagesContent = {
       ],
       skills: [
         'Product Design',
+        'UX Design',
         'UI Design',
         'AI',
         'GenUI',
@@ -27,10 +28,10 @@ export const pagesContent = {
         'User Research',
         'User Testing',
         'Audit UX',
+        'Analyse des besoins',
         'Wireframe/Prototypage',
         'Apps mobiles & web',
         "Animation d'ateliers",
-        'Analyse des besoins',
       ],
     },
     methods: {
@@ -109,6 +110,7 @@ export const pagesContent = {
       ],
       skills: [
         'Product Design',
+        'UX Design',
         'UI Design',
         'AI',
         'GenUI',
@@ -119,10 +121,10 @@ export const pagesContent = {
         'User Research',
         'User Testing',
         'UX Audit',
+        'Needs analysis',
         'Wireframing/Prototyping',
         'Mobile & web apps',
         'Workshop facilitation',
-        'Needs analysis',
       ],
     },
     methods: {
