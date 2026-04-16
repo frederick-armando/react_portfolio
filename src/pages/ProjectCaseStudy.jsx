@@ -134,7 +134,7 @@ function ProjectTag({ tag }) {
   );
 }
 
-function CaseStudyHeader({ project, content, isModal, dragHandlers }) {
+function CaseStudyHeader({ project, content, isModal, dragHandlers, titleId, closeButtonRef }) {
   const navigate = useNavigate();
   const { language } = useLanguage();
   return (
@@ -145,9 +145,9 @@ function CaseStudyHeader({ project, content, isModal, dragHandlers }) {
         </div>
       )}
       <div className="case-study__header-content">
-        <h2 className="case-study__title">{content.currentStudy(project.company, project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1)))}</h2>
+        <h2 id={titleId} className="case-study__title">{content.currentStudy(project.company, project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1)))}</h2>
         {isModal ? (
-          <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={language === 'fr' ? 'Fermer' : 'Close'} />
+          <Button ref={closeButtonRef} variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={language === 'fr' ? 'Fermer' : 'Close'} />
         ) : (
           <div className="case-study__actions">
             <Button variant="tertiary" to="/projets" icon={IconArrowLeft}>
@@ -1240,6 +1240,10 @@ export default function ProjectCaseStudy({ isModal }) {
   const [isDragging, setIsDragging] = useState(false);
   const startYRef = useRef(0);
   const shellRef = useRef(null);
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const previousFocusedElementRef = useRef(null);
+  const modalTitleId = `case-study-modal-title-${displaySlug}`;
 
   useEffect(() => {
     if (shellRef.current) {
@@ -1254,6 +1258,109 @@ export default function ProjectCaseStudy({ isModal }) {
     }
     return () => { document.title = baseTitle; };
   }, [currentProject]);
+
+  useEffect(() => {
+    if (!isModal || !currentProject) {
+      return undefined;
+    }
+
+    const modalElement = modalRef.current;
+    if (!modalElement) {
+      return undefined;
+    }
+
+    const backgroundApp = document.querySelector('.app');
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousAriaHidden = backgroundApp?.getAttribute('aria-hidden') ?? null;
+    const hadInert = backgroundApp?.hasAttribute('inert') ?? false;
+
+    previousFocusedElementRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    document.body.style.overflow = 'hidden';
+    if (backgroundApp) {
+      backgroundApp.setAttribute('aria-hidden', 'true');
+      backgroundApp.setAttribute('inert', '');
+    }
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const getFocusableElements = () =>
+      Array.from(modalElement.querySelectorAll(focusableSelector)).filter((element) => {
+        if (!(element instanceof HTMLElement)) return false;
+        if (element.getAttribute('aria-hidden') === 'true') return false;
+        return element.offsetParent !== null || element === document.activeElement;
+      });
+
+    const focusInitialElement = () => {
+      const preferredTarget = closeButtonRef.current ?? getFocusableElements()[0] ?? modalElement;
+      preferredTarget.focus({ preventScroll: true });
+    };
+
+    const rafId = window.requestAnimationFrame(focusInitialElement);
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        navigate(-1);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        modalElement.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    };
+
+    modalElement.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      modalElement.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
+
+      if (backgroundApp) {
+        if (previousAriaHidden === null) {
+          backgroundApp.removeAttribute('aria-hidden');
+        } else {
+          backgroundApp.setAttribute('aria-hidden', previousAriaHidden);
+        }
+
+        if (!hadInert) {
+          backgroundApp.removeAttribute('inert');
+        }
+      }
+
+      const previousFocusedElement = previousFocusedElementRef.current;
+      if (previousFocusedElement && previousFocusedElement.isConnected) {
+        previousFocusedElement.focus({ preventScroll: true });
+      }
+    };
+  }, [currentProject, isModal, navigate]);
 
   if (!currentProject) {
     return <Navigate replace to="/projets" />;
@@ -1310,7 +1417,12 @@ export default function ProjectCaseStudy({ isModal }) {
 
   const contentBlock = (
     <div 
+      ref={isModal ? modalRef : null}
       className={isModal ? `case-study-modal ${isEntering ? 'case-study-modal--entering' : ''} ${isExiting ? 'case-study-modal--exiting' : ''}` : "case-study-page"}
+      role={isModal ? 'dialog' : undefined}
+      aria-modal={isModal ? 'true' : undefined}
+      aria-labelledby={isModal ? modalTitleId : undefined}
+      tabIndex={isModal ? -1 : undefined}
       style={isModal ? { 
         transform: `translateY(${translateY}px)`, 
         transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
@@ -1318,7 +1430,7 @@ export default function ProjectCaseStudy({ isModal }) {
       onClick={(e) => e.stopPropagation()}
       onAnimationEnd={handleAnimationEnd}
     >
-      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} />
+      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
       <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
         {currentProject.slug === 'tire-assistant' ? (
           <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />

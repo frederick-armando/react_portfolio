@@ -8,6 +8,8 @@ const baseProps = {
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
   'aria-hidden': true,
+  focusable: 'false',
+  tabIndex: -1,
 };
 
 function IconBase({ children, className, ...props }) {

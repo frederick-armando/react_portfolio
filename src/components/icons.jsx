@@ -39,6 +39,8 @@ const baseProps = {
   size: 20,
   strokeWidth: 2,
   'aria-hidden': true,
+  focusable: 'false',
+  tabIndex: -1,
 };
 
 const transition = {

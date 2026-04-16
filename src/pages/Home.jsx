@@ -55,11 +55,11 @@ export default function Home() {
       <p className="hero__lead">{content.lead}</p>
 
       <div className="hero__actions">
-        <Button variant="primary" to="/projets" icon={IconFolderOpen}>
-          {content.projectsCta}
-        </Button>
         <Button variant="secondary" to="/contact" icon={IconMessagesSquare}>
           {content.contactCta}
+        </Button>
+        <Button variant="primary" to="/projets" icon={IconFolderOpen}>
+          {content.projectsCta}
         </Button>
       </div>
     </section>

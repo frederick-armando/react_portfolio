@@ -416,7 +416,7 @@ button:focus-visible {
 
 .hero__actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: var(--space-4);
   justify-content: center;
   width: 100%;
@@ -429,7 +429,7 @@ button:focus-visible {
 
 @media (min-width: 768px) {
   .hero__actions {
-    flex-direction: row-reverse;
+    flex-direction: row;
     width: auto;
     max-width: none;
   }
