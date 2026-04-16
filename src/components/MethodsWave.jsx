@@ -33,6 +33,8 @@ export default function MethodsWave({ hoveredIndex, onHover }) {
       viewBox="0 0 1000 180"
       preserveAspectRatio="none"
       aria-hidden="true"
+      focusable="false"
+      tabIndex="-1"
     >
       <defs>
         <filter id="activeShadow" x="-20%" y="-20%" width="140%" height="140%">

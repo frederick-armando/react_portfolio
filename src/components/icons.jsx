@@ -266,6 +266,8 @@ function withLucideScale(Component) {
         whileFocus={{ scale: 1.12, y: -1 }}
         transition={{ type: 'spring', stiffness: 400, damping: 22 }}
         style={{ display: 'inline-flex', lineHeight: 0 }}
+        tabIndex="-1"
+        aria-hidden="true"
       >
         <Component {...baseProps} {...props} />
       </m.span>
