@@ -796,6 +796,8 @@
 }
 
 .case-study-page {
+  --case-study-asset-radius: var(--radius-lg);
+  --case-study-hero-radius: 28px;
   min-height: 100vh;
   padding: 24px 0 96px;
   background: #ffffff;
@@ -824,6 +826,8 @@
 }
 
 .case-study-modal {
+  --case-study-asset-radius: var(--radius-lg);
+  --case-study-hero-radius: 28px;
   grid-area: 1 / 1;
   width: 100%;
   max-width: 1060px;
@@ -1021,7 +1025,7 @@
   width: 100%;
   height: 100%;
   min-height: 360px;
-  border-radius: 28px;
+  border-radius: var(--case-study-hero-radius);
   overflow: hidden;
 }
 
@@ -1743,6 +1747,12 @@
 
   .project-soon {
     font-size: clamp(2rem, 11vw, 3.2rem);
+  }
+
+  .case-study-page,
+  .case-study-modal {
+    --case-study-asset-radius: calc(var(--radius-lg) / 2);
+    --case-study-hero-radius: 14px;
   }
 
   .case-study-page {
