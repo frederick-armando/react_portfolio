@@ -10,8 +10,9 @@ body {
   font-family: var(--font-family);
   font-synthesis: none;
   color: var(--color-ink);
-  background: var(--color-surface);
+  background-color: var(--mesh-bg);
   min-height: 100dvh;
+  transition: background-color 0.5s ease;
 }
 
 a {
@@ -36,9 +37,148 @@ button:focus-visible {
 
 .app {
   min-height: 100dvh;
-  background: var(--color-surface);
+  position: relative;
+  isolation: isolate;
+  background: transparent;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.5s ease;
+}
+
+.mesh-gradient {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  --mesh-pointer-nx: 0;
+  --mesh-pointer-ny: 0;
+}
+
+.mesh-gradient__blob {
+  position: absolute;
+  border-radius: 58% 42% 56% 44% / 44% 56% 42% 58%;
+  filter: blur(120px) saturate(var(--mesh-blob-saturation, 1));
+  opacity: var(--mesh-blob-opacity);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: background-color 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+}
+
+.mesh-gradient__blob--one {
+  width: clamp(320px, 52vw, 740px);
+  height: clamp(320px, 52vw, 740px);
+  top: -20%;
+  left: -14%;
+  --mesh-react-x: 18px;
+  --mesh-react-y: 14px;
+  background-color: var(--mesh-blob-1);
+  animation: mesh-drift-1 17s ease-in-out infinite alternate;
+}
+
+.mesh-gradient__blob--two {
+  width: clamp(300px, 50vw, 700px);
+  height: clamp(300px, 50vw, 700px);
+  top: 4%;
+  right: -16%;
+  --mesh-react-x: -20px;
+  --mesh-react-y: 16px;
+  background-color: var(--mesh-blob-2);
+  animation: mesh-drift-2 18s ease-in-out infinite alternate;
+}
+
+.mesh-gradient__blob--three {
+  width: clamp(280px, 46vw, 660px);
+  height: clamp(280px, 46vw, 660px);
+  bottom: -24%;
+  left: 24%;
+  --mesh-react-x: 16px;
+  --mesh-react-y: -18px;
+  background-color: var(--mesh-blob-3);
+  animation: mesh-drift-3 19s ease-in-out infinite alternate;
+}
+
+@keyframes mesh-drift-1 {
+  0% {
+    transform: translate3d(
+      calc(-2.2% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(-1.2% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(-2deg) scale(0.99);
+  }
+
+  100% {
+    transform: translate3d(
+      calc(5.8% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(4.4% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(8deg) scale(1.08);
+  }
+}
+
+@keyframes mesh-drift-2 {
+  0% {
+    transform: translate3d(
+      calc(1.8% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(-2.2% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(0deg) scale(0.99);
+  }
+
+  100% {
+    transform: translate3d(
+      calc(-5.7% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(4.6% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(-8deg) scale(1.07);
+  }
+}
+
+@keyframes mesh-drift-3 {
+  0% {
+    transform: translate3d(
+      calc(0% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(2% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(0deg) scale(0.99);
+  }
+
+  100% {
+    transform: translate3d(
+      calc(4.8% + (var(--mesh-pointer-nx, 0) * var(--mesh-react-x, 0px))),
+      calc(-4.4% + (var(--mesh-pointer-ny, 0) * var(--mesh-react-y, 0px))),
+      0
+    ) rotate(7deg) scale(1.09);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mesh-gradient__blob {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mesh-gradient__blob--one {
+    width: clamp(300px, 78vw, 520px);
+    height: clamp(300px, 78vw, 520px);
+    top: -18%;
+    left: -22%;
+  }
+
+  .mesh-gradient__blob--two {
+    width: clamp(280px, 72vw, 500px);
+    height: clamp(280px, 72vw, 500px);
+    top: 10%;
+    right: -24%;
+  }
+
+  .mesh-gradient__blob--three {
+    width: clamp(260px, 70vw, 460px);
+    height: clamp(260px, 70vw, 460px);
+    bottom: -20%;
+    left: 10%;
+  }
 }
 
 .container {
@@ -154,20 +294,6 @@ button:focus-visible {
   height: 40px;
   width: auto;
   display: block;
-}
-
-.brand__logo--compact {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .brand__logo--full {
-    display: none;
-  }
-  .brand__logo--compact {
-    display: block;
-    height: 32px;
-  }
 }
 
 .topbar__actions {
@@ -290,7 +416,7 @@ button:focus-visible {
 
 .hero__actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: var(--space-4);
   justify-content: center;
   width: 100%;
@@ -303,7 +429,7 @@ button:focus-visible {
 
 @media (min-width: 768px) {
   .hero__actions {
-    flex-direction: row-reverse;
+    flex-direction: row;
     width: auto;
     max-width: none;
   }
@@ -390,6 +516,10 @@ button:focus-visible {
   background: transparent;
   border: 1px solid var(--color-border);
   box-shadow: none;
+}
+
+[data-theme="light"] .btn--tertiary:not(.btn--reverse) {
+  border-color: #14151f;
 }
 
 .btn--reverse {

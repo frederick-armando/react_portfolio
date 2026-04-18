@@ -1,6 +1,7 @@
+import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Button({
+const Button = forwardRef(function Button({
   children,
   icon: Icon,
   variant = 'primary', // 'primary' | 'secondary' | 'tertiary'
@@ -13,7 +14,7 @@ export default function Button({
   iconOnly = false,
   title,
   ...props
-}) {
+}, ref) {
   const baseClass = `btn btn--${variant} ${reverse ? 'btn--reverse' : ''} ${
     iconOnly || (!children && !!Icon) ? 'btn--icon-only' : ''
   } ${className}`.trim();
@@ -36,6 +37,7 @@ export default function Button({
   if (to) {
     return (
       <Link
+        ref={ref}
         to={to}
         className={baseClass}
         {...tooltipProps}
@@ -50,6 +52,7 @@ export default function Button({
   if (href) {
     return (
       <a
+        ref={ref}
         href={href}
         className={baseClass}
         {...tooltipProps}
@@ -63,6 +66,7 @@ export default function Button({
   // Otherwise, render a <button>
   return (
     <button
+      ref={ref}
       type={type} 
       className={baseClass} 
       {...tooltipProps} 
@@ -71,4 +75,6 @@ export default function Button({
       {content}
     </button>
   );
-}
+});
+
+export default Button;

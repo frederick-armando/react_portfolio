@@ -198,6 +198,7 @@ export default function Projets() {
   );
   const stageScrollerRef = useRef(null);
   const slideRefs = useRef([]);
+  const slideLinkRefs = useRef([]);
   const scrollFrameRef = useRef(null);
   const autoplayFrameRef = useRef(null);
   const hasInitializedRef = useRef(false);
@@ -536,6 +537,50 @@ export default function Projets() {
     alignProject(safeIndex);
   }
 
+  function focusProjectLink(index) {
+    const safeIndex =
+      index < 0 || index >= renderedProjects.length
+        ? getLoopedRenderedIndex(index)
+        : index;
+
+    window.requestAnimationFrame(() => {
+      slideLinkRefs.current[safeIndex]?.focus();
+    });
+  }
+
+  function handleCardKeyDown(event, renderedIndex) {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      const nextIndex = renderedIndex + 1;
+      moveToProject(nextIndex);
+      focusProjectLink(nextIndex);
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      const previousIndex = renderedIndex - 1;
+      moveToProject(previousIndex);
+      focusProjectLink(previousIndex);
+      return;
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault();
+      const firstIndex = MIDDLE_SET_OFFSET;
+      moveToProject(firstIndex);
+      focusProjectLink(firstIndex);
+      return;
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault();
+      const lastIndex = MIDDLE_SET_OFFSET + PROJECT_COUNT - 1;
+      moveToProject(lastIndex);
+      focusProjectLink(lastIndex);
+    }
+  }
+
   function handleStageWheel(event) {
     const scroller = stageScrollerRef.current;
     if (!scroller) {
@@ -609,18 +654,6 @@ export default function Projets() {
     suppressClickRef.current = false;
   }
 
-  function handleStageKeyDown(event) {
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      goToNextProject();
-    }
-
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      goToPreviousProject();
-    }
-  }
-
   return (
     <section className="project-showcase" aria-label={content.sectionLabel}>
       <div
@@ -648,9 +681,7 @@ export default function Projets() {
             className={`project-stage${isDragging ? ' project-stage--dragging' : ''}${isWheelScrolling ? ' project-stage--free-scroll' : ''}`}
             aria-roledescription="carousel"
             aria-label={content.stageLabel}
-            tabIndex={0}
             onClickCapture={handleStageClickCapture}
-            onKeyDown={handleStageKeyDown}
             onMouseDown={handleStageMouseDown}
             onTouchStart={() => {
               stopWheelScrollSync();
@@ -680,10 +711,15 @@ export default function Projets() {
                 >
                   {isCardLinked ? (
                     <Link
+                      ref={(node) => {
+                        slideLinkRefs.current[renderedIndex] = node;
+                      }}
                       className="project-stage__card-link"
                       to={project.ctaTo ?? detailPath}
                       state={project.ctaTo ? undefined : { backgroundLocation: location }}
                       aria-label={content.openProjectLabel(project.title)}
+                      tabIndex={isActive ? 0 : -1}
+                      onKeyDown={(event) => handleCardKeyDown(event, renderedIndex)}
                     >
                       <div className="project-stage__card">
                         <div className="project-stage__surface">

@@ -8,6 +8,8 @@ const baseProps = {
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
   'aria-hidden': true,
+  focusable: 'false',
+  tabIndex: -1,
 };
 
 function IconBase({ children, className, ...props }) {
@@ -18,12 +20,10 @@ function IconBase({ children, className, ...props }) {
   );
 }
 
-export function IconArchive(props) {
+export function IconFolderOpen(props) {
   return (
     <IconBase {...props}>
-      <rect x="2" y="3" width="20" height="5" rx="1" />
-      <path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" />
-      <path d="M10 13h4" />
+      <path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" />
     </IconBase>
   );
 }

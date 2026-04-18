@@ -39,6 +39,8 @@ const baseProps = {
   size: 20,
   strokeWidth: 2,
   'aria-hidden': true,
+  focusable: 'false',
+  tabIndex: -1,
 };
 
 const transition = {
@@ -156,16 +158,10 @@ export const IconFigmaBrand = ({ ...props }) => (
 );
 
 
-export const IconArchive = ({ ...props }) => (
+export const IconFolderOpen = ({ ...props }) => (
   <m.svg {...baseProps} {...interactiveIconProps} fill="none" stroke="currentColor" viewBox="0 0 24 24" {...props}>
-    <rect width="20" height="5" x="2" y="3" rx="1" />
     <m.path
-      d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"
-      variants={pathVariants}
-      transition={transition}
-    />
-    <m.path
-      d="M10 12h4"
+      d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"
       variants={pathVariants}
       transition={transition}
     />
@@ -270,6 +266,8 @@ function withLucideScale(Component) {
         whileFocus={{ scale: 1.12, y: -1 }}
         transition={{ type: 'spring', stiffness: 400, damping: 22 }}
         style={{ display: 'inline-flex', lineHeight: 0 }}
+        tabIndex="-1"
+        aria-hidden="true"
       >
         <Component {...baseProps} {...props} />
       </m.span>

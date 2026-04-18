@@ -1,32 +1,58 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
 import { Navigate, useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
-  IconCog,
+  IconArrowLeft,
+  IconBriefcase,
+  IconBotMessageSquare,
+  IconBuilding,
+  IconCalendar,
   IconCar,
+  IconCloud,
+  IconClipboardType,
+  IconCode,
+  IconClose,
+  IconCog,
+  IconDatabase,
+  IconFigma,
   IconHammer,
   IconKeySquare,
+  IconLibraryBig,
+  IconMethod,
+  IconMic,
+  IconMobile,
+  IconMessagesSquare,
+  IconNote,
+  IconBookCheck,
+  IconPencilRuler,
+  IconKanban,
+  IconSearch,
+  IconSquareKanban,
+  IconStickyNote,
+  IconTicket,
+  IconTruck,
+  IconUsers,
+  IconWaypoints,
+  IconWebcam,
 } from '../components/icons.jsx';
-import ProjectArtwork from '../components/ProjectArtwork.jsx';
 import Button from '../components/Button.jsx';
-import '../styles/pages.css';
-
-import masteosSitemap from '../assets/projects/masteos/masteos-sitemap.png';
-import masteosLaunch1 from '../assets/projects/masteos/masteos-launch-1.png';
-import masteosLaunch2 from '../assets/projects/masteos/masteos-launch-2.png';
-import masteosValidation1 from '../assets/projects/masteos/masteos-validation-1.png';
-import masteosValidation2 from '../assets/projects/masteos/masteos-validation-2.png';
-import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
-import heliosWireframe2 from '../assets/projects/helios/helios-wireframe-2.png';
+import ProjectArtwork from '../components/ProjectArtwork.jsx';
 import heliosMockup1 from '../assets/projects/helios/helios-mockup-1.png';
 import heliosMockup2 from '../assets/projects/helios/helios-mockup-2.png';
+import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
+import heliosWireframe2 from '../assets/projects/helios/helios-wireframe-2.png';
+import kirrkDashboard from '../assets/projects/kirrk/kirrk-dashboard.png';
+import kirrkMockupFull from '../assets/projects/kirrk/kirrk-mockup-full.png';
 import kirrkWireframe1 from '../assets/projects/kirrk/kirrk-wireframe-1.png';
 import kirrkWireframe2 from '../assets/projects/kirrk/kirrk-wireframe-2.png';
-import kirrkMockupFull from '../assets/projects/kirrk/kirrk-mockup-full.png';
-import kirrkDashboard from '../assets/projects/kirrk/kirrk-dashboard.png';
+import masteosLaunch1 from '../assets/projects/masteos/masteos-launch-1.png';
+import masteosLaunch2 from '../assets/projects/masteos/masteos-launch-2.png';
+import masteosSitemap from '../assets/projects/masteos/masteos-sitemap.png';
+import masteosValidation1 from '../assets/projects/masteos/masteos-validation-1.png';
+import masteosValidation2 from '../assets/projects/masteos/masteos-validation-2.png';
+import mobioosDashboard from '../assets/projects/mobioos/mobioos-dashboard.png';
+import mobioosFull from '../assets/projects/mobioos/mobioos-full.png';
 import mobioosMockup1 from '../assets/projects/mobioos/mobioos-mockup-1.png';
 import mobioosMockup2 from '../assets/projects/mobioos/mobioos-mockup-2.png';
-import mobioosFull from '../assets/projects/mobioos/mobioos-full.png';
-import mobioosDashboard from '../assets/projects/mobioos/mobioos-dashboard.png';
 import myxpertFlow from '../assets/projects/myxpert/MyXpert Flow.png';
 import myxpertLegacyVsNew from '../assets/projects/myxpert/MyTechXpert vs MyXpert.png';
 import myxpertLegacyVsNew2x from '../assets/projects/myxpert/MyTechXpert vs MyXpert@2x.png';
@@ -35,39 +61,10 @@ import tireAssistantABTest from '../assets/projects/tire-assistant/Chatbot ABTes
 import tireAssistantHighFidelity from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap.png';
 import tireAssistantHighFidelity2x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@2x.png';
 import tireAssistantHighFidelity3x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@3x.png';
-import {
-  IconArrowLeft,
-  IconBriefcase,
-  IconBuilding,
-  IconCalendar,
-  IconCloud,
-  IconCode,
-  IconMethod,
-  IconMic,
-  IconMobile,
-  IconMessagesSquare,
-  IconBotMessageSquare,
-  IconTruck,
-  IconNote,
-  IconBookCheck,
-  IconPencilRuler,
-  IconKanban,
-  IconSquareKanban,
-  IconStickyNote,
-  IconDatabase,
-  IconSearch,
-  IconWaypoints,
-  IconClipboardType,
-  IconWebcam,
-  IconFigma,
-  IconLibraryBig,
-  IconTicket,
-  IconUsers,
-  IconClose,
-} from '../components/icons.jsx';
 import { getLocalizedProjects, getProjectBySlug } from '../data/projects.js';
 import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import '../styles/pages.css';
 
 const metricIcons = {
   calendar: IconCalendar,
@@ -134,7 +131,7 @@ function ProjectTag({ tag }) {
   );
 }
 
-function CaseStudyHeader({ project, content, isModal, dragHandlers }) {
+function CaseStudyHeader({ project, content, isModal, dragHandlers, titleId, closeButtonRef }) {
   const navigate = useNavigate();
   const { language } = useLanguage();
   return (
@@ -145,9 +142,9 @@ function CaseStudyHeader({ project, content, isModal, dragHandlers }) {
         </div>
       )}
       <div className="case-study__header-content">
-        <h2 className="case-study__title">{content.currentStudy(project.company, project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1)))}</h2>
+        <h2 id={titleId} className="case-study__title">{content.currentStudy(project.company, project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1)))}</h2>
         {isModal ? (
-          <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={language === 'fr' ? 'Fermer' : 'Close'} />
+          <Button ref={closeButtonRef} variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={language === 'fr' ? 'Fermer' : 'Close'} />
         ) : (
           <div className="case-study__actions">
             <Button variant="tertiary" to="/projets" icon={IconArrowLeft}>
@@ -319,7 +316,7 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <div className="case-study-image case-study-image--full" style={{ padding: '0 var(--space-4)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <figure className="case-study-device-mockup" style={{ width: '100%', margin: 0 }}>
-          <img src={masteosSitemap} alt={content.captions.userJourney} draggable="false" style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-lg)' }} />
+          <img src={masteosSitemap} alt={content.captions.userJourney} draggable="false" style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--case-study-asset-radius)' }} />
           <figcaption>{content.captions.userJourney}</figcaption>
         </figure>
       </div>
@@ -496,7 +493,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
 
       <ExecutiveSummary content={content} />
 
-      {/* intro + users → first 4 metrics */}
       <section className="case-study-section">
         <h2>{content.sections.intro.title}</h2>
         {content.sections.intro.paragraphs.map((paragraph) => (
@@ -524,7 +520,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         })}
       </section>
 
-      {/* challenge + daily → last 4 metrics */}
       <section className="case-study-section">
         <h2>{content.sections.challenge.title}</h2>
         {content.sections.challenge.paragraphs.map((paragraph) => (
@@ -552,7 +547,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         })}
       </section>
 
-      {/* questions + workshop → wireframes (stacked) */}
       <section className="case-study-section">
         <h2>{content.sections.questions.title}</h2>
         {content.sections.questions.paragraphs.map((paragraph) => (
@@ -578,7 +572,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         </figure>
       </section>
 
-      {/* battleground + launch → mockups (stacked) */}
       <section className="case-study-section">
         <h2>{content.sections.battleground.title}</h2>
         {content.sections.battleground.paragraphs.map((paragraph) => (
@@ -604,7 +597,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         </figure>
       </section>
 
-      {/* success + evolution → tools */}
       <section className="case-study-section">
         <h2>{content.sections.success.title}</h2>
         {content.sections.success.paragraphs.map((paragraph) => (
@@ -632,7 +624,6 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         })}
       </section>
 
-      {/* innovation + design */}
       <section className="case-study-section">
         <h2>{content.sections.innovation.title}</h2>
         {content.sections.innovation.paragraphs.map((paragraph) => (
@@ -676,7 +667,6 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
 
       <ExecutiveSummary content={content} />
 
-      {/* intro + ambition → 4+4 metrics */}
       <section className="case-study-section">
         <h2>{content.sections.intro.title}</h2>
         {content.sections.intro.paragraphs.map((paragraph) => (
@@ -704,7 +694,6 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
         })}
       </section>
 
-      {/* challenges + daily → mockup full (full-width) */}
       <section className="case-study-section">
         <h2>{content.sections.challenges.title}</h2>
         {content.sections.challenges.paragraphs.map((paragraph) => (
@@ -726,7 +715,6 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
         </figure>
       </section>
 
-      {/* moment + features → dashboard (full-width) */}
       <section className="case-study-section">
         <h2>{content.sections.moment.title}</h2>
         {content.sections.moment.paragraphs.map((paragraph) => (
@@ -748,7 +736,6 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
         </figure>
       </section>
 
-      {/* path + learnings → wireframes mobile (side-by-side) */}
       <section className="case-study-section">
         <h2>{content.sections.path.title}</h2>
         {content.sections.path.paragraphs.map((paragraph) => (
@@ -775,7 +762,6 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
       </section>
 
 
-      {/* future */}
       <section className="case-study-section">
         <h2>{content.sections.future.title}</h2>
         {content.sections.future.paragraphs.map((paragraph) => (
@@ -858,7 +844,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
             src={tireAssistantABTest} 
             alt={content.captions.abTest} 
             draggable="false" 
-            style={{ borderRadius: 'var(--radius-lg)' }}
+            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
           />
           <figcaption>{content.captions.abTest}</figcaption>
         </figure>
@@ -1002,7 +988,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
             src={myxpertFlow} 
             alt={content.captions.flow} 
             draggable="false" 
-            style={{ borderRadius: 'var(--radius-lg)' }}
+            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
           />
           <figcaption>{content.captions.flow}</figcaption>
         </figure>
@@ -1029,7 +1015,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
             srcSet={`${myxpertLegacyVsNew2x} 2x, ${myxpertLegacyVsNew3x} 3x`} 
             alt={content.captions.legacyVsNew} 
             draggable="false" 
-            style={{ borderRadius: 'var(--radius-lg)' }}
+            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
           />
           <figcaption>{content.captions.legacyVsNew}</figcaption>
         </figure>
@@ -1098,7 +1084,6 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <ExecutiveSummary content={content} />
 
-      {/* intro + playground → 8 metrics */}
       <section className="case-study-section">
         <h2>{content.sections.intro.title}</h2>
         {content.sections.intro.paragraphs.map((paragraph) => (
@@ -1126,7 +1111,6 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         })}
       </section>
 
-      {/* juggling + challenges → full image */}
       <section className="case-study-section">
         <h2>{content.sections.juggling.title}</h2>
         {content.sections.juggling.paragraphs.map((paragraph) => (
@@ -1148,7 +1132,6 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         </figure>
       </section>
 
-      {/* moment + impact → dashboard → synergy + launch → mobile mockups → learnings + future */}
       <section className="case-study-section">
         <h2>{content.sections.moment.title}</h2>
         {content.sections.moment.paragraphs.map((paragraph) => (
@@ -1240,6 +1223,10 @@ export default function ProjectCaseStudy({ isModal }) {
   const [isDragging, setIsDragging] = useState(false);
   const startYRef = useRef(0);
   const shellRef = useRef(null);
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const previousFocusedElementRef = useRef(null);
+  const modalTitleId = `case-study-modal-title-${displaySlug}`;
 
   useEffect(() => {
     if (shellRef.current) {
@@ -1254,6 +1241,109 @@ export default function ProjectCaseStudy({ isModal }) {
     }
     return () => { document.title = baseTitle; };
   }, [currentProject]);
+
+  useEffect(() => {
+    if (!isModal || !currentProject) {
+      return undefined;
+    }
+
+    const modalElement = modalRef.current;
+    if (!modalElement) {
+      return undefined;
+    }
+
+    const backgroundApp = document.querySelector('.app');
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousAriaHidden = backgroundApp?.getAttribute('aria-hidden') ?? null;
+    const hadInert = backgroundApp?.hasAttribute('inert') ?? false;
+
+    previousFocusedElementRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    document.body.style.overflow = 'hidden';
+    if (backgroundApp) {
+      backgroundApp.setAttribute('aria-hidden', 'true');
+      backgroundApp.setAttribute('inert', '');
+    }
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const getFocusableElements = () =>
+      Array.from(modalElement.querySelectorAll(focusableSelector)).filter((element) => {
+        if (!(element instanceof HTMLElement)) return false;
+        if (element.getAttribute('aria-hidden') === 'true') return false;
+        return element.offsetParent !== null || element === document.activeElement;
+      });
+
+    const focusInitialElement = () => {
+      const preferredTarget = closeButtonRef.current ?? getFocusableElements()[0] ?? modalElement;
+      preferredTarget.focus({ preventScroll: true });
+    };
+
+    const rafId = window.requestAnimationFrame(focusInitialElement);
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        navigate(-1);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        modalElement.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    };
+
+    modalElement.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      modalElement.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
+
+      if (backgroundApp) {
+        if (previousAriaHidden === null) {
+          backgroundApp.removeAttribute('aria-hidden');
+        } else {
+          backgroundApp.setAttribute('aria-hidden', previousAriaHidden);
+        }
+
+        if (!hadInert) {
+          backgroundApp.removeAttribute('inert');
+        }
+      }
+
+      const previousFocusedElement = previousFocusedElementRef.current;
+      if (previousFocusedElement && previousFocusedElement.isConnected) {
+        previousFocusedElement.focus({ preventScroll: true });
+      }
+    };
+  }, [currentProject, isModal, navigate]);
 
   if (!currentProject) {
     return <Navigate replace to="/projets" />;
@@ -1310,7 +1400,12 @@ export default function ProjectCaseStudy({ isModal }) {
 
   const contentBlock = (
     <div 
+      ref={isModal ? modalRef : null}
       className={isModal ? `case-study-modal ${isEntering ? 'case-study-modal--entering' : ''} ${isExiting ? 'case-study-modal--exiting' : ''}` : "case-study-page"}
+      role={isModal ? 'dialog' : undefined}
+      aria-modal={isModal ? 'true' : undefined}
+      aria-labelledby={isModal ? modalTitleId : undefined}
+      tabIndex={isModal ? -1 : undefined}
       style={isModal ? { 
         transform: `translateY(${translateY}px)`, 
         transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
@@ -1318,7 +1413,7 @@ export default function ProjectCaseStudy({ isModal }) {
       onClick={(e) => e.stopPropagation()}
       onAnimationEnd={handleAnimationEnd}
     >
-      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} />
+      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
       <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
         {currentProject.slug === 'tire-assistant' ? (
           <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />

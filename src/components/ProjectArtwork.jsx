@@ -1,7 +1,7 @@
 import chatbotBg from '../assets/projects/Chatbot-bg.png';
-import chatbotDevice from '../assets/projects/Chatbot.png';
-import chatbotDevice2x from '../assets/projects/Chatbot@2x.png';
-import chatbotDevice3x from '../assets/projects/Chatbot@3x.png';
+import chatbotDevice from '../assets/projects/Chatbot (update 2).png';
+import chatbotDevice2x from '../assets/projects/Chatbot (update 2)@2x.png';
+import chatbotDevice3x from '../assets/projects/Chatbot (update 2)@3x.png';
 
 import myxpertBg from '../assets/projects/MyXpert-bg.png';
 import myxpertDevice from '../assets/projects/MyXpert.png';
