@@ -64,6 +64,8 @@ import tireAssistantHighFidelity3x from '../assets/projects/tire-assistant/Welco
 import { getLocalizedProjects, getProjectBySlug } from '../data/projects.js';
 import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
 import '../styles/pages.css';
 
 const metricIcons = {
@@ -1234,13 +1236,13 @@ export default function ProjectCaseStudy({ isModal }) {
     }
   }, [displaySlug]);
 
-  useEffect(() => {
-    const baseTitle = 'Frederick Armando \u2014 Portfolio';
-    if (currentProject) {
-      document.title = `${baseTitle} / ${currentProject.company}`;
-    }
-    return () => { document.title = baseTitle; };
-  }, [currentProject]);
+  const seoData = seoConfig[displaySlug] || seoConfig.home;
+  useSEO({
+    title: seoData.title,
+    description: seoData.description,
+    image: seoData.image,
+    urlPath: `/projets/${displaySlug}`
+  });
 
   useEffect(() => {
     if (!isModal || !currentProject) {

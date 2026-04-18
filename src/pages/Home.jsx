@@ -3,10 +3,19 @@ import { IconFolderOpen, IconMessagesSquare } from '../components/icons-shell.js
 
 import { homeContent } from '../i18n/content/home.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
 
 export default function Home() {
   const { language } = useLanguage();
   const content = homeContent[language];
+
+  useSEO({
+    title: seoConfig.home.title,
+    description: seoConfig.home.description,
+    image: seoConfig.home.image,
+    urlPath: '/'
+  });
 
   return (
     <section className="hero">
