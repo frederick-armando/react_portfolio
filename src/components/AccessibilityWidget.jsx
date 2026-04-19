@@ -292,15 +292,16 @@ const AccessibilityWidget = () => {
           </div>
         )}
 
-        <button 
+        <Button 
+          variant="primary" 
+          icon={Accessibility} 
+          iconOnly={true}
           className="a11y-fab" 
           onClick={togglePanel}
-          aria-label={t.openMenu}
+          title={t.openMenu}
           aria-expanded={isOpen}
           style={{ display: isOpen && window.innerWidth <= 768 ? 'none' : 'flex' }}
-        >
-          <Accessibility />
-        </button>
+        />
       </div>
     </>
   );

@@ -25,29 +25,39 @@
 
 /* Floating Action Button (FAB) */
 .a11y-fab {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: var(--color-primary, #007bff);
-  color: white;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  border: none;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  outline: none;
+  transition: transform 0.2s ease !important;
 }
 
 .a11y-fab:hover, .a11y-fab:focus-visible {
   transform: scale(1.05);
-  background-color: var(--color-primary-hover, #0056b3);
 }
 
-.a11y-fab svg {
+.a11y-fab .btn__icon {
   width: 28px;
   height: 28px;
+}
+
+/* Tooltip on the left for the FAB */
+.a11y-fab[data-tooltip]::before {
+  top: 50% !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: calc(100% + 12px) !important;
+  transform: translateY(-50%) scale(0.9) !important;
+}
+
+@media (hover: hover) {
+  .a11y-fab[data-tooltip]:hover::before,
+  .a11y-fab[data-tooltip]:focus-visible::before {
+    transform: translateY(-50%) scale(1) !important;
+  }
 }
 
 /* Settings Panel */
