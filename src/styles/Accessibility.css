@@ -67,13 +67,33 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
   border-radius: 16px;
-  padding: 24px;
   margin-bottom: 16px;
   width: 320px;
   box-shadow: var(--elevation-2, 0 8px 32px rgba(0, 0, 0, 0.12));
   color: var(--color-ink, #333);
   font-family: inherit;
   transform-origin: bottom right;
+  
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.a11y-panel-header-wrapper {
+  padding: 24px 24px 0 24px;
+  flex-shrink: 0;
+}
+
+.a11y-panel-content {
+  padding: 0 24px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.a11y-panel-content::-webkit-scrollbar {
+  display: none;
 }
 
 .a11y-panel--entering {
@@ -298,13 +318,19 @@ body.a11y-no-animations *::after {
     width: 100%;
     margin-bottom: 0;
     border-radius: 24px 24px 0 0;
-    padding: 32px 24px 80px;
     box-sizing: border-box;
     transform-origin: bottom center;
     z-index: 1000000;
     will-change: transform;
     max-height: 85%;
-    overflow-y: auto;
+  }
+
+  .a11y-panel-header-wrapper {
+    padding: 32px 24px 0 24px;
+  }
+
+  .a11y-panel-content {
+    padding: 0 24px 80px 24px;
   }
 
   .a11y-panel--entering {

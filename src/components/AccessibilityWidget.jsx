@@ -198,19 +198,22 @@ const AccessibilityWidget = () => {
               <div className="a11y-handle" />
             </div>
 
-            <div className="a11y-panel-header">
-              <h3 id="a11y-panel-title">{t.title}</h3>
-              <Button 
-                variant="tertiary" 
-                icon={IconClose} 
-                iconOnly={true} 
-                className="a11y-panel-close" 
-                onClick={togglePanel} 
-                title={t.closePanel} 
-              />
+            <div className="a11y-panel-header-wrapper">
+              <div className="a11y-panel-header">
+                <h3 id="a11y-panel-title">{t.title}</h3>
+                <Button 
+                  variant="tertiary" 
+                  icon={IconClose} 
+                  iconOnly={true} 
+                  className="a11y-panel-close" 
+                  onClick={togglePanel} 
+                  title={t.closePanel} 
+                />
+              </div>
             </div>
 
-            <div className="a11y-section">
+            <div className="a11y-panel-content">
+              <div className="a11y-section">
               <div className="a11y-section-title">
                 <Type size={16} /> {t.textSize} ({textSize}%)
               </div>
@@ -323,13 +326,14 @@ const AccessibilityWidget = () => {
               </div>
             </div>
 
-            <button 
-              className="a11y-btn a11y-btn-reset" 
-              onClick={handleReset}
-              aria-label={t.resetAll}
-            >
-              <RotateCcw size={16} /> {t.reset}
-            </button>
+              <button 
+                className="a11y-btn a11y-btn-reset" 
+                onClick={handleReset}
+                aria-label={t.resetAll}
+              >
+                <RotateCcw size={16} /> {t.reset}
+              </button>
+            </div>
           </div>
         )}
 
