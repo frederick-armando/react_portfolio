@@ -8,7 +8,10 @@ import {
   Sun, 
   Link as LinkIcon, 
   Play, 
-  RotateCcw 
+  RotateCcw,
+  MousePointer2,
+  Keyboard,
+  MousePointerClick
 } from 'lucide-react';
 import Button from './Button.jsx';
 import { IconClose } from './icons.jsx';
@@ -33,7 +36,10 @@ const translations = {
     stopAnimations: "Stopper animations",
     reset: "Réinitialiser",
     resetAll: "Réinitialiser tous les paramètres",
-    openMenu: "Ouvrir le menu d'accessibilité"
+    openMenu: "Ouvrir le menu d'accessibilité",
+    interaction: "Interaction",
+    bigCursor: "Pointeur Agrandi",
+    enhancedFocus: "Focus Clavier Visible"
   },
   en: {
     title: "Accessibility",
@@ -52,7 +58,10 @@ const translations = {
     stopAnimations: "Stop animations",
     reset: "Reset",
     resetAll: "Reset all settings",
-    openMenu: "Open accessibility menu"
+    openMenu: "Open accessibility menu",
+    interaction: "Interaction",
+    bigCursor: "Big Cursor",
+    enhancedFocus: "Enhanced Focus"
   }
 };
 
@@ -66,6 +75,8 @@ const AccessibilityWidget = () => {
   const [contrastMode, setContrastMode] = useState('none'); // 'none', 'high', 'grayscale'
   const [highlightLinks, setHighlightLinks] = useState(false);
   const [stopAnimations, setStopAnimations] = useState(false);
+  const [bigCursor, setBigCursor] = useState(false);
+  const [enhancedFocus, setEnhancedFocus] = useState(false);
 
   // Drag states for mobile bottom sheet
   const [translateY, setTranslateY] = useState(0);
@@ -101,6 +112,8 @@ const AccessibilityWidget = () => {
     setContrastMode('none');
     setHighlightLinks(false);
     setStopAnimations(false);
+    setBigCursor(false);
+    setEnhancedFocus(false);
   };
 
   // Effect: Text Size
@@ -125,7 +138,13 @@ const AccessibilityWidget = () => {
     if (stopAnimations) body.classList.add('a11y-no-animations');
     else body.classList.remove('a11y-no-animations');
 
-  }, [readableFont, contrastMode, highlightLinks, stopAnimations]);
+    if (bigCursor) body.classList.add('a11y-big-cursor');
+    else body.classList.remove('a11y-big-cursor');
+
+    if (enhancedFocus) body.classList.add('a11y-enhanced-focus');
+    else body.classList.remove('a11y-enhanced-focus');
+
+  }, [readableFont, contrastMode, highlightLinks, stopAnimations, bigCursor, enhancedFocus]);
 
   // Drag Handlers
   const handlePointerDown = (e) => {
@@ -278,6 +297,28 @@ const AccessibilityWidget = () => {
                   aria-pressed={stopAnimations}
                 >
                   {t.stopAnimations}
+                </button>
+              </div>
+            </div>
+
+            <div className="a11y-section">
+              <div className="a11y-section-title">
+                <MousePointerClick size={16} /> {t.interaction}
+              </div>
+              <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
+                <button 
+                  className={`a11y-btn ${bigCursor ? 'active' : ''}`}
+                  onClick={() => setBigCursor(!bigCursor)}
+                  aria-pressed={bigCursor}
+                >
+                  <MousePointer2 size={18} /> {t.bigCursor}
+                </button>
+                <button 
+                  className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
+                  onClick={() => setEnhancedFocus(!enhancedFocus)}
+                  aria-pressed={enhancedFocus}
+                >
+                  <Keyboard size={18} /> {t.enhancedFocus}
                 </button>
               </div>
             </div>
