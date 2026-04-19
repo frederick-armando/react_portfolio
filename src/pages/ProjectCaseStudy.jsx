@@ -1209,12 +1209,19 @@ export default function ProjectCaseStudy({ isModal }) {
   const location = useLocation();
   const localizedProjects = useMemo(() => getLocalizedProjects(language), [language]);
 
+  const noAnimations = typeof document !== 'undefined' && (document.body.classList.contains('a11y-no-animations') || window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  
   const [displaySlug, setDisplaySlug] = useState(slug);
   const [isExiting, setIsExiting] = useState(false);
-  const [isEntering, setIsEntering] = useState(true);
+  const [isEntering, setIsEntering] = useState(!noAnimations);
 
   if (slug !== displaySlug && !isExiting) {
-    setIsExiting(true);
+    if (noAnimations) {
+      setDisplaySlug(slug);
+      setIsEntering(false);
+    } else {
+      setIsExiting(true);
+    }
   }
 
   const currentProject = getProjectBySlug(displaySlug, language);

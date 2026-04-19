@@ -212,8 +212,14 @@ body.a11y-high-contrast .a11y-fab * {
 }
 
 /* Grayscale Mode */
-body.a11y-grayscale {
-  filter: grayscale(100%) !important;
+body.a11y-grayscale::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  backdrop-filter: grayscale(100%);
+  -webkit-backdrop-filter: grayscale(100%);
 }
 
 /* Highlight Links */
@@ -278,11 +284,13 @@ body.a11y-no-animations *::after {
     width: 100%;
     margin-bottom: 0;
     border-radius: 24px 24px 0 0;
-    padding: 32px 24px 40px;
+    padding: 32px 24px 80px;
     box-sizing: border-box;
     transform-origin: bottom center;
     z-index: 1000000;
     will-change: transform;
+    max-height: 85%;
+    overflow-y: auto;
   }
 
   .a11y-panel--entering {
