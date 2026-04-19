@@ -7,11 +7,12 @@ import {
   Contrast, 
   Sun, 
   Link as LinkIcon, 
-  Play, 
   RotateCcw,
   MousePointer2,
   Keyboard,
-  MousePointerClick
+  MousePointerClick,
+  PersonStanding,
+  Play
 } from 'lucide-react';
 import Button from './Button.jsx';
 import { IconClose } from './icons.jsx';
@@ -339,7 +340,7 @@ const AccessibilityWidget = () => {
 
         <Button 
           variant="primary" 
-          icon={Accessibility} 
+          icon={PersonStanding} 
           iconOnly={true}
           className="a11y-fab" 
           onClick={togglePanel}
