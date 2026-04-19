@@ -192,17 +192,23 @@ body.a11y-high-contrast svg {
   filter: contrast(120%) !important;
 }
 body.a11y-high-contrast .a11y-btn,
-body.a11y-high-contrast .a11y-panel {
+body.a11y-high-contrast .a11y-panel,
+body.a11y-high-contrast .case-study-modal,
+body.a11y-high-contrast .case-study-page {
   background-color: #111 !important;
   border: 1px solid #fff !important;
 }
-body.a11y-high-contrast .a11y-btn.active {
+body.a11y-high-contrast .a11y-btn.active,
+body.a11y-high-contrast .a11y-btn.active * {
   background-color: #fff !important;
   color: #000 !important;
+  stroke: #000 !important;
 }
-body.a11y-high-contrast .a11y-fab {
+body.a11y-high-contrast .a11y-fab,
+body.a11y-high-contrast .a11y-fab * {
   background-color: #fff !important;
   color: #000 !important;
+  stroke: #000 !important;
 }
 
 /* Grayscale Mode */
@@ -269,7 +275,7 @@ body.a11y-no-animations *::after {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100vw;
+    width: 100%;
     margin-bottom: 0;
     border-radius: 24px 24px 0 0;
     padding: 32px 24px 40px;

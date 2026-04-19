@@ -12,9 +12,54 @@ import {
 } from 'lucide-react';
 import Button from './Button.jsx';
 import { IconClose } from './icons.jsx';
+import { useLanguage } from '../i18n/LanguageContext.jsx';
 import '../styles/Accessibility.css';
 
+const translations = {
+  fr: {
+    title: "Accessibilité",
+    closePanel: "Fermer le panneau d'accessibilité",
+    textSize: "Taille du texte",
+    decreaseText: "Diminuer la taille du texte",
+    increaseText: "Augmenter la taille du texte",
+    readability: "Lisibilité",
+    dyslexicFont: "Police Dyslexie",
+    contrasts: "Contrastes",
+    highContrast: "Élevé",
+    grayscale: "Gris",
+    visualCues: "Repères visuels",
+    highlightLinks: "Surligner les liens",
+    animations: "Animations",
+    stopAnimations: "Stopper animations",
+    reset: "Réinitialiser",
+    resetAll: "Réinitialiser tous les paramètres",
+    openMenu: "Ouvrir le menu d'accessibilité"
+  },
+  en: {
+    title: "Accessibility",
+    closePanel: "Close accessibility panel",
+    textSize: "Text Size",
+    decreaseText: "Decrease text size",
+    increaseText: "Increase text size",
+    readability: "Readability",
+    dyslexicFont: "Dyslexic Font",
+    contrasts: "Contrasts",
+    highContrast: "High",
+    grayscale: "Grayscale",
+    visualCues: "Visual Cues",
+    highlightLinks: "Highlight links",
+    animations: "Animations",
+    stopAnimations: "Stop animations",
+    reset: "Reset",
+    resetAll: "Reset all settings",
+    openMenu: "Open accessibility menu"
+  }
+};
+
 const AccessibilityWidget = () => {
+  const { language } = useLanguage();
+  const t = translations[language] || translations.fr;
+
   const [isOpen, setIsOpen] = useState(false);
   const [textSize, setTextSize] = useState(100);
   const [readableFont, setReadableFont] = useState(false);
@@ -112,7 +157,7 @@ const AccessibilityWidget = () => {
       {isOpen && (
         <div className="a11y-backdrop" onClick={togglePanel} aria-hidden="true" />
       )}
-      <div id="a11y-widget-container" style={{ zoom: `${10000 / textSize}%` }}>
+      <div id="a11y-widget-container">
         {isOpen && (
           <div 
             className={`a11y-panel ${isEntering ? 'a11y-panel--entering' : ''}`}
@@ -135,27 +180,27 @@ const AccessibilityWidget = () => {
             </div>
 
             <div className="a11y-panel-header">
-              <h3 id="a11y-panel-title">Accessibilité</h3>
+              <h3 id="a11y-panel-title">{t.title}</h3>
               <Button 
                 variant="tertiary" 
                 icon={IconClose} 
                 iconOnly={true} 
                 className="a11y-panel-close" 
                 onClick={togglePanel} 
-                title="Fermer le panneau d'accessibilité" 
+                title={t.closePanel} 
               />
             </div>
 
             <div className="a11y-section">
               <div className="a11y-section-title">
-                <Type size={16} /> Taille du texte ({textSize}%)
+                <Type size={16} /> {t.textSize} ({textSize}%)
               </div>
               <div className="a11y-button-group">
                 <button 
                   className="a11y-btn" 
                   onClick={decreaseTextSize}
                   disabled={textSize <= 80}
-                  aria-label="Diminuer la taille du texte"
+                  aria-label={t.decreaseText}
                 >
                   <ZoomOut size={18} /> A-
                 </button>
@@ -163,7 +208,7 @@ const AccessibilityWidget = () => {
                   className="a11y-btn" 
                   onClick={increaseTextSize}
                   disabled={textSize >= 200}
-                  aria-label="Augmenter la taille du texte"
+                  aria-label={t.increaseText}
                 >
                   <ZoomIn size={18} /> A+
                 </button>
@@ -172,7 +217,7 @@ const AccessibilityWidget = () => {
 
             <div className="a11y-section">
               <div className="a11y-section-title">
-                <Type size={16} /> Lisibilité
+                <Type size={16} /> {t.readability}
               </div>
               <div className="a11y-button-group">
                 <button 
@@ -180,14 +225,14 @@ const AccessibilityWidget = () => {
                   onClick={() => setReadableFont(!readableFont)}
                   aria-pressed={readableFont}
                 >
-                  Police Dyslexie
+                  {t.dyslexicFont}
                 </button>
               </div>
             </div>
 
             <div className="a11y-section">
               <div className="a11y-section-title">
-                <Contrast size={16} /> Contrastes
+                <Contrast size={16} /> {t.contrasts}
               </div>
               <div className="a11y-button-group">
                 <button 
@@ -195,21 +240,21 @@ const AccessibilityWidget = () => {
                   onClick={() => setContrastMode(contrastMode === 'high' ? 'none' : 'high')}
                   aria-pressed={contrastMode === 'high'}
                 >
-                  <Contrast size={18} /> Élevé
+                  <Contrast size={18} /> {t.highContrast}
                 </button>
                 <button 
                   className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
                   onClick={() => setContrastMode(contrastMode === 'grayscale' ? 'none' : 'grayscale')}
                   aria-pressed={contrastMode === 'grayscale'}
                 >
-                  <Sun size={18} /> Gris
+                  <Sun size={18} /> {t.grayscale}
                 </button>
               </div>
             </div>
 
             <div className="a11y-section">
               <div className="a11y-section-title">
-                <LinkIcon size={16} /> Repères visuels
+                <LinkIcon size={16} /> {t.visualCues}
               </div>
               <div className="a11y-button-group">
                 <button 
@@ -217,14 +262,14 @@ const AccessibilityWidget = () => {
                   onClick={() => setHighlightLinks(!highlightLinks)}
                   aria-pressed={highlightLinks}
                 >
-                  Surligner les liens
+                  {t.highlightLinks}
                 </button>
               </div>
             </div>
 
             <div className="a11y-section">
               <div className="a11y-section-title">
-                <Play size={16} /> Animations
+                <Play size={16} /> {t.animations}
               </div>
               <div className="a11y-button-group">
                 <button 
@@ -232,7 +277,7 @@ const AccessibilityWidget = () => {
                   onClick={() => setStopAnimations(!stopAnimations)}
                   aria-pressed={stopAnimations}
                 >
-                  Stopper animations
+                  {t.stopAnimations}
                 </button>
               </div>
             </div>
@@ -240,9 +285,9 @@ const AccessibilityWidget = () => {
             <button 
               className="a11y-btn a11y-btn-reset" 
               onClick={handleReset}
-              aria-label="Réinitialiser tous les paramètres d'accessibilité"
+              aria-label={t.resetAll}
             >
-              <RotateCcw size={16} /> Réinitialiser
+              <RotateCcw size={16} /> {t.reset}
             </button>
           </div>
         )}
@@ -250,7 +295,7 @@ const AccessibilityWidget = () => {
         <button 
           className="a11y-fab" 
           onClick={togglePanel}
-          aria-label="Ouvrir le menu d'accessibilité"
+          aria-label={t.openMenu}
           aria-expanded={isOpen}
           style={{ display: isOpen && window.innerWidth <= 768 ? 'none' : 'flex' }}
         >

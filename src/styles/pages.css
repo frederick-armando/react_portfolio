@@ -808,8 +808,8 @@
   inset: 0;
   z-index: 1000;
   background: rgba(18, 19, 26, 0.4);
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
   display: grid;
   justify-items: center;
   align-items: end;
@@ -1346,13 +1346,11 @@
   content: '';
   inset: -0.42em -0.74em;
   border-radius: var(--radius-pill);
-  background: radial-gradient(
-    120% 98% at 50% 52%,
-    rgba(164, 180, 217, 0.28) 0%,
-    rgba(164, 180, 217, 0.15) 30%,
-    rgba(164, 180, 217, 0.06) 52%,
-    rgba(164, 180, 217, 0) 82%
-  );
+  background: radial-gradient(120% 98% at 50% 52%,
+      rgba(164, 180, 217, 0.28) 0%,
+      rgba(164, 180, 217, 0.15) 30%,
+      rgba(164, 180, 217, 0.06) 52%,
+      rgba(164, 180, 217, 0) 82%);
   filter: blur(6.1px);
   transform: scale(0.9);
 }
@@ -1424,6 +1422,7 @@
 }
 
 @keyframes city-paris-sparkle {
+
   0%,
   100% {
     filter: brightness(0.88);
@@ -1442,6 +1441,7 @@
 }
 
 @keyframes city-paris-shimmer {
+
   0%,
   100% {
     filter: blur(0.2px) brightness(0.9);
@@ -1455,6 +1455,7 @@
 }
 
 @keyframes city-lyon-breathe {
+
   0%,
   100% {
     filter: blur(6.8px) saturate(1);
@@ -1468,6 +1469,7 @@
 }
 
 @keyframes city-lyon-breathe-dark {
+
   0%,
   100% {
     filter: blur(7px) saturate(1);
@@ -1481,6 +1483,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .contact-detail__line .city-light--paris:hover::before,
   .contact-detail__line .city-light--paris:hover::after,
   .contact-detail__line .city-light--paris:focus-visible::before,
@@ -2021,5 +2024,5 @@
 }
 
 .case-study-image--full {
-    margin-top: 32px;
+  margin-top: 32px;
 }
