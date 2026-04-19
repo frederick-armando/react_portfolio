@@ -234,6 +234,10 @@ body.a11y-highlight-links a {
   padding: 0 4px !important;
 }
 
+body.a11y-highlight-links .brand__logo {
+  color: black !important;
+}
+
 /* COMBINED: High Contrast + Highlight Links */
 body.a11y-high-contrast.a11y-highlight-links a,
 body.a11y-high-contrast.a11y-highlight-links a * {
