@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx';
+import AccessibilityWidget from './components/AccessibilityWidget.jsx';
 
 const Profil = lazy(() => import('./pages/Profil.jsx'));
 const Methodes = lazy(() => import('./pages/Methodes.jsx'));
@@ -93,6 +94,8 @@ export default function App() {
             <Route path="/projets/:slug" element={<ProjectCaseStudy isModal />} />
           </Routes>
         )}
+        
+        <AccessibilityWidget />
     </Suspense>
   );
 }

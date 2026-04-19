@@ -1503,6 +1503,8 @@ button:focus-visible {
   inset: 0;
   z-index: 1000;
   background: rgba(18, 19, 26, 0.4);
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   display: grid;
   justify-items: center;
   align-items: end;
