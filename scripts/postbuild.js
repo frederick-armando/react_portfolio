@@ -91,6 +91,7 @@ try {
 
       // 3. Forcer les chemins absolus (CRITIQUE)
       newHtml = newHtml.replace(/(src|href)="(\.\/)(.*?)"/g, '$1="/$3"');
+      newHtml = newHtml.replace(/(src|href)="(assets\/.*?)"/g, '$1="/$2"');
 
       // Sauvegarder dans le sous-dossier
       fs.writeFileSync(path.join(folderPath, 'index.html'), newHtml);
@@ -102,6 +103,20 @@ try {
     if (fs.existsSync(phpFile)) {
       fs.unlinkSync(phpFile);
     }
+
+    // 4. Génération de l'index.html parent pour le dossier /projets/
+    const parentFolder = path.join(distDir, 'projets');
+    if (!fs.existsSync(parentFolder)) {
+      fs.mkdirSync(parentFolder, { recursive: true });
+    }
+    
+    let parentHtml = baseHtml;
+    // Forcer les chemins en absolu pour que le routeur React charge correctement les JS/CSS de la racine
+    parentHtml = parentHtml.replace(/(src|href)="(\.\/)(.*?)"/g, '$1="/$3"');
+    parentHtml = parentHtml.replace(/(src|href)="(assets\/.*?)"/g, '$1="/$2"');
+    
+    fs.writeFileSync(path.join(parentFolder, 'index.html'), parentHtml);
+    console.log(`✅ Généré parent: /projets/index.html`);
 
     console.log('🚀 Static Generation Fallback terminé avec succès !');
 
