@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Accessibility, 
-  ZoomIn, 
-  ZoomOut, 
-  Type, 
-  Contrast, 
-  Sun, 
-  Link as LinkIcon, 
+import {
+  Accessibility,
+  ZoomIn,
+  ZoomOut,
+  Type,
+  Contrast,
+  Sun,
+  Link as LinkIcon,
   RotateCcw,
   MousePointer2,
   Keyboard,
@@ -194,7 +194,7 @@ const AccessibilityWidget = () => {
   // Effect: Body Classes
   useEffect(() => {
     const body = document.body;
-    
+
     if (readableFont) body.classList.add('a11y-readable-font');
     else body.classList.remove('a11y-readable-font');
 
@@ -308,6 +308,8 @@ const AccessibilityWidget = () => {
   // Drag Handlers
   const handlePointerDown = (e) => {
     if (window.innerWidth > 768) return; // Only drag on mobile
+    if (e.target.closest('button, a, input, select, textarea')) return;
+
     setIsDragging(true);
     startYRef.current = e.clientY - translateY;
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -331,166 +333,167 @@ const AccessibilityWidget = () => {
 
   return (
     <>
-      {/* Backdrop for mobile */}
+      {/* Backdrop */}
       {isOpen && (
         <div className="a11y-backdrop" onClick={closePanel} aria-hidden="true" />
       )}
       <div id="a11y-widget-container">
         {isOpen && (
-          <div 
+          <div
             ref={panelRef}
             id="a11y-panel"
             className={`a11y-panel ${isEntering ? 'a11y-panel--entering' : ''}`}
-            role="dialog" 
+            role="dialog"
             aria-modal="true"
             aria-labelledby="a11y-panel-title"
             tabIndex="-1"
             onAnimationEnd={handleAnimationEnd}
-            style={{ 
+            style={{
               transform: translateY > 0 ? `translateY(${translateY}px)` : '',
               transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1)'
             }}
           >
-            <div 
-              className="a11y-handle-area"
+            <div
+              className="a11y-panel-header-wrapper"
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
               onPointerCancel={handlePointerUp}
             >
-              <div className="a11y-handle" />
-            </div>
-
-            <div className="a11y-panel-header-wrapper">
+              <div className="a11y-handle-area" aria-hidden="true">
+                <div className="a11y-handle" />
+              </div>
               <div className="a11y-panel-header">
                 <h3 id="a11y-panel-title">{t.title}</h3>
-                <Button 
-                  variant="tertiary" 
-                  icon={IconClose} 
-                  iconOnly={true} 
-                  className="a11y-panel-close" 
+                <Button
+                  variant="tertiary"
+                  icon={IconClose}
+                  iconOnly={true}
+                  className="a11y-panel-close"
                   onClick={closePanel}
-                  title={t.closePanel} 
+                  title={t.closePanel}
                 />
               </div>
             </div>
 
             <div className="a11y-panel-content">
               <div className="a11y-section">
-              <div className="a11y-section-title">
-                <Type size={16} /> {t.textSize} ({textSize}%)
+                <div className="a11y-section-title">
+                  <Type size={16} /> {t.textSize} ({textSize}%)
+                </div>
+                <div className="a11y-button-group">
+                  <button
+                    className="a11y-btn"
+                    onClick={decreaseTextSize}
+                    disabled={textSize <= 80}
+                    aria-label={t.decreaseText}
+                  >
+                    <ZoomOut size={18} /> A-
+                  </button>
+                  <button
+                    className="a11y-btn"
+                    onClick={increaseTextSize}
+                    disabled={textSize >= 200}
+                    aria-label={t.increaseText}
+                  >
+                    <ZoomIn size={18} /> A+
+                  </button>
+                </div>
               </div>
-              <div className="a11y-button-group">
-                <button 
-                  className="a11y-btn" 
-                  onClick={decreaseTextSize}
-                  disabled={textSize <= 80}
-                  aria-label={t.decreaseText}
-                >
-                  <ZoomOut size={18} /> A-
-                </button>
-                <button 
-                  className="a11y-btn" 
-                  onClick={increaseTextSize}
-                  disabled={textSize >= 200}
-                  aria-label={t.increaseText}
-                >
-                  <ZoomIn size={18} /> A+
-                </button>
+
+              <div className="a11y-section">
+                <div className="a11y-section-title">
+                  <Type size={16} /> {t.readability}
+                </div>
+                <div className="a11y-button-group">
+                  <button
+                    className={`a11y-btn ${readableFont ? 'active' : ''}`}
+                    onClick={() => updateSetting('readableFont', !readableFont)}
+                    aria-pressed={readableFont}
+                  >
+                    {t.dyslexicFont}
+                  </button>
+                </div>
+              </div>
+
+              <div className="a11y-section">
+                <div className="a11y-section-title">
+                  <Contrast size={16} /> {t.contrasts}
+                </div>
+                <div className="a11y-button-group">
+                  <button
+                    className={`a11y-btn ${contrastMode === 'high' ? 'active' : ''}`}
+                    onClick={() => updateSetting('contrastMode', contrastMode === 'high' ? 'none' : 'high')}
+                    aria-pressed={contrastMode === 'high'}
+                  >
+                    <Contrast size={18} /> {t.highContrast}
+                  </button>
+                  <button
+                    className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
+                    onClick={() => updateSetting('contrastMode', contrastMode === 'grayscale' ? 'none' : 'grayscale')}
+                    aria-pressed={contrastMode === 'grayscale'}
+                  >
+                    <Sun size={18} /> {t.grayscale}
+                  </button>
+                </div>
+              </div>
+
+              <div className="a11y-section">
+                <div className="a11y-section-title">
+                  <LinkIcon size={16} /> {t.visualCues}
+                </div>
+                <div className="a11y-button-group">
+                  <button
+                    className={`a11y-btn ${highlightLinks ? 'active' : ''}`}
+                    onClick={() => updateSetting('highlightLinks', !highlightLinks)}
+                    aria-pressed={highlightLinks}
+                  >
+                    {t.highlightLinks}
+                  </button>
+                </div>
+              </div>
+
+              <div className="a11y-section">
+                <div className="a11y-section-title">
+                  <Play size={16} /> {t.animations}
+                </div>
+                <div className="a11y-button-group">
+                  <button
+                    className={`a11y-btn ${stopAnimations ? 'active' : ''}`}
+                    onClick={() => updateSetting('stopAnimations', !stopAnimations)}
+                    aria-pressed={stopAnimations}
+                  >
+                    {t.stopAnimations}
+                  </button>
+                </div>
+              </div>
+
+              <div className="a11y-section">
+                <div className="a11y-section-title">
+                  <MousePointerClick size={16} /> {t.interaction}
+                </div>
+                <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
+                  <button
+                    className={`a11y-btn ${bigCursor ? 'active' : ''}`}
+                    onClick={() => updateSetting('bigCursor', !bigCursor)}
+                    aria-pressed={bigCursor}
+                  >
+                    <MousePointer2 size={18} /> {t.bigCursor}
+                  </button>
+                  <button
+                    className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
+                    onClick={() => updateSetting('enhancedFocus', !enhancedFocus)}
+                    aria-pressed={enhancedFocus}
+                  >
+                    <Keyboard size={18} /> {t.enhancedFocus}
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="a11y-section">
-              <div className="a11y-section-title">
-                <Type size={16} /> {t.readability}
-              </div>
-              <div className="a11y-button-group">
-                <button 
-                  className={`a11y-btn ${readableFont ? 'active' : ''}`}
-                  onClick={() => updateSetting('readableFont', !readableFont)}
-                  aria-pressed={readableFont}
-                >
-                  {t.dyslexicFont}
-                </button>
-              </div>
-            </div>
-
-            <div className="a11y-section">
-              <div className="a11y-section-title">
-                <Contrast size={16} /> {t.contrasts}
-              </div>
-              <div className="a11y-button-group">
-                <button 
-                  className={`a11y-btn ${contrastMode === 'high' ? 'active' : ''}`}
-                  onClick={() => updateSetting('contrastMode', contrastMode === 'high' ? 'none' : 'high')}
-                  aria-pressed={contrastMode === 'high'}
-                >
-                  <Contrast size={18} /> {t.highContrast}
-                </button>
-                <button 
-                  className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
-                  onClick={() => updateSetting('contrastMode', contrastMode === 'grayscale' ? 'none' : 'grayscale')}
-                  aria-pressed={contrastMode === 'grayscale'}
-                >
-                  <Sun size={18} /> {t.grayscale}
-                </button>
-              </div>
-            </div>
-
-            <div className="a11y-section">
-              <div className="a11y-section-title">
-                <LinkIcon size={16} /> {t.visualCues}
-              </div>
-              <div className="a11y-button-group">
-                <button 
-                  className={`a11y-btn ${highlightLinks ? 'active' : ''}`}
-                  onClick={() => updateSetting('highlightLinks', !highlightLinks)}
-                  aria-pressed={highlightLinks}
-                >
-                  {t.highlightLinks}
-                </button>
-              </div>
-            </div>
-
-            <div className="a11y-section">
-              <div className="a11y-section-title">
-                <Play size={16} /> {t.animations}
-              </div>
-              <div className="a11y-button-group">
-                <button 
-                  className={`a11y-btn ${stopAnimations ? 'active' : ''}`}
-                  onClick={() => updateSetting('stopAnimations', !stopAnimations)}
-                  aria-pressed={stopAnimations}
-                >
-                  {t.stopAnimations}
-                </button>
-              </div>
-            </div>
-
-            <div className="a11y-section">
-              <div className="a11y-section-title">
-                <MousePointerClick size={16} /> {t.interaction}
-              </div>
-              <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
-                <button 
-                  className={`a11y-btn ${bigCursor ? 'active' : ''}`}
-                  onClick={() => updateSetting('bigCursor', !bigCursor)}
-                  aria-pressed={bigCursor}
-                >
-                  <MousePointer2 size={18} /> {t.bigCursor}
-                </button>
-                <button 
-                  className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
-                  onClick={() => updateSetting('enhancedFocus', !enhancedFocus)}
-                  aria-pressed={enhancedFocus}
-                >
-                  <Keyboard size={18} /> {t.enhancedFocus}
-                </button>
-              </div>
-            </div>
-
-              <button 
-                className="a11y-btn a11y-btn-reset" 
+            <div className="a11y-panel-footer">
+              <button
+                className="a11y-btn a11y-btn-reset"
                 onClick={handleReset}
                 aria-label={t.resetAll}
               >
@@ -500,9 +503,9 @@ const AccessibilityWidget = () => {
           </div>
         )}
 
-        <Button 
-          variant="primary" 
-          icon={PersonStanding} 
+        <Button
+          variant="primary"
+          icon={PersonStanding}
           iconOnly={true}
           className={`a11y-fab ${isOpen ? 'a11y-fab--hidden' : ''}`}
           onClick={togglePanel}
