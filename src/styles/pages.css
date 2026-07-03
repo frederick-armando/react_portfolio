@@ -899,7 +899,7 @@
   flex: 1;
   overflow-y: auto;
   padding-top: 32px;
-  padding-bottom: 120px;
+  padding-bottom: 32px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

@@ -1,21 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Accessibility,
-  ZoomIn,
-  ZoomOut,
-  Type,
-  Contrast,
-  Sun,
-  Link as LinkIcon,
-  RotateCcw,
-  MousePointer2,
-  Keyboard,
-  MousePointerClick,
-  PersonStanding,
-  Play
-} from 'lucide-react';
+  IconClose,
+  IconContrast,
+  IconKeyboard,
+  IconLink,
+  IconMousePointer2,
+  IconMousePointerClick,
+  IconPersonStanding,
+  IconPlay,
+  IconRotateCcw,
+  IconSun,
+  IconText,
+  IconZoomIn,
+  IconZoomOut,
+} from './icons-shell.jsx';
 import Button from './Button.jsx';
-import { IconClose } from './icons.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import '../styles/Accessibility.css';
 
@@ -379,7 +378,7 @@ const AccessibilityWidget = () => {
             <div className="a11y-panel-content">
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <Type size={16} /> {t.textSize} ({textSize}%)
+                  <IconText size={16} /> {t.textSize} ({textSize}%)
                 </div>
                 <div className="a11y-button-group">
                   <button
@@ -388,7 +387,7 @@ const AccessibilityWidget = () => {
                     disabled={textSize <= 80}
                     aria-label={t.decreaseText}
                   >
-                    <ZoomOut size={18} /> A-
+                    <IconZoomOut size={18} /> A-
                   </button>
                   <button
                     className="a11y-btn"
@@ -396,14 +395,14 @@ const AccessibilityWidget = () => {
                     disabled={textSize >= 200}
                     aria-label={t.increaseText}
                   >
-                    <ZoomIn size={18} /> A+
+                    <IconZoomIn size={18} /> A+
                   </button>
                 </div>
               </div>
 
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <Type size={16} /> {t.readability}
+                  <IconText size={16} /> {t.readability}
                 </div>
                 <div className="a11y-button-group">
                   <button
@@ -418,7 +417,7 @@ const AccessibilityWidget = () => {
 
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <Contrast size={16} /> {t.contrasts}
+                  <IconContrast size={16} /> {t.contrasts}
                 </div>
                 <div className="a11y-button-group">
                   <button
@@ -426,21 +425,21 @@ const AccessibilityWidget = () => {
                     onClick={() => updateSetting('contrastMode', contrastMode === 'high' ? 'none' : 'high')}
                     aria-pressed={contrastMode === 'high'}
                   >
-                    <Contrast size={18} /> {t.highContrast}
+                    <IconContrast size={18} /> {t.highContrast}
                   </button>
                   <button
                     className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
                     onClick={() => updateSetting('contrastMode', contrastMode === 'grayscale' ? 'none' : 'grayscale')}
                     aria-pressed={contrastMode === 'grayscale'}
                   >
-                    <Sun size={18} /> {t.grayscale}
+                    <IconSun size={18} /> {t.grayscale}
                   </button>
                 </div>
               </div>
 
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <LinkIcon size={16} /> {t.visualCues}
+                  <IconLink size={16} /> {t.visualCues}
                 </div>
                 <div className="a11y-button-group">
                   <button
@@ -455,7 +454,7 @@ const AccessibilityWidget = () => {
 
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <Play size={16} /> {t.animations}
+                  <IconPlay size={16} /> {t.animations}
                 </div>
                 <div className="a11y-button-group">
                   <button
@@ -470,7 +469,7 @@ const AccessibilityWidget = () => {
 
               <div className="a11y-section">
                 <div className="a11y-section-title">
-                  <MousePointerClick size={16} /> {t.interaction}
+                  <IconMousePointerClick size={16} /> {t.interaction}
                 </div>
                 <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
                   <button
@@ -478,14 +477,14 @@ const AccessibilityWidget = () => {
                     onClick={() => updateSetting('bigCursor', !bigCursor)}
                     aria-pressed={bigCursor}
                   >
-                    <MousePointer2 size={18} /> {t.bigCursor}
+                    <IconMousePointer2 size={18} /> {t.bigCursor}
                   </button>
                   <button
                     className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
                     onClick={() => updateSetting('enhancedFocus', !enhancedFocus)}
                     aria-pressed={enhancedFocus}
                   >
-                    <Keyboard size={18} /> {t.enhancedFocus}
+                    <IconKeyboard size={18} /> {t.enhancedFocus}
                   </button>
                 </div>
               </div>
@@ -497,7 +496,7 @@ const AccessibilityWidget = () => {
                 onClick={handleReset}
                 aria-label={t.resetAll}
               >
-                <RotateCcw size={16} /> {t.reset}
+                <IconRotateCcw size={16} /> {t.reset}
               </button>
             </div>
           </div>
@@ -505,7 +504,7 @@ const AccessibilityWidget = () => {
 
         <Button
           variant="primary"
-          icon={PersonStanding}
+          icon={IconPersonStanding}
           iconOnly={true}
           className={`a11y-fab ${isOpen ? 'a11y-fab--hidden' : ''}`}
           onClick={togglePanel}

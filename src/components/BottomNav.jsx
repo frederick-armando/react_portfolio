@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 
 import { uiContent } from '../i18n/content/ui.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import { 
-  IconHome, 
-  IconProfile, 
-  IconChartArea, 
-  IconFolderOpen, 
-  IconMessagesSquare 
-} from './icons.jsx';
+import {
+  IconHome,
+  IconProfile,
+  IconChartArea,
+  IconFolderOpen,
+  IconMessagesSquare,
+} from './icons-shell.jsx';
 
 const navIcons = {
   home: IconHome,
