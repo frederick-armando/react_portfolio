@@ -561,7 +561,7 @@
   right: 0;
   z-index: 12;
   height: 4px;
-  background: rgba(59, 91, 255, 0.12);
+  background: rgba(56, 90, 249, 0.12);
   pointer-events: none;
 }
 
@@ -688,8 +688,8 @@
 .project-stage__card-link:focus-visible .project-stage__card {
   transform: translateY(-6px);
   box-shadow:
-    0 20px 32px rgba(59, 91, 255, 0.14),
-    0 10px 14px rgba(59, 91, 255, 0.08);
+    0 20px 32px rgba(56, 90, 249, 0.14),
+    0 10px 14px rgba(56, 90, 249, 0.08);
 }
 
 .project-stage__card-link:focus-visible {
@@ -697,7 +697,7 @@
 }
 
 .project-stage__card-link:focus-visible .project-stage__card {
-  box-shadow: var(--focus-ring), 0 20px 32px rgba(59, 91, 255, 0.14);
+  box-shadow: var(--focus-ring), 0 20px 32px rgba(56, 90, 249, 0.14);
 }
 
 .project-artwork {
@@ -1097,7 +1097,7 @@
   padding: 18px 16px;
   border-radius: 18px;
   background: #f4f7fd;
-  box-shadow: inset 0 0 0 1px rgba(59, 91, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(56, 90, 249, 0.04);
 }
 
 .case-study-metric svg {
@@ -1564,7 +1564,7 @@
 }
 
 .contact-detail__line a:hover {
-  background: rgba(59, 91, 255, 0.08);
+  background: rgba(56, 90, 249, 0.08);
   transform: translateY(-1px);
 }
 
@@ -1575,7 +1575,7 @@
 
 .contact-detail__line a:focus-visible {
   outline: none;
-  background: rgba(59, 91, 255, 0.12);
+  background: rgba(56, 90, 249, 0.12);
   box-shadow: var(--focus-ring);
 }
 
@@ -1586,7 +1586,7 @@
 
 .contact-detail__line a:active {
   transform: translateY(0);
-  background: rgba(59, 91, 255, 0.16);
+  background: rgba(56, 90, 249, 0.16);
 }
 
 .contact-detail__line a:active::after {
@@ -1982,8 +1982,8 @@
 }
 
 [data-theme="dark"] .case-study-metric {
-  background: rgba(109, 147, 255, 0.06);
-  box-shadow: inset 0 0 0 1px rgba(109, 147, 255, 0.08);
+  background: rgba(141, 162, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(141, 162, 255, 0.08);
 }
 
 [data-theme="dark"] .case-study-process {
@@ -2017,7 +2017,7 @@
 
 /* Methods card */
 [data-theme="dark"] .methods-card:hover {
-  background: rgba(109, 147, 255, 0.08);
+  background: rgba(141, 162, 255, 0.08);
 }
 
 /* Project stage card */
@@ -2032,15 +2032,15 @@
 
 /* Contact page */
 [data-theme="dark"] .contact-detail__line a:hover {
-  background: rgba(109, 147, 255, 0.12);
+  background: rgba(141, 162, 255, 0.12);
 }
 
 [data-theme="dark"] .contact-detail__line a:focus-visible {
-  background: rgba(109, 147, 255, 0.16);
+  background: rgba(141, 162, 255, 0.16);
 }
 
 [data-theme="dark"] .contact-detail__line a:active {
-  background: rgba(109, 147, 255, 0.2);
+  background: rgba(141, 162, 255, 0.2);
 }
 
 
@@ -2048,7 +2048,7 @@
 
 /* Autoplay progress bar */
 [data-theme="dark"] .project-autoplay-progress {
-  background: rgba(109, 147, 255, 0.08);
+  background: rgba(141, 162, 255, 0.08);
 }
 
 .case-study-image--full {

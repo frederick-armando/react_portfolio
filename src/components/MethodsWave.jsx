@@ -3,7 +3,7 @@ export default function MethodsWave({ hoveredIndex, onHover }) {
     { 
       // Recherches: Sharp and early
       d: "M0 180 L40 160 L100 40 L180 120 L260 140 L340 180 Z", 
-      color: "#517bfc", opacity: 0.6 
+      color: "#385AF9", opacity: 0.6
     },
     { 
       // Analyses: More jagged

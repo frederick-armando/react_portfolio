@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#517bfc" />
+  <meta name="theme-color" content="#385AF9" />
 
   <!-- Preload only the most used weight (500) -->
   <link rel="preload" href="/fonts/core-sans/core-sans-c-55-medium.woff2" as="font" type="font/woff2" crossorigin />
@@ -104,18 +104,24 @@
       --font-family: 'Core Sans C', 'Core Sans C Fallback', 'Segoe UI', sans-serif;
       --color-surface: #ffffff;
       --color-body: #3e4250;
-      --color-primary: #517bfc;
-      --color-primary-600: #3b50c4;
+      --color-primary: #385AF9;
+      --color-primary-600: #385AF9;
+      --color-primary-action: #385AF9;
+      --color-primary-action-text: #ffffff;
+      --color-focus: #385AF9;
       --header-height: 86px;
-      --gradient-start: #517bfc;
+      --gradient-start: #385AF9;
       --gradient-end: #8728fe;
     }
 
     [data-theme="dark"] {
       --color-surface: #14151f;
       --color-body: #b0b3c4;
-      --color-primary: #6d93ff;
-      --color-primary-600: #5a7de8;
+      --color-primary: #8DA2FF;
+      --color-primary-600: #A5B4FF;
+      --color-primary-action: #385AF9;
+      --color-primary-action-text: #ffffff;
+      --color-focus: #A5B4FF;
     }
 
     @media (max-width: 720px) {
@@ -180,7 +186,7 @@
         : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', theme === 'dark' ? '#14151f' : '#517bfc');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#14151f' : '#385AF9');
     })();
   </script>
   <script>

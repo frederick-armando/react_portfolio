@@ -31,7 +31,7 @@ button {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-focus, var(--color-primary));
   outline-offset: 2px;
 }
 
@@ -500,23 +500,23 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary);
-  color: #fff;
+  background: var(--color-primary-action, var(--color-primary));
+  color: var(--color-primary-action-text, #fff);
   font-size: 0.6875rem;
   font-weight: 700;
   line-height: 1;
   border: 1.5px solid #fff;
-  box-shadow: 0 4px 10px rgba(59, 91, 255, 0.18);
+  box-shadow: 0 4px 10px rgba(56, 90, 249, 0.18);
 }
 
 .btn--primary {
-  background: var(--color-primary);
-  color: #fff;
+  background: var(--color-primary-action, var(--color-primary));
+  color: var(--color-primary-action-text, #fff);
 }
 
 .btn--primary .btn__badge {
   background: #fff;
-  color: var(--color-primary);
+  color: var(--color-primary-action, var(--color-primary));
 }
 
 .btn--secondary {
@@ -658,14 +658,14 @@ button:focus-visible {
 }
 
 .nav-item--active .nav-item__icon {
-  background: var(--color-primary);
+  background: var(--color-primary-action, var(--color-primary));
   color: #fff;
   box-shadow: var(--elevation-1);
 }
 
 .nav-item--active .nav-item__badge {
-  background: var(--color-primary);
-  box-shadow: 0 4px 10px rgba(59, 91, 255, 0.18);
+  background: var(--color-primary-action, var(--color-primary));
+  box-shadow: 0 4px 10px rgba(56, 90, 249, 0.18);
 }
 
 .nav-item:hover {
@@ -675,7 +675,7 @@ button:focus-visible {
 
 .nav-item:hover .nav-item__icon {
   color: var(--color-primary);
-  background: rgba(59, 91, 255, 0.12);
+  background: rgba(56, 90, 249, 0.12);
   box-shadow: var(--elevation-1);
 }
 
@@ -685,8 +685,8 @@ button:focus-visible {
 }
 
 .nav-item:hover .nav-item__badge {
-  background: var(--color-primary);
-  box-shadow: 0 4px 10px rgba(59, 91, 255, 0.18);
+  background: var(--color-primary-action, var(--color-primary));
+  box-shadow: 0 4px 10px rgba(56, 90, 249, 0.18);
 }
 
 .nav-item:hover .nav-item__icon::after {
@@ -701,7 +701,7 @@ button:focus-visible {
 
 .nav-item:focus-visible .nav-item__icon {
   color: var(--color-primary);
-  background: rgba(59, 91, 255, 0.14);
+  background: rgba(56, 90, 249, 0.14);
   box-shadow: var(--focus-ring), var(--elevation-1);
 }
 
@@ -728,13 +728,13 @@ button:focus-visible {
 }
 
 .nav-item--active:hover .nav-item__icon {
-  background: var(--color-primary);
+  background: var(--color-primary-action, var(--color-primary));
   color: #ffffff;
   box-shadow: var(--elevation-1);
 }
 
 .nav-item--active:focus-visible .nav-item__icon {
-  background: var(--color-primary);
+  background: var(--color-primary-action, var(--color-primary));
   color: #ffffff;
   box-shadow: var(--focus-ring), var(--elevation-1);
 }
@@ -876,7 +876,7 @@ button:focus-visible {
 }
 
 [data-theme="dark"] .btn--secondary .btn__badge {
-  border-color: rgba(109, 147, 255, 0.12);
+  border-color: rgba(141, 162, 255, 0.14);
 }
 
 /* Bottom nav */
@@ -890,27 +890,27 @@ button:focus-visible {
 }
 
 [data-theme="dark"] .nav-item:hover .nav-item__icon {
-  background: rgba(109, 147, 255, 0.14);
+  background: rgba(141, 162, 255, 0.14);
 }
 
 [data-theme="dark"] .nav-item:focus-visible .nav-item__icon {
-  background: rgba(109, 147, 255, 0.18);
+  background: rgba(165, 180, 255, 0.18);
 }
 
 [data-theme="dark"] .nav-item--active .nav-item__icon {
-  background: var(--color-primary);
+  background: var(--color-primary-action, #385AF9);
   color: #fff;
 }
 
 [data-theme="dark"] .nav-item--active .nav-item__badge,
 [data-theme="dark"] .nav-item--active:hover .nav-item__badge {
-  background: var(--color-primary);
+  background: var(--color-primary-action, #385AF9);
   color: #fff;
   border-color: #1a1b28;
 }
 
 [data-theme="dark"] .nav-item--active:hover .nav-item__icon {
-  background: var(--color-primary);
+  background: var(--color-primary-action, #385AF9);
   color: #fff;
   box-shadow: var(--elevation-1);
 }

@@ -117,7 +117,7 @@ const ExecutiveSummary = ({ content }) => {
     <section 
       className="case-study-section case-study-section--summary" 
       style={{ 
-        backgroundColor: 'rgba(109, 147, 255, 0.12)', 
+        backgroundColor: 'color-mix(in srgb, var(--color-primary) 14%, transparent)',
         padding: '1.5rem', 
         borderLeft: '4px solid var(--color-primary)', 
         borderRadius: '0 28px 28px 0',
