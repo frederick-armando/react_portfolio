@@ -4,6 +4,8 @@ export const projectsPageContent = {
   fr: {
     sectionLabel: 'Études de cas',
     stageLabel: 'Aperçus des projets',
+    currentProjectLabel: (title, index, total) => `Projet actif ${index} sur ${total} : ${title}`,
+    slideLabel: (title, index, total) => `Projet ${index} sur ${total} : ${title}`,
     openProjectLabel: (title) => `Ouvrir le projet ${title}`,
     tagsLabel: 'Type de projet',
     summaryLabel: 'Nombre total de projets',
@@ -17,6 +19,8 @@ export const projectsPageContent = {
   en: {
     sectionLabel: 'Case studies',
     stageLabel: 'Project previews',
+    currentProjectLabel: (title, index, total) => `Active project ${index} of ${total}: ${title}`,
+    slideLabel: (title, index, total) => `Project ${index} of ${total}: ${title}`,
     openProjectLabel: (title) => `Open project ${title}`,
     tagsLabel: 'Project type',
     summaryLabel: 'Total number of projects',

@@ -39,6 +39,10 @@
   transform: scale(1.05);
 }
 
+.a11y-fab--hidden {
+  display: none !important;
+}
+
 .a11y-fab .btn__icon {
   width: 28px;
   height: 28px;
@@ -78,6 +82,10 @@
   flex-direction: column;
   overflow: hidden;
   max-height: calc(100vh - 120px);
+}
+
+.a11y-panel:focus {
+  outline: none;
 }
 
 .a11y-panel-header-wrapper {
@@ -279,6 +287,19 @@ body.a11y-no-animations *::after {
   transition: none !important;
   animation: none !important;
   scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a11y-panel--entering,
+  .a11y-backdrop {
+    animation: none !important;
+  }
+
+  .a11y-panel,
+  .a11y-fab,
+  .a11y-btn {
+    transition: none !important;
+  }
 }
 
 /* ==========================================================================

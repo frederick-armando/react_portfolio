@@ -46,7 +46,7 @@ export default function Contact() {
         <m.div whileHover="animate">
           <IconMessagesSquare />
         </m.div>
-        <h2>{content.title}</h2>
+        <h1>{content.title}</h1>
       </div>
 
       <div className="contact-layout">

@@ -13,7 +13,7 @@ export default function Profil() {
     <section className="section">
       <div className="section__header">
         <IconProfile />
-        <h2>{content.title}</h2>
+        <h1>{content.title}</h1>
       </div>
 
       <div className="profile">

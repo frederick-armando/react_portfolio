@@ -19,6 +19,39 @@ import { IconClose } from './icons.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import '../styles/Accessibility.css';
 
+const ACCESSIBILITY_STORAGE_KEY = 'portfolio-accessibility-preferences';
+
+const DEFAULT_SETTINGS = {
+  textSize: 100,
+  readableFont: false,
+  contrastMode: 'none',
+  highlightLinks: false,
+  stopAnimations: false,
+  bigCursor: false,
+  enhancedFocus: false,
+};
+
+function getInitialSettings() {
+  if (typeof window === 'undefined') return DEFAULT_SETTINGS;
+
+  try {
+    const stored = window.localStorage.getItem(ACCESSIBILITY_STORAGE_KEY);
+    if (!stored) return DEFAULT_SETTINGS;
+
+    const parsed = JSON.parse(stored);
+    return {
+      ...DEFAULT_SETTINGS,
+      ...parsed,
+      textSize: Math.min(Math.max(Number(parsed.textSize) || 100, 80), 200),
+      contrastMode: ['none', 'high', 'grayscale'].includes(parsed.contrastMode)
+        ? parsed.contrastMode
+        : 'none',
+    };
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
 const translations = {
   fr: {
     title: "Accessibilité",
@@ -71,29 +104,52 @@ const AccessibilityWidget = () => {
   const t = translations[language] || translations.fr;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [textSize, setTextSize] = useState(100);
-  const [readableFont, setReadableFont] = useState(false);
-  const [contrastMode, setContrastMode] = useState('none'); // 'none', 'high', 'grayscale'
-  const [highlightLinks, setHighlightLinks] = useState(false);
-  const [stopAnimations, setStopAnimations] = useState(false);
-  const [bigCursor, setBigCursor] = useState(false);
-  const [enhancedFocus, setEnhancedFocus] = useState(false);
+  const [settings, setSettings] = useState(getInitialSettings);
+  const {
+    textSize,
+    readableFont,
+    contrastMode,
+    highlightLinks,
+    stopAnimations,
+    bigCursor,
+    enhancedFocus,
+  } = settings;
 
   // Drag states for mobile bottom sheet
   const [translateY, setTranslateY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
   const startYRef = useRef(0);
+  const panelRef = useRef(null);
+  const previouslyFocusedElementRef = useRef(null);
+
+  const updateSetting = (key, value) => {
+    setSettings((current) => ({
+      ...current,
+      [key]: typeof value === 'function' ? value(current[key]) : value,
+    }));
+  };
+
+  const openPanel = () => {
+    previouslyFocusedElementRef.current =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setIsOpen(true);
+    setIsEntering(true);
+    setTranslateY(0);
+  };
+
+  const closePanel = () => {
+    setIsOpen(false);
+    setTranslateY(0);
+  };
 
   // Toggle Panel
   const togglePanel = () => {
     if (!isOpen) {
-      setIsOpen(true);
-      setIsEntering(true);
+      openPanel();
     } else {
-      setIsOpen(false);
+      closePanel();
     }
-    setTranslateY(0);
   };
 
   const handleAnimationEnd = (e) => {
@@ -103,23 +159,36 @@ const AccessibilityWidget = () => {
   };
 
   // Text Size Handlers
-  const increaseTextSize = () => setTextSize((prev) => Math.min(prev + 10, 200));
-  const decreaseTextSize = () => setTextSize((prev) => Math.max(prev - 10, 80));
+  const increaseTextSize = () => updateSetting('textSize', (prev) => Math.min(prev + 10, 200));
+  const decreaseTextSize = () => updateSetting('textSize', (prev) => Math.max(prev - 10, 80));
 
   // Reset Handler
   const handleReset = () => {
-    setTextSize(100);
-    setReadableFont(false);
-    setContrastMode('none');
-    setHighlightLinks(false);
-    setStopAnimations(false);
-    setBigCursor(false);
-    setEnhancedFocus(false);
+    setSettings(DEFAULT_SETTINGS);
   };
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(ACCESSIBILITY_STORAGE_KEY, JSON.stringify(settings));
+    } catch {
+      // Ignore storage errors in private or restricted browser contexts.
+    }
+  }, [settings]);
 
   // Effect: Text Size
   useEffect(() => {
-    document.body.style.zoom = `${textSize}%`;
+    const root = document.documentElement;
+
+    if (textSize === 100) {
+      root.style.removeProperty('font-size');
+      return undefined;
+    }
+
+    root.style.fontSize = `${textSize}%`;
+
+    return () => {
+      root.style.removeProperty('font-size');
+    };
   }, [textSize]);
 
   // Effect: Body Classes
@@ -145,7 +214,96 @@ const AccessibilityWidget = () => {
     if (enhancedFocus) body.classList.add('a11y-enhanced-focus');
     else body.classList.remove('a11y-enhanced-focus');
 
+    return () => {
+      body.classList.remove(
+        'a11y-readable-font',
+        'a11y-high-contrast',
+        'a11y-grayscale',
+        'a11y-highlight-links',
+        'a11y-no-animations',
+        'a11y-big-cursor',
+        'a11y-enhanced-focus',
+      );
+    };
   }, [readableFont, contrastMode, highlightLinks, stopAnimations, bigCursor, enhancedFocus]);
+
+  useEffect(() => {
+    if (isOpen) return;
+
+    const previous = previouslyFocusedElementRef.current;
+    previouslyFocusedElementRef.current = null;
+
+    if (previous?.isConnected) {
+      previous.focus({ preventScroll: true });
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const panel = panelRef.current;
+    if (!panel) return undefined;
+
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const getFocusableElements = () =>
+      Array.from(panel.querySelectorAll(focusableSelector)).filter((element) => {
+        if (!(element instanceof HTMLElement)) return false;
+        const style = window.getComputedStyle(element);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+      });
+
+    const focusInitialElement = () => {
+      const closeButton = panel.querySelector('.a11y-panel-close');
+      const target =
+        closeButton instanceof HTMLElement ? closeButton : getFocusableElements()[0] ?? panel;
+      target.focus({ preventScroll: true });
+    };
+
+    const rafId = window.requestAnimationFrame(focusInitialElement);
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closePanel();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        panel.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusableElements[0];
+      const last = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    };
+
+    panel.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      panel.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   // Drag Handlers
   const handlePointerDown = (e) => {
@@ -175,14 +333,18 @@ const AccessibilityWidget = () => {
     <>
       {/* Backdrop for mobile */}
       {isOpen && (
-        <div className="a11y-backdrop" onClick={togglePanel} aria-hidden="true" />
+        <div className="a11y-backdrop" onClick={closePanel} aria-hidden="true" />
       )}
       <div id="a11y-widget-container">
         {isOpen && (
           <div 
+            ref={panelRef}
+            id="a11y-panel"
             className={`a11y-panel ${isEntering ? 'a11y-panel--entering' : ''}`}
             role="dialog" 
+            aria-modal="true"
             aria-labelledby="a11y-panel-title"
+            tabIndex="-1"
             onAnimationEnd={handleAnimationEnd}
             style={{ 
               transform: translateY > 0 ? `translateY(${translateY}px)` : '',
@@ -207,7 +369,7 @@ const AccessibilityWidget = () => {
                   icon={IconClose} 
                   iconOnly={true} 
                   className="a11y-panel-close" 
-                  onClick={togglePanel} 
+                  onClick={closePanel}
                   title={t.closePanel} 
                 />
               </div>
@@ -245,7 +407,7 @@ const AccessibilityWidget = () => {
               <div className="a11y-button-group">
                 <button 
                   className={`a11y-btn ${readableFont ? 'active' : ''}`}
-                  onClick={() => setReadableFont(!readableFont)}
+                  onClick={() => updateSetting('readableFont', !readableFont)}
                   aria-pressed={readableFont}
                 >
                   {t.dyslexicFont}
@@ -260,14 +422,14 @@ const AccessibilityWidget = () => {
               <div className="a11y-button-group">
                 <button 
                   className={`a11y-btn ${contrastMode === 'high' ? 'active' : ''}`}
-                  onClick={() => setContrastMode(contrastMode === 'high' ? 'none' : 'high')}
+                  onClick={() => updateSetting('contrastMode', contrastMode === 'high' ? 'none' : 'high')}
                   aria-pressed={contrastMode === 'high'}
                 >
                   <Contrast size={18} /> {t.highContrast}
                 </button>
                 <button 
                   className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
-                  onClick={() => setContrastMode(contrastMode === 'grayscale' ? 'none' : 'grayscale')}
+                  onClick={() => updateSetting('contrastMode', contrastMode === 'grayscale' ? 'none' : 'grayscale')}
                   aria-pressed={contrastMode === 'grayscale'}
                 >
                   <Sun size={18} /> {t.grayscale}
@@ -282,7 +444,7 @@ const AccessibilityWidget = () => {
               <div className="a11y-button-group">
                 <button 
                   className={`a11y-btn ${highlightLinks ? 'active' : ''}`}
-                  onClick={() => setHighlightLinks(!highlightLinks)}
+                  onClick={() => updateSetting('highlightLinks', !highlightLinks)}
                   aria-pressed={highlightLinks}
                 >
                   {t.highlightLinks}
@@ -297,7 +459,7 @@ const AccessibilityWidget = () => {
               <div className="a11y-button-group">
                 <button 
                   className={`a11y-btn ${stopAnimations ? 'active' : ''}`}
-                  onClick={() => setStopAnimations(!stopAnimations)}
+                  onClick={() => updateSetting('stopAnimations', !stopAnimations)}
                   aria-pressed={stopAnimations}
                 >
                   {t.stopAnimations}
@@ -312,14 +474,14 @@ const AccessibilityWidget = () => {
               <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
                 <button 
                   className={`a11y-btn ${bigCursor ? 'active' : ''}`}
-                  onClick={() => setBigCursor(!bigCursor)}
+                  onClick={() => updateSetting('bigCursor', !bigCursor)}
                   aria-pressed={bigCursor}
                 >
                   <MousePointer2 size={18} /> {t.bigCursor}
                 </button>
                 <button 
                   className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
-                  onClick={() => setEnhancedFocus(!enhancedFocus)}
+                  onClick={() => updateSetting('enhancedFocus', !enhancedFocus)}
                   aria-pressed={enhancedFocus}
                 >
                   <Keyboard size={18} /> {t.enhancedFocus}
@@ -342,11 +504,11 @@ const AccessibilityWidget = () => {
           variant="primary" 
           icon={PersonStanding} 
           iconOnly={true}
-          className="a11y-fab" 
+          className={`a11y-fab ${isOpen ? 'a11y-fab--hidden' : ''}`}
           onClick={togglePanel}
           title={t.openMenu}
+          aria-controls="a11y-panel"
           aria-expanded={isOpen}
-          style={{ display: isOpen && window.innerWidth <= 768 ? 'none' : 'flex' }}
         />
       </div>
     </>

@@ -35,6 +35,18 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .app {
   min-height: 100dvh;
   position: relative;
@@ -360,7 +372,7 @@ button:focus-visible {
 }
 
 .hero__name {
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 0.95;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -395,7 +407,7 @@ button:focus-visible {
   align-items: center;
   background: #EEE7FF;
   color: #7917EA;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   padding: 6px 12px;
   border-radius: var(--radius-pill);
@@ -405,7 +417,7 @@ button:focus-visible {
 
 .hero__lead {
   max-width: 760px;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.6;
   color: var(--color-ink);
 }
@@ -445,7 +457,7 @@ button:focus-visible {
   padding: 0 20px;
   min-height: 48px;
   min-width: 48px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -490,7 +502,7 @@ button:focus-visible {
   justify-content: center;
   background: var(--color-primary);
   color: #fff;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 700;
   line-height: 1;
   border: 1.5px solid #fff;
@@ -562,7 +574,7 @@ button:focus-visible {
   gap: 6px;
   padding: 6px 8px;
   border-radius: 18px;
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--color-nav-muted);
   min-width: 64px;
   transform: translateY(0);
@@ -621,7 +633,7 @@ button:focus-visible {
   left: calc(50% + 8px);
   background: var(--color-nav-muted);
   color: #fff;
-  font-size: 10px;
+  font-size: 0.625rem;
   min-width: 22px;
   height: 18px;
   padding: 0 6px;
@@ -764,11 +776,11 @@ button:focus-visible {
   }
 
   .hero__name {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
 
   .hero__lead {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .bottom-nav__inner {
@@ -810,7 +822,7 @@ button:focus-visible {
   color: var(--color-paper, #f5eff7);
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0.5px;
