@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Button from '../components/Button.jsx';
 import { IconFolderOpen, IconMessagesSquare } from '../components/icons-shell.jsx';
 
@@ -5,16 +6,20 @@ import { homeContent } from '../i18n/content/home.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
 import { seoConfig } from '../config/seo.js';
+import { createHomeStructuredData } from '../config/structuredData.js';
 
 export default function Home() {
   const { language } = useLanguage();
   const content = homeContent[language];
+  const seoData = seoConfig.home;
+  const structuredData = useMemo(() => createHomeStructuredData(seoData), [seoData]);
 
   useSEO({
-    title: seoConfig.home.title,
-    description: seoConfig.home.description,
-    image: seoConfig.home.image,
-    urlPath: '/'
+    title: seoData.title,
+    description: seoData.description,
+    image: seoData.image,
+    urlPath: '/',
+    structuredData,
   });
 
   return (

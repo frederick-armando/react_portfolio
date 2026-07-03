@@ -25,6 +25,9 @@ import {
 import { getLocalizedProjects, projects as projectEntries } from '../data/projects.js';
 import { projectsPageContent } from '../i18n/content/projectsPage.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
+import { createProjectsStructuredData } from '../config/structuredData.js';
 
 const AUTOPLAY_DURATION = 10000;
 const PROJECT_COUNT = projectEntries.length;
@@ -221,6 +224,19 @@ export default function Projets() {
   });
 
   const projects = useMemo(() => getLocalizedProjects(language), [language]);
+  const projectsSeoData = seoConfig.projects;
+  const projectsStructuredData = useMemo(
+    () => createProjectsStructuredData({ ...projectsSeoData, projects }),
+    [projects, projectsSeoData],
+  );
+  useSEO({
+    title: projectsSeoData.title,
+    description: projectsSeoData.description,
+    image: projectsSeoData.image,
+    urlPath: '/projets',
+    structuredData: projectsStructuredData,
+  });
+
   const renderedProjects = useMemo(
     () =>
       Array.from({ length: PROJECT_COUNT * LOOP_SET_COUNT }, (_, renderedIndex) => {

@@ -66,6 +66,7 @@ import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
 import { seoConfig } from '../config/seo.js';
+import { createProjectStructuredData } from '../config/structuredData.js';
 import '../styles/pages.css';
 
 const metricIcons = {
@@ -1248,7 +1249,7 @@ export default function ProjectCaseStudy({ isModal }) {
     }
   }
 
-  const currentProject = getProjectBySlug(displaySlug, language);
+  const currentProject = useMemo(() => getProjectBySlug(displaySlug, language), [displaySlug, language]);
   const globalContent = caseStudyContent[language];
   const projectContent = globalContent[displaySlug] || {};
 
@@ -1268,11 +1269,24 @@ export default function ProjectCaseStudy({ isModal }) {
   }, [displaySlug]);
 
   const seoData = seoConfig[displaySlug] || seoConfig.home;
+  const structuredData = useMemo(
+    () =>
+      currentProject
+        ? createProjectStructuredData({
+            project: currentProject,
+            title: seoData.title,
+            description: seoData.description,
+            image: seoData.image,
+          })
+        : null,
+    [currentProject, seoData],
+  );
   useSEO({
     title: seoData.title,
     description: seoData.description,
     image: seoData.image,
-    urlPath: `/projets/${displaySlug}`
+    urlPath: `/projets/${displaySlug}`,
+    structuredData,
   });
 
   useEffect(() => {

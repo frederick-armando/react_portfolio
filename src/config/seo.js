@@ -12,6 +12,11 @@ export const seoConfig = {
     description: "Portfolio de Frederick Armando, Lead Product Designer. Découvrez mes études de cas ROIstes et expériences UX.",
     image: ogMain
   },
+  projects: {
+    title: "Études de cas UX/UI | Frederick Armando",
+    description: "Découvrez une sélection d'études de cas UX/UI menées par Frederick Armando pour Michelin, Masteos, Kirrk et Mobioos.",
+    image: ogMain
+  },
   "tire-assistant": {
     title: "Tire Assistant | Chatbot IA & Conversion",
     description: "Refonte UX d'un chatbot Michelin : +18% d'ouverture et 21% d'intention d'achat. Monétisation du trafic SEO.",
