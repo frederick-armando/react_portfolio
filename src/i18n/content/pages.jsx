@@ -73,6 +73,7 @@ export const pagesContent = {
         </>,
       ],
       socialsAria: 'Réseaux sociaux',
+      socialLinkLabel: (label) => `Ouvrir le profil ${label} de Frederick Armando`,
       contactTitle: 'Comment me contacter :',
       contactBody:
         "Vous pouvez m'appeler ou m'envoyer un message, je répondrai aussi vite que possible :)",
@@ -166,6 +167,7 @@ export const pagesContent = {
         </>,
       ],
       socialsAria: 'Social links',
+      socialLinkLabel: (label) => `Open Frederick Armando's ${label} profile`,
       contactTitle: 'How to contact me:',
       contactBody:
         "You can call me or send me a message, I'll reply as quickly as possible :)",

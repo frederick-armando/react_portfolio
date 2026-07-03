@@ -61,7 +61,7 @@ export default function Contact() {
               <Button
                 variant="tertiary"
                 key={label}
-                aria-label={label}
+                aria-label={content.socialLinkLabel(label)}
                 title={label}
                 icon={Icon}
                 iconOnly={true}

@@ -64,10 +64,10 @@ export default function Home() {
       <p className="hero__lead">{content.lead}</p>
 
       <div className="hero__actions">
-        <Button variant="secondary" to="/contact" icon={IconMessagesSquare}>
+        <Button variant="secondary" to="/contact" icon={IconMessagesSquare} aria-label={content.contactCtaLabel}>
           {content.contactCta}
         </Button>
-        <Button variant="primary" to="/projets" icon={IconFolderOpen}>
+        <Button variant="primary" to="/projets" icon={IconFolderOpen} aria-label={content.projectsCtaLabel}>
           {content.projectsCta}
         </Button>
       </div>

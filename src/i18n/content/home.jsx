@@ -15,7 +15,9 @@ export const homeContent = {
       </>
     ),
     projectsCta: 'Découvrir mes Projets',
+    projectsCtaLabel: 'Aller à la page projets pour découvrir mes études de cas',
     contactCta: 'Me Contacter',
+    contactCtaLabel: 'Aller à la page contact pour me contacter',
   },
   en: {
     chips: [
@@ -31,6 +33,8 @@ export const homeContent = {
       </>
     ),
     projectsCta: 'Discover my Projects',
+    projectsCtaLabel: 'Go to the projects page to discover my case studies',
     contactCta: 'Contact Me',
+    contactCtaLabel: 'Go to the contact page to contact me',
   },
 };

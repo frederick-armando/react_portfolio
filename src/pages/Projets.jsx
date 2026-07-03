@@ -176,6 +176,7 @@ function ProjectControls({
         to={ctaTo}
         state={isExternalRoute ? undefined : { backgroundLocation: location }}
         icon={CtaIcon}
+        aria-label={content.openProjectLabel(project.title)}
       >
         {project.ctaLabel}
       </Button>

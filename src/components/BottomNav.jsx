@@ -40,6 +40,7 @@ export default function BottomNav() {
               key={item.to}
               to={item.to}
               end={item.to === '/'}
+              aria-label={content.itemAriaLabels?.[item.key] ?? content.items[item.key]}
               className={({ isActive }) =>
                 `nav-item${isActive ? ' nav-item--active' : ''}`
               }
