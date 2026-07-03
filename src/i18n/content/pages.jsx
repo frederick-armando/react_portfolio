@@ -9,74 +9,90 @@ export const pagesContent = {
       skillsTitle: 'Compétences clés',
       introParagraphs: [
         <>
-          Au-delà de la création d&apos;interfaces, mon rôle est d&apos;aligner les enjeux business, les contraintes techniques et les besoins réels des utilisateurs. Je suis convaincu que l&apos;innovation technologique n&apos;a de véritable impact que si elle reste inclusive et centrée sur l&apos;humain.
+          Mon rôle est de transformer des problématiques complexes en décisions produit claires. J&apos;interviens à l&apos;intersection des besoins utilisateurs, des objectifs business et des contraintes techniques, avec une attention forte portée à l&apos;accessibilité et à l&apos;impact réel.
         </>,
         <>
-          C&apos;est pourquoi j&apos;intègre l&apos;accessibilité et le design éthique dès les premières phases de réflexion. De l&apos;animation d&apos;ateliers de co-création à la conception de parcours complexes pour le SaaS, je pilote le processus de design pour garantir que chaque décision repose sur une recherche solide et permette aux équipes de livrer des produits robustes.
+          Ces dernières années, j&apos;ai accompagné des équipes sur des produits B2C, B2B, mobiles et IA : cadrage, discovery, ateliers, prototypage, design system, handoff et mesure. J&apos;aime les sujets flous, les contraintes fortes et les produits qui doivent convaincre autant les utilisateurs que les équipes qui les construisent.
         </>,
       ],
-      skills: [
-        'Product Design',
-        'UX Design',
-        'UI Design',
-        'AI',
-        'GenUI',
-        'Design Thinking',
-        'Accessibilité',
-        'Innovation produit',
-        'SaaS',
-        'User Research',
-        'User Testing',
-        'Audit UX',
-        'Analyse des besoins',
-        'Wireframe/Prototypage',
-        'Apps mobiles & web',
-        "Animation d'ateliers",
+      skillGroups: [
+        {
+          title: 'Stratégie & cadrage',
+          skills: [
+            'Product Strategy',
+            'Discovery',
+            'Design Thinking',
+            'Analyse des besoins',
+            "Animation d'ateliers",
+          ],
+        },
+        {
+          title: 'Expérience & livraison',
+          skills: [
+            'UX Design',
+            'UI Design',
+            'Apps mobiles & web',
+            'Wireframe / Prototypage',
+            'Design Systems',
+            'Handoff',
+          ],
+        },
+        {
+          title: 'IA & qualité',
+          skills: [
+            'Conversational AI',
+            'GenUI',
+            'Accessibilité',
+            'User Research',
+            'User Testing',
+            'Audit UX',
+          ],
+        },
       ],
     },
     methods: {
       title: 'Méthodes',
       items: [
         {
-          title: 'Recherches',
+          title: 'Cadrer',
           text:
-            "Identification des vrais problèmes. Je mène des entretiens qualitatifs et des audits pour transformer des données brutes en insights actionnables, toujours ancrés dans la réalité des utilisateurs.",
+            'Transformer un sujet flou en problème actionnable. Je clarifie les objectifs, les utilisateurs concernés, les contraintes et les critères de succès avant de produire des solutions.',
         },
         {
-          title: 'Analyses',
+          title: 'Aligner',
           text:
-            "Cartographie de la complexité. Je structure l'architecture de l'information et les parcours utilisateurs pour m'assurer que la vision produit s'aligne parfaitement avec les objectifs d'affaires.",
+            'Faire converger les enjeux business, les besoins utilisateurs et la faisabilité technique. J’utilise les ateliers, cartographies et prototypes pour rendre les décisions visibles et discutables.',
         },
         {
-          title: 'Conception',
+          title: 'Concevoir',
           text:
-            "Matérialisation des solutions. Du wireframe conceptuel au prototype haute fidélité, je conçois des interfaces évolutives, soutenues par des Design Systems robustes et testées itérativement.",
+            'Passer rapidement de l’hypothèse au prototype. Je structure les parcours, les interactions et les interfaces avec une attention particulière à la clarté, à l’accessibilité et à la scalabilité.',
         },
         {
-          title: 'Production',
+          title: 'Livrer',
           text:
-            "Sécurisation de la livraison. Je collabore étroitement avec les équipes d'ingénierie via une documentation rigoureuse et des guidelines d'accessibilité strictes pour un handoff sans friction.",
+            'Sécuriser le passage du design à l’implémentation. Je documente les comportements, les états, les règles d’usage et les guidelines pour faciliter le handoff avec les équipes produit et engineering.',
         },
         {
-          title: 'Évaluation',
+          title: 'Mesurer',
           text:
-            "Mesure de l'impact. J'analyse les métriques d'usage (KPIs) et mène des évaluations heuristiques pour valider nos hypothèses et définir le plan d'évolution du produit.",
+            'Évaluer l’impact réel des solutions. J’analyse les retours utilisateurs, les signaux d’usage et les KPIs disponibles pour prioriser les itérations suivantes.',
         },
       ],
     },
     contact: {
       title: 'Contact',
-      introTitle: 'Prêt à relever votre prochain défi ?',
+      introTitle: 'Vous travaillez sur un produit complexe ?',
       introParagraphs: [
         <>
-          Je suis toujours ouvert pour échanger sur vos enjeux de design, de stratégie produit ou d&apos;équipe. Que ce soit en français ou en anglais, discutons de la façon dont je peux accompagner votre entreprise.
+          Je suis ouvert aux échanges autour du design produit, de l&apos;IA, du mobile et des expériences B2B/B2C. Que ce soit pour une mission, une collaboration ou simplement une discussion produit, le plus simple est de m&apos;envoyer un message.
         </>,
       ],
       socialsAria: 'Réseaux sociaux',
       socialLinkLabel: (label) => `Ouvrir le profil ${label} de Frederick Armando`,
-      contactTitle: 'Comment me contacter :',
+      contactTitle: 'Me contacter',
       contactBody:
-        "Vous pouvez m'appeler ou m'envoyer un message, je répondrai aussi vite que possible :)",
+        'Envoyez-moi un mail, je réponds rapidement.',
       locationTitle: 'Où me trouver :',
       locationAddress: (
         <>
@@ -92,7 +108,7 @@ export const pagesContent = {
         </>
       ),
       callMe: 'Appelez-moi',
-      mailMe: 'Envoyez-moi un mail',
+      mailMe: "M’envoyer un mail",
     },
   },
   en: {
@@ -103,74 +119,90 @@ export const pagesContent = {
       skillsTitle: 'Key skills',
       introParagraphs: [
         <>
-          Beyond crafting interfaces, my role is to align business goals, technical constraints, and real user needs. I firmly believe that technological innovation only makes a true impact when it remains inclusive and human-centered.
+          My role is to turn complex problems into clear product decisions. I work at the intersection of user needs, business goals and technical constraints, with a strong focus on accessibility and real-world impact.
         </>,
         <>
-          That is why I embed accessibility and ethical design into the very first stages of ideation. From facilitating co-creation workshops to designing complex journeys for SaaS, I drive the design process to ensure every decision is rooted in solid research and empowers teams to deliver robust products.
+          Over the past years, I have supported teams across B2C, B2B, mobile and AI products: framing, discovery, workshops, prototyping, design systems, handoff and measurement. I like ambiguous topics, strong constraints and products that need to convince both users and the teams building them.
         </>,
       ],
-      skills: [
-        'Product Design',
-        'UX Design',
-        'UI Design',
-        'AI',
-        'GenUI',
-        'Design Thinking',
-        'Accessibility',
-        'Product innovation',
-        'SaaS',
-        'User Research',
-        'User Testing',
-        'UX Audit',
-        'Needs analysis',
-        'Wireframing/Prototyping',
-        'Mobile & web apps',
-        'Workshop facilitation',
+      skillGroups: [
+        {
+          title: 'Strategy & framing',
+          skills: [
+            'Product Strategy',
+            'Discovery',
+            'Design Thinking',
+            'Needs analysis',
+            'Workshop facilitation',
+          ],
+        },
+        {
+          title: 'Experience & delivery',
+          skills: [
+            'UX Design',
+            'UI Design',
+            'Mobile & web apps',
+            'Wireframing / Prototyping',
+            'Design Systems',
+            'Handoff',
+          ],
+        },
+        {
+          title: 'AI & quality',
+          skills: [
+            'Conversational AI',
+            'GenUI',
+            'Accessibility',
+            'User Research',
+            'User Testing',
+            'UX Audit',
+          ],
+        },
       ],
     },
     methods: {
       title: 'Methods',
       items: [
         {
-          title: 'Research',
+          title: 'Frame',
           text:
-            'Identifying the right problems to solve. I conduct qualitative interviews and UX audits to turn raw data into actionable insights, always grounded in real user needs.',
+            'Turn an ambiguous topic into an actionable problem. I clarify goals, target users, constraints and success criteria before producing solutions.',
         },
         {
-          title: 'Analysis',
+          title: 'Align',
           text:
-            'Mapping complexity. I structure information architecture and user journeys to ensure the product vision aligns perfectly with business goals.',
+            'Bring business goals, user needs and technical feasibility together. I use workshops, maps and prototypes to make decisions visible and discussable.',
         },
         {
           title: 'Design',
           text:
-            'Materializing solutions. From conceptual wireframes to high-fidelity prototypes, I craft scalable interfaces backed by robust Design Systems and iterative usability testing.',
+            'Move quickly from hypothesis to prototype. I structure flows, interactions and interfaces with a strong focus on clarity, accessibility and scalability.',
         },
         {
-          title: 'Production',
+          title: 'Deliver',
           text:
-            'Securing delivery. I collaborate closely with engineering teams through rigorous documentation and strict accessibility guidelines to ensure a frictionless handoff.',
+            'Secure the transition from design to implementation. I document behaviors, states, usage rules and guidelines to make handoff easier for product and engineering teams.',
         },
         {
-          title: 'Evaluation',
+          title: 'Measure',
           text:
-            "Measuring impact. I track usage metrics (KPIs) and conduct heuristic evaluations to validate our hypotheses and define the product's next evolution plans.",
+            'Evaluate the real impact of solutions. I analyze user feedback, usage signals and available KPIs to prioritize the next iterations.',
         },
       ],
     },
     contact: {
       title: 'Contact',
-      introTitle: 'Ready to tackle your next challenge?',
+      introTitle: 'Working on a complex product?',
       introParagraphs: [
         <>
-          I&apos;m always open to discussing design challenges, product strategy, or team leadership. Whether in English or French, let&apos;s talk about how I can help your team scale and succeed.
+          I&apos;m open to conversations about product design, AI, mobile and B2B/B2C experiences. Whether it is for a mission, a collaboration or simply a product discussion, the easiest way is to send me a message.
         </>,
       ],
       socialsAria: 'Social links',
       socialLinkLabel: (label) => `Open Frederick Armando's ${label} profile`,
-      contactTitle: 'How to contact me:',
+      contactTitle: 'Contact me',
       contactBody:
-        "You can call me or send me a message, I'll reply as quickly as possible :)",
+        'Send me an email, I reply quickly.',
       locationTitle: 'Where to find me:',
       locationAddress: (
         <>
@@ -186,7 +218,7 @@ export const pagesContent = {
         </>
       ),
       callMe: 'Call me',
-      mailMe: 'Mail me',
+      mailMe: 'Send me an email',
     },
   },
 };

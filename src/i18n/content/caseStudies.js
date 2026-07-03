@@ -8,7 +8,7 @@ export const caseStudyContent = {
       body: (company) => `Le contenu de ${company} sera bientôt intégré.`
     },
     'tire-assistant': {
-      summary: "Le chatbot B2C existant de Michelin était un outil de support passif, caché derrière une interface confuse. En tant que <strong>Lead Product Designer</strong>, j'ai repensé l'intégralité des flux conversationnels du chatbot B2C et promu des notifications contextuelles.<br/><br/><strong>Résultat : +18 % d'ouverture et 21,3 % d'intention d'achat, monétisant avec succès le trafic SEO organique.</strong>",
+      summary: "Le chatbot B2C existant de Michelin était un support passif, déclenché uniquement par l’utilisateur. L’enjeu était de le transformer en assistant proactif capable d’intervenir au bon moment du parcours, sans cannibaliser l’expérience existante ni nuire au SEO organique.<br/><br/><strong>Impact : +18 % d’ouverture et 21,3 % d’intention d’achat.</strong>",
       metrics: [
         { iconKey: 'calendar', title: 'Déc 2024 - Présent', detail: 'Participation au projet' },
         { iconKey: 'pencil-ruler', title: 'Lead Product Designer', detail: 'Rôle principal' },
@@ -28,58 +28,52 @@ export const caseStudyContent = {
         ['Déploiement global', 'Analyse SEO/BOF', 'Exploration GenUI']
       ],
       sections: {
-        intro: {
-          title: "Du chatbot passif au moteur de vente proactif",
+        context: {
+          title: "Contexte",
           paragraphs: [
-            "Michelin avait besoin de booster sa génération de leads B2C en ligne. L'assistant conversationnel existant était fonctionnel, mais il agissait simplement comme une FAQ passive : les utilisateurs posaient une question de support et quittaient le site. Ma mission en tant que Lead Product Designer était de transformer cet outil de support invisible en un véritable vendeur digital expert."
+            "Michelin cherchait à renforcer la génération de leads B2C en ligne sans dégrader un parcours déjà fortement exposé au trafic organique. Le chatbot existant était fonctionnel, mais il intervenait surtout comme un outil de support réactif : l’utilisateur devait décider seul de l’ouvrir, poser sa question, puis poursuivre son parcours sans accompagnement clair."
           ]
         },
-        challenge: {
-          title: "Le syndrome du bouton d'erreur",
+        problem: {
+          title: "Problème",
           paragraphs: [
-            "L'un des plus gros goulots d'étranglement de l'adoption du chatbot résidait dans son interface d'entrée. L'icône de lancement ressemblait à s'y méprendre à un bouton de signalement de bug ou à un sondage de satisfaction. Les utilisateurs n'avaient aucune idée qu'une intelligence conversationnelle se cachait derrière, ce qui limitait drastiquement l'engagement."
+            "Le point d’entrée du chatbot limitait son adoption : son icône pouvait être perçue comme un bouton de signalement ou un sondage, pas comme un assistant conversationnel. Le produit répondait aux demandes, mais ne guidait pas suffisamment les utilisateurs vers l’action utile au bon moment."
           ]
         },
-        advocacy: {
-          title: "La bataille de la mascotte : +18 % d'ouverture",
+        role: {
+          title: "Mon rôle",
           paragraphs: [
-            "Le design, c'est aussi savoir défendre ses convictions. Pendant près d'un an, je me suis battu pour remplacer cette icône générique par la mascotte emblématique de la marque : le Bonhomme Michelin (Bibendum). Pour convaincre les parties prenantes, j'ai exigé un test A/B. Les données ont été irréfutables : sur mobile, le taux d'ouverture a bondi de 2,7 % à 3,2 %. En corrigeant simplement ce point d'entrée, nous avons capté 18 % d'utilisateurs en plus, tout en haut de l'entonnoir de conversion."
+            "En tant que Lead Product Designer, j’ai cadré le problème avec les équipes produit et engineering, cartographié les flux conversationnels, conçu des notifications contextuelles et défendu un point d’entrée plus identifiable. J’ai aussi documenté les comportements et les états pour sécuriser le handoff."
           ]
         },
-        ux: {
-          title: "Redessiner l'intelligence conversationnelle",
+        constraints: {
+          title: "Contraintes",
           paragraphs: [
-            "Évoluant sans UI designer dédié sur ce projet, j'ai pris en charge la cartographie complète des flux utilisateurs pour introduire des suggestions intelligentes et contextuelles. L'objectif était clair : ne plus jamais laisser l'utilisateur face à une impasse ou à un message d'erreur."
+            "La solution devait rester compatible avec l’expérience existante, ne pas cannibaliser le trafic SEO organique et fonctionner dans un contexte international. Le projet avançait aussi sans UI designer dédié, ce qui m’a amené à couvrir à la fois la structure des parcours, les interactions et les spécifications."
           ]
         },
-        expert: {
-          title: "L'effet 'Expert en vente'",
+        decisions: {
+          title: "Décisions clés",
           paragraphs: [
-            "Au lieu de simplement répondre aux questions, le bot V2 recommande désormais activement des produits phares en fonction des besoins détectés. L'impact a été massif : le trafic redirigé vers le pneu stratégique KO3 a presque triplé (passant de 1,10 % à 3,16 %). En fournissant des solutions de repli intelligentes, les clics liés à une \"incompréhension du bot\" ont littéralement chuté, passant de 7,2 % à seulement 1,3 %."
+            "Nous avons rendu l’assistant plus identifiable, introduit des moments d’intervention contextuels et retravaillé les scénarios pour éviter les impasses. L’objectif n’était pas d’ajouter une couche conversationnelle de plus, mais de faire du chatbot un repère utile dans le parcours."
           ]
         },
-        business: {
-          title: "Un impact Business monumental",
+        solution: {
+          title: "Solution",
           paragraphs: [
-            "La sortie de la V2 a délivré des métriques commerciales exceptionnelles. Sur mobile, la combinaison de la génération de leads et des clics \"Acheter maintenant\" a atteint 21,3 %. Cela signifie que plus d'une conversation sur cinq se termine désormais par une forte intention d'achat (+4 points par rapport à la V1)."
+            "La refonte a transformé le chatbot en assistant plus proactif : suggestions contextuelles, messages d’accueil mieux situés, parcours de repli et recommandations adaptées aux besoins détectés. Le design a été pensé pour guider sans interrompre, et pour aider l’utilisateur à passer d’une question à une action."
           ]
         },
-        seo: {
-          title: "Monétiser le trafic organique",
+        impact: {
+          title: "Impact",
           paragraphs: [
-            "Plus impressionnant encore, le bot a modifié la typologie des utilisateurs convertis. Alors que la V1 dépendait fortement du référencement payant (Paid Search à 48 %), la V2 réussit l'exploit de monétiser le trafic organique (Organic Search à 48 %). Nous transformons désormais des visiteurs SEO gratuits en leads hautement qualifiés, et ce sans dépenser un centime de plus en publicité."
-          ]
-        },
-        future: {
-          title: "Pionnier de la GenUI (Generative UI)",
-          paragraphs: [
-            "Au-delà du produit actuellement en ligne, je dirige également l'UX de notre escouade \"POC\" (Proof of Concept). Nous explorons activement l'avenir des interfaces générées par l'IA (GenUI / AG-UI). Nous concevons des interfaces dynamiques pour des sites internes d'expatriation, des recherches intelligentes et des comparateurs de pneus avancés, maintenant ainsi Michelin à la pointe du design de produits digitaux."
+            "Le nouveau point d’entrée a permis d’augmenter le taux d’ouverture de 18 %. Sur mobile, la combinaison de la génération de leads et des clics “Acheter maintenant” a atteint 21,3 % d’intention d’achat. La V2 a aussi mieux valorisé le trafic organique en transformant une partie de cette audience en leads qualifiés."
           ]
         },
         learnings: {
-          title: "Leçons d'un Lead Designer",
+          title: "Enseignements",
           paragraphs: [
-            "Cette refonte m'a prouvé que la donnée (Data) est la meilleure arme d'un designer pour faire avancer ses idées. Elle démontre également qu'une excellente UX conversationnelle ne se contente pas d'aider l'utilisateur : elle a le pouvoir de transformer un centre de coûts (le support) en un véritable centre de profits (les ventes)."
+            "Cette refonte confirme qu’une UX conversationnelle performante ne repose pas seulement sur la qualité des réponses. Elle dépend du moment où l’assistant apparaît, de la clarté de son rôle et de sa capacité à relier besoin utilisateur, décision produit et impact business."
           ]
         }
       },
@@ -420,7 +414,7 @@ export const caseStudyContent = {
       body: (company) => `${company} case study is coming soon.`
     },
     'tire-assistant': {
-      summary: "Michelin's existing B2C chatbot was a passive support tool hidden behind a confusing UI. As <strong>Lead Product Designer</strong>, I redesigned the entire conversational flows of the B2C chatbot and promoted contextual notifications.<br/><br/><strong>The result: +18% open rate and 21.3% purchase intent, successfully monetizing organic SEO traffic.</strong>",
+      summary: "Michelin’s existing B2C chatbot was a passive support tool, triggered only by the user. The challenge was to turn it into a proactive assistant able to intervene at the right moment in the journey, without cannibalizing the existing experience or harming organic SEO.<br/><br/><strong>Impact: +18% open rate and 21.3% purchase intent.</strong>",
       metrics: [
         { iconKey: 'calendar', title: 'Dec 2024 - Present', detail: 'Participation in the project' },
         { iconKey: 'pencil-ruler', title: 'Lead Product Designer', detail: 'Lead role' },
@@ -440,58 +434,52 @@ export const caseStudyContent = {
         ['Global Rollout', 'SEO/BOF Analysis', 'GenUI Exploration']
       ],
       sections: {
-        intro: {
-          title: "From passive chatbot to proactive sales engine",
+        context: {
+          title: "Context",
           paragraphs: [
-            "Michelin needed to boost its online B2C lead generation. The existing conversational assistant was functional, but it acted merely as a passive FAQ tool: users asked for help and left. My mission as Lead Product Designer was to transform this invisible support bot into an expert digital salesperson."
+            "Michelin needed to strengthen online B2C lead generation without degrading a journey already strongly exposed to organic traffic. The existing chatbot was functional, but it mostly acted as a reactive support tool: users had to decide to open it, ask their question, then continue without clear guidance."
           ]
         },
-        challenge: {
-          title: "The Bug Report Syndrome",
+        problem: {
+          title: "Problem",
           paragraphs: [
-            "One of the biggest bottlenecks for chatbot adoption lay in its entry UI. The launcher icon looked exactly like a bug report tool or a satisfaction survey. Users had no idea a conversational AI was hiding behind it, which severely bottlenecked user engagement."
+            "The chatbot entry point limited adoption: its icon could be perceived as a report button or survey, not as a conversational assistant. The product answered requests, but did not guide users enough toward the right next action."
           ]
         },
-        advocacy: {
-          title: "The Mascot Battle: An 18% Opening Boost",
+        role: {
+          title: "My role",
           paragraphs: [
-            "Design is also about advocacy. For nearly a year, I fought to replace this generic launcher icon with the brand's beloved mascot: the Michelin Man (Bibendum). To convince stakeholders, I pushed for an A/B test. The data was undeniable: on mobile, the opening rate jumped from 2.7% to 3.2%. By simply fixing this entry point, we captured 18% more users right at the top of the funnel."
+            "As Lead Product Designer, I framed the problem with product and engineering teams, mapped conversational flows, designed contextual notifications and advocated for a more identifiable entry point. I also documented behaviors and states to secure the handoff."
           ]
         },
-        ux: {
-          title: "Redesigning Conversational Intelligence",
+        constraints: {
+          title: "Constraints",
           paragraphs: [
-            "Operating without a dedicated UI designer on this project, I took charge of mapping complex user flows to introduce smart, context-aware suggestions. The goal was clear: never let the user hit a dead end or an error message again."
+            "The solution had to remain compatible with the existing experience, avoid cannibalizing organic SEO traffic and work in an international context. The project also moved forward without a dedicated UI designer, so I covered journey structure, interactions and specifications."
           ]
         },
-        expert: {
-          title: "The 'Sales Expert' Effect",
+        decisions: {
+          title: "Key decisions",
           paragraphs: [
-            "Instead of just answering questions, the V2 bot now actively recommends flagship products based on detected needs. The impact was massive: traffic successfully redirected to the strategic KO3 tire nearly tripled (from 1.10% to 3.16%). By providing smart fallbacks, 'failed understanding' clicks plummeted from 7.2% to a mere 1.3%."
+            "We made the assistant easier to identify, introduced contextual moments of intervention and reworked scenarios to avoid dead ends. The goal was not to add another conversational layer, but to make the chatbot a useful reference point in the journey."
           ]
         },
-        business: {
-          title: "A Monumental Business Impact",
+        solution: {
+          title: "Solution",
           paragraphs: [
-            "The V2 release delivered incredible business metrics. On mobile, the combination of Lead Generation and 'Buy Now' clicks surged to 21.3%. This means that over 1 in 5 conversations now end with a strong purchase intent (+4 points compared to V1)."
+            "The redesign turned the chatbot into a more proactive assistant: contextual suggestions, better-timed welcome messages, fallback paths and recommendations adapted to detected needs. The design was built to guide without interrupting, and to help users move from a question to an action."
           ]
         },
-        seo: {
-          title: "Monetizing Organic Traffic",
+        impact: {
+          title: "Impact",
           paragraphs: [
-            "Even more impressively, the bot shifted the typology of converted users. While V1 relied heavily on Paid Search (48%), V2 successfully monetizes Organic Search (48%). We are now turning free SEO visitors into highly qualified leads without relying on additional ad spend."
-          ]
-        },
-        future: {
-          title: "Pioneering GenUI (Generative UI)",
-          paragraphs: [
-            "Beyond the current live product, I also lead the UX for our POC (Proof of Concept) squad. We are actively exploring the future of AI-generated interfaces (GenUI / AG-UI). We are designing dynamic interfaces for internal expatriation sites, intelligent search, and advanced tire comparators, keeping Michelin at the forefront of digital product design."
+            "The new entry point increased the open rate by 18%. On mobile, the combination of lead generation and “Buy Now” clicks reached 21.3% purchase intent. V2 also better leveraged organic traffic by turning part of that audience into qualified leads."
           ]
         },
         learnings: {
-          title: "Lessons from a Lead Designer",
+          title: "Learnings",
           paragraphs: [
-            "This redesign proved to me that data is a designer's best weapon to push ideas forward. It also demonstrates that excellent conversational UX does not just help the user: it has the power to transform a cost center (support) into a true profit center (sales)."
+            "This redesign confirmed that strong conversational UX is not only about answer quality. It depends on when the assistant appears, how clearly its role is understood, and how well it connects user need, product decision and business impact."
           ]
         }
       },

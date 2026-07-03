@@ -8,6 +8,12 @@ import { useLanguage } from '../i18n/LanguageContext.jsx';
 export default function Profil() {
   const { language } = useLanguage();
   const content = pagesContent[language].profile;
+  const skillGroups = content.skillGroups ?? [
+    {
+      title: content.skillsTitle,
+      skills: content.skills ?? [],
+    },
+  ];
 
   return (
     <section className="section">
@@ -26,16 +32,23 @@ export default function Profil() {
 
         <div className="profile__skills">
           <h3>{content.skillsTitle}</h3>
-          <div className="chip-list">
-            {content.skills.map((skill) => (
-              <m.span 
-                className="chip" 
-                key={skill}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {skill}
-              </m.span>
+          <div className="profile__skill-groups">
+            {skillGroups.map((group) => (
+              <section className="profile__skill-group" key={group.title}>
+                <h4>{group.title}</h4>
+                <div className="chip-list">
+                  {group.skills.map((skill) => (
+                    <m.span
+                      className="chip"
+                      key={skill}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      {skill}
+                    </m.span>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>

@@ -138,6 +138,12 @@
   --focus-ring: 0 0 0 3px rgba(81, 123, 252, 0.22);
 }
 
+@media (max-width: 720px) {
+  :root {
+    --header-height: 76px;
+  }
+}
+
 /* ===== Dark Mode Tokens ===== */
 [data-theme="dark"],
 :root.dark {

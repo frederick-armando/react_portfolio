@@ -319,7 +319,7 @@
 
 .profile {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: var(--space-9);
 }
 
@@ -349,10 +349,31 @@
   gap: var(--space-3);
 }
 
+.profile__skill-groups {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.profile__skill-group {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.profile__skill-group h4 {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .methods-wave {
   width: 100%;
-  height: 180px;
+  height: 148px;
   display: block;
+  opacity: 0.86;
 }
 
 .methods-wave path {
@@ -367,12 +388,12 @@
 .methods-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 .methods-card {
   border-radius: 20px;
-  padding: var(--space-4);
+  padding: var(--space-5) var(--space-4);
   transition:
     transform var(--motion-duration-medium) var(--motion-standard),
     box-shadow var(--motion-duration-medium) var(--motion-standard),
@@ -381,7 +402,7 @@
 }
 
 .methods-card p {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--color-body);
 }
@@ -1203,7 +1224,7 @@
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(320px, 1fr) minmax(280px, 0.8fr);
-  gap: 120px;
+  gap: clamp(var(--space-8), 8vw, 120px);
 }
 
 .contact-layout__intro,
@@ -1644,7 +1665,7 @@
   }
 
   .methods-wave {
-    height: 132px;
+    height: 108px;
   }
 
   .project-showcase {

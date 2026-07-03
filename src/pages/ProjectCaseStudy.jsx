@@ -100,6 +100,17 @@ const tagIcons = {
   cloud: IconCloud,
 };
 
+const tireAssistantSectionOrder = [
+  'context',
+  'problem',
+  'role',
+  'constraints',
+  'decisions',
+  'solution',
+  'impact',
+  'learnings',
+];
+
 const ExecutiveSummary = ({ content }) => {
   if (!content.summary) return null;
   return (
@@ -131,6 +142,19 @@ function ProjectTag({ tag }) {
       <Icon />
       {tag.label}
     </span>
+  );
+}
+
+function RichCaseStudySection({ section }) {
+  if (!section) return null;
+
+  return (
+    <section className="case-study-section">
+      <h2 dangerouslySetInnerHTML={{ __html: section.title }} />
+      {section.paragraphs.map((paragraph, index) => (
+        <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+      ))}
+    </section>
   );
 }
 
@@ -824,19 +848,9 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <ExecutiveSummary content={content} />
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.intro.title }} />
-         {content.sections.intro.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
-
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.challenge.title }} />
-         {content.sections.challenge.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      {tireAssistantSectionOrder.slice(0, 2).map((sectionKey) => (
+        <RichCaseStudySection key={sectionKey} section={content.sections[sectionKey]} />
+      ))}
 
       <section className="case-study-metrics">
         {content.metrics.map(({ iconKey, title, detail }) => {
@@ -851,19 +865,9 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         })}
       </section>
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.advocacy.title }} />
-         {content.sections.advocacy.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
-
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.ux.title }} />
-         {content.sections.ux.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      {tireAssistantSectionOrder.slice(2, 4).map((sectionKey) => (
+        <RichCaseStudySection key={sectionKey} section={content.sections[sectionKey]} />
+      ))}
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
@@ -877,19 +881,9 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         </figure>
       </section>
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.expert.title }} />
-         {content.sections.expert.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      <RichCaseStudySection section={content.sections.decisions} />
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.business.title }} />
-         {content.sections.business.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      <RichCaseStudySection section={content.sections.solution} />
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
@@ -904,19 +898,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         </figure>
       </section>
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.seo.title }} />
-         {content.sections.seo.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
-
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.future.title }} />
-         {content.sections.future.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      <RichCaseStudySection section={content.sections.impact} />
 
       <section className="case-study-metrics case-study-metrics--tools">
         {content.tools.map(({ iconKey, title, detail }) => {
@@ -931,12 +913,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         })}
       </section>
 
-      <section className="case-study-section">
-         <h2 dangerouslySetInnerHTML={{ __html: content.sections.learnings.title }} />
-         {content.sections.learnings.paragraphs.map((p, i) => (
-           <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-         ))}
-      </section>
+      <RichCaseStudySection section={content.sections.learnings} />
 
       <div style={{ marginTop: 'var(--space-8)' }}>
         <NextProjectsFooter currentSlug={project.slug} projects={projects} isModal={isModal} onNavigateToProject={onNavigateToProject} />

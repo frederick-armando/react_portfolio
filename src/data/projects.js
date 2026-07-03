@@ -10,11 +10,11 @@ export const projects = [
         company: 'Michelin',
         title: "Du chatbot passif au moteur de vente proactif",
         description:
-          "En tant que Lead Product Designer, j'ai repensé l'intégralité des flux conversationnels du chatbot B2C et promu des notifications contextuelles. <strong>Résultat : +18 % d'ouverture et 21,3 % d'intention d'achat.</strong>",
+          "En tant que Lead Product Designer, j’ai repensé les flux conversationnels du chatbot B2C Michelin et conçu des notifications contextuelles pour transformer un assistant passif en levier d’engagement et de conversion. <strong>Impact : +18 % d’ouverture et 21,3 % d’intention d’achat.</strong>",
         ctaLabel: 'Découvrir Tire Assistant',
         detailTitle: "Du chatbot passif au moteur de vente proactif",
         detailSummary:
-          "En tant que Lead Product Designer, j'ai repensé l'intégralité des flux conversationnels du chatbot B2C et promu des notifications contextuelles. <strong>Résultat : +18 % d'ouverture et 21,3 % d'intention d'achat.</strong>",
+          "En tant que Lead Product Designer, j’ai repensé les flux conversationnels du chatbot B2C Michelin et conçu des notifications contextuelles pour transformer un assistant passif en levier d’engagement et de conversion. <strong>Impact : +18 % d’ouverture et 21,3 % d’intention d’achat.</strong>",
         tags: [
           { icon: 'building', label: 'Michelin' },
           { icon: 'users', label: 'B2C' },
@@ -24,11 +24,11 @@ export const projects = [
         company: 'Michelin',
         title: 'From passive chatbot to proactive sales engine',
         description:
-          "As Lead Product Designer, I redesigned the entire conversational flows of the B2C chatbot and promoted contextual notifications. <strong>Result: +18% open rate and 21.3% purchase intent.</strong>",
+          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into an engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
         ctaLabel: 'Discover Tire Assistant',
         detailTitle: 'From passive chatbot to proactive sales engine',
         detailSummary:
-          "As Lead Product Designer, I redesigned the entire conversational flows of the B2C chatbot and promoted contextual notifications. <strong>Result: +18% open rate and 21.3% purchase intent.</strong>",
+          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into an engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
         tags: [
           { icon: 'building', label: 'Michelin' },
           { icon: 'users', label: 'B2C' },
