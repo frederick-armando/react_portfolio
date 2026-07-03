@@ -1,7 +1,7 @@
 export const uiContent = {
   fr: {
     topBar: {
-      brandLabel: 'Frederick Armando',
+      brandLabel: "Retour à l'accueil - Frederick Armando",
       downloadLabel: 'Ouvrir le CV français',
       downloadText: 'CV',
       downloadTooltip: 'Ouvrir le CV français',
@@ -32,11 +32,18 @@ export const uiContent = {
         projects: 'Projets',
         contact: 'Contact',
       },
+      itemAriaLabels: {
+        home: "Aller à la page d'accueil",
+        profile: 'Aller à la page profil',
+        methods: 'Aller à la page méthodes',
+        projects: 'Aller à la page projets',
+        contact: 'Aller à la page contact',
+      },
     },
   },
   en: {
     topBar: {
-      brandLabel: 'Frederick Armando',
+      brandLabel: 'Go to homepage - Frederick Armando',
       downloadLabel: 'Open the English resume',
       downloadText: 'Resume',
       downloadTooltip: 'Open the English resume',
@@ -66,6 +73,13 @@ export const uiContent = {
         methods: 'Methods',
         projects: 'Projects',
         contact: 'Contact',
+      },
+      itemAriaLabels: {
+        home: 'Go to the homepage',
+        profile: 'Go to the profile page',
+        methods: 'Go to the methods page',
+        projects: 'Go to the projects page',
+        contact: 'Go to the contact page',
       },
     },
   },

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
+import { normalizeAbsoluteUrl, serializeStructuredData } from '../config/structuredData.js';
 
-export const useSEO = ({ title, description, image, urlPath = '' }) => {
+export const useSEO = ({ title, description, image, urlPath = '', structuredData }) => {
   useEffect(() => {
-    // Ensure the URL is absolute for Open Graph
-    const baseUrl = window.location.origin;
-    const fullUrl = `${baseUrl}${urlPath}`;
-    const absoluteImage = image?.startsWith('http') ? image : `${baseUrl}${image}`;
+    const fullUrl = normalizeAbsoluteUrl(urlPath);
+    const absoluteImage = image ? normalizeAbsoluteUrl(image) : null;
 
     // Update Document Title
     document.title = title;
@@ -30,7 +29,18 @@ export const useSEO = ({ title, description, image, urlPath = '' }) => {
       element.setAttribute('content', content);
     };
 
+    const updateCanonical = (href) => {
+      let element = document.querySelector('link[rel="canonical"]');
+      if (!element) {
+        element = document.createElement('link');
+        element.setAttribute('rel', 'canonical');
+        document.head.appendChild(element);
+      }
+      element.setAttribute('href', href);
+    };
+
     // Standard SEO
+    updateCanonical(fullUrl);
     updateMeta('description', null, description);
 
     // Open Graph
@@ -42,9 +52,23 @@ export const useSEO = ({ title, description, image, urlPath = '' }) => {
 
     // Twitter Card
     updateMeta('twitter:card', null, 'summary_large_image');
+    updateMeta('twitter:url', null, fullUrl);
     updateMeta('twitter:title', null, title);
     updateMeta('twitter:description', null, description);
     updateMeta('twitter:image', null, absoluteImage);
 
-  }, [title, description, image, urlPath]);
+    let structuredDataElement = document.getElementById('portfolio-structured-data');
+    if (structuredData) {
+      if (!structuredDataElement) {
+        structuredDataElement = document.createElement('script');
+        structuredDataElement.id = 'portfolio-structured-data';
+        structuredDataElement.type = 'application/ld+json';
+        document.head.appendChild(structuredDataElement);
+      }
+      structuredDataElement.textContent = serializeStructuredData(structuredData);
+    } else if (structuredDataElement) {
+      structuredDataElement.remove();
+    }
+
+  }, [title, description, image, urlPath, structuredData]);
 };

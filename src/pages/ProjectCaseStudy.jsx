@@ -66,6 +66,7 @@ import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
 import { seoConfig } from '../config/seo.js';
+import { createProjectStructuredData } from '../config/structuredData.js';
 import '../styles/pages.css';
 
 const metricIcons = {
@@ -136,6 +137,12 @@ function ProjectTag({ tag }) {
 function CaseStudyHeader({ project, content, isModal, dragHandlers, titleId, closeButtonRef }) {
   const navigate = useNavigate();
   const { language } = useLanguage();
+  const projectName = project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1));
+  const closeLabel =
+    language === 'fr'
+      ? `Fermer l'étude de cas ${project.company} / ${projectName}`
+      : `Close the ${project.company} / ${projectName} case study`;
+
   return (
     <div className={`case-study__header ${isModal ? 'case-study__header--modal' : ''}`}>
       {isModal && (
@@ -144,9 +151,9 @@ function CaseStudyHeader({ project, content, isModal, dragHandlers, titleId, clo
         </div>
       )}
       <div className="case-study__header-content">
-        <h2 id={titleId} className="case-study__title">{content.currentStudy(project.company, project.name || (project.slug.charAt(0).toUpperCase() + project.slug.slice(1)))}</h2>
+        <h2 id={titleId} className="case-study__title">{content.currentStudy(project.company, projectName)}</h2>
         {isModal ? (
-          <Button ref={closeButtonRef} variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={language === 'fr' ? 'Fermer' : 'Close'} />
+          <Button ref={closeButtonRef} variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={closeLabel} />
         ) : (
           <div className="case-study__actions">
             <Button variant="tertiary" to="/projets" icon={IconArrowLeft}>
@@ -170,6 +177,7 @@ const projectConnections = {
 
 function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProject }) {
   const location = useLocation();
+  const { language } = useLanguage();
   const connection = projectConnections[currentSlug];
   if (!connection) return null;
 
@@ -184,6 +192,16 @@ function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProjec
       onNavigateToProject(slug);
     }
   };
+
+  const projectLabel = (proj) =>
+    language === 'fr'
+      ? `Ouvrir l'étude de cas ${proj.company} / ${proj.name || proj.title}`
+      : `Open the ${proj.company} / ${proj.name || proj.title} case study`;
+
+  const contactLabel =
+    language === 'fr'
+      ? 'Contacter Frederick Armando au sujet de futures études de cas'
+      : 'Contact Frederick Armando about upcoming case studies';
 
   const footerIcons = {
     'cog': IconCog,
@@ -205,11 +223,11 @@ function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProjec
             {secondaryProjs.map(proj => {
               const SecondaryIcon = footerIcons[proj.ctaIcon];
               return onNavigateToProject ? (
-                <Button key={proj.slug} variant="tertiary" icon={SecondaryIcon} onClick={() => handleNavigation(proj.slug)}>
+                <Button key={proj.slug} variant="tertiary" icon={SecondaryIcon} onClick={() => handleNavigation(proj.slug)} aria-label={projectLabel(proj)}>
                   {proj.ctaLabel}
                 </Button>
               ) : (
-                <Button key={proj.slug} variant="tertiary" icon={SecondaryIcon} to={`/projets/${proj.slug}`} state={isModal ? location.state : undefined}>
+                <Button key={proj.slug} variant="tertiary" icon={SecondaryIcon} to={`/projets/${proj.slug}`} state={isModal ? location.state : undefined} aria-label={projectLabel(proj)}>
                   {proj.ctaLabel}
                 </Button>
               );
@@ -224,11 +242,11 @@ function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProjec
           return (
             <div className="case-study__next-projects-right-secondary">
               {onNavigateToProject ? (
-                <Button variant="secondary" icon={PrimaryIcon} onClick={() => handleNavigation(primaryProj.slug)}>
+                <Button variant="secondary" icon={PrimaryIcon} onClick={() => handleNavigation(primaryProj.slug)} aria-label={projectLabel(primaryProj)}>
                   {primaryProj.ctaLabel}
                 </Button>
               ) : (
-                <Button variant="secondary" icon={PrimaryIcon} to={`/projets/${primaryProj.slug}`} state={isModal ? location.state : undefined}>
+                <Button variant="secondary" icon={PrimaryIcon} to={`/projets/${primaryProj.slug}`} state={isModal ? location.state : undefined} aria-label={projectLabel(primaryProj)}>
                   {primaryProj.ctaLabel}
                 </Button>
               )}
@@ -243,6 +261,7 @@ function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProjec
               icon={footerIcons[contactProj.ctaIcon]}
               to={contactProj.ctaTo ?? '/contact'}
               state={undefined}
+              aria-label={contactLabel}
             >
               {contactProj.ctaLabel}
             </Button>
@@ -437,6 +456,12 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
 
 function PlaceholderCaseStudy({ project, projects, content, isModal, onNavigateToProject }) {
+  const { language } = useLanguage();
+  const actionLabel =
+    language === 'fr'
+      ? `Contacter Frederick Armando au sujet de ${project.title}`
+      : `Contact Frederick Armando about ${project.title}`;
+
   return (
     <>
       <section className="case-study-hero">
@@ -449,7 +474,7 @@ function PlaceholderCaseStudy({ project, projects, content, isModal, onNavigateT
           <h1>{project.detailTitle}</h1>
           <p dangerouslySetInnerHTML={{ __html: project.detailSummary }} />
           <div className="case-study-placeholder__actions">
-            <Button variant="primary" to={project.ctaTo ?? '/contact'} state={undefined}>
+            <Button variant="primary" to={project.ctaTo ?? '/contact'} state={undefined} aria-label={actionLabel}>
               {project.ctaLabel}
             </Button>
           </div>
@@ -1209,15 +1234,22 @@ export default function ProjectCaseStudy({ isModal }) {
   const location = useLocation();
   const localizedProjects = useMemo(() => getLocalizedProjects(language), [language]);
 
+  const noAnimations = typeof document !== 'undefined' && (document.body.classList.contains('a11y-no-animations') || window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  
   const [displaySlug, setDisplaySlug] = useState(slug);
   const [isExiting, setIsExiting] = useState(false);
-  const [isEntering, setIsEntering] = useState(true);
+  const [isEntering, setIsEntering] = useState(!noAnimations);
 
   if (slug !== displaySlug && !isExiting) {
-    setIsExiting(true);
+    if (noAnimations) {
+      setDisplaySlug(slug);
+      setIsEntering(false);
+    } else {
+      setIsExiting(true);
+    }
   }
 
-  const currentProject = getProjectBySlug(displaySlug, language);
+  const currentProject = useMemo(() => getProjectBySlug(displaySlug, language), [displaySlug, language]);
   const globalContent = caseStudyContent[language];
   const projectContent = globalContent[displaySlug] || {};
 
@@ -1237,11 +1269,24 @@ export default function ProjectCaseStudy({ isModal }) {
   }, [displaySlug]);
 
   const seoData = seoConfig[displaySlug] || seoConfig.home;
+  const structuredData = useMemo(
+    () =>
+      currentProject
+        ? createProjectStructuredData({
+            project: currentProject,
+            title: seoData.title,
+            description: seoData.description,
+            image: seoData.image,
+          })
+        : null,
+    [currentProject, seoData],
+  );
   useSEO({
     title: seoData.title,
     description: seoData.description,
     image: seoData.image,
-    urlPath: `/projets/${displaySlug}`
+    urlPath: `/projets/${displaySlug}`,
+    structuredData,
   });
 
   useEffect(() => {

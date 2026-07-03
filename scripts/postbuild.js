@@ -1,128 +1,200 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getLocalizedProjects, getProjectBySlug } from '../src/data/projects.js';
+import {
+  createHomeStructuredData,
+  createProjectStructuredData,
+  createProjectsStructuredData,
+  normalizeAbsoluteUrl,
+  serializeStructuredData,
+  stripHtml,
+} from '../src/config/structuredData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const distDir = path.resolve(__dirname, '../dist');
 const htmlFile = path.join(distDir, 'index.html');
+const assetsDir = path.join(distDir, 'assets');
 
-// 1. Définition des routes et de leur contenu Open Graph
-const routes = [
-  {
-    path: 'projets/tire-assistant',
-    title: 'From passive chatbot to proactive sales engine | Michelin Case Study',
-    desc: '+18% open rate and 21.3% purchase intent.',
-    image: '/assets/OG_Michelin_TireAssistant.png'
-  },
-  {
-    path: 'projets/masteos-b2c',
-    title: 'Democratizing turnkey real estate investing | Masteos B2C',
-    desc: 'Led the UX/UI redesign resulting in a 32% increase in finalized investments.',
-    image: '/assets/OG_Masteos.png'
-  },
-  {
-    path: 'projets/masteos-b2e',
-    title: 'Reinventing the employee experience | Masteos B2E',
-    desc: 'Co-created an enterprise tool streamlining daily workflows. Internal NPS boosted from 6.5 to 8.7.',
-    image: '/assets/OG_Helios.png'
-  },
-  {
-    path: 'projets/kirrk',
-    title: 'Designing an autonomous rental ecosystem | Kirrk',
-    desc: 'Led cross-platform design for keyless vehicle access. Fleet utilization rate exceeding 80%.',
-    image: '/assets/OG_Kirrk.png'
-  },
-  {
-    path: 'projets/myxpert',
-    title: 'Translating complex code into a No-Code interface',
-    desc: 'Designed a B2B SaaS platform translating heavy technical architecture into a drag-and-drop experience.',
-    image: '/assets/OG_Mobioos.png'
-  }
+const homeMeta = {
+  title: 'Frederick Armando | Lead Product Designer',
+  description:
+    'Portfolio de Frederick Armando, Lead Product Designer. Découvrez mes études de cas ROIstes et expériences UX.',
+  image: '/assets/OG_Main.png',
+  path: '/',
+};
+
+const projectsMeta = {
+  title: 'Études de cas UX/UI | Frederick Armando',
+  description:
+    "Découvrez une sélection d'études de cas UX/UI menées par Frederick Armando pour Michelin, Masteos, Kirrk et Mobioos.",
+  image: '/assets/OG_Main.png',
+  path: '/projets',
+};
+
+const projectRoutes = [
+  { slug: 'tire-assistant', image: '/assets/OG_Michelin_TireAssistant.png' },
+  { slug: 'myxpert', image: '/assets/OG_Michelin_MyXpert.png' },
+  { slug: 'masteos', image: '/assets/OG_Masteos.png' },
+  { slug: 'helios', image: '/assets/OG_Helios.png' },
+  { slug: 'kirrk', image: '/assets/OG_Kirrk.png' },
+  { slug: 'mobioos', image: '/assets/OG_Mobioos.png' },
 ];
 
-const DOMAIN = 'https://frederickarmando.fr';
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/"/g, '&quot;');
+}
+
+function resolveBuiltAsset(assetPath) {
+  if (!fs.existsSync(assetsDir)) return assetPath;
+
+  const assetName = path.parse(assetPath).name;
+  const matchedFile = fs
+    .readdirSync(assetsDir)
+    .find((file) => file.startsWith(assetName) && file.endsWith(path.extname(assetPath)));
+
+  return matchedFile ? `/assets/${matchedFile}` : assetPath;
+}
+
+function cleanHeadSeo(html) {
+  return html
+    .replace(/\s*<meta name="description"[^>]*>\n?/gi, '')
+    .replace(/\s*<meta property="og:[^"]+"[^>]*>\n?/gi, '')
+    .replace(/\s*<meta (?:name|property)="twitter:[^"]+"[^>]*>\n?/gi, '')
+    .replace(/\s*<link rel="canonical"[^>]*>\n?/gi, '')
+    .replace(
+      /\s*<script(?=[^>]*id="portfolio-structured-data")(?=[^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>\n?/gi,
+      '',
+    );
+}
+
+function forceAbsoluteAssetPaths(html) {
+  return html
+    .replace(/(src|href)="(\.\/)(.*?)"/g, '$1="/$3"')
+    .replace(/(src|href)="(assets\/.*?)"/g, '$1="/$2"');
+}
+
+function createHeadTags({ title, description, url, image, structuredData }) {
+  const safeTitle = escapeAttribute(title);
+  const safeDescription = escapeAttribute(description);
+  const safeUrl = escapeAttribute(url);
+  const safeImage = escapeAttribute(image);
+
+  return `
+  <meta name="description" content="${safeDescription}">
+  <link rel="canonical" href="${safeUrl}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${safeUrl}">
+  <meta property="og:title" content="${safeTitle}">
+  <meta property="og:description" content="${safeDescription}">
+  <meta property="og:image" content="${safeImage}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="${safeUrl}">
+  <meta name="twitter:title" content="${safeTitle}">
+  <meta name="twitter:description" content="${safeDescription}">
+  <meta name="twitter:image" content="${safeImage}">
+  <script id="portfolio-structured-data" type="application/ld+json">${serializeStructuredData(structuredData)}</script>
+`;
+}
+
+function injectPageSeo(html, meta) {
+  const resolvedImage = resolveBuiltAsset(meta.image);
+  const absoluteImage = normalizeAbsoluteUrl(resolvedImage);
+  const url = normalizeAbsoluteUrl(meta.path);
+  const title = escapeHtml(meta.title);
+  const headTags = createHeadTags({
+    ...meta,
+    url,
+    image: absoluteImage,
+  });
+
+  return cleanHeadSeo(html)
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`)
+    .replace('</head>', `${headTags}</head>`);
+}
 
 try {
-  if (fs.existsSync(htmlFile)) {
-    const baseHtml = fs.readFileSync(htmlFile, 'utf8');
-
-    routes.forEach(route => {
-      const folderPath = path.join(distDir, route.path);
-      
-      // Créer le dossier s'il n'existe pas
-      if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath, { recursive: true });
-      }
-
-      // Résoudre le nom exact de l'image (Vite ajoute un hash en prod)
-      let resolvedImage = route.image;
-      const assetsDir = path.join(distDir, 'assets');
-      if (fs.existsSync(assetsDir)) {
-          const files = fs.readdirSync(assetsDir);
-          const nameWithoutExt = path.parse(route.image).name;
-          const matchedFile = files.find(f => f.startsWith(nameWithoutExt) && f.endsWith('.png'));
-          if (matchedFile) resolvedImage = '/assets/' + matchedFile;
-      }
-      
-      const absoluteImageUrl = `${DOMAIN}${resolvedImage}`;
-
-      // Préparer les balises à injecter
-      const metaTags = `
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="${DOMAIN}/${route.path}">
-  <meta property="og:title" content="${route.title}">
-  <meta property="og:description" content="${route.desc}">
-  <meta property="og:image" content="${absoluteImageUrl}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="${DOMAIN}/${route.path}">
-  <meta name="twitter:title" content="${route.title}">
-  <meta name="twitter:description" content="${route.desc}">
-  <meta name="twitter:image" content="${absoluteImageUrl}">
-  <link rel="canonical" href="${DOMAIN}/${route.path}">
-`;
-
-      // 1. Nettoyer les balises OG existantes
-      let newHtml = baseHtml.replace(/<meta property="og:.*?>/g, '').replace(/<meta name="twitter:.*?>/g, '');
-      
-      // 2. Injecter les nouvelles balises
-      newHtml = newHtml.replace('</head>', metaTags + '</head>');
-
-      // 3. Forcer les chemins absolus (CRITIQUE)
-      newHtml = newHtml.replace(/(src|href)="(\.\/)(.*?)"/g, '$1="/$3"');
-      newHtml = newHtml.replace(/(src|href)="(assets\/.*?)"/g, '$1="/$2"');
-
-      // Sauvegarder dans le sous-dossier
-      fs.writeFileSync(path.join(folderPath, 'index.html'), newHtml);
-      console.log(`✅ Généré: /${route.path}/index.html`);
-    });
-
-    // Optionnel : Retirer les logs index.php si ils existent, vu qu'on repasse en dossiers
-    const phpFile = path.join(distDir, 'index.php');
-    if (fs.existsSync(phpFile)) {
-      fs.unlinkSync(phpFile);
-    }
-
-    // 4. Génération de l'index.html parent pour le dossier /projets/
-    const parentFolder = path.join(distDir, 'projets');
-    if (!fs.existsSync(parentFolder)) {
-      fs.mkdirSync(parentFolder, { recursive: true });
-    }
-    
-    let parentHtml = baseHtml;
-    // Forcer les chemins en absolu pour que le routeur React charge correctement les JS/CSS de la racine
-    parentHtml = parentHtml.replace(/(src|href)="(\.\/)(.*?)"/g, '$1="/$3"');
-    parentHtml = parentHtml.replace(/(src|href)="(assets\/.*?)"/g, '$1="/$2"');
-    
-    fs.writeFileSync(path.join(parentFolder, 'index.html'), parentHtml);
-    console.log(`✅ Généré parent: /projets/index.html`);
-
-    console.log('🚀 Static Generation Fallback terminé avec succès !');
-
-  } else {
+  if (!fs.existsSync(htmlFile)) {
     console.error('⚠️ Fichier index.html introuvable dans /dist.');
+    process.exit(1);
   }
+
+  const baseHtml = fs.readFileSync(htmlFile, 'utf8');
+
+  projectRoutes.forEach((route) => {
+    const project = getProjectBySlug(route.slug, 'fr');
+    if (!project) return;
+
+    const folderPath = path.join(distDir, 'projets', route.slug);
+    fs.mkdirSync(folderPath, { recursive: true });
+
+    const meta = {
+      title: `${project.name || project.title} | ${project.company} Case Study`,
+      description: stripHtml(project.detailSummary || project.description),
+      image: route.image,
+      path: `/projets/${route.slug}`,
+    };
+
+    const resolvedImage = resolveBuiltAsset(meta.image);
+    const newHtml = forceAbsoluteAssetPaths(
+      injectPageSeo(baseHtml, {
+        ...meta,
+        structuredData: createProjectStructuredData({
+          project,
+          title: meta.title,
+          description: meta.description,
+          image: resolvedImage,
+        }),
+      }),
+    );
+
+    fs.writeFileSync(path.join(folderPath, 'index.html'), newHtml);
+    console.log(`✅ Généré: /projets/${route.slug}/index.html`);
+  });
+
+  const parentFolder = path.join(distDir, 'projets');
+  fs.mkdirSync(parentFolder, { recursive: true });
+
+  const localizedProjects = getLocalizedProjects('fr');
+  const projectsImage = resolveBuiltAsset(projectsMeta.image);
+  const projectsHtml = forceAbsoluteAssetPaths(
+    injectPageSeo(baseHtml, {
+      ...projectsMeta,
+      structuredData: createProjectsStructuredData({
+        ...projectsMeta,
+        image: projectsImage,
+        projects: localizedProjects,
+      }),
+    }),
+  );
+  fs.writeFileSync(path.join(parentFolder, 'index.html'), projectsHtml);
+  console.log('✅ Généré parent: /projets/index.html');
+
+  const homeImage = resolveBuiltAsset(homeMeta.image);
+  const homeHtml = injectPageSeo(baseHtml, {
+    ...homeMeta,
+    structuredData: createHomeStructuredData({
+      ...homeMeta,
+      image: homeImage,
+    }),
+  });
+  fs.writeFileSync(htmlFile, homeHtml);
+
+  const phpFile = path.join(distDir, 'index.php');
+  if (fs.existsSync(phpFile)) {
+    fs.unlinkSync(phpFile);
+  }
+
+  console.log('🚀 Static Generation Fallback terminé avec succès !');
 } catch (err) {
   console.error('❌ Erreur lors du postbuild:', err);
   process.exit(1);

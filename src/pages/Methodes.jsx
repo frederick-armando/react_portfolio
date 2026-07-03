@@ -14,7 +14,7 @@ export default function Methodes() {
     <section className="section">
       <div className="section__header">
         <IconChartArea />
-        <h2>{content.title}</h2>
+        <h1>{content.title}</h1>
       </div>
 
       <MethodsWave hoveredIndex={hoveredIndex} onHover={setHoveredIndex} />

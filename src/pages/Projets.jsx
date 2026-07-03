@@ -25,6 +25,9 @@ import {
 import { getLocalizedProjects, projects as projectEntries } from '../data/projects.js';
 import { projectsPageContent } from '../i18n/content/projectsPage.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
+import { createProjectsStructuredData } from '../config/structuredData.js';
 
 const AUTOPLAY_DURATION = 10000;
 const PROJECT_COUNT = projectEntries.length;
@@ -92,7 +95,7 @@ function ProjectSlideCopy({ project, content }) {
       </div>
 
       <div className="project-showcase__body">
-        <h2>{project.title}</h2>
+        <h1>{project.title}</h1>
         <p 
           className="project-showcase__description" 
           dangerouslySetInnerHTML={{ __html: project.description }}
@@ -176,6 +179,7 @@ function ProjectControls({
         to={ctaTo}
         state={isExternalRoute ? undefined : { backgroundLocation: location }}
         icon={CtaIcon}
+        aria-label={content.openProjectLabel(project.title)}
       >
         {project.ctaLabel}
       </Button>
@@ -188,7 +192,10 @@ export default function Projets() {
   const { language } = useLanguage();
   const content = projectsPageContent[language];
   const [activeRenderedIndex, setActiveRenderedIndex] = useState(MIDDLE_SET_OFFSET);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const [autoplayProgress, setAutoplayProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isWheelScrolling, setIsWheelScrolling] = useState(false);
@@ -217,6 +224,19 @@ export default function Projets() {
   });
 
   const projects = useMemo(() => getLocalizedProjects(language), [language]);
+  const projectsSeoData = seoConfig.projects;
+  const projectsStructuredData = useMemo(
+    () => createProjectsStructuredData({ ...projectsSeoData, projects }),
+    [projects, projectsSeoData],
+  );
+  useSEO({
+    title: projectsSeoData.title,
+    description: projectsSeoData.description,
+    image: projectsSeoData.image,
+    urlPath: '/projets',
+    structuredData: projectsStructuredData,
+  });
+
   const renderedProjects = useMemo(
     () =>
       Array.from({ length: PROJECT_COUNT * LOOP_SET_COUNT }, (_, renderedIndex) => {
@@ -235,6 +255,9 @@ export default function Projets() {
     () => projects[activeIndex] ?? projects[0],
     [activeIndex, projects],
   );
+  const activeProjectAnnouncement = activeProject
+    ? content.currentProjectLabel(activeProject.title, activeIndex + 1, projects.length)
+    : '';
   const isAutoplayBlocked =
     isDragging || isWheelScrolling || isTouchInteracting || isPageHidden;
 
@@ -396,6 +419,28 @@ export default function Projets() {
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function handleReducedMotionChange(event) {
+      if (event.matches) {
+        setIsAutoPlaying(false);
+        stopAutoplayFrame();
+      }
+    }
+
+    if (reducedMotion.matches) {
+      setIsAutoPlaying(false);
+      stopAutoplayFrame();
+    }
+
+    reducedMotion.addEventListener('change', handleReducedMotionChange);
+
+    return () => {
+      reducedMotion.removeEventListener('change', handleReducedMotionChange);
     };
   }, []);
 
@@ -666,6 +711,10 @@ export default function Projets() {
         />
       </div>
 
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {activeProjectAnnouncement}
+      </p>
+
       <div className="project-showcase__content">
         <div className="project-shell project-shell--copy">
           <ProjectSlideCopy
@@ -679,6 +728,7 @@ export default function Projets() {
           <div
             ref={stageScrollerRef}
             className={`project-stage${isDragging ? ' project-stage--dragging' : ''}${isWheelScrolling ? ' project-stage--free-scroll' : ''}`}
+            role="region"
             aria-roledescription="carousel"
             aria-label={content.stageLabel}
             onClickCapture={handleStageClickCapture}
@@ -708,6 +758,11 @@ export default function Projets() {
                   }}
                   className={`project-stage__item${isActive ? ' project-stage__item--active' : ''}`}
                   data-active={isActive ? 'true' : 'false'}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-current={isActive ? 'true' : undefined}
+                  aria-hidden={isActive ? undefined : 'true'}
+                  aria-label={content.slideLabel(project.title, normalizeProjectIndex(renderedIndex) + 1, projects.length)}
                 >
                   {isCardLinked ? (
                     <Link

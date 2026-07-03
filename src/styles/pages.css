@@ -301,13 +301,20 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 .section__header svg {
   width: 22px;
   height: 22px;
+}
+
+.section__header h1 {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  margin: 0;
 }
 
 .profile {
@@ -319,13 +326,13 @@
 .profile__text h3,
 .profile__skills h3,
 .methods-card h3 {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: var(--space-3);
 }
 
 .profile__text p {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--color-body);
   margin-bottom: var(--space-4);
@@ -374,7 +381,7 @@
 }
 
 .methods-card p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.7;
   color: var(--color-body);
 }
@@ -461,7 +468,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
@@ -470,7 +477,7 @@
   height: 18px;
 }
 
-.project-showcase h2 {
+.project-showcase h1 {
   max-width: 36rem;
   font-size: clamp(2.75rem, 3.5vw, 4rem);
   line-height: 1.2;
@@ -479,7 +486,7 @@
 }
 
 @media (max-width: 480px) {
-  .project-showcase h2 {
+  .project-showcase h1 {
     font-size: clamp(2rem, 8vw, 2.8rem);
   }
 }
@@ -487,7 +494,7 @@
 .project-showcase__description {
   max-width: 36rem;
   color: var(--color-body);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -502,7 +509,7 @@
 
 .project-pager__count {
   margin-left: var(--space-4);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--color-ink);
@@ -808,6 +815,8 @@
   inset: 0;
   z-index: 1000;
   background: rgba(18, 19, 26, 0.4);
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
   display: grid;
   justify-items: center;
   align-items: end;
@@ -831,7 +840,7 @@
   grid-area: 1 / 1;
   width: 100%;
   max-width: 1060px;
-  height: calc(100vh - 90px);
+  height: calc(100% - 90px);
   margin-top: 90px;
   background: #ffffff;
   border-radius: 36px 36px 0 0;
@@ -964,7 +973,7 @@
 }
 
 .case-study__title {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--color-ink);
@@ -997,7 +1006,7 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   color: var(--color-primary);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1011,7 +1020,7 @@
 }
 
 .case-study-hero__copy p {
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.62;
   color: var(--color-body);
 }
@@ -1039,7 +1048,7 @@
 
 .case-study-section h2,
 .case-study-process__header h2 {
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: var(--space-4);
@@ -1047,7 +1056,7 @@
 
 .case-study-section p,
 .case-study-process__header p {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.72;
   color: var(--color-body);
 }
@@ -1078,14 +1087,14 @@
 
 .case-study-metric h3 {
   margin-top: 14px;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.25;
   font-weight: 700;
 }
 
 .case-study-metric p {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.55;
   color: var(--color-body);
 }
@@ -1118,7 +1127,7 @@
   border-radius: 16px;
   background: rgba(111, 92, 255, 0.08);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.4;
   font-weight: 600;
   text-align: center;
@@ -1168,7 +1177,7 @@
 }
 
 .case-study-device-mockup figcaption {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-secondary);
   text-align: center;
@@ -1205,7 +1214,7 @@
 
 .contact-layout__intro h3,
 .contact-detail h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.35;
   font-weight: 700;
   margin-bottom: var(--space-4);
@@ -1213,7 +1222,7 @@
 
 .contact-layout__intro p,
 .contact-detail p {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--color-ink);
 }
@@ -1258,7 +1267,7 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: var(--space-4);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -1344,13 +1353,11 @@
   content: '';
   inset: -0.42em -0.74em;
   border-radius: var(--radius-pill);
-  background: radial-gradient(
-    120% 98% at 50% 52%,
-    rgba(164, 180, 217, 0.28) 0%,
-    rgba(164, 180, 217, 0.15) 30%,
-    rgba(164, 180, 217, 0.06) 52%,
-    rgba(164, 180, 217, 0) 82%
-  );
+  background: radial-gradient(120% 98% at 50% 52%,
+      rgba(164, 180, 217, 0.28) 0%,
+      rgba(164, 180, 217, 0.15) 30%,
+      rgba(164, 180, 217, 0.06) 52%,
+      rgba(164, 180, 217, 0) 82%);
   filter: blur(6.1px);
   transform: scale(0.9);
 }
@@ -1422,6 +1429,7 @@
 }
 
 @keyframes city-paris-sparkle {
+
   0%,
   100% {
     filter: brightness(0.88);
@@ -1440,6 +1448,7 @@
 }
 
 @keyframes city-paris-shimmer {
+
   0%,
   100% {
     filter: blur(0.2px) brightness(0.9);
@@ -1453,6 +1462,7 @@
 }
 
 @keyframes city-lyon-breathe {
+
   0%,
   100% {
     filter: blur(6.8px) saturate(1);
@@ -1466,6 +1476,7 @@
 }
 
 @keyframes city-lyon-breathe-dark {
+
   0%,
   100% {
     filter: blur(7px) saturate(1);
@@ -1479,6 +1490,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .contact-detail__line .city-light--paris:hover::before,
   .contact-detail__line .city-light--paris:hover::after,
   .contact-detail__line .city-light--paris:focus-visible::before,
@@ -1663,14 +1675,14 @@
     gap: var(--space-4);
   }
 
-  .project-showcase h2 {
+  .project-showcase h1 {
     max-width: none;
     font-size: clamp(2.25rem, 11vw, 3.25rem);
   }
 
   .project-showcase__description {
     max-width: none;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .project-showcase__tags {
@@ -1765,7 +1777,7 @@
 
   .case-study-section h2,
   .case-study-process__header h2 {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .case-study-metrics,
@@ -1775,13 +1787,13 @@
 
   .contact-layout__intro h3,
   .contact-detail h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .contact-layout__intro p,
   .contact-detail p,
   .contact-detail__line {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 }
 
@@ -1798,12 +1810,12 @@
     gap: var(--space-3);
   }
 
-  .project-showcase h2 {
+  .project-showcase h1 {
     font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
   .project-showcase__description {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.45;
   }
 
@@ -2019,5 +2031,5 @@
 }
 
 .case-study-image--full {
-    margin-top: 32px;
+  margin-top: 32px;
 }
