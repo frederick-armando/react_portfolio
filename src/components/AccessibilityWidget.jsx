@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   IconClose,
   IconContrast,
@@ -69,7 +70,7 @@ const translations = {
     stopAnimations: "Stopper animations",
     reset: "Réinitialiser",
     resetAll: "Réinitialiser tous les paramètres",
-    openMenu: "Ouvrir le menu d'accessibilité",
+    openMenu: "Ouvrir les réglages d'accessibilité",
     interaction: "Interaction",
     bigCursor: "Pointeur Agrandi",
     enhancedFocus: "Focus Clavier Visible"
@@ -91,7 +92,7 @@ const translations = {
     stopAnimations: "Stop animations",
     reset: "Reset",
     resetAll: "Reset all settings",
-    openMenu: "Open accessibility menu",
+    openMenu: "Open accessibility settings",
     interaction: "Interaction",
     bigCursor: "Big Cursor",
     enhancedFocus: "Enhanced Focus"
@@ -330,28 +331,25 @@ const AccessibilityWidget = () => {
     setTranslateY(0); // Reset after close animation or if not far enough
   };
 
-  return (
+  const overlayRoot = typeof document === 'undefined' ? null : document.body;
+  const panelOverlay = isOpen ? (
     <>
-      {/* Backdrop */}
-      {isOpen && (
-        <div className="a11y-backdrop" onClick={closePanel} aria-hidden="true" />
-      )}
-      <div id="a11y-widget-container">
-        {isOpen && (
-          <div
-            ref={panelRef}
-            id="a11y-panel"
-            className={`a11y-panel ${isEntering ? 'a11y-panel--entering' : ''}`}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="a11y-panel-title"
-            tabIndex="-1"
-            onAnimationEnd={handleAnimationEnd}
-            style={{
-              transform: translateY > 0 ? `translateY(${translateY}px)` : '',
-              transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1)'
-            }}
-          >
+      <div className="a11y-backdrop" onClick={closePanel} aria-hidden="true" />
+      <div id="a11y-widget-container" className="a11y-panel-layer">
+        <div
+          ref={panelRef}
+          id="a11y-panel"
+          className={`a11y-panel ${isEntering ? 'a11y-panel--entering' : ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="a11y-panel-title"
+          tabIndex="-1"
+          onAnimationEnd={handleAnimationEnd}
+          style={{
+            transform: translateY > 0 ? `translateY(${translateY}px)` : '',
+            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1)'
+          }}
+        >
             <div
               className="a11y-panel-header-wrapper"
               onPointerDown={handlePointerDown}
@@ -499,20 +497,25 @@ const AccessibilityWidget = () => {
                 <IconRotateCcw size={16} /> {t.reset}
               </button>
             </div>
-          </div>
-        )}
-
-        <Button
-          variant="primary"
-          icon={IconPersonStanding}
-          iconOnly={true}
-          className={`a11y-fab ${isOpen ? 'a11y-fab--hidden' : ''}`}
-          onClick={togglePanel}
-          title={t.openMenu}
-          aria-controls="a11y-panel"
-          aria-expanded={isOpen}
-        />
+        </div>
       </div>
+    </>
+  ) : null;
+
+  return (
+    <>
+      {overlayRoot && createPortal(panelOverlay, overlayRoot)}
+      <Button
+        variant="tertiary"
+        reverse={true}
+        icon={IconPersonStanding}
+        iconOnly={true}
+        className="a11y-header-trigger"
+        onClick={togglePanel}
+        title={t.openMenu}
+        aria-controls="a11y-panel"
+        aria-expanded={isOpen}
+      />
     </>
   );
 };

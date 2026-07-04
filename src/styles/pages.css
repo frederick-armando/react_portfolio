@@ -1683,6 +1683,46 @@
   }
 }
 
+@media (min-width: 768px) {
+  .section__header {
+    font-size: var(--font-size-4xl);
+  }
+
+  .profile__text h3,
+  .profile__skills h3,
+  .methods-card h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .profile__text p,
+  .methods-card p {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-showcase__description,
+  .case-study-section p,
+  .case-study-process__header p,
+  .contact-layout__intro p,
+  .contact-detail p,
+  .contact-detail__line {
+    font-size: var(--font-size-2xl);
+  }
+
+  .contact-socials {
+    margin-top: var(--space-6);
+  }
+
+  .contact-actions {
+    margin-top: var(--space-6);
+  }
+}
+
+@media (min-width: 1101px) and (max-width: 1280px) {
+  .methods-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 720px) {
   .methods-grid {
     grid-template-columns: 1fr;

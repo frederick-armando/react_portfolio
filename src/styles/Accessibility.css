@@ -1,15 +1,10 @@
 /* src/styles/Accessibility.css */
 
-/* Widget Container */
+/* Panel layer */
 #a11y-widget-container {
   position: fixed;
-  bottom: 104px;
-  right: 24px;
+  inset: 0;
   z-index: 999;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
   pointer-events: none;
 }
 
@@ -26,9 +21,9 @@
   left: 0;
   z-index: 998;
   display: block;
-  background: rgba(18, 19, 26, 0.18);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: rgba(18, 19, 26, 0.12);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   animation: a11y-backdrop-enter 0.24s ease forwards;
 }
 
@@ -37,47 +32,6 @@
   to { opacity: 1; }
 }
 
-
-/* Floating Action Button (FAB) */
-.a11y-fab {
-  width: 56px !important;
-  height: 56px !important;
-  border-radius: 50% !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease !important;
-}
-
-.a11y-fab:hover, .a11y-fab:focus-visible {
-  transform: scale(1.05);
-}
-
-.a11y-fab--hidden {
-  display: none !important;
-}
-
-.a11y-fab .btn__icon {
-  width: 28px;
-  height: 28px;
-}
-
-/* Tooltip on the left for the FAB */
-.a11y-fab[data-tooltip]::before {
-  top: 50% !important;
-  bottom: auto !important;
-  left: auto !important;
-  right: calc(100% + 12px) !important;
-  transform: translateY(-50%) scale(0.9) !important;
-}
-
-@media (hover: hover) {
-  .a11y-fab[data-tooltip]:hover::before,
-  .a11y-fab[data-tooltip]:focus-visible::before {
-    transform: translateY(-50%) scale(1) !important;
-  }
-}
 
 /* Settings Panel */
 .a11y-panel {
@@ -279,8 +233,8 @@ body.a11y-high-contrast .a11y-btn.active * {
   color: #000 !important;
   stroke: #000 !important;
 }
-body.a11y-high-contrast .a11y-fab,
-body.a11y-high-contrast .a11y-fab * {
+body.a11y-high-contrast .a11y-header-trigger,
+body.a11y-high-contrast .a11y-header-trigger * {
   background-color: #fff !important;
   color: #000 !important;
   stroke: #000 !important;
@@ -338,7 +292,6 @@ body.a11y-no-animations *::after {
 
   .a11y-panel,
   .a11y-panel-footer,
-  .a11y-fab,
   .a11y-btn {
     transition: none !important;
   }
@@ -351,12 +304,7 @@ body.a11y-no-animations *::after {
   .a11y-backdrop {
     top: var(--header-height);
     bottom: var(--nav-height);
-    background: rgba(0, 0, 0, 0.4);
-  }
-
-  #a11y-widget-container {
-    bottom: 104px;
-    right: 16px;
+    background: rgba(0, 0, 0, 0.22);
   }
 
   .a11y-panel {
@@ -430,10 +378,6 @@ body.a11y-no-animations *::after {
     }
   }
 
-  /* Optional: Hide FAB when panel is open */
-  #a11y-widget-container:has(.a11y-panel) .a11y-fab {
-    display: none;
-  }
 }
 
 /* ==========================================================================
@@ -453,7 +397,7 @@ body.a11y-big-cursor input,
 body.a11y-big-cursor select,
 body.a11y-big-cursor textarea,
 body.a11y-big-cursor .a11y-btn,
-body.a11y-big-cursor .a11y-fab {
+body.a11y-big-cursor .a11y-header-trigger {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='black' stroke='white' stroke-width='1.5'%3E%3Cpath d='M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74m0 0v-4.5a2.5 2.5 0 0 1 5 0v4.5m0 0v-3a2.5 2.5 0 0 1 5 0v6.18a7 7 0 0 1-2.2 5.08l-2.4 2.2a2.33 2.33 0 0 1-1.6.64H11.5a5.5 5.5 0 0 1-5.5-5.5v-6.6a2.5 2.5 0 0 1 5 0v3.24Z'/%3E%3C/svg%3E") 14 6, pointer !important;
 }
 

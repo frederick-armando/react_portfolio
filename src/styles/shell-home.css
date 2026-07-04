@@ -809,10 +809,36 @@ button:focus-visible {
 @media (min-width: 768px) {
   .nav-item {
     flex-direction: row;
+    font-size: var(--font-size-xs);
   }
 
   .nav-item .nav-item__badge {
     left: calc(25% + 8px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    gap: var(--space-6);
+  }
+
+  .hero__header {
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .hero__avatar-ring,
+  .hero__avatar-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero__name {
+    font-size: clamp(3.25rem, 4vw, 3.5rem);
+  }
+
+  .hero__lead {
+    font-size: var(--font-size-3xl);
   }
 }
 

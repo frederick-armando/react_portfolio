@@ -24,11 +24,11 @@ export const projects = [
         company: 'Michelin',
         title: 'From passive chatbot to proactive sales engine',
         description:
-          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into an engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
+          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into a proactive engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
         ctaLabel: 'Discover Tire Assistant',
         detailTitle: 'From passive chatbot to proactive sales engine',
         detailSummary:
-          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into an engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
+          'As Lead Product Designer, I redesigned the Michelin B2C chatbot conversational flows and designed contextual notifications to turn a passive assistant into a proactive engagement and conversion lever. <strong>Impact: +18% open rate and 21.3% purchase intent.</strong>',
         tags: [
           { icon: 'building', label: 'Michelin' },
           { icon: 'users', label: 'B2C' },

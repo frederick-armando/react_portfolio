@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import ThemeToggleButton from './ThemeToggleButton.jsx';
 import LanguageToggleButton from './LanguageToggleButton.jsx';
 import Button from './Button.jsx';
-import BookmarkButton from './BookmarkButton.jsx';
+import AccessibilityWidget from './AccessibilityWidget.jsx';
 import { IconDownload } from './icons-shell.jsx';
 import { uiContent } from '../i18n/content/ui.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
@@ -43,7 +43,7 @@ export default function TopBar() {
             iconOnly={true}
             title={content.downloadTooltip}
           />
-          <BookmarkButton />
+          <AccessibilityWidget />
         </div>
       </div>
     </header>
