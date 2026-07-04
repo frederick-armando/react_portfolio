@@ -50,6 +50,10 @@ MyXpert is a Michelin B2B/B2E case study about centralizing technical expertise 
 
 The Masteos case study focuses on simplifying real estate investment experiences for B2C users. The published content describes UX/UI redesign work around complex financial information, mobile and desktop experiences and product delivery.
 
+### Helios
+
+Helios is a Masteos internal operations case study about designing a custom back-office for employee workflows. The published content describes co-design with internal users, fragmented workflows, investment processing operations and internal experience improvements.
+
 ### Kirrk
 
 Kirrk is a mobility and car-sharing case study covering a multi-platform ecosystem across SaaS, B2B and B2C applications. The published content describes work on keyless access, fleet management and digital vehicle workflows.
@@ -97,12 +101,22 @@ Relevant links:
 - [Projects](https://frederickarmando.fr/projets)
 - [Contact](https://frederickarmando.fr/contact)
 - [Michelin Tire Assistant](https://frederickarmando.fr/projets/tire-assistant)
+- [Michelin MyXpert](https://frederickarmando.fr/projets/myxpert)
+- [Masteos](https://frederickarmando.fr/projets/masteos)
+- [Helios](https://frederickarmando.fr/projets/helios)
+- [Kirrk](https://frederickarmando.fr/projets/kirrk)
+- [Mobioos](https://frederickarmando.fr/projets/mobioos)
 
 ## Markdown summaries
 
 - [Profile summary](https://frederickarmando.fr/profile.md)
 - [Methods summary](https://frederickarmando.fr/methods.md)
 - [Michelin Tire Assistant summary](https://frederickarmando.fr/projects/tire-assistant.md)
+- [Michelin MyXpert summary](https://frederickarmando.fr/projects/myxpert.md)
+- [Masteos summary](https://frederickarmando.fr/projects/masteos.md)
+- [Helios summary](https://frederickarmando.fr/projects/helios.md)
+- [Kirrk summary](https://frederickarmando.fr/projects/kirrk.md)
+- [Mobioos summary](https://frederickarmando.fr/projects/mobioos.md)
 - [Contact summary](https://frederickarmando.fr/contact.md)
 
 ## Confidentiality note

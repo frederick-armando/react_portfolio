@@ -116,9 +116,14 @@
       --color-primary-action: #385AF9;
       --color-primary-action-text: #ffffff;
       --color-focus: #385AF9;
+      --color-purple-500: #6f5cff;
+      --color-border: #e6e8ef;
       --header-height: 86px;
       --gradient-start: #385AF9;
       --gradient-end: #8728fe;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --motion-standard: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [data-theme="dark"] {
@@ -129,6 +134,8 @@
       --color-primary-action: #385AF9;
       --color-primary-action-text: #ffffff;
       --color-focus: #A5B4FF;
+      --color-purple-500: #8a7aff;
+      --color-border: rgba(255, 255, 255, 0.08);
     }
 
     @media (max-width: 720px) {
@@ -183,15 +190,48 @@
 
     .app-boot-skeleton__hero {
       width: min(100%, 760px);
-      display: grid;
-      justify-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 20px;
     }
 
     .app-boot-skeleton__shape {
+      --skeleton-base:
+        color-mix(in srgb, var(--color-primary) 7%, var(--color-surface));
+      --skeleton-depth:
+        color-mix(in srgb, var(--color-purple-500) 6%, var(--color-surface));
+      --skeleton-highlight: rgba(255, 255, 255, 0.28);
+      --skeleton-border:
+        color-mix(in srgb, var(--color-border) 82%, transparent);
       display: block;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(105deg, transparent 0 38%, var(--skeleton-highlight) 48%, transparent 60%),
+        linear-gradient(135deg, var(--skeleton-base), var(--skeleton-depth));
+      background-size: 260% 100%, 100% 100%;
+      border: 1px solid var(--skeleton-border);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        0 14px 40px rgba(56, 90, 249, 0.035);
+      opacity: 0.92;
+      pointer-events: none;
+      user-select: none;
+      animation: app-boot-skeleton-shimmer 2.8s var(--motion-standard) infinite;
+    }
+
+    [data-theme="dark"] .app-boot-skeleton__shape {
+      --skeleton-base:
+        color-mix(in srgb, var(--color-primary) 13%, #191b27);
+      --skeleton-depth:
+        color-mix(in srgb, var(--color-purple-500) 10%, #11131d);
+      --skeleton-highlight: rgba(255, 255, 255, 0.075);
+      --skeleton-border: rgba(255, 255, 255, 0.065);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 18px 48px rgba(0, 0, 0, 0.18);
     }
 
     .app-boot-skeleton__avatar {
@@ -200,14 +240,61 @@
       border-radius: 50%;
     }
 
+    .app-boot-skeleton__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 100%;
+    }
+
+    .app-boot-skeleton__name {
+      display: grid;
+      gap: 8px;
+      width: min(420px, 58vw);
+    }
+
     .app-boot-skeleton__title {
-      width: min(420px, 78vw);
-      height: 54px;
+      height: 32px;
+      border-radius: var(--radius-pill);
+    }
+
+    .app-boot-skeleton__title--first {
+      width: 76%;
+    }
+
+    .app-boot-skeleton__title--last {
+      width: 100%;
     }
 
     .app-boot-skeleton__line {
       width: min(560px, 86vw);
-      height: 18px;
+      height: 16px;
+      border-radius: var(--radius-pill);
+    }
+
+    .app-boot-skeleton__lead {
+      width: min(620px, 86vw);
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+    }
+
+    .app-boot-skeleton__lead .app-boot-skeleton__line:last-child {
+      width: 72%;
+    }
+
+    .app-boot-skeleton__chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .app-boot-skeleton__chip {
+      width: var(--boot-chip-width, 104px);
+      height: 32px;
+      border-radius: var(--radius-pill);
     }
 
     .app-boot-skeleton__actions {
@@ -220,11 +307,57 @@
     .app-boot-skeleton__button {
       width: 180px;
       height: 48px;
+      border-radius: var(--radius-pill);
+    }
+
+    @media (max-width: 720px) {
+      .app-boot-skeleton__hero {
+        gap: 16px;
+      }
+
+      .app-boot-skeleton__header {
+        gap: 8px;
+      }
+
+      .app-boot-skeleton__name {
+        width: min(260px, 60vw);
+      }
+
+      .app-boot-skeleton__title {
+        height: 26px;
+      }
+
+      .app-boot-skeleton__actions {
+        width: 100%;
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .app-boot-skeleton__button {
+        width: 100%;
+      }
     }
 
     .app-boot-skeleton__nav {
       border-top: 1px solid rgba(127, 136, 160, 0.18);
       background: var(--color-surface);
+    }
+
+    @keyframes app-boot-skeleton-shimmer {
+      0% {
+        background-position: 155% 0, 0 0;
+      }
+
+      100% {
+        background-position: -155% 0, 0 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .app-boot-skeleton__shape {
+        animation: none;
+        background-position: 0 0, 0 0;
+      }
     }
   </style>
   <script>
@@ -252,9 +385,24 @@
       <div class="app-boot-skeleton__bar"></div>
       <div class="app-boot-skeleton__main">
         <div class="app-boot-skeleton__hero">
-          <span class="app-boot-skeleton__shape app-boot-skeleton__avatar"></span>
-          <span class="app-boot-skeleton__shape app-boot-skeleton__title"></span>
-          <span class="app-boot-skeleton__shape app-boot-skeleton__line"></span>
+          <div class="app-boot-skeleton__header">
+            <span class="app-boot-skeleton__shape app-boot-skeleton__avatar"></span>
+            <div class="app-boot-skeleton__name">
+              <span class="app-boot-skeleton__shape app-boot-skeleton__title app-boot-skeleton__title--first"></span>
+              <span class="app-boot-skeleton__shape app-boot-skeleton__title app-boot-skeleton__title--last"></span>
+            </div>
+          </div>
+          <div class="app-boot-skeleton__chips">
+            <span class="app-boot-skeleton__shape app-boot-skeleton__chip" style="--boot-chip-width: 108px"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__chip" style="--boot-chip-width: 132px"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__chip" style="--boot-chip-width: 96px"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__chip" style="--boot-chip-width: 88px"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__chip" style="--boot-chip-width: 116px"></span>
+          </div>
+          <div class="app-boot-skeleton__lead">
+            <span class="app-boot-skeleton__shape app-boot-skeleton__line"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__line"></span>
+          </div>
           <div class="app-boot-skeleton__actions">
             <span class="app-boot-skeleton__shape app-boot-skeleton__button"></span>
             <span class="app-boot-skeleton__shape app-boot-skeleton__button"></span>

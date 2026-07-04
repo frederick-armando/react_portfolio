@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function SkeletonBlock({ className = '', style, ...props }) {
   return (
@@ -19,38 +19,72 @@ export function SkeletonImage({
   skeletonClassName = '',
   imgStyle,
   onLoad,
+  onError,
   src,
   srcSet,
   ...props
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef(null);
+  const [status, setStatus] = useState('loading');
+  const { 'aria-hidden': ariaHidden, ...imageProps } = props;
 
   useEffect(() => {
-    setIsLoaded(false);
+    const img = imgRef.current;
+
+    if (!src) {
+      setStatus('error');
+      return;
+    }
+
+    if (img?.complete) {
+      setStatus(img.naturalWidth > 0 ? 'loaded' : 'error');
+      return;
+    }
+
+    setStatus('loading');
   }, [src, srcSet]);
 
   const handleLoad = (event) => {
-    setIsLoaded(true);
+    setStatus('loaded');
     onLoad?.(event);
   };
 
+  const handleError = (event) => {
+    setStatus('error');
+    onError?.(event);
+  };
+
+  const isLoading = status === 'loading';
+  const hasError = status === 'error';
+
   return (
     <span
-      className={`skeleton-image${isLoaded ? ' skeleton-image--loaded' : ''}${
+      className={`skeleton-image skeleton-image--${status}${
         wrapperClassName ? ` ${wrapperClassName}` : ''
       }`}
       style={wrapperStyle}
-      aria-busy={isLoaded ? undefined : 'true'}
+      aria-busy={isLoading ? 'true' : 'false'}
     >
       <SkeletonBlock className={`skeleton-image__placeholder${skeletonClassName ? ` ${skeletonClassName}` : ''}`} />
+      {hasError && (
+        <span
+          className="skeleton-image__fallback"
+          role={alt ? 'img' : undefined}
+          aria-label={alt || undefined}
+          aria-hidden={alt ? undefined : 'true'}
+        />
+      )}
       <img
-        {...props}
+        {...imageProps}
+        ref={imgRef}
         src={src}
         srcSet={srcSet}
         alt={alt}
         className={className}
         style={imgStyle}
         onLoad={handleLoad}
+        onError={handleError}
+        aria-hidden={hasError ? 'true' : ariaHidden}
       />
     </span>
   );
@@ -67,6 +101,36 @@ function SkeletonLines({ count = 3, compact = false }) {
         />
       ))}
     </div>
+  );
+}
+
+function HeroSkeleton() {
+  return (
+    <section className="hero page-skeleton page-skeleton--hero" aria-hidden="true">
+      <div className="hero__header">
+        <SkeletonBlock className="page-skeleton__avatar" />
+        <div className="page-skeleton__hero-name">
+          <SkeletonBlock className="page-skeleton__hero-name-line page-skeleton__hero-name-line--first" />
+          <SkeletonBlock className="page-skeleton__hero-name-line page-skeleton__hero-name-line--last" />
+        </div>
+      </div>
+      <div className="hero__chips page-skeleton__chips page-skeleton__chips--hero">
+        {Array.from({ length: 5 }, (_, index) => (
+          <SkeletonBlock
+            className="page-skeleton__chip"
+            key={index}
+            style={{ '--skeleton-chip-width': `${88 + (index % 3) * 18}px` }}
+          />
+        ))}
+      </div>
+      <div className="page-skeleton__hero-copy">
+        <SkeletonLines count={2} />
+      </div>
+      <div className="hero__actions">
+        <SkeletonBlock className="page-skeleton__button" />
+        <SkeletonBlock className="page-skeleton__button" />
+      </div>
+    </section>
   );
 }
 
@@ -149,31 +213,63 @@ function ProjectsSkeleton() {
   );
 }
 
-function CaseStudySkeleton() {
+function CaseStudySkeletonBody() {
+  return (
+    <>
+      <div className="case-study-hero">
+        <div className="case-study-hero__copy">
+          <div className="case-study-hero__eyebrow">
+            <SkeletonBlock className="page-skeleton__tag" />
+            <SkeletonBlock className="page-skeleton__tag" />
+          </div>
+          <SkeletonBlock className="page-skeleton__headline" />
+          <SkeletonLines count={3} />
+        </div>
+        <div className="case-study-hero__stage">
+          <SkeletonBlock className="case-study-hero__frame page-skeleton__media" />
+        </div>
+      </div>
+      <SkeletonBlock className="page-skeleton__summary" />
+      <div className="case-study-metrics">
+        {Array.from({ length: 4 }, (_, index) => (
+          <SkeletonBlock className="case-study-metric page-skeleton__metric" key={index} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+export function CaseStudySkeleton() {
   return (
     <section className="case-study-page page-skeleton page-skeleton--case-study" aria-hidden="true">
       <div className="case-study-shell">
-        <div className="case-study-hero">
-          <div className="case-study-hero__copy">
-            <div className="case-study-hero__eyebrow">
-              <SkeletonBlock className="page-skeleton__tag" />
-              <SkeletonBlock className="page-skeleton__tag" />
-            </div>
-            <SkeletonBlock className="page-skeleton__headline" />
-            <SkeletonLines count={3} />
-          </div>
-          <div className="case-study-hero__stage">
-            <SkeletonBlock className="case-study-hero__frame page-skeleton__media" />
-          </div>
-        </div>
-        <SkeletonBlock className="page-skeleton__summary" />
-        <div className="case-study-metrics">
-          {Array.from({ length: 4 }, (_, index) => (
-            <SkeletonBlock className="case-study-metric page-skeleton__metric" key={index} />
-          ))}
-        </div>
+        <CaseStudySkeletonBody />
       </div>
     </section>
+  );
+}
+
+export function CaseStudyModalSkeleton({ label = 'Loading case study' }) {
+  return (
+    <div className="page-skeleton-modal-backdrop" aria-busy="true">
+      <div
+        className="page-skeleton-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={label}
+      >
+        <div className="page-skeleton-modal__header" aria-hidden="true">
+          <SkeletonBlock className="page-skeleton-modal__handle" />
+          <div className="page-skeleton-modal__header-content">
+            <SkeletonBlock className="page-skeleton-modal__title" />
+            <SkeletonBlock className="page-skeleton__button-circle" />
+          </div>
+        </div>
+        <div className="case-study-shell case-study-shell--scrollable page-skeleton page-skeleton--case-study page-skeleton--modal" aria-hidden="true">
+          <CaseStudySkeletonBody />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -214,6 +310,7 @@ function ContactSkeleton() {
 }
 
 export function PageSkeleton({ route = '' }) {
+  if (route === '/') return <HeroSkeleton />;
   if (route.startsWith('/profil')) return <ProfileSkeleton />;
   if (route.startsWith('/methodes')) return <MethodsSkeleton />;
   if (route === '/projets') return <ProjectsSkeleton />;

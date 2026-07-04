@@ -18,6 +18,7 @@ const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, '../dist');
 const htmlFile = path.join(distDir, 'index.html');
 const assetsDir = path.join(distDir, 'assets');
+const ogAssetsDir = path.resolve(__dirname, '../src/assets/opengraph');
 
 const homeMeta = {
   title: 'Frederick Armando | Lead Product Designer',
@@ -72,6 +73,16 @@ const projectRoutes = [
   { slug: 'mobioos', image: '/assets/OG_Mobioos.png' },
 ];
 
+const staticSeoAssets = [
+  'OG_Main.png',
+  'OG_Michelin_TireAssistant.png',
+  'OG_Michelin_MyXpert.png',
+  'OG_Masteos.png',
+  'OG_Helios.png',
+  'OG_Kirrk.png',
+  'OG_Mobioos.png',
+];
+
 function escapeHtml(value) {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -92,6 +103,19 @@ function resolveBuiltAsset(assetPath) {
     .find((file) => file.startsWith(assetName) && file.endsWith(path.extname(assetPath)));
 
   return matchedFile ? `/assets/${matchedFile}` : assetPath;
+}
+
+function copyStaticSeoAssets() {
+  fs.mkdirSync(assetsDir, { recursive: true });
+
+  staticSeoAssets.forEach((fileName) => {
+    const source = path.join(ogAssetsDir, fileName);
+    const target = path.join(assetsDir, fileName);
+
+    if (fs.existsSync(source)) {
+      fs.copyFileSync(source, target);
+    }
+  });
 }
 
 function cleanHeadSeo(html) {
@@ -198,6 +222,7 @@ try {
   }
 
   const baseHtml = fs.readFileSync(htmlFile, 'utf8');
+  copyStaticSeoAssets();
 
   staticPageRoutes.forEach((meta) => {
     writeStaticRoute(baseHtml, meta);

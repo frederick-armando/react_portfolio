@@ -287,6 +287,56 @@ function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProjec
   );
 }
 
+const caseStudyImageRatios = {
+  masteosSitemap: '936 / 675',
+  masteosLaunch: '436 / 935',
+  masteosValidation: '428 / 908',
+  heliosWireframeProfile: '1888 / 1357',
+  heliosWireframeDocument: '1888 / 721',
+  heliosMockup: '1872 / 1179',
+  kirrkMockupFull: '944 / 1286',
+  kirrkDashboard: '944 / 494',
+  kirrkWireframe: '444 / 943',
+  myxpertFlow: '3680 / 1526',
+  myxpertLegacyVsNew: '1720 / 844',
+  mobioosFull: '944 / 1362',
+  mobioosDashboard: '944 / 495',
+  mobioosMockup: '444 / 943',
+  tireAssistantABTest: '1536 / 263',
+  tireAssistantHighFidelity: '1716 / 844',
+};
+
+function CaseStudyImage({
+  src,
+  srcSet,
+  alt,
+  ratio,
+  full = false,
+  maxWidth,
+  width,
+  height,
+}) {
+  return (
+    <SkeletonImage
+      wrapperClassName={`case-study-device-image${full ? ' case-study-device-image--full' : ''}`}
+      wrapperStyle={{
+        aspectRatio: ratio,
+        maxWidth,
+        marginInline: maxWidth ? 'auto' : undefined,
+      }}
+      className="case-study-device-image__media"
+      src={src}
+      srcSet={srcSet}
+      alt={alt}
+      width={width}
+      height={height}
+      draggable="false"
+      loading="lazy"
+      decoding="async"
+    />
+  );
+}
+
 function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToProject }) {
   return (
     <>
@@ -352,7 +402,15 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <div className="case-study-image case-study-image--full" style={{ padding: '0 var(--space-4)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <figure className="case-study-device-mockup" style={{ width: '100%', margin: 0 }}>
-          <img src={masteosSitemap} alt={content.captions.userJourney} draggable="false" style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--case-study-asset-radius)' }} />
+          <CaseStudyImage
+            src={masteosSitemap}
+            alt={content.captions.userJourney}
+            ratio={caseStudyImageRatios.masteosSitemap}
+            full
+            maxWidth="936px"
+            width="936"
+            height="675"
+          />
           <figcaption>{content.captions.userJourney}</figcaption>
         </figure>
       </div>
@@ -373,11 +431,23 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair">
         <figure className="case-study-device-mockup">
-          <img src={masteosLaunch1} alt={content.captions.rentalWireframe} draggable="false" />
+          <CaseStudyImage
+            src={masteosLaunch1}
+            alt={content.captions.rentalWireframe}
+            ratio={caseStudyImageRatios.masteosLaunch}
+            width="436"
+            height="935"
+          />
           <figcaption>{content.captions.rentalWireframe}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={masteosLaunch2} alt={content.captions.financeWireframe} draggable="false" />
+          <CaseStudyImage
+            src={masteosLaunch2}
+            alt={content.captions.financeWireframe}
+            ratio={caseStudyImageRatios.masteosLaunch}
+            width="436"
+            height="935"
+          />
           <figcaption>{content.captions.financeWireframe}</figcaption>
         </figure>
       </section>
@@ -398,11 +468,23 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair">
         <figure className="case-study-device-mockup">
-          <img src={masteosValidation1} alt={content.captions.rentalHighFid} draggable="false" />
+          <CaseStudyImage
+            src={masteosValidation1}
+            alt={content.captions.rentalHighFid}
+            ratio={caseStudyImageRatios.masteosValidation}
+            width="428"
+            height="908"
+          />
           <figcaption>{content.captions.rentalHighFid}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={masteosValidation2} alt={content.captions.financeHighFid} draggable="false" />
+          <CaseStudyImage
+            src={masteosValidation2}
+            alt={content.captions.financeHighFid}
+            ratio={caseStudyImageRatios.masteosValidation}
+            width="428"
+            height="908"
+          />
           <figcaption>{content.captions.financeHighFid}</figcaption>
         </figure>
       </section>
@@ -605,11 +687,25 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={heliosWireframe1} alt={content.captions.profileBefore} draggable="false" />
+          <CaseStudyImage
+            src={heliosWireframe1}
+            alt={content.captions.profileBefore}
+            ratio={caseStudyImageRatios.heliosWireframeProfile}
+            full
+            width="1888"
+            height="1357"
+          />
           <figcaption>{content.captions.profileBefore}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={heliosWireframe2} alt={content.captions.documentBefore} draggable="false" />
+          <CaseStudyImage
+            src={heliosWireframe2}
+            alt={content.captions.documentBefore}
+            ratio={caseStudyImageRatios.heliosWireframeDocument}
+            full
+            width="1888"
+            height="721"
+          />
           <figcaption>{content.captions.documentBefore}</figcaption>
         </figure>
       </section>
@@ -630,11 +726,25 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={heliosMockup1} alt={content.captions.profileAfter} draggable="false" />
+          <CaseStudyImage
+            src={heliosMockup1}
+            alt={content.captions.profileAfter}
+            ratio={caseStudyImageRatios.heliosMockup}
+            full
+            width="1872"
+            height="1179"
+          />
           <figcaption>{content.captions.profileAfter}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={heliosMockup2} alt={content.captions.documentAfter} draggable="false" />
+          <CaseStudyImage
+            src={heliosMockup2}
+            alt={content.captions.documentAfter}
+            ratio={caseStudyImageRatios.heliosMockup}
+            full
+            width="1872"
+            height="1179"
+          />
           <figcaption>{content.captions.documentAfter}</figcaption>
         </figure>
       </section>
@@ -752,7 +862,14 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={kirrkMockupFull} alt={content.captions.b2c} draggable="false" />
+          <CaseStudyImage
+            src={kirrkMockupFull}
+            alt={content.captions.b2c}
+            ratio={caseStudyImageRatios.kirrkMockupFull}
+            full
+            width="944"
+            height="1286"
+          />
           <figcaption>{content.captions.b2c}</figcaption>
         </figure>
       </section>
@@ -773,7 +890,14 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={kirrkDashboard} alt={content.captions.fleet} draggable="false" />
+          <CaseStudyImage
+            src={kirrkDashboard}
+            alt={content.captions.fleet}
+            ratio={caseStudyImageRatios.kirrkDashboard}
+            full
+            width="944"
+            height="494"
+          />
           <figcaption>{content.captions.fleet}</figcaption>
         </figure>
       </section>
@@ -794,11 +918,23 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
 
       <section className="case-study-device-pair">
         <figure className="case-study-device-mockup">
-          <img src={kirrkWireframe1} alt={content.captions.booking} draggable="false" />
+          <CaseStudyImage
+            src={kirrkWireframe1}
+            alt={content.captions.booking}
+            ratio={caseStudyImageRatios.kirrkWireframe}
+            width="444"
+            height="943"
+          />
           <figcaption>{content.captions.booking}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={kirrkWireframe2} alt={content.captions.b2b} draggable="false" />
+          <CaseStudyImage
+            src={kirrkWireframe2}
+            alt={content.captions.b2b}
+            ratio={caseStudyImageRatios.kirrkWireframe}
+            width="444"
+            height="943"
+          />
           <figcaption>{content.captions.b2b}</figcaption>
         </figure>
       </section>
@@ -862,15 +998,13 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <SkeletonImage
-            wrapperClassName="case-study-device-image case-study-device-image--full"
-            wrapperStyle={{ aspectRatio: '1536 / 263' }}
-            className="case-study-device-image__media"
-            src={tireAssistantABTest} 
-            alt={content.captions.abTest} 
-            draggable="false" 
-            loading="lazy"
-            decoding="async"
+          <CaseStudyImage
+            src={tireAssistantABTest}
+            alt={content.captions.abTest}
+            ratio={caseStudyImageRatios.tireAssistantABTest}
+            full
+            width="1536"
+            height="263"
           />
           <figcaption>{content.captions.abTest}</figcaption>
         </figure>
@@ -882,16 +1016,14 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <SkeletonImage
-            wrapperClassName="case-study-device-image case-study-device-image--full"
-            wrapperStyle={{ aspectRatio: '1716 / 844' }}
-            className="case-study-device-image__media"
-            src={tireAssistantHighFidelity} 
+          <CaseStudyImage
+            src={tireAssistantHighFidelity}
             srcSet={`${tireAssistantHighFidelity2x} 2x, ${tireAssistantHighFidelity3x} 3x`}
-            alt={content.captions.highFidelity} 
-            draggable="false" 
-            loading="lazy"
-            decoding="async"
+            alt={content.captions.highFidelity}
+            ratio={caseStudyImageRatios.tireAssistantHighFidelity}
+            full
+            width="1716"
+            height="844"
           />
           <figcaption>{content.captions.highFidelity}</figcaption>
         </figure>
@@ -987,11 +1119,13 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img 
-            src={myxpertFlow} 
-            alt={content.captions.flow} 
-            draggable="false" 
-            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
+          <CaseStudyImage
+            src={myxpertFlow}
+            alt={content.captions.flow}
+            ratio={caseStudyImageRatios.myxpertFlow}
+            full
+            width="3680"
+            height="1526"
           />
           <figcaption>{content.captions.flow}</figcaption>
         </figure>
@@ -1013,12 +1147,14 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img 
-            src={myxpertLegacyVsNew} 
-            srcSet={`${myxpertLegacyVsNew2x} 2x, ${myxpertLegacyVsNew3x} 3x`} 
-            alt={content.captions.legacyVsNew} 
-            draggable="false" 
-            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
+          <CaseStudyImage
+            src={myxpertLegacyVsNew}
+            srcSet={`${myxpertLegacyVsNew2x} 2x, ${myxpertLegacyVsNew3x} 3x`}
+            alt={content.captions.legacyVsNew}
+            ratio={caseStudyImageRatios.myxpertLegacyVsNew}
+            full
+            width="1720"
+            height="844"
           />
           <figcaption>{content.captions.legacyVsNew}</figcaption>
         </figure>
@@ -1130,7 +1266,14 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={mobioosFull} alt={content.captions.showcase1} draggable="false" />
+          <CaseStudyImage
+            src={mobioosFull}
+            alt={content.captions.showcase1}
+            ratio={caseStudyImageRatios.mobioosFull}
+            full
+            width="944"
+            height="1362"
+          />
           <figcaption>{content.captions.showcase1}</figcaption>
         </figure>
       </section>
@@ -1151,7 +1294,14 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img src={mobioosDashboard} alt={content.captions.dashboard} draggable="false" />
+          <CaseStudyImage
+            src={mobioosDashboard}
+            alt={content.captions.dashboard}
+            ratio={caseStudyImageRatios.mobioosDashboard}
+            full
+            width="944"
+            height="495"
+          />
           <figcaption>{content.captions.dashboard}</figcaption>
         </figure>
       </section>
@@ -1172,11 +1322,23 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
 
       <section className="case-study-device-pair">
         <figure className="case-study-device-mockup">
-          <img src={mobioosMockup1} alt={content.captions.showcase2} draggable="false" />
+          <CaseStudyImage
+            src={mobioosMockup1}
+            alt={content.captions.showcase2}
+            ratio={caseStudyImageRatios.mobioosMockup}
+            width="444"
+            height="943"
+          />
           <figcaption>{content.captions.showcase2}</figcaption>
         </figure>
         <figure className="case-study-device-mockup">
-          <img src={mobioosMockup2} alt={content.captions.showcase3} draggable="false" />
+          <CaseStudyImage
+            src={mobioosMockup2}
+            alt={content.captions.showcase3}
+            ratio={caseStudyImageRatios.mobioosMockup}
+            width="444"
+            height="943"
+          />
           <figcaption>{content.captions.showcase3}</figcaption>
         </figure>
       </section>
