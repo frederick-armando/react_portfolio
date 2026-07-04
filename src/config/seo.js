@@ -9,17 +9,32 @@ import ogMobioos from '../assets/opengraph/OG_Mobioos.png';
 export const seoConfig = {
   home: {
     title: "Frederick Armando | Lead Product Designer",
-    description: "Portfolio de Frederick Armando, Lead Product Designer. Découvrez mes études de cas ROIstes et expériences UX.",
+    description: "Portfolio de Frederick Armando, Lead Product Designer spécialisé en produits complexes, IA, mobile, B2B/B2C, accessibilité et stratégie produit.",
+    image: ogMain
+  },
+  profile: {
+    title: "Profil | Frederick Armando",
+    description: "Parcours, compétences clés et positionnement produit de Frederick Armando, Lead Product Designer basé en France.",
+    image: ogMain
+  },
+  methods: {
+    title: "Méthodes | Frederick Armando",
+    description: "Approche de design produit de Frederick Armando : cadrer, aligner, concevoir, livrer et mesurer des expériences utiles.",
     image: ogMain
   },
   projects: {
-    title: "Études de cas UX/UI | Frederick Armando",
-    description: "Découvrez une sélection d'études de cas UX/UI menées par Frederick Armando pour Michelin, Masteos, Kirrk et Mobioos.",
+    title: "Projets & études de cas | Frederick Armando",
+    description: "Sélection d'études de cas produit menées par Frederick Armando sur des expériences IA, mobile, B2B/B2C et SaaS.",
+    image: ogMain
+  },
+  contact: {
+    title: "Contact | Frederick Armando",
+    description: "Contacter Frederick Armando pour échanger autour du design produit, de l'IA, du mobile et des expériences B2B/B2C.",
     image: ogMain
   },
   "tire-assistant": {
-    title: "Tire Assistant | Chatbot IA & Conversion",
-    description: "Refonte UX d'un chatbot Michelin : +18% d'ouverture et 21% d'intention d'achat. Monétisation du trafic SEO.",
+    title: "Michelin Tire Assistant | Frederick Armando",
+    description: "Étude de cas Michelin Tire Assistant : transformer un chatbot B2C passif en levier proactif d'engagement et de conversion.",
     image: ogTireAssistant
   },
   "myxpert": {

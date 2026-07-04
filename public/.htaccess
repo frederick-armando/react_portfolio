@@ -14,6 +14,11 @@
   RewriteRule ^(.*)$ /index.html [L,QSA]
 </IfModule>
 
+<IfModule mod_mime.c>
+  AddType text/plain .txt
+  AddType text/markdown .md
+</IfModule>
+
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set Cross-Origin-Opener-Policy "same-origin"
@@ -42,5 +47,9 @@
 
   <FilesMatch "\.(pdf)$">
     Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+
+  <FilesMatch "\.(txt|md|xml)$">
+    Header set Cache-Control "public, max-age=3600"
   </FilesMatch>
 </IfModule>

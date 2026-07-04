@@ -717,6 +717,13 @@
   justify-content: center;
 }
 
+.project-artwork__bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--radius-lg);
+}
+
 .project-artwork__bg {
   position: absolute;
   inset: 0;
@@ -729,20 +736,26 @@
   border-radius: var(--radius-lg);
 }
 
-.project-artwork__device {
+.project-artwork__device-wrap {
   position: relative;
   z-index: 1;
-  display: block;
   width: 92%;
   max-width: 460px;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
+  aspect-ratio: 4 / 3;
   filter: drop-shadow(0 16px 48px rgba(0, 0, 0, 0.18));
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.project-artwork:hover .project-artwork__device {
+.project-artwork__device {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-artwork:hover .project-artwork__device-wrap {
   transform: translateY(-12px);
 }
 
@@ -1219,6 +1232,23 @@
   width: 100%;
   max-width: 320px;
   height: auto;
+}
+
+.case-study-device-image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--case-study-asset-radius);
+}
+
+.case-study-device-image--full {
+  max-width: 100%;
+}
+
+.case-study-device-image__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
 }
 
 .case-study-device-mockup figcaption {

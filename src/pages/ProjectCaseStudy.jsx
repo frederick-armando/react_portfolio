@@ -36,6 +36,7 @@ import {
 } from '../components/icons.jsx';
 import Button from '../components/Button.jsx';
 import ProjectArtwork from '../components/ProjectArtwork.jsx';
+import { SkeletonImage } from '../components/Skeleton.jsx';
 import heliosMockup1 from '../assets/projects/helios/helios-mockup-1.png';
 import heliosMockup2 from '../assets/projects/helios/helios-mockup-2.png';
 import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
@@ -861,11 +862,15 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img 
+          <SkeletonImage
+            wrapperClassName="case-study-device-image case-study-device-image--full"
+            wrapperStyle={{ aspectRatio: '1536 / 263' }}
+            className="case-study-device-image__media"
             src={tireAssistantABTest} 
             alt={content.captions.abTest} 
             draggable="false" 
-            style={{ borderRadius: 'var(--case-study-asset-radius)' }}
+            loading="lazy"
+            decoding="async"
           />
           <figcaption>{content.captions.abTest}</figcaption>
         </figure>
@@ -877,12 +882,16 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
-          <img 
+          <SkeletonImage
+            wrapperClassName="case-study-device-image case-study-device-image--full"
+            wrapperStyle={{ aspectRatio: '1716 / 844' }}
+            className="case-study-device-image__media"
             src={tireAssistantHighFidelity} 
             srcSet={`${tireAssistantHighFidelity2x} 2x, ${tireAssistantHighFidelity3x} 3x`}
             alt={content.captions.highFidelity} 
             draggable="false" 
-            style={{ display: 'block', width: '100%' }}
+            loading="lazy"
+            decoding="async"
           />
           <figcaption>{content.captions.highFidelity}</figcaption>
         </figure>
@@ -1253,6 +1262,7 @@ export default function ProjectCaseStudy({ isModal }) {
     description: seoData.description,
     image: seoData.image,
     urlPath: `/projets/${displaySlug}`,
+    ogType: 'article',
     structuredData,
   });
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { normalizeAbsoluteUrl, serializeStructuredData } from '../config/structuredData.js';
 
-export const useSEO = ({ title, description, image, urlPath = '', structuredData }) => {
+export const useSEO = ({ title, description, image, urlPath = '', ogType = 'website', structuredData }) => {
   useEffect(() => {
     const fullUrl = normalizeAbsoluteUrl(urlPath);
     const absoluteImage = image ? normalizeAbsoluteUrl(image) : null;
@@ -48,7 +48,7 @@ export const useSEO = ({ title, description, image, urlPath = '', structuredData
     updateMeta(null, 'og:description', description);
     updateMeta(null, 'og:image', absoluteImage);
     updateMeta(null, 'og:url', fullUrl);
-    updateMeta(null, 'og:type', 'website');
+    updateMeta(null, 'og:type', ogType);
 
     // Twitter Card
     updateMeta('twitter:card', null, 'summary_large_image');
@@ -70,5 +70,5 @@ export const useSEO = ({ title, description, image, urlPath = '', structuredData
       structuredDataElement.remove();
     }
 
-  }, [title, description, image, urlPath, structuredData]);
+  }, [title, description, image, urlPath, ogType, structuredData]);
 };

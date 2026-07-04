@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { getLocalizedProjects, getProjectBySlug } from '../src/data/projects.js';
 import {
   createHomeStructuredData,
+  createPageStructuredData,
   createProjectStructuredData,
   createProjectsStructuredData,
   normalizeAbsoluteUrl,
@@ -21,18 +22,46 @@ const assetsDir = path.join(distDir, 'assets');
 const homeMeta = {
   title: 'Frederick Armando | Lead Product Designer',
   description:
-    'Portfolio de Frederick Armando, Lead Product Designer. Découvrez mes études de cas ROIstes et expériences UX.',
+    'Portfolio de Frederick Armando, Lead Product Designer spécialisé en produits complexes, IA, mobile, B2B/B2C, accessibilité et stratégie produit.',
   image: '/assets/OG_Main.png',
   path: '/',
 };
 
-const projectsMeta = {
-  title: 'Études de cas UX/UI | Frederick Armando',
+const profileMeta = {
+  title: 'Profil | Frederick Armando',
   description:
-    "Découvrez une sélection d'études de cas UX/UI menées par Frederick Armando pour Michelin, Masteos, Kirrk et Mobioos.",
+    'Parcours, compétences clés et positionnement produit de Frederick Armando, Lead Product Designer basé en France.',
+  image: '/assets/OG_Main.png',
+  path: '/profil',
+  type: 'ProfilePage',
+};
+
+const methodsMeta = {
+  title: 'Méthodes | Frederick Armando',
+  description:
+    'Approche de design produit de Frederick Armando : cadrer, aligner, concevoir, livrer et mesurer des expériences utiles.',
+  image: '/assets/OG_Main.png',
+  path: '/methodes',
+};
+
+const projectsMeta = {
+  title: 'Projets & études de cas | Frederick Armando',
+  description:
+    "Sélection d'études de cas produit menées par Frederick Armando sur des expériences IA, mobile, B2B/B2C et SaaS.",
   image: '/assets/OG_Main.png',
   path: '/projets',
 };
+
+const contactMeta = {
+  title: 'Contact | Frederick Armando',
+  description:
+    "Contacter Frederick Armando pour échanger autour du design produit, de l'IA, du mobile et des expériences B2B/B2C.",
+  image: '/assets/OG_Main.png',
+  path: '/contact',
+  type: 'ContactPage',
+};
+
+const staticPageRoutes = [profileMeta, methodsMeta, contactMeta];
 
 const projectRoutes = [
   { slug: 'tire-assistant', image: '/assets/OG_Michelin_TireAssistant.png' },
@@ -88,11 +117,12 @@ function createHeadTags({ title, description, url, image, structuredData }) {
   const safeDescription = escapeAttribute(description);
   const safeUrl = escapeAttribute(url);
   const safeImage = escapeAttribute(image);
+  const safeOgType = escapeAttribute(structuredData?.['@graph']?.some((item) => item?.['@type'] === 'CreativeWork') ? 'article' : 'website');
 
   return `
   <meta name="description" content="${safeDescription}">
   <link rel="canonical" href="${safeUrl}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="${safeOgType}">
   <meta property="og:url" content="${safeUrl}">
   <meta property="og:title" content="${safeTitle}">
   <meta property="og:description" content="${safeDescription}">
@@ -122,6 +152,45 @@ function injectPageSeo(html, meta) {
     .replace('</head>', `${headTags}</head>`);
 }
 
+function writeStaticRoute(baseHtml, meta) {
+  const folderPath = path.join(distDir, meta.path.replace(/^\//, ''));
+  const resolvedImage = resolveBuiltAsset(meta.image);
+  const routeHtml = forceAbsoluteAssetPaths(
+    injectPageSeo(baseHtml, {
+      ...meta,
+      structuredData: createPageStructuredData({
+        ...meta,
+        image: resolvedImage,
+      }),
+    }),
+  );
+
+  fs.mkdirSync(folderPath, { recursive: true });
+  fs.writeFileSync(path.join(folderPath, 'index.html'), routeHtml);
+  console.log(`✅ Généré: ${meta.path}/index.html`);
+}
+
+function writeSitemap(routes) {
+  const today = new Date().toISOString().slice(0, 10);
+  const uniqueRoutes = Array.from(new Set(routes));
+  const urls = uniqueRoutes
+    .map((route) => `  <url>
+    <loc>${normalizeAbsoluteUrl(route)}</loc>
+    <lastmod>${today}</lastmod>
+  </url>`)
+    .join('\n');
+
+  fs.writeFileSync(
+    path.join(distDir, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`,
+  );
+  console.log('✅ Généré: /sitemap.xml');
+}
+
 try {
   if (!fs.existsSync(htmlFile)) {
     console.error('⚠️ Fichier index.html introuvable dans /dist.');
@@ -129,6 +198,10 @@ try {
   }
 
   const baseHtml = fs.readFileSync(htmlFile, 'utf8');
+
+  staticPageRoutes.forEach((meta) => {
+    writeStaticRoute(baseHtml, meta);
+  });
 
   projectRoutes.forEach((route) => {
     const project = getProjectBySlug(route.slug, 'fr');
@@ -188,6 +261,15 @@ try {
     }),
   });
   fs.writeFileSync(htmlFile, homeHtml);
+
+  writeSitemap([
+    '/',
+    '/profil',
+    '/methodes',
+    '/projets',
+    '/contact',
+    ...projectRoutes.map((route) => `/projets/${route.slug}`),
+  ]);
 
   const phpFile = path.join(distDir, 'index.php');
   if (fs.existsSync(phpFile)) {

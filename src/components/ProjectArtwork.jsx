@@ -28,6 +28,7 @@ import mobioosDevice2x from '../assets/projects/Mobioos@2x.png';
 import mobioosDevice3x from '../assets/projects/Mobioos@3x.png';
 
 import comingSoonBg from '../assets/projects/bg-last.png';
+import { SkeletonImage } from './Skeleton.jsx';
 
 const artworkAssets = {
   'tire-assistant': {
@@ -65,16 +66,21 @@ const artworkAssets = {
 
 export default function ProjectArtwork({ project, mode = 'main' }) {
   const assets = artworkAssets[project.preview];
+  const isPriority = mode === 'main' || mode === 'detail';
+  const loading = isPriority ? 'eager' : 'lazy';
+  const fetchPriority = isPriority ? 'high' : 'auto';
 
   if (!assets) {
     return (
       <div className="project-artwork">
-        <img
+        <SkeletonImage
+          wrapperClassName="project-artwork__bg-wrap"
           className="project-artwork__bg"
           src={comingSoonBg}
           alt=""
           draggable="false"
-          loading="lazy"
+          loading={loading}
+          fetchPriority={fetchPriority}
           decoding="async"
         />
         <div className={`project-artwork__canvas project-artwork__canvas--coming-soon project-artwork--${mode}`} aria-hidden="true">
@@ -89,23 +95,27 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
 
   return (
     <div className="project-artwork">
-      <img
+      <SkeletonImage
+        wrapperClassName="project-artwork__bg-wrap"
         className="project-artwork__bg"
         src={assets.bg}
         alt=""
         draggable="false"
-        style={assets.bgStyle}
-        loading="lazy"
+        imgStyle={assets.bgStyle}
+        loading={loading}
+        fetchPriority={fetchPriority}
         decoding="async"
       />
       <div className={`project-artwork__canvas project-artwork__canvas--${project.preview} project-artwork--${mode}`} aria-hidden="true">
-        <img
+        <SkeletonImage
+          wrapperClassName="project-artwork__device-wrap"
           className="project-artwork__device"
           src={assets.src}
           srcSet={assets.srcSet || undefined}
           alt=""
           draggable="false"
-          loading="lazy"
+          loading={loading}
+          fetchPriority={fetchPriority}
           decoding="async"
         />
       </div>

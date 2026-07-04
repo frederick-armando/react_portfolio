@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx';
+import { PageSkeleton } from './components/Skeleton.jsx';
 
 const Profil = lazy(() => import('./pages/Profil.jsx'));
 const Methodes = lazy(() => import('./pages/Methodes.jsx'));
@@ -9,15 +10,6 @@ const Projets = lazy(() => import('./pages/Projets.jsx'));
 const ProjectCaseStudy = lazy(() => import('./pages/ProjectCaseStudy.jsx'));
 const Contact = lazy(() => import('./pages/Contact.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
-
-// Simple loading fallback
-const PageLoader = () => (
-  <Layout>
-    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div className="loader" />
-    </div>
-  </Layout>
-);
 
 export default function App() {
   const location = useLocation();
@@ -28,71 +20,28 @@ export default function App() {
   }
 
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes location={backgroundLocation || location}>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-        <Route
-          path="/profil"
-          element={
-            <Layout>
-              <Profil />
-            </Layout>
-          }
-        />
-        <Route
-          path="/methodes"
-          element={
-            <Layout>
-              <Methodes />
-            </Layout>
-          }
-        />
-        <Route
-          path="/projets"
-          element={
-            <Layout>
-              <Projets />
-            </Layout>
-          }
-        />
-        <Route
-          path="/projets/:slug"
-          element={
-            <Layout>
-              <ProjectCaseStudy />
-            </Layout>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Layout>
-              <Contact />
-            </Layout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Layout>
-              <NotFound />
-            </Layout>
-          }
-        />
-        </Routes>
+    <>
+      <Layout>
+        <Suspense fallback={<PageSkeleton route={location.pathname} />}>
+          <Routes location={backgroundLocation || location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profil" element={<Profil />} />
+            <Route path="/methodes" element={<Methodes />} />
+            <Route path="/projets" element={<Projets />} />
+            <Route path="/projets/:slug" element={<ProjectCaseStudy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
 
-        {backgroundLocation && (
+      {backgroundLocation && (
+        <Suspense fallback={null}>
           <Routes>
             <Route path="/projets/:slug" element={<ProjectCaseStudy isModal />} />
           </Routes>
-        )}
-    </Suspense>
+        </Suspense>
+      )}
+    </>
   );
 }

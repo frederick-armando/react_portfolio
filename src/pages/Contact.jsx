@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { m } from 'framer-motion';
 import {
   IconFigmaBrand,
@@ -12,6 +13,9 @@ import Button from '../components/Button.jsx';
 import '../styles/pages.css';
 import { pagesContent } from '../i18n/content/pages.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
+import { createPageStructuredData } from '../config/structuredData.js';
 
 const socialIcons = [
   {
@@ -39,6 +43,24 @@ const socialIcons = [
 export default function Contact() {
   const { language } = useLanguage();
   const content = pagesContent[language].contact;
+  const seoData = seoConfig.contact;
+  const structuredData = useMemo(
+    () =>
+      createPageStructuredData({
+        ...seoData,
+        path: '/contact',
+        type: 'ContactPage',
+      }),
+    [seoData],
+  );
+
+  useSEO({
+    title: seoData.title,
+    description: seoData.description,
+    image: seoData.image,
+    urlPath: '/contact',
+    structuredData,
+  });
 
   return (
     <section className="section contact-page">

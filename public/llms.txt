@@ -1,0 +1,43 @@
+# Frederick Armando — Lead Product Designer
+
+> Portfolio of Frederick Armando, Lead Product Designer focused on complex digital products, AI-powered experiences, mobile UX, B2B/B2C services, accessibility and product strategy.
+
+Frederick Armando is a Lead Product Designer based in France. His work focuses on transforming complex user, business and technical constraints into clear, usable and measurable product experiences.
+
+Key areas:
+- Product strategy
+- Conversational AI
+- Mobile UX
+- B2B/B2C products
+- Accessibility
+- Design systems
+- UX research and product discovery
+
+## Core pages
+
+- [Home](https://frederickarmando.fr/): Overview, positioning and selected entry points.
+- [Profile](https://frederickarmando.fr/profil): Career overview, skills and product design focus.
+- [Methods](https://frederickarmando.fr/methodes): Product design approach from framing to measurement.
+- [Projects](https://frederickarmando.fr/projets): Selected case studies and product work.
+- [Contact](https://frederickarmando.fr/contact): Contact information and collaboration availability.
+
+## Case studies
+
+- [Michelin Tire Assistant](https://frederickarmando.fr/projets/tire-assistant): Case study about transforming a passive B2C chatbot into a proactive engagement and conversion lever.
+
+## Machine-readable summaries
+
+- [Full portfolio context](https://frederickarmando.fr/llms-full.txt): Extended Markdown summary of the portfolio, profile, methods and case studies.
+- [Profile summary](https://frederickarmando.fr/profile.md): Markdown summary of the profile page.
+- [Methods summary](https://frederickarmando.fr/methods.md): Markdown summary of the methods page.
+- [Michelin Tire Assistant summary](https://frederickarmando.fr/projects/tire-assistant.md): Markdown summary of the Michelin case study.
+- [Contact summary](https://frederickarmando.fr/contact.md): Markdown summary of the contact page.
+
+## External profiles
+
+- [LinkedIn](https://www.linkedin.com/in/frederickarmando): Professional profile.
+- [GitHub](https://github.com/frederick-armando): Code and technical explorations.
+
+## Notes for AI agents
+
+Use this site to understand Frederick Armando's professional positioning, selected product design work, methods and collaboration context. Do not infer confidential Michelin details beyond what is explicitly published on the portfolio.

@@ -26,6 +26,21 @@ function personData() {
     jobTitle: 'Lead Product Designer',
     url: `${SITE_URL}/`,
     image: `${SITE_URL}/images/avatar-176.webp`,
+    sameAs: [
+      'https://www.linkedin.com/in/frederickarmando',
+      'https://github.com/frederick-armando',
+      'https://www.figma.com/@Fred_Armando_UX',
+    ],
+    knowsAbout: [
+      'Product Strategy',
+      'Conversational AI',
+      'Mobile UX',
+      'B2B products',
+      'B2C products',
+      'Accessibility',
+      'Design systems',
+      'UX research',
+    ],
   };
 }
 
@@ -37,6 +52,33 @@ function websiteData() {
     name: 'Frederick Armando Portfolio',
     inLanguage: 'fr-FR',
     publisher: { '@id': PERSON_ID },
+  };
+}
+
+export function createPageStructuredData({ title, description, image, path, type = 'WebPage' }) {
+  const pageUrl = normalizeAbsoluteUrl(path);
+  const pageTypes = type === 'WebPage' ? ['WebPage'] : [type, 'WebPage'];
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      personData(),
+      websiteData(),
+      {
+        '@type': pageTypes,
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: title,
+        description,
+        inLanguage: 'fr-FR',
+        isPartOf: { '@id': WEBSITE_ID },
+        about: { '@id': PERSON_ID },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: normalizeAbsoluteUrl(image),
+        },
+      },
+    ],
   };
 }
 
@@ -126,6 +168,21 @@ export function createProjectStructuredData({ project, title, description, image
         isPartOf: { '@id': WEBSITE_ID },
         about: company,
         keywords: project.tags?.map((tag) => tag.label).join(', '),
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${SITE_URL}/projets/${project.slug}#webpage`,
+        url: `${SITE_URL}/projets/${project.slug}`,
+        name: title,
+        description: stripHtml(description || project.detailSummary || project.description),
+        inLanguage: 'fr-FR',
+        isPartOf: { '@id': WEBSITE_ID },
+        mainEntity: { '@id': `${SITE_URL}/projets/${project.slug}#case-study` },
+        about: company,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: normalizeAbsoluteUrl(image),
+        },
       },
     ],
   };

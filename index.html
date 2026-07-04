@@ -8,10 +8,17 @@
 
   <!-- Preload only the most used weight (500) -->
   <link rel="preload" href="/fonts/core-sans/core-sans-c-55-medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link
+    rel="preload"
+    href="/images/avatar-88.avif"
+    as="image"
+    type="image/avif"
+    imagesrcset="/images/avatar-88.avif 1x, /images/avatar-176.avif 2x"
+    imagesizes="88px"
+    fetchpriority="high"
+  />
   <meta name="description"
-    content="Portfolio de Frederick Armando, Lead Product Designer passionné par la création d'expériences numériques innovantes. Explorez mes projets en UX/UI, Design Thinking et GenUI." />
-  <meta name="keywords"
-    content="Frédérick Armando, Frederick Armando, Armando, Product Designer, Lead Product Designer, UX Design, UI Design, Design Thinking, UXVR, Portfolio, Webdesign, Freelance, Paris, Lyon, Michelin, Masteos" />
+    content="Portfolio de Frederick Armando, Lead Product Designer spécialisé en produits complexes, IA, mobile, B2B/B2C, accessibilité et stratégie produit." />
   <meta name="author" content="Frédérick Armando" />
   <meta name="p:domain_verify" content="c0d61ea3ae744e6c982693bbd8e3fdb6" />
   <link rel="canonical" href="https://frederickarmando.fr/" />
@@ -19,24 +26,24 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://frederickarmando.fr/" />
-  <meta property="og:title" content="Frederick Armando — Lead Product Designer Portfolio" />
+  <meta property="og:title" content="Frederick Armando | Lead Product Designer" />
   <meta property="og:description"
-    content="Découvrez le portfolio de Frederick Armando, Lead Product Designer spécialisé dans la création d'expériences numériques innovantes et l'UX Design." />
-  <meta property="og:image" content="https://frederickarmando.fr/assets/OG_Main-CvWEWI2E.png" />
+    content="Portfolio de Frederick Armando, Lead Product Designer spécialisé en produits complexes, IA, mobile, B2B/B2C, accessibilité et stratégie produit." />
+  <meta property="og:image" content="https://frederickarmando.fr/Share_compressed.jpg" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://frederickarmando.fr/" />
-  <meta name="twitter:title" content="Frederick Armando — Lead Product Designer Portfolio" />
+  <meta name="twitter:title" content="Frederick Armando | Lead Product Designer" />
   <meta name="twitter:description"
-    content="Découvrez le portfolio de Frederick Armando, Lead Product Designer spécialisé dans la création d'expériences numériques innovantes et l'UX Design." />
-  <meta name="twitter:image" content="https://frederickarmando.fr/assets/OG_Main-CvWEWI2E.png" />
+    content="Portfolio de Frederick Armando, Lead Product Designer spécialisé en produits complexes, IA, mobile, B2B/B2C, accessibilité et stratégie produit." />
+  <meta name="twitter:image" content="https://frederickarmando.fr/Share_compressed.jpg" />
 
   <!-- Device Compatibility -->
   <link rel="apple-touch-icon" href="/logo.png" />
   <link rel="icon" type="image/png" href="/favicon.png" />
 
-  <title>Frederick Armando — Lead Product Designer Portfolio</title>
+  <title>Frederick Armando | Lead Product Designer</title>
   <style>
     @font-face {
       font-family: 'Core Sans C Fallback';
@@ -157,24 +164,67 @@
       text-align: center;
     }
 
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 5px solid var(--color-primary);
-      border-bottom-color: transparent;
-      border-radius: 50% !important;
-      display: inline-block;
-      animation: rotation 1s linear infinite;
+    .app-boot-skeleton {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: var(--header-height) 1fr 78px;
+      background: var(--color-surface);
     }
 
-    @keyframes rotation {
-      0% {
-        transform: rotate(0deg);
-      }
+    .app-boot-skeleton__bar {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    }
 
-      100% {
-        transform: rotate(360deg);
-      }
+    .app-boot-skeleton__main {
+      display: grid;
+      place-items: center;
+      padding: 32px 24px;
+    }
+
+    .app-boot-skeleton__hero {
+      width: min(100%, 760px);
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+    }
+
+    .app-boot-skeleton__shape {
+      display: block;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+    }
+
+    .app-boot-skeleton__avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+    }
+
+    .app-boot-skeleton__title {
+      width: min(420px, 78vw);
+      height: 54px;
+    }
+
+    .app-boot-skeleton__line {
+      width: min(560px, 86vw);
+      height: 18px;
+    }
+
+    .app-boot-skeleton__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .app-boot-skeleton__button {
+      width: 180px;
+      height: 48px;
+    }
+
+    .app-boot-skeleton__nav {
+      border-top: 1px solid rgba(127, 136, 160, 0.18);
+      background: var(--color-surface);
     }
   </style>
   <script>
@@ -197,7 +247,23 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div class="app-boot-skeleton" aria-hidden="true">
+      <div class="app-boot-skeleton__bar"></div>
+      <div class="app-boot-skeleton__main">
+        <div class="app-boot-skeleton__hero">
+          <span class="app-boot-skeleton__shape app-boot-skeleton__avatar"></span>
+          <span class="app-boot-skeleton__shape app-boot-skeleton__title"></span>
+          <span class="app-boot-skeleton__shape app-boot-skeleton__line"></span>
+          <div class="app-boot-skeleton__actions">
+            <span class="app-boot-skeleton__shape app-boot-skeleton__button"></span>
+            <span class="app-boot-skeleton__shape app-boot-skeleton__button"></span>
+          </div>
+        </div>
+      </div>
+      <div class="app-boot-skeleton__nav"></div>
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

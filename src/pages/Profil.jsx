@@ -1,19 +1,41 @@
+import { useMemo } from 'react';
 import { m } from 'framer-motion';
 import { IconProfile } from '../components/icons.jsx';
 import '../styles/pages.css';
 
 import { pagesContent } from '../i18n/content/pages.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { seoConfig } from '../config/seo.js';
+import { createPageStructuredData } from '../config/structuredData.js';
 
 export default function Profil() {
   const { language } = useLanguage();
   const content = pagesContent[language].profile;
+  const seoData = seoConfig.profile;
+  const structuredData = useMemo(
+    () =>
+      createPageStructuredData({
+        ...seoData,
+        path: '/profil',
+        type: 'ProfilePage',
+      }),
+    [seoData],
+  );
   const skillGroups = content.skillGroups ?? [
     {
       title: content.skillsTitle,
       skills: content.skills ?? [],
     },
   ];
+
+  useSEO({
+    title: seoData.title,
+    description: seoData.description,
+    image: seoData.image,
+    urlPath: '/profil',
+    structuredData,
+  });
 
   return (
     <section className="section">

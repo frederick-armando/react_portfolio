@@ -4,7 +4,7 @@
 #a11y-widget-container {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 10000;
   pointer-events: none;
 }
 
@@ -19,7 +19,7 @@
   right: 0;
   bottom: var(--nav-height);
   left: 0;
-  z-index: 998;
+  z-index: 9999;
   display: block;
   background: rgba(18, 19, 26, 0.12);
   backdrop-filter: blur(1px);
@@ -39,7 +39,7 @@
   top: var(--header-height);
   right: 0;
   bottom: var(--nav-height);
-  z-index: 1000000;
+  z-index: 10001;
   background-color: var(--color-surface, #fff);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -244,19 +244,12 @@ body.a11y-high-contrast .a11y-btn.active * {
   color: #000 !important;
   stroke: #000 !important;
 }
-body.a11y-high-contrast .a11y-header-trigger,
-body.a11y-high-contrast .a11y-header-trigger * {
-  background-color: #fff !important;
-  color: #000 !important;
-  stroke: #000 !important;
-}
-
 /* Grayscale Mode */
 body.a11y-grayscale::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 999999;
+  z-index: 900;
   pointer-events: none;
   backdrop-filter: grayscale(100%);
   -webkit-backdrop-filter: grayscale(100%);
