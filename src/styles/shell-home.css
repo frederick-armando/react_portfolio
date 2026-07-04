@@ -1114,25 +1114,6 @@ button:focus-visible {
   border-radius: 50%;
 }
 
-.page-skeleton__hero-name {
-  width: min(420px, 78vw);
-  display: grid;
-  gap: var(--space-2);
-}
-
-.page-skeleton__hero-name-line {
-  height: clamp(2rem, 4.5vw, 2.5rem);
-  border-radius: 18px;
-}
-
-.page-skeleton__hero-name-line--first {
-  width: 76%;
-}
-
-.page-skeleton__hero-name-line--last {
-  width: 100%;
-}
-
 .page-skeleton__hero-copy {
   width: min(620px, 86vw);
 }
@@ -1176,8 +1157,10 @@ button:focus-visible {
   gap: var(--space-3);
 }
 
-.page-skeleton__chips--hero {
-  justify-content: center;
+.page-skeleton__chip-rail {
+  width: min(360px, 72vw);
+  height: 32px;
+  border-radius: var(--radius-pill);
 }
 
 .page-skeleton__chip,
@@ -1305,7 +1288,7 @@ button:focus-visible {
 
 .page-skeleton .case-study-metrics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
   margin-top: var(--space-8);
 }

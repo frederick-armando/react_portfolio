@@ -97,7 +97,7 @@ function SkeletonLines({ count = 3, compact = false }) {
         <SkeletonBlock
           className="page-skeleton__line"
           key={index}
-          style={{ '--skeleton-line-scale': index === count - 1 ? '0.72' : '1' }}
+          style={{ '--skeleton-line-scale': count > 1 && index === count - 1 ? '0.72' : '1' }}
         />
       ))}
     </div>
@@ -109,22 +109,10 @@ function HeroSkeleton() {
     <section className="hero page-skeleton page-skeleton--hero" aria-hidden="true">
       <div className="hero__header">
         <SkeletonBlock className="page-skeleton__avatar" />
-        <div className="page-skeleton__hero-name">
-          <SkeletonBlock className="page-skeleton__hero-name-line page-skeleton__hero-name-line--first" />
-          <SkeletonBlock className="page-skeleton__hero-name-line page-skeleton__hero-name-line--last" />
-        </div>
       </div>
-      <div className="hero__chips page-skeleton__chips page-skeleton__chips--hero">
-        {Array.from({ length: 5 }, (_, index) => (
-          <SkeletonBlock
-            className="page-skeleton__chip"
-            key={index}
-            style={{ '--skeleton-chip-width': `${88 + (index % 3) * 18}px` }}
-          />
-        ))}
-      </div>
+      <SkeletonBlock className="page-skeleton__chip-rail" />
       <div className="page-skeleton__hero-copy">
-        <SkeletonLines count={2} />
+        <SkeletonLines count={1} />
       </div>
       <div className="hero__actions">
         <SkeletonBlock className="page-skeleton__button" />
@@ -171,7 +159,7 @@ function MethodsSkeleton() {
         {Array.from({ length: 5 }, (_, index) => (
           <div className="methods-card page-skeleton__panel" key={index}>
             <SkeletonBlock className="page-skeleton__subtitle" />
-            <SkeletonLines count={3} compact />
+            <SkeletonLines count={1} compact />
           </div>
         ))}
       </div>
@@ -187,16 +175,13 @@ function ProjectsSkeleton() {
           <div className="project-showcase__copy">
             <div className="project-showcase__tags">
               <SkeletonBlock className="page-skeleton__tag" />
-              <SkeletonBlock className="page-skeleton__tag" />
             </div>
             <div className="project-showcase__body">
               <SkeletonBlock className="page-skeleton__headline" />
-              <SkeletonLines count={3} />
+              <SkeletonLines count={2} />
             </div>
             <div className="project-showcase__controls">
               <div className="project-pager">
-                <SkeletonBlock className="page-skeleton__button-circle" />
-                <SkeletonBlock className="page-skeleton__button-circle" />
                 <SkeletonBlock className="page-skeleton__button-circle" />
               </div>
               <SkeletonBlock className="page-skeleton__button" />
@@ -220,10 +205,9 @@ function CaseStudySkeletonBody() {
         <div className="case-study-hero__copy">
           <div className="case-study-hero__eyebrow">
             <SkeletonBlock className="page-skeleton__tag" />
-            <SkeletonBlock className="page-skeleton__tag" />
           </div>
           <SkeletonBlock className="page-skeleton__headline" />
-          <SkeletonLines count={3} />
+          <SkeletonLines count={2} />
         </div>
         <div className="case-study-hero__stage">
           <SkeletonBlock className="case-study-hero__frame page-skeleton__media" />
@@ -231,7 +215,7 @@ function CaseStudySkeletonBody() {
       </div>
       <SkeletonBlock className="page-skeleton__summary" />
       <div className="case-study-metrics">
-        {Array.from({ length: 4 }, (_, index) => (
+        {Array.from({ length: 2 }, (_, index) => (
           <SkeletonBlock className="case-study-metric page-skeleton__metric" key={index} />
         ))}
       </div>
@@ -283,9 +267,9 @@ function ContactSkeleton() {
       <div className="contact-layout">
         <div className="contact-layout__intro page-skeleton__panel">
           <SkeletonBlock className="page-skeleton__subtitle" />
-          <SkeletonLines count={3} />
+          <SkeletonLines count={2} />
           <div className="contact-socials">
-            {Array.from({ length: 4 }, (_, index) => (
+            {Array.from({ length: 2 }, (_, index) => (
               <SkeletonBlock className="page-skeleton__button-circle" key={index} />
             ))}
           </div>
@@ -295,7 +279,6 @@ function ContactSkeleton() {
             <SkeletonBlock className="page-skeleton__subtitle" />
             <SkeletonLines count={2} compact />
             <div className="contact-actions">
-              <SkeletonBlock className="page-skeleton__button" />
               <SkeletonBlock className="page-skeleton__button" />
             </div>
           </div>
