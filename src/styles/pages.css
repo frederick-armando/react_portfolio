@@ -1228,7 +1228,7 @@
   margin: 0;
 }
 
-.case-study-device-mockup img {
+.case-study-device-mockup > img {
   width: 100%;
   max-width: 320px;
   height: auto;
