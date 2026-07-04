@@ -379,22 +379,26 @@ const AccessibilityWidget = () => {
                   <IconText size={16} /> {t.textSize} ({textSize}%)
                 </div>
                 <div className="a11y-button-group">
-                  <button
+                  <Button
+                    variant="tertiary"
                     className="a11y-btn"
+                    icon={IconZoomOut}
                     onClick={decreaseTextSize}
                     disabled={textSize <= 80}
                     aria-label={t.decreaseText}
                   >
-                    <IconZoomOut size={18} /> A-
-                  </button>
-                  <button
+                    A-
+                  </Button>
+                  <Button
+                    variant="tertiary"
                     className="a11y-btn"
+                    icon={IconZoomIn}
                     onClick={increaseTextSize}
                     disabled={textSize >= 200}
                     aria-label={t.increaseText}
                   >
-                    <IconZoomIn size={18} /> A+
-                  </button>
+                    A+
+                  </Button>
                 </div>
               </div>
 
@@ -403,13 +407,14 @@ const AccessibilityWidget = () => {
                   <IconText size={16} /> {t.readability}
                 </div>
                 <div className="a11y-button-group">
-                  <button
+                  <Button
+                    variant={readableFont ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${readableFont ? 'active' : ''}`}
                     onClick={() => updateSetting('readableFont', !readableFont)}
                     aria-pressed={readableFont}
                   >
                     {t.dyslexicFont}
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -418,20 +423,24 @@ const AccessibilityWidget = () => {
                   <IconContrast size={16} /> {t.contrasts}
                 </div>
                 <div className="a11y-button-group">
-                  <button
+                  <Button
+                    variant={contrastMode === 'high' ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${contrastMode === 'high' ? 'active' : ''}`}
+                    icon={IconContrast}
                     onClick={() => updateSetting('contrastMode', contrastMode === 'high' ? 'none' : 'high')}
                     aria-pressed={contrastMode === 'high'}
                   >
-                    <IconContrast size={18} /> {t.highContrast}
-                  </button>
-                  <button
+                    {t.highContrast}
+                  </Button>
+                  <Button
+                    variant={contrastMode === 'grayscale' ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${contrastMode === 'grayscale' ? 'active' : ''}`}
+                    icon={IconSun}
                     onClick={() => updateSetting('contrastMode', contrastMode === 'grayscale' ? 'none' : 'grayscale')}
                     aria-pressed={contrastMode === 'grayscale'}
                   >
-                    <IconSun size={18} /> {t.grayscale}
-                  </button>
+                    {t.grayscale}
+                  </Button>
                 </div>
               </div>
 
@@ -440,13 +449,14 @@ const AccessibilityWidget = () => {
                   <IconLink size={16} /> {t.visualCues}
                 </div>
                 <div className="a11y-button-group">
-                  <button
+                  <Button
+                    variant={highlightLinks ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${highlightLinks ? 'active' : ''}`}
                     onClick={() => updateSetting('highlightLinks', !highlightLinks)}
                     aria-pressed={highlightLinks}
                   >
                     {t.highlightLinks}
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -455,13 +465,14 @@ const AccessibilityWidget = () => {
                   <IconPlay size={16} /> {t.animations}
                 </div>
                 <div className="a11y-button-group">
-                  <button
+                  <Button
+                    variant={stopAnimations ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${stopAnimations ? 'active' : ''}`}
                     onClick={() => updateSetting('stopAnimations', !stopAnimations)}
                     aria-pressed={stopAnimations}
                   >
                     {t.stopAnimations}
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -469,33 +480,39 @@ const AccessibilityWidget = () => {
                 <div className="a11y-section-title">
                   <IconMousePointerClick size={16} /> {t.interaction}
                 </div>
-                <div className="a11y-button-group" style={{ flexDirection: 'column' }}>
-                  <button
+                <div className="a11y-button-group a11y-button-group--stacked">
+                  <Button
+                    variant={bigCursor ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${bigCursor ? 'active' : ''}`}
+                    icon={IconMousePointer2}
                     onClick={() => updateSetting('bigCursor', !bigCursor)}
                     aria-pressed={bigCursor}
                   >
-                    <IconMousePointer2 size={18} /> {t.bigCursor}
-                  </button>
-                  <button
+                    {t.bigCursor}
+                  </Button>
+                  <Button
+                    variant={enhancedFocus ? 'primary' : 'tertiary'}
                     className={`a11y-btn ${enhancedFocus ? 'active' : ''}`}
+                    icon={IconKeyboard}
                     onClick={() => updateSetting('enhancedFocus', !enhancedFocus)}
                     aria-pressed={enhancedFocus}
                   >
-                    <IconKeyboard size={18} /> {t.enhancedFocus}
-                  </button>
+                    {t.enhancedFocus}
+                  </Button>
                 </div>
               </div>
             </div>
 
             <div className="a11y-panel-footer">
-              <button
+              <Button
+                variant="tertiary"
                 className="a11y-btn a11y-btn-reset"
+                icon={IconRotateCcw}
                 onClick={handleReset}
                 aria-label={t.resetAll}
               >
-                <IconRotateCcw size={16} /> {t.reset}
-              </button>
+                {t.reset}
+              </Button>
             </div>
         </div>
       </div>

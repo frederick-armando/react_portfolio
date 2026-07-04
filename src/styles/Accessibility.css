@@ -133,43 +133,61 @@
 
 .a11y-button-group {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 
-.a11y-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
+.a11y-button-group--stacked {
+  flex-direction: column;
+}
+
+.a11y-panel .a11y-btn {
+  flex: 1 1 0;
+  min-width: min(100%, 128px);
+  min-height: 48px;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border: 1px solid var(--color-border, #e0e0e0);
-  background-color: transparent;
-  color: var(--color-ink, #333);
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: var(--font-size-lg);
-  font-weight: 500;
-  transition: all 0.2s ease;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-md);
+  line-height: 1.2;
+  white-space: normal;
 }
 
-.a11y-btn:hover {
-  background-color: var(--color-primary-100, #f5f5f5);
-}
-
-.a11y-btn.active {
-  background-color: var(--color-primary-action, var(--color-primary));
-  color: var(--color-primary-action-text, #fff);
-  border-color: var(--color-primary-action, var(--color-primary));
+.a11y-button-group--stacked .a11y-btn {
+  flex: 0 0 auto;
 }
 
 .a11y-btn-reset {
   width: 100%;
+}
+
+.a11y-panel .a11y-btn.active {
+  box-shadow: var(--elevation-2);
+  border-color: var(--color-primary-action, var(--color-primary));
+}
+
+.a11y-panel .a11y-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+}
+
+.a11y-panel .a11y-btn:disabled .btn__ripple::after {
+  display: none;
+}
+
+.a11y-panel .a11y-btn-reset {
   margin-top: 0;
-  background-color: transparent;
-  border: 1px dashed var(--color-border, #ccc);
-  color: var(--color-body, #666);
+  border-color: var(--color-border);
+  color: var(--color-body);
+}
+
+.a11y-panel .a11y-btn-reset:hover,
+.a11y-panel .a11y-btn-reset:focus-visible {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-100);
 }
 
 .a11y-panel-footer {
@@ -179,13 +197,6 @@
   background-color: var(--color-surface, #fff);
   border-top: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
   box-shadow: 0 -12px 24px rgba(18, 19, 26, 0.08);
-}
-
-.a11y-btn-reset:hover {
-  background-color: #fff0f0;
-  color: #d32f2f;
-  border-color: #d32f2f;
-  border-style: solid;
 }
 
 /* ==========================================================================
