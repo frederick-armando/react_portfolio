@@ -63,6 +63,15 @@
 
 :root {
   --font-family: 'Core Sans C', 'Core Sans C Fallback', 'Segoe UI', sans-serif;
+  --font-size-xxs: 0.6875rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-md: 0.875rem;
+  --font-size-lg: 0.9375rem;
+  --font-size-xl: 1rem;
+  --font-size-2xl: 1.125rem;
+  --font-size-3xl: 1.25rem;
+  --font-size-4xl: 1.5rem;
 
   --color-ink: #12131a;
   --color-body: #3e4250;

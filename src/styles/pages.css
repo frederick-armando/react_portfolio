@@ -361,7 +361,7 @@
 
 .profile__skill-group h4 {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: var(--font-size-sm);
   line-height: 1.35;
   font-weight: 700;
   color: var(--color-muted);
@@ -1041,7 +1041,7 @@
 }
 
 .case-study-hero__copy p {
-  font-size: 1.0625rem;
+  font-size: var(--font-size-2xl);
   line-height: 1.62;
   color: var(--color-body);
 }
@@ -1065,6 +1065,30 @@
 
 .case-study-section {
   margin-top: var(--space-9);
+}
+
+.case-study-section--summary {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 28px 28px 0;
+  background-color: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.case-study-section .case-study-summary__title {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-study-section .case-study-summary__body {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+  line-height: 1.6;
 }
 
 .case-study-section h2,

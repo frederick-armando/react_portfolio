@@ -114,20 +114,10 @@ const tireAssistantSectionOrder = [
 const ExecutiveSummary = ({ content }) => {
   if (!content.summary) return null;
   return (
-    <section 
-      className="case-study-section case-study-section--summary" 
-      style={{ 
-        backgroundColor: 'color-mix(in srgb, var(--color-primary) 14%, transparent)',
-        padding: '1.5rem', 
-        borderLeft: '4px solid var(--color-primary)', 
-        borderRadius: '0 28px 28px 0',
-        marginBottom: '2rem',
-        marginTop: '3rem'
-      }}
-    >
-      <h3 style={{ marginTop: 0, marginBottom: '0.5rem', color: 'var(--color-primary)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>TL;DR</h3>
+    <section className="case-study-section case-study-section--summary">
+      <h3 className="case-study-summary__title">TL;DR</h3>
       <p 
-        style={{ margin: 0, fontSize: '1.1rem', lineHeight: '1.6' }}
+        className="case-study-summary__body"
         dangerouslySetInnerHTML={{ __html: content.summary }}
       />
     </section>
