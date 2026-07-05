@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { IconFolderOpen, IconHome } from '../components/icons.jsx';
+import { IconFolderOpen, IconHome } from '../components/icons-shell.jsx';
 import Button from '../components/Button.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useTheme } from '../theme/ThemeContext.jsx';

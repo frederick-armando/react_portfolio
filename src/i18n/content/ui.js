@@ -19,10 +19,6 @@ export const uiContent = {
       ariaLabel: 'Passer le site en anglais',
       tooltip: 'Afficher le site en anglais',
     },
-    bookmarkButton: {
-      ariaLabel: 'Ouvrir UXVR.fr',
-      tooltip: 'Visiter UXVR.fr',
-    },
     bottomNav: {
       ariaLabel: 'Navigation principale',
       items: {
@@ -60,10 +56,6 @@ export const uiContent = {
       tooltipDark: 'Switch to light mode',
       announceDark: 'Dark mode enabled',
       announceLight: 'Light mode enabled',
-    },
-    bookmarkButton: {
-      ariaLabel: 'Open UXVR.fr',
-      tooltip: 'Visit UXVR.fr',
     },
     bottomNav: {
       ariaLabel: 'Primary navigation',

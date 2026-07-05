@@ -504,27 +504,6 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         ))}
       </section>
 
-      {false && (
-        <section className="case-study-process">
-          <div className="case-study-process__header">
-            <h2>{content.sections.process.title}</h2>
-            <p>{content.sections.process.description}</p>
-          </div>
-
-          <div className="case-study-process__grid">
-            {content.processColumns.map((column, columnIndex) => (
-              <div className="case-study-process__column" key={`column-${columnIndex}`}>
-                {column.map((step) => (
-                  <div className="case-study-process__node" key={step}>
-                    {step}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
       <section className="case-study-metrics case-study-metrics--tools">
         {content.learningCards.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? IconNote;

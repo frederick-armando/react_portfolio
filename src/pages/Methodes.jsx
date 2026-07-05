@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { IconChartArea } from '../components/icons.jsx';
+import { IconChartArea } from '../components/icons-shell.jsx';
 import MethodsWave from '../components/MethodsWave.jsx';
 import '../styles/pages.css';
 import { pagesContent } from '../i18n/content/pages.jsx';

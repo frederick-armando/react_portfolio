@@ -112,7 +112,7 @@ export const projects = [
     slug: 'helios',
     preview: 'helios',
     ctaIcon: 'hammer',
-    detailStatus: 'placeholder',
+    detailStatus: 'ready',
     translations: {
       fr: {
         company: 'Masteos',

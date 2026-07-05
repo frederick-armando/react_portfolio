@@ -242,16 +242,27 @@
       overflow: hidden;
       border-radius: var(--radius-lg);
       background:
-        linear-gradient(105deg, transparent 0 38%, var(--skeleton-highlight) 48%, transparent 60%),
         linear-gradient(135deg, var(--skeleton-base), var(--skeleton-depth));
-      background-size: 260% 100%, 100% 100%;
       border: 1px solid var(--skeleton-border);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.16),
         0 14px 40px rgba(56, 90, 249, 0.035);
+      isolation: isolate;
       opacity: 0.92;
       pointer-events: none;
+      transform: translateZ(0);
       user-select: none;
+    }
+
+    .app-boot-skeleton__shape::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: inherit;
+      background: linear-gradient(105deg, transparent 0 35%, var(--skeleton-highlight) 48%, transparent 62%);
+      transform: translateX(-120%);
+      will-change: transform;
       animation: app-boot-skeleton-shimmer 2.8s var(--motion-standard) infinite;
     }
 
@@ -399,18 +410,18 @@
 
     @keyframes app-boot-skeleton-shimmer {
       0% {
-        background-position: 155% 0, 0 0;
+        transform: translateX(-120%);
       }
 
       100% {
-        background-position: -155% 0, 0 0;
+        transform: translateX(120%);
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .app-boot-skeleton__shape {
+      .app-boot-skeleton__shape::after {
         animation: none;
-        background-position: 0 0, 0 0;
+        opacity: 0;
       }
     }
   </style>

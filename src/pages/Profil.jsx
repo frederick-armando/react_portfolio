@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
-import { m } from 'framer-motion';
-import { IconProfile } from '../components/icons.jsx';
+import { IconProfile } from '../components/icons-shell.jsx';
 import '../styles/pages.css';
 
 import { pagesContent } from '../i18n/content/pages.jsx';
@@ -60,14 +59,12 @@ export default function Profil() {
                 <h4>{group.title}</h4>
                 <div className="chip-list">
                   {group.skills.map((skill) => (
-                    <m.span
+                    <span
                       className="chip"
                       key={skill}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                       {skill}
-                    </m.span>
+                    </span>
                   ))}
                 </div>
               </section>
