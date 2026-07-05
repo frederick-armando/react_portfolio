@@ -6,8 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#385AF9" />
 
-  <!-- Preload only the most used weight (500) -->
-  <link rel="preload" href="/fonts/core-sans/core-sans-c-55-medium.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Preload the above-the-fold Core Sans subset weights used by the hero. -->
+  <link rel="preload" href="/fonts/core-sans/core-sans-c-45-regular-latin-15d08c2a.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/core-sans/core-sans-c-55-medium-latin-baa58e2b.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/core-sans/core-sans-c-65-bold-latin-973642f2.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/core-sans/core-sans-c-75-extra-bold-latin-fc12709e.woff2" as="font" type="font/woff2" crossorigin />
   <link
     rel="preload"
     href="/images/avatar-88.avif"
@@ -47,7 +50,7 @@
   <style>
     @font-face {
       font-family: 'Core Sans C Fallback';
-      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial');
       font-style: normal;
       font-weight: 400;
       size-adjust: 99.2%;
@@ -58,7 +61,7 @@
 
     @font-face {
       font-family: 'Core Sans C Fallback';
-      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial');
       font-style: normal;
       font-weight: 500;
       size-adjust: 99.6%;
@@ -68,47 +71,85 @@
     }
 
     @font-face {
+      font-family: 'Core Sans C Fallback';
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+      font-style: normal;
+      font-weight: 600;
+      size-adjust: 99.6%;
+      ascent-override: 91%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C Fallback';
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+      font-style: normal;
+      font-weight: 700;
+      size-adjust: 99.6%;
+      ascent-override: 91%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+
+    @font-face {
+      font-family: 'Core Sans C Fallback';
+      src: local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+      font-style: normal;
+      font-weight: 800;
+      size-adjust: 99.6%;
+      ascent-override: 91%;
+      descent-override: 22%;
+      line-gap-override: 0%;
+    }
+
+    @font-face {
       font-family: 'Core Sans C';
-      src: url('/fonts/core-sans/core-sans-c-45-regular.woff2') format('woff2');
+      src: url('/fonts/core-sans/core-sans-c-45-regular-latin-15d08c2a.woff2') format('woff2');
       font-style: normal;
       font-weight: 400;
-      font-display: optional;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0100-017F, U+2010-2027, U+202F, U+2030, U+20AC, U+2122, U+2190-21FF;
     }
 
     @font-face {
       font-family: 'Core Sans C';
-      src: url('/fonts/core-sans/core-sans-c-55-medium.woff2') format('woff2');
+      src: url('/fonts/core-sans/core-sans-c-55-medium-latin-baa58e2b.woff2') format('woff2');
       font-style: normal;
       font-weight: 500;
-      font-display: swap;
+      font-display: optional;
+      unicode-range: U+0000-00FF, U+0100-017F, U+2010-2027, U+202F, U+2030, U+20AC, U+2122, U+2190-21FF;
     }
 
     @font-face {
       font-family: 'Core Sans C';
-      src: url('/fonts/core-sans/core-sans-c-65-bold.woff2') format('woff2');
+      src: url('/fonts/core-sans/core-sans-c-65-bold-latin-973642f2.woff2') format('woff2');
       font-style: normal;
       font-weight: 600;
       font-display: optional;
+      unicode-range: U+0000-00FF, U+0100-017F, U+2010-2027, U+202F, U+2030, U+20AC, U+2122, U+2190-21FF;
     }
 
     @font-face {
       font-family: 'Core Sans C';
-      src: url('/fonts/core-sans/core-sans-c-65-bold.woff2') format('woff2');
+      src: url('/fonts/core-sans/core-sans-c-65-bold-latin-973642f2.woff2') format('woff2');
       font-style: normal;
       font-weight: 700;
       font-display: optional;
+      unicode-range: U+0000-00FF, U+0100-017F, U+2010-2027, U+202F, U+2030, U+20AC, U+2122, U+2190-21FF;
     }
 
     @font-face {
       font-family: 'Core Sans C';
-      src: url('/fonts/core-sans/core-sans-c-75-extra-bold.woff2') format('woff2');
+      src: url('/fonts/core-sans/core-sans-c-75-extra-bold-latin-fc12709e.woff2') format('woff2');
       font-style: normal;
       font-weight: 800;
       font-display: optional;
+      unicode-range: U+0000-00FF, U+0100-017F, U+2010-2027, U+202F, U+2030, U+20AC, U+2122, U+2190-21FF;
     }
 
     :root {
-      --font-family: 'Core Sans C', 'Core Sans C Fallback', 'Segoe UI', sans-serif;
+      --font-family: 'Core Sans C', 'Core Sans C Fallback', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --color-surface: #ffffff;
       --color-body: #3e4250;
       --color-primary: #385AF9;
