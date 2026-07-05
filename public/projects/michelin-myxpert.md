@@ -20,7 +20,7 @@ Frederick Armando worked as Lead Product Designer. The published content describ
 
 ## Related links
 
-- [Michelin MyXpert case study](https://frederickarmando.fr/projets/myxpert)
+- [Michelin MyXpert case study](https://frederickarmando.fr/projets/michelin-myxpert)
 - [Projects](https://frederickarmando.fr/projets)
 
 ## Confidentiality note

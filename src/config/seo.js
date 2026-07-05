@@ -24,13 +24,13 @@ export const seoConfig = {
     description: "Contacter Frederick Armando pour échanger autour du design produit, de l'IA, du mobile et des expériences B2B/B2C.",
     image: '/assets/OG_Main.png'
   },
-  "tire-assistant": {
+  "michelin-tire-assistant": {
     title: "Michelin Tire Assistant | Frederick Armando",
     description: "Étude de cas Michelin Tire Assistant : transformer un chatbot B2C passif en levier proactif d'engagement et de conversion.",
     image: '/assets/OG_Michelin_TireAssistant.png'
   },
-  "myxpert": {
-    title: "MyXpert | App Native B2B Michelin",
+  "michelin-myxpert": {
+    title: "Michelin MyXpert | App Native B2B",
     description: "Pivot vers une app native B2B. Centralisation des ventes, suppression de 3 apps legacy pour 20k utilisateurs.",
     image: '/assets/OG_Michelin_MyXpert.png'
   },

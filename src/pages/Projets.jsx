@@ -23,7 +23,11 @@ import {
   IconSettings,
   IconUsers,
 } from '../components/icons.jsx';
-import { getLocalizedProjects, projects as projectEntries } from '../data/projects.js';
+import {
+  getFilteredProjects,
+  getLocalizedProjects,
+  projectFilterDefinitions,
+} from '../data/projects.js';
 import { projectsPageContent } from '../i18n/content/projectsPage.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
@@ -31,9 +35,7 @@ import { seoConfig } from '../config/seo.js';
 import { createProjectsStructuredData } from '../config/structuredData.js';
 
 const AUTOPLAY_DURATION = 10000;
-const PROJECT_COUNT = projectEntries.length;
 const LOOP_SET_COUNT = 3;
-const MIDDLE_SET_OFFSET = PROJECT_COUNT;
 
 const tagIcons = {
   building: IconBuilding,
@@ -84,21 +86,21 @@ function ProjectCarouselFallback({ language, onRetry }) {
   );
 }
 
-function normalizeProjectIndex(index) {
-  if (PROJECT_COUNT === 0) {
+function normalizeProjectIndex(index, projectCount) {
+  if (projectCount === 0) {
     return 0;
   }
 
-  return ((index % PROJECT_COUNT) + PROJECT_COUNT) % PROJECT_COUNT;
+  return ((index % projectCount) + projectCount) % projectCount;
 }
 
-function getLoopedRenderedIndex(renderedIndex) {
-  if (PROJECT_COUNT === 0) {
+function getLoopedRenderedIndex(renderedIndex, projectCount) {
+  if (projectCount === 0) {
     return 0;
   }
 
-  if (renderedIndex < PROJECT_COUNT || renderedIndex >= PROJECT_COUNT * 2) {
-    return normalizeProjectIndex(renderedIndex) + MIDDLE_SET_OFFSET;
+  if (renderedIndex < projectCount || renderedIndex >= projectCount * 2) {
+    return normalizeProjectIndex(renderedIndex, projectCount) + projectCount;
   }
 
   return renderedIndex;
@@ -132,6 +134,30 @@ function ProjectSlideCopy({ project, content }) {
         />
       </div>
 
+    </div>
+  );
+}
+
+function ProjectFilters({ activeFilter, content, onFilterChange }) {
+  return (
+    <div className="project-filters" role="group" aria-label={content.filters.label}>
+      <div className="project-filters__list">
+        {projectFilterDefinitions.map((filter) => {
+          const isActive = filter.id === activeFilter;
+
+          return (
+            <button
+              key={filter.id}
+              className={`project-filter${isActive ? ' project-filter--active' : ''}`}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => onFilterChange(filter.id)}
+            >
+              {content.filters.options[filter.id] ?? filter.id}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -221,7 +247,15 @@ export default function Projets() {
   const location = useLocation();
   const { language } = useLanguage();
   const content = projectsPageContent[language];
-  const [activeRenderedIndex, setActiveRenderedIndex] = useState(MIDDLE_SET_OFFSET);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const allProjects = useMemo(() => getLocalizedProjects(language), [language]);
+  const projects = useMemo(
+    () => getFilteredProjects(allProjects, activeFilter),
+    [activeFilter, allProjects],
+  );
+  const projectCount = projects.length;
+  const middleSetOffset = projectCount;
+  const [activeRenderedIndex, setActiveRenderedIndex] = useState(middleSetOffset);
   const [isAutoPlaying, setIsAutoPlaying] = useState(() => {
     if (typeof window === 'undefined') return true;
     return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -240,9 +274,9 @@ export default function Projets() {
   const autoplayFrameRef = useRef(null);
   const hasInitializedRef = useRef(false);
   const suppressClickRef = useRef(false);
-  const targetIndexRef = useRef(MIDDLE_SET_OFFSET);
+  const targetIndexRef = useRef(middleSetOffset);
   const wheelEndTimeoutRef = useRef(null);
-  const wheelStartIndexRef = useRef(MIDDLE_SET_OFFSET);
+  const wheelStartIndexRef = useRef(middleSetOffset);
   const wheelTravelRef = useRef(0);
   const autoplayCycleStartRef = useRef(null);
   const autoplayProgressRef = useRef(0);
@@ -253,11 +287,10 @@ export default function Projets() {
     isPointerDown: false,
   });
 
-  const projects = useMemo(() => getLocalizedProjects(language), [language]);
   const projectsSeoData = seoConfig.projects;
   const projectsStructuredData = useMemo(
-    () => createProjectsStructuredData({ ...projectsSeoData, projects }),
-    [projects, projectsSeoData],
+    () => createProjectsStructuredData({ ...projectsSeoData, projects: allProjects }),
+    [allProjects, projectsSeoData],
   );
   useSEO({
     title: projectsSeoData.title,
@@ -268,19 +301,24 @@ export default function Projets() {
   });
 
   const renderedProjects = useMemo(
-    () =>
-      Array.from({ length: PROJECT_COUNT * LOOP_SET_COUNT }, (_, renderedIndex) => {
-        const normalizedIndex = renderedIndex % PROJECT_COUNT;
+    () => {
+      if (projectCount === 0) {
+        return [];
+      }
+
+      return Array.from({ length: projectCount * LOOP_SET_COUNT }, (_, renderedIndex) => {
+        const normalizedIndex = renderedIndex % projectCount;
 
         return {
-          key: `${Math.floor(renderedIndex / PROJECT_COUNT)}-${projects[normalizedIndex].slug}`,
+          key: `${Math.floor(renderedIndex / projectCount)}-${projects[normalizedIndex].slug}`,
           project: projects[normalizedIndex],
           renderedIndex,
         };
-      }),
-    [projects],
+      });
+    },
+    [projectCount, projects],
   );
-  const activeIndex = normalizeProjectIndex(activeRenderedIndex);
+  const activeIndex = normalizeProjectIndex(activeRenderedIndex, projectCount);
   const activeProject = useMemo(
     () => projects[activeIndex] ?? projects[0],
     [activeIndex, projects],
@@ -341,8 +379,36 @@ export default function Projets() {
     setAutoplayProgress(0);
   }
 
+  useEffect(() => {
+    slideRefs.current = [];
+    slideLinkRefs.current = [];
+    const nextIndex = projectCount > 0 ? middleSetOffset : 0;
+
+    targetIndexRef.current = nextIndex;
+    wheelStartIndexRef.current = nextIndex;
+    wheelTravelRef.current = 0;
+    suppressClickRef.current = false;
+    hasInitializedRef.current = false;
+    setActiveRenderedIndex(nextIndex);
+    setAutoplayProgress(0);
+    autoplayProgressRef.current = 0;
+
+    if (projectCount === 0) {
+      stopAutoplayFrame();
+      return undefined;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      alignProject(nextIndex, 'auto');
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
+  }, [activeFilter, language, middleSetOffset, projectCount]);
+
   function getAutoplayNextIndex() {
-    if (PROJECT_COUNT <= 1) {
+    if (projectCount <= 1) {
       return targetIndexRef.current;
     }
 
@@ -398,13 +464,17 @@ export default function Projets() {
     }
 
     function updateActiveProjectFromScroll() {
+      if (projectCount === 0) {
+        return;
+      }
+
       if (scrollFrameRef.current) {
         window.cancelAnimationFrame(scrollFrameRef.current);
       }
 
       scrollFrameRef.current = window.requestAnimationFrame(() => {
         const nearestIndex = getNearestProjectIndex(scroller);
-        const loopedRenderedIndex = getLoopedRenderedIndex(nearestIndex);
+        const loopedRenderedIndex = getLoopedRenderedIndex(nearestIndex, projectCount);
 
         if (loopedRenderedIndex !== nearestIndex) {
           const loopedOffset = getProjectOffset(loopedRenderedIndex);
@@ -434,7 +504,7 @@ export default function Projets() {
         window.cancelAnimationFrame(scrollFrameRef.current);
       }
     };
-  }, []);
+  }, [projectCount]);
 
   useEffect(() => {
     restartAutoplayCycle();
@@ -606,7 +676,7 @@ export default function Projets() {
     stopWheelScrollSync();
     const safeIndex =
       nextIndex < 0 || nextIndex >= renderedProjects.length
-        ? getLoopedRenderedIndex(nextIndex)
+        ? getLoopedRenderedIndex(nextIndex, projectCount)
         : nextIndex;
 
     alignProject(safeIndex);
@@ -615,7 +685,7 @@ export default function Projets() {
   function focusProjectLink(index) {
     const safeIndex =
       index < 0 || index >= renderedProjects.length
-        ? getLoopedRenderedIndex(index)
+        ? getLoopedRenderedIndex(index, projectCount)
         : index;
 
     window.requestAnimationFrame(() => {
@@ -642,7 +712,7 @@ export default function Projets() {
 
     if (event.key === 'Home') {
       event.preventDefault();
-      const firstIndex = MIDDLE_SET_OFFSET;
+      const firstIndex = middleSetOffset;
       moveToProject(firstIndex);
       focusProjectLink(firstIndex);
       return;
@@ -650,7 +720,7 @@ export default function Projets() {
 
     if (event.key === 'End') {
       event.preventDefault();
-      const lastIndex = MIDDLE_SET_OFFSET + PROJECT_COUNT - 1;
+      const lastIndex = middleSetOffset + projectCount - 1;
       moveToProject(lastIndex);
       focusProjectLink(lastIndex);
     }
@@ -693,7 +763,7 @@ export default function Projets() {
       let targetIndex = nearestIndex;
 
       if (Math.abs(wheelTravelRef.current) > commitThreshold) {
-        targetIndex = getLoopedRenderedIndex(baseIndex + direction);
+        targetIndex = getLoopedRenderedIndex(baseIndex + direction, projectCount);
       }
 
       stopWheelScrollSync();
@@ -735,131 +805,152 @@ export default function Projets() {
       fallback={({ onRetry }) => <ProjectCarouselFallback language={language} onRetry={onRetry} />}
     >
       <section className="project-showcase" aria-label={content.sectionLabel}>
-      <div
-        className={`project-autoplay-progress${isAutoPlaying ? '' : ' project-autoplay-progress--paused'}`}
-        aria-hidden="true"
-      >
-        <span
-          className="project-autoplay-progress__fill"
-          style={{ transform: `scaleX(${autoplayProgress})` }}
+        <ProjectFilters
+          activeFilter={activeFilter}
+          content={content}
+          onFilterChange={setActiveFilter}
         />
-      </div>
 
-      <p className="sr-only" aria-live="polite" aria-atomic="true">
-        {activeProjectAnnouncement}
-      </p>
-
-      <div className="project-showcase__content">
-        <div className="project-shell project-shell--copy">
-          <ProjectSlideCopy
-            key={activeProject.slug}
-            project={activeProject}
-            content={content}
-          />
-        </div>
-
-        <div className="project-shell project-shell--stage">
-          <div
-            ref={stageScrollerRef}
-            className={`project-stage${isDragging ? ' project-stage--dragging' : ''}${isWheelScrolling ? ' project-stage--free-scroll' : ''}`}
-            role="region"
-            aria-roledescription="carousel"
-            aria-label={content.stageLabel}
-            onClickCapture={handleStageClickCapture}
-            onMouseDown={handleStageMouseDown}
-            onTouchStart={() => {
-              stopWheelScrollSync();
-              setIsTouchInteracting(true);
-            }}
-            onTouchEnd={() => {
-              setIsTouchInteracting(false);
-            }}
-            onTouchCancel={() => {
-              setIsTouchInteracting(false);
-            }}
-            onWheel={handleStageWheel}
-          >
-            {renderedProjects.map(({ key, project, renderedIndex }) => {
-              const detailPath = `/projets/${project.slug}`;
-              const isActive = renderedIndex === activeRenderedIndex;
-              const isCardLinked = project.slug !== 'upcoming-case-studies';
-
-              return (
-                <article
-                  key={key}
-                  ref={(node) => {
-                    slideRefs.current[renderedIndex] = node;
-                  }}
-                  className={`project-stage__item${isActive ? ' project-stage__item--active' : ''}`}
-                  data-active={isActive ? 'true' : 'false'}
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-current={isActive ? 'true' : undefined}
-                  aria-hidden={isActive ? undefined : 'true'}
-                  aria-label={content.slideLabel(project.title, normalizeProjectIndex(renderedIndex) + 1, projects.length)}
-                >
-                  {isCardLinked ? (
-                    <Link
-                      ref={(node) => {
-                        slideLinkRefs.current[renderedIndex] = node;
-                      }}
-                      className="project-stage__card-link"
-                      to={project.ctaTo ?? detailPath}
-                      state={project.ctaTo ? undefined : { backgroundLocation: location }}
-                      aria-label={content.openProjectLabel(project.title)}
-                      tabIndex={isActive ? 0 : -1}
-                      onKeyDown={(event) => handleCardKeyDown(event, renderedIndex)}
-                    >
-                      <div className="project-stage__card">
-                        <div className="project-stage__surface">
-                          <ProjectArtwork
-                            project={project}
-                            mode={getArtworkMode(renderedIndex, activeRenderedIndex)}
-                          />
-                        </div>
-                      </div>
-                    </Link>
-                  ) : (
-                    <div className="project-stage__card-link" aria-hidden="true">
-                      <div className="project-stage__card">
-                        <div className="project-stage__surface">
-                          <ProjectArtwork
-                            project={project}
-                            mode={getArtworkMode(renderedIndex, activeRenderedIndex)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </article>
-              );
-            })}
+        {!activeProject ? (
+          <div className="project-filter-empty" role="status">
+            <p>{content.filters.empty}</p>
+            <Button variant="tertiary" onClick={() => setActiveFilter('all')}>
+              {content.filters.reset}
+            </Button>
           </div>
+        ) : (
+          <>
+            <div
+              className={`project-autoplay-progress${isAutoPlaying ? '' : ' project-autoplay-progress--paused'}`}
+              aria-hidden="true"
+            >
+              <span
+                className="project-autoplay-progress__fill"
+                style={{ transform: `scaleX(${autoplayProgress})` }}
+              />
+            </div>
 
-          <ProjectControls
-            project={activeProject}
-            index={activeIndex}
-            total={projects.length}
-            onPrevious={goToPreviousProject}
-            onNext={goToNextProject}
-            onToggleAutoPlay={toggleAutoPlay}
-            isAutoPlaying={isAutoPlaying}
-            content={content}
-          />
-        </div>
-      </div>
+            <p className="sr-only" aria-live="polite" aria-atomic="true">
+              {activeProjectAnnouncement}
+            </p>
 
-      <ProjectControls
-        project={activeProject}
-        index={activeIndex}
-        total={projects.length}
-        onPrevious={goToPreviousProject}
-        onNext={goToNextProject}
-        onToggleAutoPlay={toggleAutoPlay}
-        isAutoPlaying={isAutoPlaying}
-        content={content}
-        sticky
-      />
+            <div className="project-showcase__content">
+              <div className="project-shell project-shell--copy">
+                <ProjectSlideCopy
+                  key={activeProject.slug}
+                  project={activeProject}
+                  content={content}
+                />
+              </div>
+
+              <div className="project-shell project-shell--stage">
+                <div
+                  ref={stageScrollerRef}
+                  className={`project-stage${isDragging ? ' project-stage--dragging' : ''}${isWheelScrolling ? ' project-stage--free-scroll' : ''}`}
+                  role="region"
+                  aria-roledescription="carousel"
+                  aria-label={content.stageLabel}
+                  onClickCapture={handleStageClickCapture}
+                  onMouseDown={handleStageMouseDown}
+                  onTouchStart={() => {
+                    stopWheelScrollSync();
+                    setIsTouchInteracting(true);
+                  }}
+                  onTouchEnd={() => {
+                    setIsTouchInteracting(false);
+                  }}
+                  onTouchCancel={() => {
+                    setIsTouchInteracting(false);
+                  }}
+                  onWheel={handleStageWheel}
+                >
+                  {renderedProjects.map(({ key, project, renderedIndex }) => {
+                    const detailPath = `/projets/${project.slug}`;
+                    const isActive = renderedIndex === activeRenderedIndex;
+                    const isCardLinked = project.slug !== 'upcoming-case-studies';
+
+                    return (
+                      <article
+                        key={key}
+                        ref={(node) => {
+                          slideRefs.current[renderedIndex] = node;
+                        }}
+                        className={`project-stage__item${isActive ? ' project-stage__item--active' : ''}`}
+                        data-active={isActive ? 'true' : 'false'}
+                        role="group"
+                        aria-roledescription="slide"
+                        aria-current={isActive ? 'true' : undefined}
+                        aria-hidden={isActive ? undefined : 'true'}
+                        aria-label={content.slideLabel(
+                          project.title,
+                          normalizeProjectIndex(renderedIndex, projectCount) + 1,
+                          projects.length,
+                        )}
+                      >
+                        {isCardLinked ? (
+                          <Link
+                            ref={(node) => {
+                              slideLinkRefs.current[renderedIndex] = node;
+                            }}
+                            className="project-stage__card-link"
+                            to={project.ctaTo ?? detailPath}
+                            state={project.ctaTo ? undefined : { backgroundLocation: location }}
+                            aria-label={content.openProjectLabel(project.title)}
+                            tabIndex={isActive ? 0 : -1}
+                            onKeyDown={(event) => handleCardKeyDown(event, renderedIndex)}
+                          >
+                            <div className="project-stage__card">
+                              <div className="project-stage__surface">
+                                <ProjectArtwork
+                                  project={project}
+                                  mode={getArtworkMode(renderedIndex, activeRenderedIndex)}
+                                />
+                              </div>
+                            </div>
+                          </Link>
+                        ) : (
+                          <div className="project-stage__card-link" aria-hidden="true">
+                            <div className="project-stage__card">
+                              <div className="project-stage__surface">
+                                <ProjectArtwork
+                                  project={project}
+                                  mode={getArtworkMode(renderedIndex, activeRenderedIndex)}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </article>
+                    );
+                  })}
+                </div>
+
+                <ProjectControls
+                  project={activeProject}
+                  index={activeIndex}
+                  total={projects.length}
+                  onPrevious={goToPreviousProject}
+                  onNext={goToNextProject}
+                  onToggleAutoPlay={toggleAutoPlay}
+                  isAutoPlaying={isAutoPlaying}
+                  content={content}
+                />
+              </div>
+            </div>
+
+            <ProjectControls
+              project={activeProject}
+              index={activeIndex}
+              total={projects.length}
+              onPrevious={goToPreviousProject}
+              onNext={goToNextProject}
+              onToggleAutoPlay={toggleAutoPlay}
+              isAutoPlaying={isAutoPlaying}
+              content={content}
+              sticky
+            />
+          </>
+        )}
       </section>
     </RouteErrorBoundary>
   );

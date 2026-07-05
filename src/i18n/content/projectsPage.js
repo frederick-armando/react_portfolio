@@ -15,6 +15,21 @@ export const projectsPageContent = {
     nextLabel: 'Projet suivant',
     pauseLabel: 'Mettre le défilement automatique en pause',
     resumeLabel: 'Relancer le défilement automatique',
+    filters: {
+      label: 'Filtrer les études de cas',
+      options: {
+        all: 'Tout',
+        ai: 'IA',
+        mobile: 'Mobile',
+        b2c: 'B2C',
+        'b2b-b2e': 'B2B / B2E',
+        enterprise: 'Grand compte',
+        discovery: 'Discovery',
+        'design-system': 'Design System',
+      },
+      empty: 'Aucune étude de cas ne correspond encore à ce filtre.',
+      reset: 'Tout afficher',
+    },
   },
   en: {
     sectionLabel: 'Case studies',
@@ -30,5 +45,20 @@ export const projectsPageContent = {
     nextLabel: 'Next project',
     pauseLabel: 'Pause autoplay',
     resumeLabel: 'Resume autoplay',
+    filters: {
+      label: 'Filter case studies',
+      options: {
+        all: 'All',
+        ai: 'AI',
+        mobile: 'Mobile',
+        b2c: 'B2C',
+        'b2b-b2e': 'B2B / B2E',
+        enterprise: 'Enterprise',
+        discovery: 'Discovery',
+        'design-system': 'Design System',
+      },
+      empty: 'No case study matches this filter yet.',
+      reset: 'Show all',
+    },
   },
 };

@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getLocalizedProjects, getProjectBySlug } from '../src/data/projects.js';
+import { getLocalizedProjects, getProjectBySlug, projects as projectEntries } from '../src/data/projects.js';
+import { seoConfig } from '../src/config/seo.js';
 import {
   createHomeStructuredData,
   createPageStructuredData,
@@ -64,14 +65,12 @@ const contactMeta = {
 
 const staticPageRoutes = [profileMeta, methodsMeta, contactMeta];
 
-const projectRoutes = [
-  { slug: 'tire-assistant', image: '/assets/OG_Michelin_TireAssistant.png' },
-  { slug: 'myxpert', image: '/assets/OG_Michelin_MyXpert.png' },
-  { slug: 'masteos', image: '/assets/OG_Masteos.png' },
-  { slug: 'helios', image: '/assets/OG_Helios.png' },
-  { slug: 'kirrk', image: '/assets/OG_Kirrk.png' },
-  { slug: 'mobioos', image: '/assets/OG_Mobioos.png' },
-];
+const projectRoutes = projectEntries
+  .filter((project) => project.detailStatus === 'ready')
+  .map((project) => ({
+    slug: project.slug,
+    image: project.seoImage,
+  }));
 
 const staticSeoAssets = [
   'OG_Main.png',
@@ -235,10 +234,11 @@ try {
     const folderPath = path.join(distDir, 'projets', route.slug);
     fs.mkdirSync(folderPath, { recursive: true });
 
+    const projectSeo = seoConfig[project.slug] ?? {};
     const meta = {
-      title: `${project.name || project.title} | ${project.company} Case Study`,
-      description: stripHtml(project.detailSummary || project.description),
-      image: route.image,
+      title: projectSeo.title ?? `${project.name || project.title} | ${project.company} Case Study`,
+      description: projectSeo.description ?? stripHtml(project.detailSummary || project.description),
+      image: projectSeo.image ?? route.image,
       path: `/projets/${route.slug}`,
     };
 

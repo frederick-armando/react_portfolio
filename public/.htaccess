@@ -2,15 +2,21 @@
   RewriteEngine On
   RewriteBase /
 
-  # 1. Spécifier le fichier à servir par défaut dans les dossiers physiques
+  # 1. Rediriger les anciens slugs vers les URLs canoniques.
+  RewriteRule ^projets/tire-assistant/?$ /projets/michelin-tire-assistant [R=301,L]
+  RewriteRule ^projets/myxpert/?$ /projets/michelin-myxpert [R=301,L]
+  RewriteRule ^projects/tire-assistant\.md$ /projects/michelin-tire-assistant.md [R=301,L]
+  RewriteRule ^projects/myxpert\.md$ /projects/michelin-myxpert.md [R=301,L]
+
+  # 2. Spécifier le fichier à servir par défaut dans les dossiers physiques
   DirectoryIndex index.html
 
-  # 2. Ignorer la réécriture pour les fichiers et dossiers qui existent physiquement sur le serveur
+  # 3. Ignorer la réécriture pour les fichiers et dossiers qui existent physiquement sur le serveur
   # Cela inclut le dossier /projets/ et ses sous-dossiers /projets/... générés par le script de postbuild.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
 
-  # 3. Router toutes les autres requêtes (chemins virtuels de la SPA) vers l'index racine de React
+  # 4. Router toutes les autres requêtes (chemins virtuels de la SPA) vers l'index racine de React
   RewriteRule ^(.*)$ /index.html [L,QSA]
 </IfModule>
 

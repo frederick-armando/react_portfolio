@@ -45,7 +45,7 @@ The case study states that strong conversational UX depends on more than answer 
 
 ## Related links
 
-- [Michelin Tire Assistant case study](https://frederickarmando.fr/projets/tire-assistant)
+- [Michelin Tire Assistant case study](https://frederickarmando.fr/projets/michelin-tire-assistant)
 - [Projects](https://frederickarmando.fr/projets)
 
 ## Confidentiality note

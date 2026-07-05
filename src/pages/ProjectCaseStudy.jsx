@@ -62,7 +62,7 @@ import tireAssistantABTest from '../assets/projects/tire-assistant/Chatbot ABTes
 import tireAssistantHighFidelity from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap.png';
 import tireAssistantHighFidelity2x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@2x.png';
 import tireAssistantHighFidelity3x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@3x.png';
-import { getLocalizedProjects, getProjectBySlug } from '../data/projects.js';
+import { getLocalizedProjects, getProjectBySlug, resolveProjectSlug } from '../data/projects.js';
 import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
@@ -183,12 +183,12 @@ function CaseStudyHeader({ project, content, isModal, dragHandlers, titleId, clo
 }
 
 const projectConnections = {
-  'tire-assistant': { primary: 'myxpert', secondaries: ['masteos', 'kirrk'] },
-  myxpert: { primary: 'tire-assistant', secondaries: ['masteos', 'kirrk'] },
-  masteos: { primary: 'helios', secondaries: ['tire-assistant', 'kirrk'] },
-  helios: { primary: 'masteos', secondaries: ['tire-assistant', 'kirrk'] },
-  kirrk: { primary: 'mobioos', secondaries: ['tire-assistant', 'masteos'] },
-  mobioos: { primary: 'kirrk', secondaries: ['tire-assistant', 'masteos'] }
+  'michelin-tire-assistant': { primary: 'michelin-myxpert', secondaries: ['masteos', 'kirrk'] },
+  'michelin-myxpert': { primary: 'michelin-tire-assistant', secondaries: ['masteos', 'kirrk'] },
+  masteos: { primary: 'helios', secondaries: ['michelin-tire-assistant', 'kirrk'] },
+  helios: { primary: 'masteos', secondaries: ['michelin-tire-assistant', 'kirrk'] },
+  kirrk: { primary: 'mobioos', secondaries: ['michelin-tire-assistant', 'masteos'] },
+  mobioos: { primary: 'kirrk', secondaries: ['michelin-tire-assistant', 'masteos'] }
 };
 
 function NextProjectsFooter({ currentSlug, projects, isModal, onNavigateToProject }) {
@@ -1346,9 +1346,19 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
   );
 }
 
-
 export default function ProjectCaseStudy({ isModal }) {
   const { slug } = useParams();
+  const location = useLocation();
+  const canonicalSlug = resolveProjectSlug(slug);
+
+  if (canonicalSlug && canonicalSlug !== slug) {
+    return <Navigate replace to={`/projets/${canonicalSlug}`} state={location.state} />;
+  }
+
+  return <ProjectCaseStudyContent isModal={isModal} slug={slug} />;
+}
+
+function ProjectCaseStudyContent({ isModal, slug }) {
   const { language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
@@ -1371,7 +1381,8 @@ export default function ProjectCaseStudy({ isModal }) {
 
   const currentProject = useMemo(() => getProjectBySlug(displaySlug, language), [displaySlug, language]);
   const globalContent = caseStudyContent[language];
-  const projectContent = globalContent[displaySlug] || {};
+  const contentKey = currentProject?.contentKey ?? displaySlug;
+  const projectContent = globalContent[contentKey] || {};
 
   const [translateY, setTranslateY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -1380,7 +1391,7 @@ export default function ProjectCaseStudy({ isModal }) {
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const previousFocusedElementRef = useRef(null);
-  const modalTitleId = `case-study-modal-title-${displaySlug}`;
+  const modalTitleId = `case-study-modal-title-${currentProject?.slug ?? displaySlug}`;
 
   useEffect(() => {
     if (shellRef.current) {
@@ -1388,7 +1399,7 @@ export default function ProjectCaseStudy({ isModal }) {
     }
   }, [displaySlug]);
 
-  const seoData = seoConfig[displaySlug] || seoConfig.home;
+  const seoData = seoConfig[currentProject?.slug ?? displaySlug] || seoConfig.home;
   const structuredData = useMemo(
     () =>
       currentProject
@@ -1405,7 +1416,7 @@ export default function ProjectCaseStudy({ isModal }) {
     title: seoData.title,
     description: seoData.description,
     image: seoData.image,
-    urlPath: `/projets/${displaySlug}`,
+    urlPath: `/projets/${currentProject?.slug ?? displaySlug}`,
     ogType: 'article',
     structuredData,
   });
@@ -1583,7 +1594,7 @@ export default function ProjectCaseStudy({ isModal }) {
     >
       <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
       <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
-        {currentProject.slug === 'tire-assistant' ? (
+        {contentKey === 'tire-assistant' ? (
           <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
         ) : currentProject.slug === 'masteos' ? (
           <MasteosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
@@ -1593,7 +1604,7 @@ export default function ProjectCaseStudy({ isModal }) {
           <KirrkCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
         ) : currentProject.slug === 'mobioos' ? (
           <MobioosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : currentProject.slug === 'myxpert' ? (
+        ) : contentKey === 'myxpert' ? (
           <MyxpertCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
         ) : (
           <PlaceholderCaseStudy
