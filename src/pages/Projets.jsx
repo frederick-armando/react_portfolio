@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../components/Button.jsx';
 import ProjectArtwork from '../components/ProjectArtwork.jsx';
+import RouteErrorBoundary from '../components/RouteErrorBoundary.jsx';
 import '../styles/pages.css';
 import {
   IconArrowLeft,
@@ -53,6 +54,35 @@ const ctaIcons = {
   'bot-message-square': IconBotMessageSquare,
   truck: IconTruck,
 };
+
+const projectFallbackContent = {
+  fr: {
+    title: 'Chargement interrompu',
+    text: 'Une erreur est survenue pendant le chargement de cette section.',
+    retry: 'Réessayer',
+  },
+  en: {
+    title: 'Loading interrupted',
+    text: 'Something went wrong while loading this section.',
+    retry: 'Try again',
+  },
+};
+
+function ProjectCarouselFallback({ language, onRetry }) {
+  const content = projectFallbackContent[language] ?? projectFallbackContent.fr;
+
+  return (
+    <section className="project-showcase project-showcase--fallback" role="alert">
+      <div className="route-load-error__panel">
+        <h1>{content.title}</h1>
+        <p>{content.text}</p>
+        <Button variant="primary" onClick={onRetry}>
+          {content.retry}
+        </Button>
+      </div>
+    </section>
+  );
+}
 
 function normalizeProjectIndex(index) {
   if (PROJECT_COUNT === 0) {
@@ -700,7 +730,11 @@ export default function Projets() {
   }
 
   return (
-    <section className="project-showcase" aria-label={content.sectionLabel}>
+    <RouteErrorBoundary
+      resetKey={`projects-${language}`}
+      fallback={({ onRetry }) => <ProjectCarouselFallback language={language} onRetry={onRetry} />}
+    >
+      <section className="project-showcase" aria-label={content.sectionLabel}>
       <div
         className={`project-autoplay-progress${isAutoPlaying ? '' : ' project-autoplay-progress--paused'}`}
         aria-hidden="true"
@@ -826,6 +860,7 @@ export default function Projets() {
         content={content}
         sticky
       />
-    </section>
+      </section>
+    </RouteErrorBoundary>
   );
 }

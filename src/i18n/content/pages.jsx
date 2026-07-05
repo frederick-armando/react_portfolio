@@ -96,15 +96,7 @@ export const pagesContent = {
       locationTitle: 'Où me trouver :',
       locationAddress: (
         <>
-          Disponible pour des opportunités en <strong>hybride ou remote</strong> (basé à{' '}
-          <span className="city-light city-light--paris" data-city="Paris">
-            Paris
-          </span>{' '}
-          /{' '}
-          <span className="city-light city-light--lyon" data-city="Lyon">
-            Lyon
-          </span>
-          ).
+          Basé en France, disponible pour des opportunités en <strong>hybride ou remote</strong>.
         </>
       ),
       callMe: 'Appelez-moi',
@@ -206,15 +198,7 @@ export const pagesContent = {
       locationTitle: 'Where to find me:',
       locationAddress: (
         <>
-          Available for <strong>hybrid or remote</strong> opportunities (based in{' '}
-          <span className="city-light city-light--paris" data-city="Paris">
-            Paris
-          </span>{' '}
-          /{' '}
-          <span className="city-light city-light--lyon" data-city="Lyon">
-            Lyon
-          </span>
-          ).
+          Based in France, available for <strong>hybrid or remote</strong> opportunities.
         </>
       ),
       callMe: 'Call me',

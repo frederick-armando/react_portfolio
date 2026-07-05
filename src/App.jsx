@@ -17,21 +17,21 @@ const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 const loadingContent = {
   fr: {
     caseStudy: "Chargement de l'étude de cas",
-    errorTitle: 'Impossible de charger cette section',
-    errorText: 'La ressource demandée ne répond pas correctement. Rechargez la page ou revenez à la navigation.',
-    reload: 'Recharger',
+    errorTitle: 'Chargement interrompu',
+    errorText: 'Une erreur est survenue pendant le chargement de cette section.',
+    retry: 'Réessayer',
     close: 'Fermer',
   },
   en: {
     caseStudy: 'Loading case study',
-    errorTitle: 'Unable to load this section',
-    errorText: 'The requested resource did not respond correctly. Reload the page or return to navigation.',
-    reload: 'Reload',
+    errorTitle: 'Loading interrupted',
+    errorText: 'Something went wrong while loading this section.',
+    retry: 'Try again',
     close: 'Close',
   },
 };
 
-function RouteLoadError({ isModal = false }) {
+function RouteLoadError({ isModal = false, onRetry }) {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const content = loadingContent[language] ?? loadingContent.fr;
@@ -48,8 +48,8 @@ function RouteLoadError({ isModal = false }) {
               {content.close}
             </Button>
           )}
-          <Button variant="primary" onClick={() => window.location.reload()}>
-            {content.reload}
+          <Button variant="primary" onClick={onRetry ?? (() => window.location.reload())}>
+            {content.retry}
           </Button>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function App() {
       <Layout>
         <RouteErrorBoundary
           resetKey={(backgroundLocation || location).key ?? (backgroundLocation || location).pathname}
-          fallback={<RouteLoadError />}
+          fallback={({ onRetry }) => <RouteLoadError onRetry={onRetry} />}
         >
           <Suspense fallback={<PageSkeleton route={(backgroundLocation || location).pathname} />}>
             <Routes location={backgroundLocation || location}>
@@ -108,7 +108,7 @@ export default function App() {
       {backgroundLocation && (
         <RouteErrorBoundary
           resetKey={`modal-${location.key ?? location.pathname}`}
-          fallback={<RouteLoadError isModal />}
+          fallback={({ onRetry }) => <RouteLoadError isModal onRetry={onRetry} />}
         >
           <Suspense fallback={<CaseStudyModalSkeleton label={content.caseStudy} />}>
             <Routes>

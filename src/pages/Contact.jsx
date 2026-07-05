@@ -105,6 +105,7 @@ export default function Contact() {
                 icon={IconPhone}
                 href="tel:+33659054369"
                 className="contact-action-btn"
+                aria-label={content.callMe}
               >
                 {content.callMe}
               </Button>
@@ -113,6 +114,7 @@ export default function Contact() {
                 icon={IconMail}
                 href="mailto:frederickarmando@gmail.com"
                 className="contact-action-btn"
+                aria-label={content.mailMe}
               >
                 {content.mailMe}
               </Button>

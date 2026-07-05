@@ -26,6 +26,14 @@ Frederick Armando worked as Lead Product Designer. His published role included f
 - Rework scenarios to avoid dead ends
 - Guide users without interrupting the existing journey
 
+## Trade-offs
+
+The proactive layer had to increase engagement without becoming intrusive. Notifications needed to stay contextual, readable and limited to moments where they could support a decision, while preserving the existing experience and organic SEO.
+
+## Solution
+
+The redesign turned the chatbot into a more proactive assistant with contextual suggestions, better-timed welcome messages, fallback paths and recommendations adapted to detected needs. The design was built to guide without interrupting, and to help users move from a question to an action.
+
 ## Published impact
 
 - +18% open rate

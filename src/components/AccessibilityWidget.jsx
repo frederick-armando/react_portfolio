@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { IconPersonStanding } from './icons-shell.jsx';
+import { IconClose, IconPersonStanding } from './icons-shell.jsx';
 import Button from './Button.jsx';
+import RouteErrorBoundary from './RouteErrorBoundary.jsx';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import '../styles/Accessibility.css';
 
@@ -58,6 +59,9 @@ const translations = {
     reset: "Réinitialiser",
     resetAll: "Réinitialiser tous les paramètres",
     openMenu: "Ouvrir les réglages d'accessibilité",
+    errorTitle: "Chargement interrompu",
+    errorText: "Une erreur est survenue pendant le chargement de cette section.",
+    retry: "Réessayer",
     interaction: "Interaction",
     bigCursor: "Pointeur Agrandi",
     enhancedFocus: "Focus Clavier Visible"
@@ -80,11 +84,52 @@ const translations = {
     reset: "Reset",
     resetAll: "Reset all settings",
     openMenu: "Open accessibility settings",
+    errorTitle: "Loading interrupted",
+    errorText: "Something went wrong while loading this section.",
+    retry: "Try again",
     interaction: "Interaction",
     bigCursor: "Big Cursor",
     enhancedFocus: "Enhanced Focus"
   }
 };
+
+function AccessibilityPanelFallback({ t, onClose, onRetry }) {
+  return (
+    <>
+      <div className="a11y-backdrop" onClick={onClose} />
+      <div className="a11y-panel-layer">
+        <div
+          id="a11y-panel"
+          className="a11y-panel a11y-panel--fallback"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="a11y-panel-fallback-title"
+        >
+          <div className="a11y-panel-header">
+            <h3 id="a11y-panel-fallback-title">{t.errorTitle}</h3>
+            <Button
+              variant="tertiary"
+              icon={IconClose}
+              iconOnly={true}
+              className="a11y-panel-close"
+              onClick={onClose}
+              aria-label={t.closePanel}
+              title={t.closePanel}
+            />
+          </div>
+          <div className="a11y-panel-content a11y-panel-content--fallback" role="alert">
+            <p>{t.errorText}</p>
+          </div>
+          <div className="a11y-panel-footer">
+            <Button variant="primary" onClick={onRetry}>
+              {t.retry}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 
 const AccessibilityWidget = () => {
   const { language } = useLanguage();
@@ -210,15 +255,22 @@ const AccessibilityWidget = () => {
   return (
     <>
       {isOpen && (
-        <Suspense fallback={null}>
-          <AccessibilityPanel
-            t={t}
-            settings={settings}
-            updateSetting={updateSetting}
-            onClose={closePanel}
-            onReset={handleReset}
-          />
-        </Suspense>
+        <RouteErrorBoundary
+          resetKey={`a11y-${language}`}
+          fallback={({ onRetry }) => (
+            <AccessibilityPanelFallback t={t} onClose={closePanel} onRetry={onRetry} />
+          )}
+        >
+          <Suspense fallback={null}>
+            <AccessibilityPanel
+              t={t}
+              settings={settings}
+              updateSetting={updateSetting}
+              onClose={closePanel}
+              onReset={handleReset}
+            />
+          </Suspense>
+        </RouteErrorBoundary>
       )}
       <Button
         variant="tertiary"

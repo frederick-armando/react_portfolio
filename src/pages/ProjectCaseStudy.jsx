@@ -107,6 +107,7 @@ const tireAssistantSectionOrder = [
   'role',
   'constraints',
   'decisions',
+  'tradeoffs',
   'solution',
   'impact',
   'learnings',
@@ -1012,7 +1013,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
 
       <RichCaseStudySection section={content.sections.decisions} />
 
-      <RichCaseStudySection section={content.sections.solution} />
+      <RichCaseStudySection section={content.sections.tradeoffs} />
 
       <section className="case-study-device-pair case-study-device-pair--stack">
         <figure className="case-study-device-mockup">
@@ -1028,6 +1029,8 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
           <figcaption>{content.captions.highFidelity}</figcaption>
         </figure>
       </section>
+
+      <RichCaseStudySection section={content.sections.solution} />
 
       <RichCaseStudySection section={content.sections.impact} />
 

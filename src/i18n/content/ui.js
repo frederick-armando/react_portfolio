@@ -2,9 +2,9 @@ export const uiContent = {
   fr: {
     topBar: {
       brandLabel: "Retour à l'accueil - Frederick Armando",
-      downloadLabel: 'Ouvrir le CV français',
+      downloadLabel: 'Télécharger le CV français de Frederick Armando',
       downloadText: 'CV',
-      downloadTooltip: 'Ouvrir le CV français',
+      downloadTooltip: 'Télécharger le CV français',
     },
     themeToggle: {
       ariaLabelLight: 'Activer le mode sombre',
@@ -44,9 +44,9 @@ export const uiContent = {
   en: {
     topBar: {
       brandLabel: 'Go to homepage - Frederick Armando',
-      downloadLabel: 'Open the English resume',
+      downloadLabel: 'Download Frederick Armando’s English resume',
       downloadText: 'Resume',
-      downloadTooltip: 'Open the English resume',
+      downloadTooltip: 'Download the English resume',
     },
     languageToggle: {
       label: 'FR',

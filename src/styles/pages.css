@@ -431,6 +431,11 @@
   padding-top: clamp(4px, 1vh, 16px);
 }
 
+.project-showcase--fallback {
+  display: grid;
+  place-items: center;
+}
+
 .project-showcase__content {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(440px, 1.05fr);

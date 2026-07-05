@@ -22,6 +22,10 @@ export default function TopBar() {
     language === 'fr'
       ? '/cv/fr_cv_frederick_armando.pdf'
       : '/cv/en_cv_frederick_armando.pdf';
+  const resumeFilename =
+    language === 'fr'
+      ? 'frederick-armando-lead-product-designer-cv.pdf'
+      : 'frederick-armando-lead-product-designer-resume.pdf';
 
   return (
     <header className="topbar">
@@ -38,6 +42,7 @@ export default function TopBar() {
             href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
+            download={resumeFilename}
             aria-label={content.downloadLabel}
             icon={IconDownload}
             iconOnly={true}
