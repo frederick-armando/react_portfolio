@@ -421,12 +421,8 @@ export default function Projets() {
       return undefined;
     }
 
-    const frameId = window.requestAnimationFrame(() => {
-      alignProject(nextIndex, 'auto');
-    });
-
     return () => {
-      window.cancelAnimationFrame(frameId);
+      stopAutoplayFrame();
     };
   }, [activeFilter, language, middleSetOffset, projectCount]);
 
@@ -487,7 +483,7 @@ export default function Projets() {
     }
 
     function updateActiveProjectFromScroll() {
-      if (projectCount === 0) {
+      if (projectCount === 0 || !hasInitializedRef.current) {
         return;
       }
 
@@ -519,7 +515,6 @@ export default function Projets() {
     }
 
     scroller.addEventListener('scroll', updateActiveProjectFromScroll, { passive: true });
-    updateActiveProjectFromScroll();
 
     return () => {
       scroller.removeEventListener('scroll', updateActiveProjectFromScroll);
@@ -613,23 +608,16 @@ export default function Projets() {
       alignProject(activeRenderedIndex, 'auto');
     };
 
-    if (!hasInitializedRef.current) {
-      const timeoutId = window.setTimeout(() => {
-        alignProject(activeRenderedIndex, 'auto');
-        hasInitializedRef.current = true;
-      }, 0);
-
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        window.clearTimeout(timeoutId);
-        window.removeEventListener('resize', handleResize);
-      };
-    }
+    const timeoutId = window.setTimeout(() => {
+      alignProject(activeRenderedIndex, 'auto');
+      // Set to true after DOM positioning settles
+      hasInitializedRef.current = true;
+    }, 50);
 
     window.addEventListener('resize', handleResize);
 
     return () => {
+      window.clearTimeout(timeoutId);
       window.removeEventListener('resize', handleResize);
     };
   }, [activeRenderedIndex]);
