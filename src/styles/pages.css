@@ -443,12 +443,6 @@
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.project-filters::-webkit-scrollbar {
-  display: none;
 }
 
 .project-filters__list {
@@ -464,6 +458,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   min-height: 40px;
   min-width: 0;
   border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
@@ -596,6 +591,10 @@
 .project-tag svg {
   width: 18px;
   height: 18px;
+}
+
+.project-tag__image {
+  max-width: 32px;
 }
 
 .project-showcase h1 {
@@ -1876,6 +1875,12 @@
     max-width: none;
     margin-inline: -16px;
     padding-inline: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .project-filters::-webkit-scrollbar {
+    display: none;
   }
 
   .project-filters__list {

@@ -11,7 +11,7 @@ export const projects = [
     companyType: 'Enterprise',
     audience: ['B2C'],
     industry: ['Mobility', 'Automotive'],
-    focus: ['AI', 'Conversational UX', 'Product Strategy'],
+    focus: ['AI', 'Conversational UX', 'Mobile UX', 'Product Strategy'],
     role: 'Lead Product Designer',
     translations: {
       fr: {
@@ -54,7 +54,7 @@ export const projects = [
     detailStatus: 'ready',
     seoImage: '/assets/OG_Michelin_MyXpert.png',
     companyType: 'Enterprise',
-    audience: ['B2B', 'B2E'],
+    audience: ['B2B'],
     industry: ['Mobility', 'Automotive', 'Enterprise Tools'],
     focus: ['Mobile UX', 'Design System', 'Internal Tools', 'Product Strategy'],
     role: 'Lead Product Designer',
@@ -183,7 +183,7 @@ export const projects = [
     detailStatus: 'ready',
     seoImage: '/assets/OG_Kirrk.png',
     companyType: 'Agency',
-    audience: ['B2B2C'],
+    audience: ['B2C'],
     industry: ['Mobility', 'Automotive', 'SaaS'],
     focus: ['Product Strategy', 'Mobile UX', 'Discovery'],
     role: 'UX/UI Designer',
@@ -311,23 +311,6 @@ export const projects = [
   },
 ];
 
-const companyTypeLabels = {
-  fr: {
-    Enterprise: 'Grand compte',
-    Startup: 'Startup',
-    'Scale-up': 'Scale-up',
-    Agency: 'Agence',
-    Freelance: 'Freelance',
-  },
-  en: {
-    Enterprise: 'Enterprise',
-    Startup: 'Startup',
-    'Scale-up': 'Scale-up',
-    Agency: 'Agency',
-    Freelance: 'Freelance',
-  },
-};
-
 const focusLabels = {
   fr: {
     AI: 'IA',
@@ -376,10 +359,10 @@ export const projectFilterDefinitions = [
   { id: 'ai', focusAny: ['AI', 'Conversational UX', 'Search UX'] },
   { id: 'mobile', focusAny: ['Mobile UX'] },
   { id: 'b2c', audienceAny: ['B2C'] },
-  { id: 'b2b-b2e', audienceAny: ['B2B', 'B2E', 'Internal'] },
-  { id: 'enterprise', companyTypeAny: ['Enterprise'] },
-  { id: 'discovery', focusAny: ['Discovery', 'Product Strategy'] },
+  { id: 'b2b', audienceAny: ['B2B'] },
+  { id: 'b2e', audienceAny: ['B2E', 'Internal'] },
   { id: 'design-system', focusAny: ['Design System'] },
+  { id: 'saas', industryAny: ['SaaS'] },
 ];
 
 function hasAny(values = [], candidates = []) {
@@ -388,6 +371,7 @@ function hasAny(values = [], candidates = []) {
 
 function getAudienceLabel(audience = []) {
   if (audience.includes('B2B2C')) return 'B2B2C';
+  if (audience.includes('B2B') && audience.includes('B2C')) return 'B2B / B2C';
   if (audience.includes('B2B') && (audience.includes('B2E') || audience.includes('Internal'))) {
     return 'B2B / B2E';
   }
@@ -395,6 +379,25 @@ function getAudienceLabel(audience = []) {
   if (audience.includes('B2B')) return 'B2B';
   if (audience.includes('B2C')) return 'B2C';
   return '';
+}
+
+function getCompanyTag(project, translation) {
+  const logoByCompany = {
+    Michelin: '/images/project-tags/michelin.png',
+    Masteos: '/images/project-tags/masteos.png',
+    RedFabriQ: '/images/project-tags/redfabriq.png',
+    Divers: '/images/project-tags/soon.png',
+    Various: '/images/project-tags/soon.png',
+  };
+
+  if (!translation.company) {
+    return null;
+  }
+
+  return {
+    image: logoByCompany[translation.company] ?? '/images/project-tags/soon.png',
+    label: translation.company,
+  };
 }
 
 function getPrimaryFocusLabel(focus = [], language = 'fr') {
@@ -406,24 +409,39 @@ function getPrimaryFocusLabel(focus = [], language = 'fr') {
 
 function buildProjectTags(project, translation, language = 'fr') {
   const tags = [];
-  const labels = companyTypeLabels[language] ?? companyTypeLabels.fr;
-  const audienceLabel = getAudienceLabel(project.audience);
   const focusLabel = getPrimaryFocusLabel(project.focus, language);
+  const companyTag = getCompanyTag(project, translation);
 
-  if (translation.company) {
-    tags.push({ icon: 'building', label: translation.company });
+  if (companyTag) {
+    tags.push(companyTag);
   }
 
-  if (project.companyType && project.companyType !== 'Freelance') {
-    tags.push({ icon: 'building', label: labels[project.companyType] ?? project.companyType });
-  }
-
-  if (audienceLabel) {
-    tags.push({ icon: 'users', label: audienceLabel });
-  }
+  const audiences = project.audience || [];
+  audiences.forEach((aud) => {
+    let label = aud;
+    if (aud === 'Internal') {
+      label = 'B2E';
+    }
+    if (!tags.some((t) => t.label === label)) {
+      tags.push({ icon: 'users', label });
+    }
+  });
 
   if (focusLabel) {
-    tags.push({ icon: 'cloud', label: focusLabel });
+    const focusIcon =
+      focusLabel === 'IA' || focusLabel === 'AI'
+        ? 'ai'
+        : focusLabel === 'Mobile'
+          ? 'mobile'
+          : focusLabel === 'Design System'
+            ? 'design-system'
+            : 'cloud';
+
+    tags.push({ icon: focusIcon, label: focusLabel });
+  }
+
+  if (project.industry?.includes('SaaS')) {
+    tags.push({ icon: 'cloud', label: 'SaaS' });
   }
 
   return tags.length > 0 ? tags.slice(0, 4) : translation.tags;
@@ -469,6 +487,7 @@ export function projectMatchesFilter(project, filterId = 'all') {
   return (
     hasAny(project.focus, filter.focusAny) ||
     hasAny(project.audience, filter.audienceAny) ||
+    hasAny(project.industry, filter.industryAny) ||
     hasAny([project.companyType], filter.companyTypeAny)
   );
 }

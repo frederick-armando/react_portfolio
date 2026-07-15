@@ -13,9 +13,11 @@ import {
   IconCog,
   IconHammer,
   IconKeySquare,
+  IconLibraryBig,
   IconLinkOut,
   IconMail,
   IconMessagesSquare,
+  IconMobile,
   IconBotMessageSquare,
   IconTruck,
   IconPause,
@@ -26,6 +28,7 @@ import {
 import {
   getFilteredProjects,
   getLocalizedProjects,
+  projectMatchesFilter,
   projectFilterDefinitions,
 } from '../data/projects.js';
 import { projectsPageContent } from '../i18n/content/projectsPage.js';
@@ -41,6 +44,9 @@ const tagIcons = {
   building: IconBuilding,
   users: IconUsers,
   cloud: IconCloud,
+  ai: IconBotMessageSquare,
+  mobile: IconMobile,
+  'design-system': IconLibraryBig,
 };
 
 const ctaIcons = {
@@ -111,7 +117,11 @@ function ProjectTag({ tag }) {
 
   return (
     <span className="project-tag">
-      <Icon />
+      {tag.image ? (
+        <img className="project-tag__image" src={tag.image} alt="" aria-hidden="true" />
+      ) : (
+        <Icon />
+      )}
       {tag.label}
     </span>
   );
@@ -138,12 +148,13 @@ function ProjectSlideCopy({ project, content }) {
   );
 }
 
-function ProjectFilters({ activeFilter, content, onFilterChange }) {
+function ProjectFilters({ activeFilter, content, filterCounts, onFilterChange }) {
   return (
     <div className="project-filters" role="group" aria-label={content.filters.label}>
       <div className="project-filters__list">
         {projectFilterDefinitions.map((filter) => {
           const isActive = filter.id === activeFilter;
+          const count = filterCounts[filter.id] ?? 0;
 
           return (
             <button
@@ -153,7 +164,10 @@ function ProjectFilters({ activeFilter, content, onFilterChange }) {
               aria-pressed={isActive}
               onClick={() => onFilterChange(filter.id)}
             >
-              {content.filters.options[filter.id] ?? filter.id}
+              <span>{content.filters.options[filter.id] ?? filter.id}</span>
+              <span className="project-filter__count" aria-hidden="true">
+                ({count})
+              </span>
             </button>
           );
         })}
@@ -253,6 +267,15 @@ export default function Projets() {
     () => getFilteredProjects(allProjects, activeFilter),
     [activeFilter, allProjects],
   );
+  const filterCounts = useMemo(() => {
+    const counts = {};
+    for (const filter of projectFilterDefinitions) {
+      counts[filter.id] = allProjects.filter((project) =>
+        project.detailStatus !== 'placeholder' && projectMatchesFilter(project, filter.id)
+      ).length;
+    }
+    return counts;
+  }, [allProjects]);
   const projectCount = projects.length;
   const middleSetOffset = projectCount;
   const [activeRenderedIndex, setActiveRenderedIndex] = useState(middleSetOffset);
@@ -327,7 +350,7 @@ export default function Projets() {
     ? content.currentProjectLabel(activeProject.title, activeIndex + 1, projects.length)
     : '';
   const isAutoplayBlocked =
-    isDragging || isWheelScrolling || isTouchInteracting || isPageHidden;
+    isDragging || isWheelScrolling || isTouchInteracting || isPageHidden || projectCount <= 1;
 
   function getProjectOffset(index) {
     const scroller = stageScrollerRef.current;
@@ -808,6 +831,7 @@ export default function Projets() {
         <ProjectFilters
           activeFilter={activeFilter}
           content={content}
+          filterCounts={filterCounts}
           onFilterChange={setActiveFilter}
         />
 

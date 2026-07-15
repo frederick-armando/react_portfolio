@@ -254,6 +254,22 @@ body.a11y-high-contrast .a11y-btn.active * {
   color: #000 !important;
   stroke: #000 !important;
 }
+/* Project filter buttons in high contrast mode */
+body.a11y-high-contrast .project-filter {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+body.a11y-high-contrast .project-filter--active,
+body.a11y-high-contrast .project-filter[aria-pressed="true"] {
+  background-color: #fff !important;
+  color: #000 !important;
+  border-color: #fff !important;
+}
+body.a11y-high-contrast .project-filter--active *,
+body.a11y-high-contrast .project-filter[aria-pressed="true"] * {
+  color: #000 !important;
+}
 /* Grayscale Mode */
 body.a11y-grayscale::before {
   content: "";

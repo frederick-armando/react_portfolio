@@ -275,6 +275,12 @@ button:focus-visible {
   transition-duration: var(--motion-duration-short);
 }
 
+.btn:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .topbar {
   position: fixed;
   top: 0;
