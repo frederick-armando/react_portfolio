@@ -6,3 +6,4 @@ _Archives/
 .vite/
 .env
 .env.*
+_backup/
