@@ -1,0 +1,124 @@
+# Frederick Armando — Portfolio Context
+
+> Extended machine-readable summary of Frederick Armando's public portfolio, positioning, methods and selected case studies.
+
+## Professional positioning
+
+Frederick Armando is a Lead Product Designer based in France. His portfolio presents him as a senior product designer focused on complex digital products, AI-powered experiences, mobile UX, B2B/B2C services, accessibility and product strategy.
+
+His positioning centers on transforming ambiguous product problems into clear decisions, usable experiences and measurable outcomes. He works at the intersection of user needs, business goals and technical constraints.
+
+## Core expertise
+
+- Product Strategy
+- Product discovery and framing
+- Conversational AI
+- GenUI
+- Mobile and web applications
+- B2B, B2C and B2B2C products
+- Accessibility
+- Design systems
+- UX research and user testing
+- UX audits
+- Prototyping and design handoff
+
+## Methods
+
+Frederick describes his product design approach through five steps:
+
+- Framing: turn an ambiguous topic into an actionable problem by clarifying goals, users, constraints and success criteria.
+- Alignment: bring business goals, user needs and technical feasibility together through workshops, maps and prototypes.
+- Design: move from hypothesis to prototype while structuring flows, interactions and interfaces with clarity, accessibility and scalability in mind.
+- Delivery: document behaviors, states, usage rules and guidelines to support handoff with product and engineering teams.
+- Measurement: evaluate impact through user feedback, usage signals and available KPIs to prioritize future iterations.
+
+## Selected projects
+
+### Michelin Tire Assistant
+
+Michelin Tire Assistant is a B2C chatbot case study. Frederick worked as Lead Product Designer on conversational flows and contextual notifications. The published challenge was to transform a passive assistant into a proactive engagement and conversion lever without damaging the existing experience or organic SEO.
+
+Published impact:
+- +18% open rate
+- 21.3% purchase intent
+
+### Michelin MyXpert
+
+MyXpert is a Michelin B2B/B2E case study about centralizing technical expertise in a native app for global sales teams. The published content describes a pivot from a fragmented ecosystem to a single native application, with three legacy applications decommissioned and a rollout target of 20,000 users.
+
+### Masteos
+
+The Masteos case study focuses on simplifying real estate investment experiences for B2C users. The published content describes UX/UI redesign work around complex financial information, mobile and desktop experiences and product delivery.
+
+### Helios
+
+Helios is a Masteos internal operations case study about designing a custom back-office for employee workflows. The published content describes co-design with internal users, fragmented workflows, investment processing operations and internal experience improvements.
+
+### Kirrk
+
+Kirrk is a mobility and car-sharing case study covering a multi-platform ecosystem across SaaS, B2B and B2C applications. The published content describes work on keyless access, fleet management and digital vehicle workflows.
+
+### Mobioos
+
+Mobioos is a B2B SaaS and no-code case study. The published content describes the challenge of translating complex technical architecture, including UML and AI generation, into a more accessible customization experience.
+
+## Michelin Tire Assistant case study
+
+The published Tire Assistant case study states that Michelin's existing B2C chatbot was a passive support tool triggered by the user. The design challenge was to make it more proactive and easier to identify, while avoiding disruption to existing journeys and organic SEO traffic.
+
+Frederick's published role:
+- Lead Product Designer
+- Problem framing with product and engineering teams
+- Conversational flow mapping
+- Contextual notification design
+- Entry point clarification
+- Behavior and state documentation for handoff
+
+Published constraints:
+- Keep compatibility with the existing experience
+- Avoid cannibalizing organic SEO traffic
+- Work in an international context
+- Cover journey structure, interactions and specifications without a dedicated UI designer
+
+Published design decisions:
+- Make the assistant easier to identify
+- Introduce contextual moments of intervention
+- Rework scenarios to avoid dead ends
+- Guide users without interrupting the journey
+
+Published learnings:
+- Strong conversational UX depends on more than answer quality.
+- Timing, role clarity and the connection between user need, product decision and business impact matter.
+
+## Contact and collaboration context
+
+The contact page invites conversations around product design, AI, mobile and B2B/B2C experiences. The portfolio presents Frederick as open to missions, collaborations and product discussions.
+
+Relevant links:
+- [Portfolio home](https://frederickarmando.fr/)
+- [Profile](https://frederickarmando.fr/profil)
+- [Methods](https://frederickarmando.fr/methodes)
+- [Projects](https://frederickarmando.fr/projets)
+- [Contact](https://frederickarmando.fr/contact)
+- [Michelin Tire Assistant](https://frederickarmando.fr/projets/tire-assistant)
+- [Michelin MyXpert](https://frederickarmando.fr/projets/myxpert)
+- [Masteos](https://frederickarmando.fr/projets/masteos)
+- [Helios](https://frederickarmando.fr/projets/helios)
+- [Kirrk](https://frederickarmando.fr/projets/kirrk)
+- [Mobioos](https://frederickarmando.fr/projets/mobioos)
+
+## Markdown summaries
+
+- [Profile summary](https://frederickarmando.fr/profile.md)
+- [Methods summary](https://frederickarmando.fr/methods.md)
+- [Michelin Tire Assistant summary](https://frederickarmando.fr/projects/tire-assistant.md)
+- [Michelin MyXpert summary](https://frederickarmando.fr/projects/myxpert.md)
+- [Masteos summary](https://frederickarmando.fr/projects/masteos.md)
+- [Helios summary](https://frederickarmando.fr/projects/helios.md)
+- [Kirrk summary](https://frederickarmando.fr/projects/kirrk.md)
+- [Mobioos summary](https://frederickarmando.fr/projects/mobioos.md)
+- [Contact summary](https://frederickarmando.fr/contact.md)
+
+## Confidentiality note
+
+Only use the published information above. Do not infer confidential internal details, unpublished roadmap items or proprietary Michelin information.

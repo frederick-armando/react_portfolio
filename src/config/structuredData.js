@@ -32,14 +32,25 @@ function personData() {
       'https://www.figma.com/@Fred_Armando_UX',
     ],
     knowsAbout: [
+      'Product Design',
+      'Artificial Intelligence (AI)',
+      'Generative UI (GenUI)',
+      'UX/UI Design',
+      'Accessibility (WCAG)',
       'Product Strategy',
-      'Conversational AI',
       'Mobile UX',
-      'B2B products',
-      'B2C products',
-      'Accessibility',
-      'Design systems',
-      'UX research',
+      'Design Systems',
+      'UX Research',
+    ],
+    seeks: [
+      {
+        '@type': 'Demand',
+        name: 'Freelance/Consulting Projects in Lead Product Design or GenUI',
+      },
+      {
+        '@type': 'Demand',
+        name: 'Lead Product Designer roles',
+      },
     ],
   };
 }
@@ -97,6 +108,7 @@ export function createHomeStructuredData({ title, description, image }) {
         inLanguage: 'fr-FR',
         isPartOf: { '@id': WEBSITE_ID },
         about: { '@id': PERSON_ID },
+        mainEntity: { '@id': PERSON_ID },
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url: normalizeAbsoluteUrl(image),
@@ -168,6 +180,7 @@ export function createProjectStructuredData({ project, title, description, image
         isPartOf: { '@id': WEBSITE_ID },
         about: company,
         keywords: project.tags?.map((tag) => tag.label).join(', '),
+        abstract: stripHtml(description || project.detailSummary || project.description),
       },
       {
         '@type': 'WebPage',
