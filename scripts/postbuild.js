@@ -64,7 +64,15 @@ const contactMeta = {
   type: 'ContactPage',
 };
 
-const staticPageRoutes = [profileMeta, methodsMeta, contactMeta];
+const designSystemMeta = {
+  title: 'Design System | Frederick Armando',
+  description:
+    'Spécifications et catalogue de composants du design system du portfolio de Frederick Armando.',
+  image: '/assets/OG_Main.png',
+  path: '/design-system',
+};
+
+const staticPageRoutes = [profileMeta, methodsMeta, contactMeta, designSystemMeta];
 
 const projectRoutes = projectEntries
   .filter((project) => project.detailStatus === 'ready')
@@ -296,6 +304,7 @@ try {
     '/methodes',
     '/projets',
     '/contact',
+    '/design-system',
     ...projectRoutes.map((route) => `/projets/${route.slug}`),
   ]);
 

@@ -13,6 +13,7 @@ const Projets = lazy(() => import('./pages/Projets.jsx'));
 const ProjectCaseStudy = lazy(() => import('./pages/ProjectCaseStudy.jsx'));
 const Contact = lazy(() => import('./pages/Contact.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+const DesignSystem = lazy(() => import('./pages/DesignSystem.jsx'));
 
 const loadingContent = {
   fr: {
@@ -99,6 +100,7 @@ export default function App() {
               <Route path="/projets" element={<Projets />} />
               <Route path="/projets/:slug" element={<ProjectCaseStudy />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/design-system" element={<DesignSystem />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
