@@ -2,7 +2,7 @@
 
 This repository contains the source code for the professional portfolio of **Frederick Armando**, Lead Product Designer specializing in Artificial Intelligence (AI), Generative UI (GenUI), and Web Accessibility (WCAG/A11y).
 
-The live site is hosted at: [frederickarmando.fr](https://frederickarmando.fr)
+The live site is hosted at: [frederickarmando.com](https://frederickarmando.com) (redirected to .fr)
 
 ---
 
