@@ -12,19 +12,16 @@
   pointer-events: auto;
 }
 
-/* Backdrop */
+/* Backdrop — covers full viewport incl. header & nav to block hover/tooltips */
 .a11y-backdrop {
   position: fixed;
-  top: var(--header-height);
-  right: 0;
-  bottom: var(--nav-height);
-  left: 0;
+  inset: 0;
   z-index: 9999;
   display: block;
-  background: rgba(18, 19, 26, 0.12);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  animation: a11y-backdrop-enter 0.24s ease forwards;
+  background: rgba(18, 19, 26, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: a11y-backdrop-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes a11y-backdrop-enter {
@@ -32,13 +29,17 @@
   to { opacity: 1; }
 }
 
+[data-theme="dark"] .a11y-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
 
 /* Settings Panel */
 .a11y-panel {
   position: fixed;
-  top: var(--header-height);
+  top: 0;
   right: 0;
-  bottom: var(--nav-height);
+  bottom: 0;
   z-index: 10001;
   background-color: var(--color-surface, #fff);
   backdrop-filter: blur(10px);
@@ -344,20 +345,18 @@ body.a11y-no-animations *::after {
    ========================================================================== */
 @media (max-width: 768px) {
   .a11y-backdrop {
-    top: var(--header-height);
-    bottom: var(--nav-height);
-    background: rgba(0, 0, 0, 0.22);
+    background: rgba(18, 19, 26, 0.4);
   }
 
   .a11y-panel {
-    top: var(--header-height);
-    bottom: var(--nav-height);
+    top: 90px;
+    bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
     max-height: none;
     margin-bottom: 0;
-    border-radius: 0;
+    border-radius: 36px 36px 0 0;
     transform-origin: bottom center;
     will-change: transform;
   }
