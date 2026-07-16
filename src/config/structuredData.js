@@ -152,13 +152,34 @@ export function createProjectsStructuredData({ title, description, image, projec
   };
 }
 
-export function createProjectStructuredData({ project, title, description, image }) {
+export function createProjectStructuredData({ project, title, description, image, caseStudyData }) {
   const company = project?.company
     ? {
         '@type': 'Organization',
         name: project.company,
       }
     : undefined;
+
+  // Build a cleaner, deeper abstract using TL;DR summary
+  const rawSummary = caseStudyData?.summary || description || project?.detailSummary || project?.description || '';
+  const cleanAbstract = stripHtml(rawSummary);
+
+  // Extract and concatenate all text paragraphs from sections for full semantic body mapping
+  let fullBodyText = '';
+  if (caseStudyData?.sections) {
+    const texts = [];
+    Object.values(caseStudyData.sections).forEach((section) => {
+      if (section?.title) {
+        texts.push(section.title + ':');
+      }
+      if (Array.isArray(section?.paragraphs)) {
+        section.paragraphs.forEach((p) => {
+          if (p) texts.push(stripHtml(p));
+        });
+      }
+    });
+    fullBodyText = texts.join(' ');
+  }
 
   return {
     '@context': 'https://schema.org',
@@ -180,7 +201,8 @@ export function createProjectStructuredData({ project, title, description, image
         isPartOf: { '@id': WEBSITE_ID },
         about: company,
         keywords: project.tags?.map((tag) => tag.label).join(', '),
-        abstract: stripHtml(description || project.detailSummary || project.description),
+        abstract: cleanAbstract,
+        text: fullBodyText || undefined,
       },
       {
         '@type': 'WebPage',
