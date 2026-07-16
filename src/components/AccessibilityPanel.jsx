@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import {
   IconClose,
@@ -310,9 +311,19 @@ export default function AccessibilityPanel({
                 </Button>
               </div>
             </div>
-            <div className="a11y-panel-version" aria-hidden="true">
-              v{__APP_VERSION__}
-            </div>
+            <Link
+              to="/design-system#changelog"
+              className="a11y-panel-version"
+              style={{
+                display: 'block',
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'pointer'
+              }}
+              onClick={onClose}
+            >
+              v{__APP_VERSION__ || '1.9.3'}
+            </Link>
           </div>
 
           <div className="a11y-panel-footer">

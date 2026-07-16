@@ -34,24 +34,6 @@ export default function TopBar() {
           <Logo className="brand__logo" />
         </Link>
         <div className="topbar__actions">
-          <Link
-            to="/design-system#changelog"
-            className="a11y-panel-version"
-            style={{
-              color: '#fff',
-              background: 'rgba(255, 255, 255, 0.1)',
-              padding: '4px 8px',
-              borderRadius: '999px',
-              fontSize: '11px',
-              fontWeight: '600',
-              opacity: 0.9,
-              letterSpacing: '0.02em',
-              marginRight: '8px',
-              textDecoration: 'none'
-            }}
-          >
-            v{__APP_VERSION__ || '1.9.3'}
-          </Link>
           <ThemeToggleButton />
           <LanguageToggleButton />
           <Button
