@@ -310,6 +310,9 @@ export default function AccessibilityPanel({
                 </Button>
               </div>
             </div>
+            <div className="a11y-panel-version" aria-hidden="true">
+              v{__APP_VERSION__}
+            </div>
           </div>
 
           <div className="a11y-panel-footer">
