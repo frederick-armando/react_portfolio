@@ -115,6 +115,7 @@ export default function App() {
           <Suspense fallback={<CaseStudyModalSkeleton label={content.caseStudy} />}>
             <Routes>
               <Route path="/projets/:slug" element={<ProjectCaseStudy isModal />} />
+              <Route path="/design-system" element={<DesignSystem isModal={true} />} />
             </Routes>
           </Suspense>
         </RouteErrorBoundary>

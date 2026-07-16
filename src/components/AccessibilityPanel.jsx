@@ -312,7 +312,8 @@ export default function AccessibilityPanel({
               </div>
             </div>
             <Link
-              to="/design-system#changelog"
+              to="/design-system"
+              state={{ backgroundLocation: window.location.pathname.startsWith('/design-system') ? { pathname: '/' } : window.location }}
               className="a11y-panel-version"
               style={{
                 display: 'block',
