@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getLocalizedProjects, getProjectBySlug, projects as projectEntries } from '../src/data/projects.js';
+import { caseStudyContent } from '../src/i18n/content/caseStudies.js';
 import { seoConfig } from '../src/config/seo.js';
 import {
   createHomeStructuredData,
@@ -243,6 +244,7 @@ try {
     };
 
     const resolvedImage = resolveBuiltAsset(meta.image);
+    const caseStudyData = caseStudyContent.fr?.[project.contentKey || project.slug];
     const newHtml = forceAbsoluteAssetPaths(
       injectPageSeo(baseHtml, {
         ...meta,
@@ -251,6 +253,7 @@ try {
           title: meta.title,
           description: meta.description,
           image: resolvedImage,
+          caseStudyData,
         }),
       }),
     );
