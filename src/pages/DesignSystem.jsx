@@ -410,6 +410,68 @@ export default function DesignSystem({ isModal = false }) {
               </div>
             </div>
           </div>
+
+          {/* 5. TL;DR / Executive Summary (.case-study-section--summary) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>TL;DR – Résumé Exécutif (.case-study-section--summary)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Bloc de synthèse utilisé en tête de chaque étude de cas (src/pages/ProjectCaseStudy.jsx → ExecutiveSummary).
+            </p>
+            <section className="case-study-section case-study-section--summary">
+              <h3 className="case-study-summary__title">TL;DR</h3>
+              <p className="case-study-summary__body">
+                Refonte de l'expérience de commande en ligne pour 3 000 points de vente professionnels — réduction du temps de commande de <strong>40 %</strong> et hausse du taux de satisfaction de <strong>+18 pts NPS</strong>.
+              </p>
+            </section>
+          </div>
+
+          {/* 6. Metric Cards (.case-study-metrics / .case-study-metric) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Cards Métriques (.case-study-metrics / .case-study-metric)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Grille de 4 colonnes de cartes de contexte projet (src/pages/ProjectCaseStudy.jsx). Utilisées pour rôle, durée, méthode et technologie.
+            </p>
+            <section className="case-study-metrics">
+              <article className="case-study-metric">
+                <IconLibraryBig />
+                <h3>Lead Product Designer</h3>
+                <p>Stratégie UX, research utilisateur, prototypage et tests</p>
+              </article>
+              <article className="case-study-metric">
+                <IconBuilding />
+                <h3>Michelin · B2B</h3>
+                <p>Secteur automobile & pneumatiques</p>
+              </article>
+              <article className="case-study-metric">
+                <IconSettings />
+                <h3>Figma · Design System</h3>
+                <p>Prototypes haute-fidélité, documentation composants</p>
+              </article>
+              <article className="case-study-metric">
+                <IconMail />
+                <h3>8 mois · 2023–2024</h3>
+                <p>Discovery → Delivery, sprints bi-hebdomadaires</p>
+              </article>
+            </section>
+          </div>
+
+          {/* 7. Tooltip ([data-tooltip]) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Tooltip ([data-tooltip])</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Tooltip CSS pur via l'attribut <code>data-tooltip</code> et le pseudo-élément <code>::before</code> (shell-home.css). Déclenché au survol et au focus clavier. Aussi natif sur les boutons iconOnly via <code>title</code>.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'center' }}>
+              <button
+                type="button"
+                data-tooltip="Tooltip sur un bouton"
+                style={{ padding: '10px 20px', borderRadius: '999px', background: 'var(--color-surface)', border: '1px solid var(--color-border)', cursor: 'pointer', fontSize: 'var(--font-size-sm)', color: 'var(--color-ink)' }}
+              >
+                Survole-moi
+              </button>
+              <Button variant="secondary" icon={IconSettings} iconOnly={true} title="Paramètres (tooltip natif via title)" />
+            </div>
+          </div>
         </div>
       </div>
 
