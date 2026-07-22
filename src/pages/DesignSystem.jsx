@@ -162,8 +162,8 @@ export default function DesignSystem({ isModal = false }) {
   const contentMarkup = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', paddingBottom: '32px' }}>
       {/* Introduction */}
-      <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-        <h3 style={{ marginBottom: '12px', fontSize: 'var(--font-size-2xl)' }}>{t.introTitle}</h3>
+      <div>
+        <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.introTitle}</h2>
         <p style={{ color: 'var(--color-body)', lineHeight: '1.6' }}>{t.introText}</p>
       </div>
 
