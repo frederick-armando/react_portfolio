@@ -299,7 +299,7 @@ export default function DesignSystem({ isModal = false }) {
   });
 
   const contentMarkup = (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', paddingBottom: '32px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
       {/* Introduction */}
       <div>
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.introTitle}</h2>
