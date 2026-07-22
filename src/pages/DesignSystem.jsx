@@ -336,12 +336,12 @@ export default function DesignSystem({ isModal = false }) {
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="tertiary"</code>
               </div>
               <div>
-                <Button variant="secondary" icon={IconSettings} iconOnly={true} title="Settings" />
-                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>iconOnly=&#123;true&#125;</code>
-              </div>
-              <div>
                 <Button variant="primary" badge={3}>With Badge</Button>
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>badge=&#123;3&#125;</code>
+              </div>
+              <div>
+                <Button variant="secondary" icon={IconSettings} iconOnly={true} title="Settings" />
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>iconOnly=&#123;true&#125;</code>
               </div>
             </div>
           </div>
