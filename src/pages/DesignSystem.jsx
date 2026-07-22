@@ -2,23 +2,30 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
 import { useTheme } from '../theme/ThemeContext.jsx';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button.jsx';
+import {
+  IconClose,
+  IconMessagesSquare,
+  IconHome,
+  IconProfile,
+  IconChartArea,
+  IconFolderOpen,
+  IconDownload,
+} from '../components/icons-shell.jsx';
 import {
   IconSettings,
   IconLibraryBig,
   IconBotMessageSquare,
-  IconClose,
-  IconMessagesSquare,
-  IconArrowRight,
   IconBuilding,
-  IconSearch,
-  IconMail,
   IconPhone,
+  IconMail,
 } from '../components/icons.jsx';
 import '../styles/pages.css';
+import '../styles/shell-home.css';
+import '../styles/Accessibility.css';
 
-// System versions source of truth for the Changelog
+// Exact System version history for the Changelog
 const changelogData = [
   { version: '1.9.3', date: '2026-07-16', note: 'Ajout du Design System stable (v1.9.3), refonte du panel d\'accessibilité et mise à jour du CV.' },
   { version: '1.9.2', date: '2026-07-15', note: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.' },
@@ -32,16 +39,15 @@ export default function DesignSystem({ isModal = false }) {
   const navigate = useNavigate();
   const currentVersion = __APP_VERSION__ || '1.9.3';
 
-  // Modal drag and drop variables to support case study styled swipe down behavior
+  // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startYRef = useRef(0);
   const modalRef = useRef(null);
   const shellRef = useRef(null);
 
-  // Form input state demo
-  const [inputValue, setInputValue] = useState('');
-  const [selectValue, setSelectValue] = useState('b2c');
+  // Active filter state for auditing ProjectFilter real component
+  const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
     if (!isModal) return undefined;
@@ -92,28 +98,26 @@ export default function DesignSystem({ isModal = false }) {
     onPointerCancel: handlePointerUp,
   };
 
-  // Translations object
   const t = useMemo(() => {
     return {
       fr: {
         title: 'Design System',
         subtitle: 'ds.frederickarmando.fr',
-        introTitle: 'Introduction & Philosophie',
-        introText: 'Un système conçu pour supporter une expérience mobile-first, minimaliste et accessible. Orienté vers l’impact produit (Lead Product Design) et structuré pour la future intégration d’agents internes et de modules conversationnels (GenUI).',
-        tokensTitle: 'Tokens Visuels',
-        tokensText: 'Les variables CSS définies à la racine de l’application (`tokens.css`). Elles s’adaptent dynamiquement en fonction du thème (Clair / Sombre).',
-        colors: 'Palette de Couleurs',
-        typography: 'Typographie',
-        spacing: 'Système d’Espacement (Grid 8pt)',
-        spacingText: 'Espacements réguliers basés sur un multiple de 8 pixels.',
-        componentsTitle: 'UI Components',
-        componentsText: 'Composants interactifs et réutilisables issus du site (boutons, formulaires, badges et cartes de projets).',
+        introTitle: 'Philosophie & Architecture Code',
+        introText: 'Documentation technique exacte du code source du site Frederick Armando. Extraction directe des tokens CSS rattachés aux racines de l\'application (`tokens.css`), des composants atomiques React réels (`Button`, `BottomNav`, `ProjectFilter`) et des spécifications d\'accessibilité.',
+        tokensTitle: 'Tokens Visuels (tokens.css)',
+        tokensText: 'Les variables CSS natives déclarées sur `:root` et adaptées au mode sombre (`[data-theme="dark"]`).',
+        colors: 'Palette de Couleurs Officielles',
+        typography: 'Typographie (Core Sans C)',
+        spacing: 'Grille d\'Espacement (8pt)',
+        componentsTitle: 'Catalogue de Composants Réels',
+        componentsText: 'Les composants React authentiques extraits du codebase sans altération.',
         futureProofingTitle: 'Future-proofing: Chatbot & IA (GenUI)',
-        futureProofingText: 'Spécifications prêtes pour les futurs composants d’interface conversationnelle, de suivi de prompts et d’états d’agents IA.',
-        waitingState: 'État d’attente / Réflection',
-        feedbackState: 'Système de Feedback',
-        flowState: 'Flux de conversation',
-        changelogTitle: 'Changelog & Suivi de Version',
+        futureProofingText: 'Spécifications techniques pour l\'intégration future de modules conversationnels et d\'agents IA.',
+        waitingState: 'État d\'attente / Réflection (Pulse)',
+        feedbackState: 'Retour utilisateur (Rating & Copy)',
+        flowState: 'Flux conversationnel (User/Bot)',
+        changelogTitle: 'Changelog System',
         currentVer: 'Version active',
         backToHome: 'Retour au Portfolio',
         closeModal: 'Fermer le Design System'
@@ -121,22 +125,21 @@ export default function DesignSystem({ isModal = false }) {
       en: {
         title: 'Design System',
         subtitle: 'ds.frederickarmando.fr',
-        introTitle: 'Introduction & Philosophy',
-        introText: 'A design system designed to power a mobile-first, minimalist, and accessible experience. Aimed at product impact (Lead Product Design) and structured for the future integration of AI agents and conversational modules (GenUI).',
-        tokensTitle: 'Visual Tokens',
-        tokensText: 'CSS variables defined in the application root (`tokens.css`). They adapt dynamically based on the current theme (Light / Dark).',
-        colors: 'Color Palette',
-        typography: 'Typography',
-        spacing: 'Spacing System (8pt Grid)',
-        spacingText: 'Regular spacing values based on multiples of 8 pixels.',
-        componentsTitle: 'UI Components',
-        componentsText: 'Interactive and reusable UI elements from the website (buttons, inputs, badges and project cards).',
+        introTitle: 'Philosophy & Code Architecture',
+        introText: 'Strict technical documentation of the actual source code of Frederick Armando portfolio website. Direct extraction of root CSS tokens (`tokens.css`), authentic React components (`Button`, `BottomNav`, `ProjectFilter`), and accessibility specifications.',
+        tokensTitle: 'Visual Tokens (tokens.css)',
+        tokensText: 'Native CSS variables attached to `:root` and adapted for dark mode (`[data-theme="dark"]`).',
+        colors: 'Official Color Palette',
+        typography: 'Typography (Core Sans C)',
+        spacing: 'Spacing Grid (8pt)',
+        componentsTitle: 'Real Components Catalog',
+        componentsText: 'Authentic React components extracted directly from the existing codebase.',
         futureProofingTitle: 'Future-proofing: Chatbot & AI (GenUI)',
-        futureProofingText: 'Specifications ready for upcoming conversational components, prompt logs, and AI agent states.',
-        waitingState: 'Thinking / Waiting State',
-        feedbackState: 'Feedback Mechanism',
-        flowState: 'Conversational Flow',
-        changelogTitle: 'Changelog & Version History',
+        futureProofingText: 'Technical specifications ready for upcoming conversational modules and AI agents.',
+        waitingState: 'Thinking State (Pulsing Indicator)',
+        feedbackState: 'User Feedback System (Rating & Copy)',
+        flowState: 'Conversational Stream (User/Bot)',
+        changelogTitle: 'System Changelog',
         currentVer: 'Active Version',
         backToHome: 'Back to Portfolio',
         closeModal: 'Close Design System'
@@ -146,15 +149,15 @@ export default function DesignSystem({ isModal = false }) {
 
   useSEO({
     title: `Design System | Frederick Armando`,
-    description: `Spécifications et catalogue de composants du design system du portfolio de Frederick Armando.`,
+    description: `Spécifications et catalogue de composants réels du design system du portfolio de Frederick Armando.`,
     image: '/assets/OG_Main.png',
     urlPath: '/design-system'
   });
 
   const contentMarkup = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', paddingBottom: '32px' }}>
-      {/* Intro */}
-      <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
+      {/* Introduction */}
+      <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
         <h3 style={{ marginBottom: '12px', fontSize: 'var(--font-size-2xl)' }}>{t.introTitle}</h3>
         <p style={{ color: 'var(--color-body)', lineHeight: '1.6' }}>{t.introText}</p>
       </div>
@@ -166,61 +169,72 @@ export default function DesignSystem({ isModal = false }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
           {/* Colors */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
             <h4 style={{ marginBottom: '16px' }}>{t.colors}</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--color-primary)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--color-primary)' }} />
                 <div>
-                  <strong style={{ display: 'block' }}>Primary Blue</strong>
-                  <code style={{ fontSize: '11px' }}>--color-primary (#385AF9)</code>
+                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)' }}>Primary Blue</strong>
+                  <code style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--color-primary (#385AF9)</code>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--color-ink)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--color-ink)' }} />
                 <div>
-                  <strong style={{ display: 'block' }}>Ink (Text / Dark Bg)</strong>
-                  <code style={{ fontSize: '11px' }}>--color-ink (#12131a)</code>
+                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)' }}>Ink Text</strong>
+                  <code style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--color-ink (#12131a)</code>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--color-body)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--color-body)' }} />
                 <div>
-                  <strong style={{ display: 'block' }}>Body Text</strong>
-                  <code style={{ fontSize: '11px' }}>--color-body (#3e4250)</code>
+                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)' }}>Body Text</strong>
+                  <code style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--color-body (#3e4250)</code>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--color-border)', border: '1px solid var(--color-muted)' }} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--color-border)', border: '1px solid var(--color-muted)' }} />
                 <div>
-                  <strong style={{ display: 'block' }}>Border</strong>
-                  <code style={{ fontSize: '11px' }}>--color-border (#e6e8ef)</code>
+                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)' }}>Border Color</strong>
+                  <code style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--color-border (#e6e8ef)</code>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'var(--color-purple-100)', border: '1px solid var(--color-purple-500)' }} />
+                <div>
+                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)' }}>Purple Accent</strong>
+                  <code style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--color-purple-500 (#6f5cff)</code>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Typography */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
             <h4 style={{ marginBottom: '16px' }}>{t.typography}</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div>
                 <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Font Family</span>
-                <p style={{ fontFamily: 'var(--font-family)', fontWeight: '600' }}>Core Sans C, sans-serif</p>
+                <p style={{ fontFamily: 'var(--font-family)', fontWeight: '600' }}>'Core Sans C', sans-serif</p>
               </div>
               <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Title Size (H1)</span>
-                <p style={{ fontSize: 'var(--font-size-4xl)', fontWeight: '800' }}>H1 Title: 1.5rem (Mobile) / 2.6rem+</p>
+                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H1 Title</span>
+                <p style={{ fontSize: 'var(--font-size-4xl)', fontWeight: '800', margin: 0 }}>H1 Title 1.5rem</p>
               </div>
               <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Body Size</span>
-                <p style={{ fontSize: 'var(--font-size-md)' }}>Body text size: 0.875rem</p>
+                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H2 Subtitle</span>
+                <p style={{ fontSize: 'var(--font-size-3xl)', fontWeight: '700', margin: 0 }}>H2 Subtitle 1.25rem</p>
+              </div>
+              <div>
+                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Body Regular</span>
+                <p style={{ fontSize: 'var(--font-size-md)', color: 'var(--color-body)', margin: 0 }}>Body regular text 0.875rem</p>
               </div>
             </div>
           </div>
 
           {/* Spacing */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
             <h4 style={{ marginBottom: '16px' }}>{t.spacing}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '12px' }}>{t.spacingText}</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', textAlign: 'center' }}>
@@ -240,7 +254,7 @@ export default function DesignSystem({ isModal = false }) {
                 <strong>24px</strong>
                 <div style={{ height: '24px', background: 'var(--color-primary)', marginTop: '8px' }} />
               </div>
-              <div style={{ background: 'var(--color-primary-100)', padding: '8px', borderRadius: '6px' }}>
+              <div style={{ background: 'var(--color-primary-100)', padding: '8px', borderRadius: '4px' }}>
                 <strong>32px</strong>
                 <div style={{ height: '32px', background: 'var(--color-primary)', marginTop: '8px' }} />
               </div>
@@ -249,113 +263,128 @@ export default function DesignSystem({ isModal = false }) {
         </div>
       </div>
 
-      {/* UI Components Catalog */}
+      {/* Real Codebase Components Catalog */}
       <div>
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.componentsTitle}</h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.componentsText}</p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* Buttons */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>Buttons</h4>
+          {/* 1. Button Component (<Button />) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Composant &lt;Button /&gt; (src/components/Button.jsx)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Le composant bouton principal supportant le ripple effect, les icônes, les badges d'action et la déclinaison sous forme de lien.
+            </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
               <div>
-                <Button variant="primary">Primary CTA</Button>
-                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center' }}>variant="primary"</code>
+                <Button variant="primary" icon={IconMail}>Primary Button</Button>
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="primary"</code>
               </div>
               <div>
-                <Button variant="secondary">Secondary Button</Button>
-                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center' }}>variant="secondary"</code>
+                <Button variant="secondary" icon={IconPhone}>Secondary Button</Button>
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="secondary"</code>
               </div>
               <div>
-                <Button variant="tertiary">Tertiary Link</Button>
-                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center' }}>variant="tertiary"</code>
+                <Button variant="tertiary">Tertiary Button</Button>
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="tertiary"</code>
               </div>
               <div>
                 <Button variant="secondary" icon={IconSettings} iconOnly={true} title="Settings" />
-                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center' }}>iconOnly={true}</code>
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>iconOnly={true}</code>
+              </div>
+              <div>
+                <Button variant="primary" badge={3}>With Badge</Button>
+                <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>badge=&#123;3&#125;</code>
               </div>
             </div>
           </div>
 
-          {/* Form Controls */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>Form Inputs & Controls</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: 'var(--font-size-sm)', marginBottom: '8px', color: 'var(--color-body)' }}>Text Input</label>
-                <input
-                  type="text"
-                  placeholder="Tapez un message..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    background: 'var(--color-surface)',
-                    color: 'var(--color-ink)',
-                    fontSize: 'var(--font-size-md)',
-                    outline: 'none'
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: 'var(--font-size-sm)', marginBottom: '8px', color: 'var(--color-body)' }}>Select Dropdown</label>
-                <select
-                  value={selectValue}
-                  onChange={(e) => setSelectValue(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    background: 'var(--color-surface)',
-                    color: 'var(--color-ink)',
-                    fontSize: 'var(--font-size-md)',
-                    outline: 'none'
-                  }}
-                >
-                  <option value="b2c">B2C Product</option>
-                  <option value="b2b">B2B SaaS</option>
-                  <option value="ai">AI / GenUI</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* Badges & Version Chips */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>Badges & Version Badges</h4>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+          {/* 2. Tag & Chip (.chip, .project-tag) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Badges & Tags (.chip & .project-tag)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Utilisés dans l'en-tête pour les rôles (`.chip`) et dans les cartes de projets (`.project-tag`).
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
               <span className="chip">Lead Product Designer</span>
-              <span className="chip" style={{ background: 'var(--color-purple-100)', color: 'var(--color-purple-500)' }}>Artificial Intelligence</span>
-              <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600' }}>v{currentVersion}</span>
+              <span className="chip" style={{ background: 'var(--color-purple-100)', color: 'var(--color-purple-500)' }}>Intelligence Artificielle</span>
               <span className="project-tag"><IconBuilding /> Michelin</span>
+              <span className="project-tag"><IconBuilding /> Masteos</span>
             </div>
           </div>
 
-          {/* Project Cards Demo */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>Project Card Preview</h4>
-            <div style={{ border: '1px solid var(--color-border)', borderRadius: '16px', padding: '20px', background: 'var(--color-surface)', maxWidth: '400px' }}>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-                <span className="project-tag"><IconBuilding /> Michelin</span>
-                <span className="chip">B2C</span>
+          {/* 3. Project Filter (.project-filter) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Filtres Projets (.project-filter)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Boutons d'onglets de filtrage utilisés sur la page Projets avec état sélectionné `aria-pressed="true"`.
+            </p>
+            <div className="project-filters__list" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {[
+                { id: 'all', label: 'Tous les projets', count: 6 },
+                { id: 'b2c', label: 'B2C', count: 3 },
+                { id: 'ai', label: 'IA & Chatbot', count: 2 },
+              ].map((f) => (
+                <button
+                  key={f.id}
+                  className={`project-filter${activeFilter === f.id ? ' project-filter--active' : ''}`}
+                  type="button"
+                  aria-pressed={activeFilter === f.id}
+                  onClick={() => setActiveFilter(f.id)}
+                >
+                  <span>{f.label}</span>
+                  <span className="project-filter__count">({f.count})</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 4. Bottom Nav Items (.nav-item) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Barre de Navigation Mobile (.bottom-nav & .nav-item)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Composants de la barre de navigation inférieure mobile (src/components/BottomNav.jsx).
+            </p>
+            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', background: 'var(--color-surface)', padding: '16px', borderRadius: '18px', border: '1px solid var(--color-border)' }}>
+              <div className="nav-item nav-item--active">
+                <span className="nav-item__icon"><IconHome /></span>
+                <span className="nav-item__label">Accueil</span>
               </div>
-              <h3 style={{ fontSize: 'var(--font-size-xl)', fontWeight: '700', marginBottom: '8px' }}>Tire Assistant</h3>
-              <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-body)', lineHeight: '1.5', marginBottom: '16px' }}>
-                Refonte des flux conversationnels du chatbot B2C Michelin pour transformer un assistant passif en levier proactif.
-              </p>
-              <Button variant="secondary" icon={IconArrowRight}>Consulter l'étude</Button>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconProfile /></span>
+                <span className="nav-item__label">Profil</span>
+              </div>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconFolderOpen /></span>
+                <span className="nav-item__badge">6</span>
+                <span className="nav-item__label">Projets</span>
+              </div>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconMessagesSquare /></span>
+                <span className="nav-item__label">Contact</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 5. Accessibility Widget Panel Controls (.a11y-btn) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Panel Accessibilité (.a11y-btn)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Boutons de réglages du widget d'accessibilité (contraste, font lisible, focus renforcé).
+            </p>
+            <div className="a11y-panel" style={{ position: 'relative', top: 'auto', right: 'auto', bottom: 'auto', width: '100%', border: 'none', background: 'transparent', transform: 'none' }}>
+              <div className="a11y-button-group" style={{ display: 'flex', gap: '12px' }}>
+                <Button variant="primary" className="a11y-btn active">Contraste Élevé</Button>
+                <Button variant="tertiary" className="a11y-btn">Police Dyslexie</Button>
+                <Button variant="tertiary" className="a11y-btn">Grand Curseur</Button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Future Proofing IA */}
-      <div style={{ background: 'rgba(56, 90, 249, 0.03)', border: '1px dashed var(--color-primary)', padding: '32px', borderRadius: '16px' }}>
+      <div style={{ background: 'rgba(56, 90, 249, 0.03)', border: '1px dashed var(--color-primary)', padding: '32px', borderRadius: 'var(--radius-lg)' }}>
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--color-primary)' }}>
           <IconBotMessageSquare />
           {t.futureProofingTitle}
@@ -395,8 +424,8 @@ export default function DesignSystem({ isModal = false }) {
         </div>
       </div>
 
-      {/* Changelog */}
-      <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)', marginBottom: '32px' }}>
+      {/* System Changelog */}
+      <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', marginBottom: '32px' }}>
         <h3 style={{ marginBottom: '20px', fontSize: 'var(--font-size-2xl)', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <IconMessagesSquare style={{ width: '24px', height: '24px', flexShrink: 0, color: 'var(--color-primary)' }} />
           {t.changelogTitle}
@@ -465,7 +494,7 @@ export default function DesignSystem({ isModal = false }) {
           <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600' }}>
             v{currentVersion}
           </span>
-          <Button variant="tertiary" to="/" icon={IconClose} iconOnly={true} title={t.backToHome} />
+          <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} title={t.backToHome} />
         </div>
       </div>
       {contentMarkup}
