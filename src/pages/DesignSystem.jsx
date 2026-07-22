@@ -103,7 +103,7 @@ export default function DesignSystem({ isModal = false }) {
   };
 
   const t = useMemo(() => {
-    return {
+    const dict = {
       fr: {
         title: 'Design System',
         subtitle: 'ds.frederickarmando.fr',
@@ -118,15 +118,70 @@ export default function DesignSystem({ isModal = false }) {
         spacingText: 'Valeurs régulières d\'espacement basées sur la grille 8pt.',
         componentsTitle: 'Catalogue de Composants Réels',
         componentsText: 'Les composants React authentiques extraits du codebase sans altération.',
+        
+        btnTitle: 'Composant <Button /> (src/components/Button.jsx)',
+        btnDesc: 'Le composant bouton principal supportant le ripple effect, les icônes, les badges d\'action et la déclinaison sous forme de lien sans bordure superflue.',
+        btnPrimary: 'Bouton Primaire',
+        btnSecondary: 'Bouton Secondaire',
+        btnTertiary: 'Bouton Tertiaire',
+        btnWithBadge: 'Avec Badge',
+        
+        badgeTitle: '<Badge /> (.chip / .project-tag)',
+        badgeDesc: 'Structure unifiée pour les étiquettes d\'information de l\'application (.chip et .project-tag).',
+        badgeRole: 'Lead Product Designer',
+        badgeCompany: 'Michelin',
+        
+        filterTitle: 'Filtres Projets (.project-filter)',
+        filterDesc: 'Boutons d\'onglets de filtrage utilisés sur la page Projets avec état sélectionné `aria-pressed="true"`.',
+        filterAll: 'Tous les projets',
+        filterB2C: 'B2C',
+        filterAI: 'IA & Chatbot',
+        
+        navTitle: 'Barre de Navigation Mobile (.bottom-nav & .nav-item)',
+        navDesc: 'Composants de la barre de navigation inférieure mobile (src/components/BottomNav.jsx).',
+        navHome: 'Accueil',
+        navProfile: 'Profil',
+        navProjects: 'Projets',
+        navContact: 'Contact',
+
+        tldrTitle: 'TL;DR – Résumé Exécutif (.case-study-section--summary)',
+        tldrDesc: 'Bloc de synthèse utilisé en tête de chaque étude de cas (src/pages/ProjectCaseStudy.jsx → ExecutiveSummary).',
+        tldrBody: 'Refonte de l\'expérience de commande en ligne pour 3 000 points de vente professionnels — réduction du temps de commande de <strong>40 %</strong> et hausse du taux de satisfaction de <strong>+18 pts NPS</strong>.',
+
+        metricsTitle: 'Cards Métriques (.case-study-metrics / .case-study-metric)',
+        metricsDesc: 'Grille de 4 colonnes de cartes de contexte projet (src/pages/ProjectCaseStudy.jsx). Utilisées pour rôle, durée, méthode et technologie.',
+        metricRoleTitle: 'Lead Product Designer',
+        metricRoleDetail: 'Stratégie UX, research utilisateur, prototypage et tests',
+        metricCompanyTitle: 'Michelin · B2B',
+        metricCompanyDetail: 'Secteur automobile & pneumatiques',
+        metricTechTitle: 'Figma · Design System',
+        metricTechDetail: 'Prototypes haute-fidélité, documentation composants',
+        metricDurationTitle: '8 mois · 2023–2024',
+        metricDurationDetail: 'Discovery → Delivery, sprints bi-hebdomadaires',
+
+        tooltipTitle: 'Tooltip ([data-tooltip])',
+        tooltipDesc: 'Tooltip CSS pur via l\'attribut `data-tooltip` et le pseudo-élément `::before` (shell-home.css). Déclenché au survol et au focus clavier. Aussi natif sur les boutons iconOnly via `title`.',
+        tooltipBtnText: 'Survole-moi',
+        tooltipBtnTooltip: 'Tooltip sur un bouton',
+        tooltipNativeTitle: 'Paramètres (tooltip natif via title)',
+
         futureProofingTitle: 'Future-proofing: Chatbot & IA (GenUI)',
         futureProofingText: 'Spécifications techniques pour l\'intégration future de modules conversationnels et d\'agents IA.',
-        waitingState: 'État d\'attente / Réflection (Pulse)',
+        waitingState: 'État d\'attente / Réflexion (Pulse)',
+        waitingDesc: 'Structure d’état d’attente pour l’agent (Pensée, recherche d’API). Prévu avec une micro-animation de pulsation sur le contour du widget et l’intégration de Skeleton loaders conversationnels.',
         feedbackState: 'Retour utilisateur (Rating & Copy)',
+        feedbackDesc: 'Composants de retour d’informations utilisateurs (Pouce levé / baissé, copier-coller) à implémenter directement sous les blocs de réponse textuels de l’IA.',
         flowState: 'Flux conversationnel (User/Bot)',
+        flowDesc: 'Gestionnaire de flux conversationnel alternant entre les messages utilisateur (`user-bubble` alignée à droite) et les réponses de l’agent (`bot-bubble` alignée à gauche avec avatar).',
+        
         changelogTitle: 'Changelog System',
         currentVer: 'Version active',
-        backToHome: 'Retour au Portfolio',
-        closeModal: 'Fermer le Design System'
+        backToHome: 'Retour au portfolio',
+        secretBtn: 'Découvre un dernier secret',
+        githubBtn: 'Dépôt GitHub',
+        contactBtn: 'Me contacter',
+        closeModal: 'Fermer le Design System',
+        seoDescription: 'Spécifications et catalogue de composants réels du design system du portfolio de Frederick Armando.'
       },
       en: {
         title: 'Design System',
@@ -142,22 +197,78 @@ export default function DesignSystem({ isModal = false }) {
         spacingText: 'Regular spacing values based on the 8pt grid.',
         componentsTitle: 'Real Components Catalog',
         componentsText: 'Authentic React components extracted directly from the existing codebase.',
+        
+        btnTitle: '<Button /> Component (src/components/Button.jsx)',
+        btnDesc: 'Main button component supporting ripple effect, icons, action badges, and link variants without extra borders.',
+        btnPrimary: 'Primary Button',
+        btnSecondary: 'Secondary Button',
+        btnTertiary: 'Tertiary Button',
+        btnWithBadge: 'With Badge',
+
+        badgeTitle: '<Badge /> (.chip / .project-tag)',
+        badgeDesc: 'Unified structure for application tags and chips (.chip and .project-tag).',
+        badgeRole: 'Lead Product Designer',
+        badgeCompany: 'Michelin',
+
+        filterTitle: 'Project Filters (.project-filter)',
+        filterDesc: 'Filter tab buttons used on Projects page with selected state `aria-pressed="true"`.',
+        filterAll: 'All projects',
+        filterB2C: 'B2C',
+        filterAI: 'AI & Chatbot',
+
+        navTitle: 'Mobile Navigation Bar (.bottom-nav & .nav-item)',
+        navDesc: 'Mobile bottom navigation components (src/components/BottomNav.jsx).',
+        navHome: 'Home',
+        navProfile: 'Profile',
+        navProjects: 'Projects',
+        navContact: 'Contact',
+
+        tldrTitle: 'TL;DR – Executive Summary (.case-study-section--summary)',
+        tldrDesc: 'Summary block placed at the top of each case study (src/pages/ProjectCaseStudy.jsx → ExecutiveSummary).',
+        tldrBody: 'Redesigning the online ordering experience for 3,000 professional stores — <strong>40%</strong> ordering time reduction and <strong>+18 pts NPS</strong> increase.',
+
+        metricsTitle: 'Metrics Cards (.case-study-metrics / .case-study-metric)',
+        metricsDesc: '4-column project context grid (src/pages/ProjectCaseStudy.jsx). Used for role, duration, methodology, and tech stack.',
+        metricRoleTitle: 'Lead Product Designer',
+        metricRoleDetail: 'UX strategy, user research, prototyping and testing',
+        metricCompanyTitle: 'Michelin · B2B',
+        metricCompanyDetail: 'Automotive & tyre industry',
+        metricTechTitle: 'Figma · Design System',
+        metricTechDetail: 'High-fidelity prototypes, component specs',
+        metricDurationTitle: '8 months · 2023–2024',
+        metricDurationDetail: 'Discovery → Delivery, bi-weekly sprints',
+
+        tooltipTitle: 'Tooltip ([data-tooltip])',
+        tooltipDesc: 'Pure CSS tooltip via `data-tooltip` attribute and `::before` pseudo-element (shell-home.css). Triggered on hover and keyboard focus. Also native on iconOnly buttons via `title`.',
+        tooltipBtnText: 'Hover me',
+        tooltipBtnTooltip: 'Tooltip on a button',
+        tooltipNativeTitle: 'Settings (native tooltip via title)',
+
         futureProofingTitle: 'Future-proofing: Chatbot & AI (GenUI)',
         futureProofingText: 'Technical specifications ready for upcoming conversational modules and AI agents.',
-        waitingState: 'Thinking State (Pulsing Indicator)',
+        waitingState: 'Thinking State (Pulse)',
+        waitingDesc: 'Agent waiting state structure (Thinking, API querying). Designed with pulsing border micro-animations and conversational Skeleton loaders.',
         feedbackState: 'User Feedback System (Rating & Copy)',
+        feedbackDesc: 'User feedback components (Thumbs up/down, copy to clipboard) ready for insertion under AI text responses.',
         flowState: 'Conversational Stream (User/Bot)',
+        flowDesc: 'Conversational stream manager alternating user messages (`user-bubble` aligned right) and agent responses (`bot-bubble` aligned left with avatar).',
+
         changelogTitle: 'System Changelog',
         currentVer: 'Active Version',
-        backToHome: 'Back to Portfolio',
-        closeModal: 'Close Design System'
+        backToHome: 'Back to portfolio',
+        secretBtn: 'Discover one last secret',
+        githubBtn: 'GitHub Repository',
+        contactBtn: 'Contact Me',
+        closeModal: 'Close Design System',
+        seoDescription: 'Specifications and real component catalog of Frederick Armando\'s portfolio design system.'
       }
-    }[language] ?? fr;
+    };
+    return dict[language] ?? dict.fr;
   }, [language]);
 
   useSEO({
     title: `Design System | Frederick Armando`,
-    description: `Spécifications et catalogue de composants réels du design system du portfolio de Frederick Armando.`,
+    description: t.seoDescription,
     image: '/assets/OG_Main.png',
     urlPath: '/design-system'
   });
@@ -321,25 +432,25 @@ export default function DesignSystem({ isModal = false }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {/* 1. Button Component (<Button />) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Composant &lt;Button /&gt; (src/components/Button.jsx)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.btnTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Le composant bouton principal supportant le ripple effect, les icônes, les badges d'action et la déclinaison sous forme de lien sans bordure superflue.
+              {t.btnDesc}
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
               <div>
-                <Button variant="primary" icon={IconMail}>Primary Button</Button>
+                <Button variant="primary" icon={IconMail}>{t.btnPrimary}</Button>
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="primary"</code>
               </div>
               <div>
-                <Button variant="secondary" icon={IconPhone}>Secondary Button</Button>
+                <Button variant="secondary" icon={IconPhone}>{t.btnSecondary}</Button>
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="secondary"</code>
               </div>
               <div>
-                <Button variant="tertiary">Tertiary Button</Button>
+                <Button variant="tertiary">{t.btnTertiary}</Button>
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>variant="tertiary"</code>
               </div>
               <div>
-                <Button variant="primary" badge={3}>With Badge</Button>
+                <Button variant="primary" badge={3}>{t.btnWithBadge}</Button>
                 <code style={{ display: 'block', marginTop: '8px', fontSize: '11px', textAlign: 'center', color: 'var(--color-muted)' }}>badge=&#123;3&#125;</code>
               </div>
               <div>
@@ -351,27 +462,27 @@ export default function DesignSystem({ isModal = false }) {
 
           {/* 2. Rationalised Badge/Tag (.chip & .project-tag) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>&lt;Badge /&gt; (.chip / .project-tag)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.badgeTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Structure unifiée pour les étiquettes d'information de l'application (.chip et .project-tag).
+              {t.badgeDesc}
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
-              <span className="chip">Lead Product Designer</span>
-              <span className="project-tag"><IconBuilding /> Michelin</span>
+              <span className="chip">{t.badgeRole}</span>
+              <span className="project-tag"><IconBuilding /> {t.badgeCompany}</span>
             </div>
           </div>
 
           {/* 3. Project Filter (.project-filter) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Filtres Projets (.project-filter)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.filterTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Boutons d'onglets de filtrage utilisés sur la page Projets avec état sélectionné `aria-pressed="true"`.
+              {t.filterDesc}
             </p>
             <div className="project-filters__list" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {[
-                { id: 'all', label: 'Tous les projets', count: 6 },
-                { id: 'b2c', label: 'B2C', count: 3 },
-                { id: 'ai', label: 'IA & Chatbot', count: 2 },
+                { id: 'all', label: t.filterAll, count: 6 },
+                { id: 'b2c', label: t.filterB2C, count: 3 },
+                { id: 'ai', label: t.filterAI, count: 2 },
               ].map((f) => (
                 <button
                   key={f.id}
@@ -389,90 +500,88 @@ export default function DesignSystem({ isModal = false }) {
 
           {/* 4. Bottom Nav Items (.nav-item) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Barre de Navigation Mobile (.bottom-nav & .nav-item)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.navTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Composants de la barre de navigation inférieure mobile (src/components/BottomNav.jsx).
+              {t.navDesc}
             </p>
             <div style={{ display: 'flex', gap: '24px', alignItems: 'center', background: 'var(--color-surface)', padding: '16px', borderRadius: '18px', border: '1px solid var(--color-border)' }}>
               <div className="nav-item nav-item--active">
                 <span className="nav-item__icon"><IconHome /></span>
-                <span className="nav-item__label">Accueil</span>
+                <span className="nav-item__label">{t.navHome}</span>
               </div>
               <div className="nav-item">
                 <span className="nav-item__icon"><IconProfile /></span>
-                <span className="nav-item__label">Profil</span>
+                <span className="nav-item__label">{t.navProfile}</span>
               </div>
               <div className="nav-item">
                 <span className="nav-item__icon"><IconFolderOpen /></span>
                 <span className="nav-item__badge">6</span>
-                <span className="nav-item__label">Projets</span>
+                <span className="nav-item__label">{t.navProjects}</span>
               </div>
               <div className="nav-item">
                 <span className="nav-item__icon"><IconMessagesSquare /></span>
-                <span className="nav-item__label">Contact</span>
+                <span className="nav-item__label">{t.navContact}</span>
               </div>
             </div>
           </div>
 
           {/* 5. TL;DR / Executive Summary (.case-study-section--summary) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>TL;DR – Résumé Exécutif (.case-study-section--summary)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.tldrTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Bloc de synthèse utilisé en tête de chaque étude de cas (src/pages/ProjectCaseStudy.jsx → ExecutiveSummary).
+              {t.tldrDesc}
             </p>
             <section className="case-study-section case-study-section--summary">
               <h3 className="case-study-summary__title">TL;DR</h3>
-              <p className="case-study-summary__body">
-                Refonte de l'expérience de commande en ligne pour 3 000 points de vente professionnels — réduction du temps de commande de <strong>40 %</strong> et hausse du taux de satisfaction de <strong>+18 pts NPS</strong>.
-              </p>
+              <p className="case-study-summary__body" dangerouslySetInnerHTML={{ __html: t.tldrBody }} />
             </section>
           </div>
 
           {/* 6. Metric Cards (.case-study-metrics / .case-study-metric) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Cards Métriques (.case-study-metrics / .case-study-metric)</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.metricsTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Grille de 4 colonnes de cartes de contexte projet (src/pages/ProjectCaseStudy.jsx). Utilisées pour rôle, durée, méthode et technologie.
+              {t.metricsDesc}
             </p>
             <section className="case-study-metrics">
               <article className="case-study-metric">
                 <IconLibraryBig />
-                <h3>Lead Product Designer</h3>
-                <p>Stratégie UX, research utilisateur, prototypage et tests</p>
+                <h3>{t.metricRoleTitle}</h3>
+                <p>{t.metricRoleDetail}</p>
               </article>
               <article className="case-study-metric">
                 <IconBuilding />
-                <h3>Michelin · B2B</h3>
-                <p>Secteur automobile & pneumatiques</p>
+                <h3>{t.metricCompanyTitle}</h3>
+                <p>{t.metricCompanyDetail}</p>
               </article>
               <article className="case-study-metric">
                 <IconSettings />
-                <h3>Figma · Design System</h3>
-                <p>Prototypes haute-fidélité, documentation composants</p>
+                <h3>{t.metricTechTitle}</h3>
+                <p>{t.metricTechDetail}</p>
               </article>
               <article className="case-study-metric">
                 <IconMail />
-                <h3>8 mois · 2023–2024</h3>
-                <p>Discovery → Delivery, sprints bi-hebdomadaires</p>
+                <h3>{t.metricDurationTitle}</h3>
+                <p>{t.metricDurationDetail}</p>
               </article>
             </section>
           </div>
 
           {/* 7. Tooltip ([data-tooltip]) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Tooltip ([data-tooltip])</h4>
+            <h4 style={{ marginBottom: '8px' }}>{t.tooltipTitle}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Tooltip CSS pur via l'attribut <code>data-tooltip</code> et le pseudo-élément <code>::before</code> (shell-home.css). Déclenché au survol et au focus clavier. Aussi natif sur les boutons iconOnly via <code>title</code>.
+              {t.tooltipDesc}
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'center' }}>
               <button
                 type="button"
-                data-tooltip="Tooltip sur un bouton"
+                data-tooltip={t.tooltipBtnTooltip}
                 style={{ padding: '10px 20px', borderRadius: '999px', background: 'var(--color-surface)', border: '1px solid var(--color-border)', cursor: 'pointer', fontSize: 'var(--font-size-sm)', color: 'var(--color-ink)' }}
               >
-                Survole-moi
+                {t.tooltipBtnText}
               </button>
-              <Button variant="secondary" icon={IconSettings} iconOnly={true} title="Paramètres (tooltip natif via title)" />
+              <Button variant="secondary" icon={IconSettings} iconOnly={true} title={t.tooltipNativeTitle} />
             </div>
           </div>
         </div>
@@ -493,7 +602,7 @@ export default function DesignSystem({ isModal = false }) {
               {t.waitingState}
             </h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-body)', lineHeight: '1.5' }}>
-              Structure d’état d’attente pour l’agent (Pensée, recherche d’API). Prévu avec une micro-animation de pulsation sur le contour du widget et l’intégration de Skeleton loaders conversationnels.
+              {t.waitingDesc}
             </p>
           </div>
 
@@ -503,7 +612,7 @@ export default function DesignSystem({ isModal = false }) {
               {t.feedbackState}
             </h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-body)', lineHeight: '1.5' }}>
-              Composants de retour d’informations utilisateurs (Pouce levé / baissé, copier-coller) à implémenter directement sous les blocs de réponse textuels de l’IA.
+              {t.feedbackDesc}
             </p>
           </div>
 
@@ -513,7 +622,7 @@ export default function DesignSystem({ isModal = false }) {
               {t.flowState}
             </h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-body)', lineHeight: '1.5' }}>
-              Gestionnaire de flux conversationnel alternant entre les messages utilisateur (`user-bubble` alignée à droite) et les réponses de l’agent (`bot-bubble` alignée à gauche avec avatar).
+              {t.flowDesc}
             </p>
           </div>
         </div>
@@ -549,14 +658,14 @@ export default function DesignSystem({ isModal = false }) {
                 to="/"
                 state={isModal ? location.state : undefined}
               >
-                Retour au portfolio
+                {t.backToHome}
               </Button>
               <Button
                 variant="tertiary"
                 icon={IconEgg}
                 to="/404-secret"
               >
-                Découvre un dernier secret
+                {t.secretBtn}
               </Button>
             </div>
           </div>
@@ -570,7 +679,7 @@ export default function DesignSystem({ isModal = false }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub Repository
+                {t.githubBtn}
               </Button>
             </div>
 
@@ -580,7 +689,7 @@ export default function DesignSystem({ isModal = false }) {
                 icon={IconMail}
                 to="/contact"
               >
-                Contact Me
+                {t.contactBtn}
               </Button>
             </div>
           </div>
