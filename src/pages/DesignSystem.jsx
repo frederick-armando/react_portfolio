@@ -22,6 +22,7 @@ import {
   IconMail,
   IconArrowLeft,
   IconCode,
+  IconEgg,
 } from '../components/icons.jsx';
 import '../styles/pages.css';
 import '../styles/shell-home.css';
@@ -544,7 +545,7 @@ export default function DesignSystem({ isModal = false }) {
             <div className="case-study__next-projects-tertiary">
               <Button
                 variant="tertiary"
-                icon={IconArrowLeft}
+                icon={IconHome}
                 to="/"
                 state={isModal ? location.state : undefined}
               >
@@ -552,6 +553,7 @@ export default function DesignSystem({ isModal = false }) {
               </Button>
               <Button
                 variant="tertiary"
+                icon={IconEgg}
                 to="/404-secret"
               >
                 Découvre un dernier secret

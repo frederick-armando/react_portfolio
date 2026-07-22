@@ -33,6 +33,8 @@ import {
   Truck,
   Waypoints,
   X,
+  Egg,
+  Sparkles,
 } from 'lucide-react';
 
 const baseProps = {
@@ -307,3 +309,5 @@ export const IconFigma = withLucideScale(Figma);
 export const IconLibraryBig = withLucideScale(LibraryBig);
 export const IconBotMessageSquare = withLucideScale(BotMessageSquare);
 export const IconTruck = withLucideScale(Truck);
+export const IconEgg = withLucideScale(Egg);
+export const IconSparkles = withLucideScale(Sparkles);
