@@ -30,11 +30,36 @@ import '../styles/Accessibility.css';
 
 // System versions source of truth for the Changelog
 const changelogData = [
-  { version: '1.9.4', date: '2026-07-22', note: 'Rationalisation des badges et tags en une structure unique (.chip / .project-tag), suppression des bordures superflues sur boutons avec badge, mutualisation des boutons d\'accessibilité avec le composant Button principal et affichage exhaustif des palettes light/dark.' },
-  { version: '1.9.3', date: '2026-07-16', note: 'Ajout du Design System stable (v1.9.3), refonte du panel d\'accessibilité et mise à jour du CV.' },
-  { version: '1.9.2', date: '2026-07-15', note: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.' },
-  { version: '1.9.1', date: '2026-07-10', note: 'Résolution des conflits d\'initialisation du carrousel de projets sur mobile.' },
-  { version: '1.9.0', date: '2026-07-04', note: 'Intégration du système de pré-rendu statique postbuild.js et configuration du routage SPA Apache.' }
+  {
+    version: '1.9.4',
+    date: '2026-07-22',
+    noteFr: 'Refonte complète du catalogue du Design System : rationalisation des badges et tags (<Badge />), intégration des blocs TL;DR, cards métriques et tooltips, mise à jour de la navigation footer selon la structure des cas d\'études, et internationalisation bilingue intégrale (FR/EN).',
+    noteEn: 'Complete Design System catalog revamp: badge/tag rationalization (<Badge />), integration of TL;DR blocks, metric cards, tooltips, footer CTA navigation matching case study layout, and full bilingual i18n support (FR/EN).'
+  },
+  {
+    version: '1.9.3',
+    date: '2026-07-16',
+    noteFr: 'Ajout du Design System stable (v1.9.3), refonte du panel d\'accessibilité et mise à jour du CV.',
+    noteEn: 'Added stable Design System (v1.9.3), revamped accessibility panel, and updated resume.'
+  },
+  {
+    version: '1.9.2',
+    date: '2026-07-15',
+    noteFr: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.',
+    noteEn: 'Advanced SEO/GEO optimization, enriched structured data with semantic abstract and seeks.'
+  },
+  {
+    version: '1.9.1',
+    date: '2026-07-10',
+    noteFr: 'Résolution des conflits d\'initialisation du carrousel de projets sur mobile.',
+    noteEn: 'Fixed project carousel initialization conflicts on mobile devices.'
+  },
+  {
+    version: '1.9.0',
+    date: '2026-07-04',
+    noteFr: 'Intégration du système de pré-rendu statique postbuild.js et configuration du routage SPA Apache.',
+    noteEn: 'Integrated postbuild.js static pre-rendering system and configured Apache SPA routing.'
+  }
 ];
 
 export default function DesignSystem({ isModal = false }) {
@@ -641,7 +666,9 @@ export default function DesignSystem({ isModal = false }) {
                 <strong style={{ color: 'var(--color-primary)', fontSize: 'var(--font-size-lg)' }}>v{item.version}</strong>
                 <span style={{ display: 'block', fontSize: 'var(--font-size-xs)', color: 'var(--color-muted)' }}>{item.date}</span>
               </div>
-              <p style={{ color: 'var(--color-body)', fontSize: 'var(--font-size-md)', lineHeight: '1.5' }}>{item.note}</p>
+              <p style={{ color: 'var(--color-body)', fontSize: 'var(--font-size-md)', lineHeight: '1.5' }}>
+                {language === 'fr' ? item.noteFr : item.noteEn}
+              </p>
             </div>
           ))}
         </div>
