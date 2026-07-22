@@ -350,81 +350,11 @@ export default function DesignSystem({ isModal = false }) {
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
             <h4 style={{ marginBottom: '8px' }}>Composant Rationalisé Badge / Tag</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Structure unifiée pour l'ensemble des étiquettes d'information (variantes : Role/Skill vs Enterprise/Context).
+              Structure unifiée pour les étiquettes d'information de l'application (.chip et .project-tag).
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
-              <span className="chip">Variante Rôle: Lead Product Designer</span>
-              <span className="chip" style={{ background: 'var(--color-purple-100)', color: 'var(--color-purple-500)' }}>Variante Spécialité: IA</span>
-              <span className="project-tag"><IconBuilding /> Variante Entreprise: Michelin</span>
-              <span className="project-tag"><IconBuilding /> Variante Entreprise: Masteos</span>
-            </div>
-          </div>
-
-          {/* 3. Project Filter (.project-filter) */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Filtres Projets (.project-filter)</h4>
-            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Boutons d'onglets de filtrage utilisés sur la page Projets avec état sélectionné `aria-pressed="true"`.
-            </p>
-            <div className="project-filters__list" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {[
-                { id: 'all', label: 'Tous les projets', count: 6 },
-                { id: 'b2c', label: 'B2C', count: 3 },
-                { id: 'ai', label: 'IA & Chatbot', count: 2 },
-              ].map((f) => (
-                <button
-                  key={f.id}
-                  className={`project-filter${activeFilter === f.id ? ' project-filter--active' : ''}`}
-                  type="button"
-                  aria-pressed={activeFilter === f.id}
-                  onClick={() => setActiveFilter(f.id)}
-                >
-                  <span>{f.label}</span>
-                  <span className="project-filter__count">({f.count})</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 4. Bottom Nav Items (.nav-item) */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Barre de Navigation Mobile (.bottom-nav & .nav-item)</h4>
-            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Composants de la barre de navigation inférieure mobile (src/components/BottomNav.jsx).
-            </p>
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', background: 'var(--color-surface)', padding: '16px', borderRadius: '18px', border: '1px solid var(--color-border)' }}>
-              <div className="nav-item nav-item--active">
-                <span className="nav-item__icon"><IconHome /></span>
-                <span className="nav-item__label">Accueil</span>
-              </div>
-              <div className="nav-item">
-                <span className="nav-item__icon"><IconProfile /></span>
-                <span className="nav-item__label">Profil</span>
-              </div>
-              <div className="nav-item">
-                <span className="nav-item__icon"><IconFolderOpen /></span>
-                <span className="nav-item__badge">6</span>
-                <span className="nav-item__label">Projets</span>
-              </div>
-              <div className="nav-item">
-                <span className="nav-item__icon"><IconMessagesSquare /></span>
-                <span className="nav-item__label">Contact</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 5. Accessibility Widget Panel Controls (Mutualisé avec <Button />) */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Panel Accessibilité (Mutualisé avec &lt;Button variant="tertiary" /&gt;)</h4>
-            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              Les boutons du widget d'accessibilité réutilisent directement le composant principal &lt;Button /&gt; avec la classe `.a11y-btn` et l'état `variant="primary"` / `variant="tertiary"`.
-            </p>
-            <div className="a11y-panel" style={{ position: 'relative', top: 'auto', right: 'auto', bottom: 'auto', width: '100%', border: 'none', background: 'transparent', transform: 'none' }}>
-              <div className="a11y-button-group" style={{ display: 'flex', gap: '12px' }}>
-                <Button variant="primary" className="a11y-btn active">Contraste Élevé</Button>
-                <Button variant="tertiary" className="a11y-btn">Police Dyslexie</Button>
-                <Button variant="tertiary" className="a11y-btn">Grand Curseur</Button>
-              </div>
+              <span className="chip">Lead Product Designer</span>
+              <span className="project-tag"><IconBuilding /> Michelin</span>
             </div>
           </div>
         </div>
