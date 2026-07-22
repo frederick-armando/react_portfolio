@@ -654,7 +654,7 @@ export default function DesignSystem({ isModal = false }) {
       </div>
 
       {/* System Changelog */}
-      <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', marginBottom: '32px' }}>
+      <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
         <h3 style={{ marginBottom: '20px', fontSize: 'var(--font-size-2xl)', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <IconMessagesSquare style={{ width: '24px', height: '24px', flexShrink: 0, color: 'var(--color-primary)' }} />
           {t.changelogTitle}
@@ -675,8 +675,7 @@ export default function DesignSystem({ isModal = false }) {
       </div>
 
       {/* Navigation Footer (Structure Case Studies) */}
-      <div style={{ marginTop: 'var(--space-8)' }}>
-        <div className="case-study__next-projects">
+      <div className="case-study__next-projects" style={{ marginTop: 0 }}>
           <div className="case-study__next-projects-left">
             <div className="case-study__next-projects-tertiary">
               <Button
@@ -721,7 +720,6 @@ export default function DesignSystem({ isModal = false }) {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 
