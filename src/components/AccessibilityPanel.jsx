@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import {
   IconClose,
@@ -24,6 +24,7 @@ export default function AccessibilityPanel({
   onClose,
   onReset,
 }) {
+  const location = useLocation();
   const {
     textSize,
     readableFont,
@@ -313,7 +314,7 @@ export default function AccessibilityPanel({
             </div>
             <Link
               to="/design-system"
-              state={{ backgroundLocation: window.location.pathname.startsWith('/design-system') ? { pathname: '/' } : window.location }}
+              state={{ backgroundLocation: location.pathname.startsWith('/design-system') ? { pathname: '/' } : location }}
               className="a11y-panel-version"
               style={{
                 display: 'block',
