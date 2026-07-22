@@ -32,6 +32,7 @@ export default function DesignSystem({ isModal = false }) {
   const [isDragging, setIsDragging] = useState(false);
   const startYRef = useRef(0);
   const modalRef = useRef(null);
+  const shellRef = useRef(null);
 
   useEffect(() => {
     if (!isModal) return undefined;
@@ -105,7 +106,8 @@ export default function DesignSystem({ isModal = false }) {
         flowState: 'Flux de conversation',
         changelogTitle: 'Changelog & Suivi de Version',
         currentVer: 'Version active',
-        backToHome: 'Retour au Portfolio'
+        backToHome: 'Retour au Portfolio',
+        closeModal: 'Fermer le Design System'
       },
       en: {
         title: 'Design System',
@@ -127,7 +129,8 @@ export default function DesignSystem({ isModal = false }) {
         flowState: 'Conversational Flow',
         changelogTitle: 'Changelog & Version History',
         currentVer: 'Active Version',
-        backToHome: 'Back to Portfolio'
+        backToHome: 'Back to Portfolio',
+        closeModal: 'Close Design System'
       }
     }[language] ?? fr;
   }, [language]);
@@ -148,33 +151,35 @@ export default function DesignSystem({ isModal = false }) {
       style={isModal ? {
         transform: `translateY(${translateY}px)`,
         transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        height: 'calc(100% - 90px)',
-        marginTop: '90px'
       } : {}}
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Modal Drag Handle for mobile / Close Area */}
-      {isModal && (
-        <div className="case-study-modal__header-wrapper" {...dragHandlers} style={{ height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'grab', background: 'var(--color-surface)' }}>
-          <div className="a11y-handle-area" style={{ width: '40px', height: '4px', borderRadius: '2px', background: 'var(--color-border)' }} />
-        </div>
-      )}
-
-      <div className={isModal ? "case-study-shell case-study-shell--scrollable" : ""} style={isModal ? { padding: '24px', overflowY: 'auto', height: 'calc(100% - 32px)' } : {}}>
-        <div className="section__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+      {/* Header section matching exact case study header component */}
+      <div className={`case-study__header ${isModal ? 'case-study__header--modal' : ''}`}>
+        {isModal && (
+          <div className="case-study__handle-area" {...dragHandlers}>
+            <div className="case-study__handle" />
+          </div>
+        )}
+        <div className="case-study__header-content">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <IconLibraryBig />
-            <h1>{t.title}</h1>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600' }}>
-              {t.currentVer} v{currentVersion}
+            <h2 className="case-study__title" style={{ margin: 0 }}>{t.title}</h2>
+            <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600', marginLeft: '4px' }}>
+              v{currentVersion}
             </span>
-            <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} title={t.backToHome} />
           </div>
+          {isModal ? (
+            <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} className="case-study__close-btn" title={t.closeModal} />
+          ) : (
+            <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} title={t.backToHome} />
+          )}
         </div>
+      </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+      {/* Main scrollable body identical to case-study-shell */}
+      <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', paddingBottom: '32px' }}>
           {/* Intro */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: '16px', border: '1px solid var(--color-border)' }}>
             <h3 style={{ marginBottom: '12px', fontSize: 'var(--font-size-2xl)' }}>{t.introTitle}</h3>
@@ -377,7 +382,7 @@ export default function DesignSystem({ isModal = false }) {
   );
 
   return isModal ? (
-    <div className="case-study-backdrop" onClick={() => navigate(-1)} style={{ zIndex: 10100 }}>
+    <div className="case-study-backdrop" onClick={() => navigate(-1)}>
       {contentBlock}
     </div>
   ) : (
