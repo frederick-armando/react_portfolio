@@ -348,7 +348,7 @@ export default function DesignSystem({ isModal = false }) {
 
           {/* 2. Rationalised Badge/Tag (.chip & .project-tag) */}
           <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>Composant Rationalisé Badge / Tag</h4>
+            <h4 style={{ marginBottom: '8px' }}>&lt;Badge /&gt; (.chip / .project-tag)</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
               Structure unifiée pour les étiquettes d'information de l'application (.chip et .project-tag).
             </p>
