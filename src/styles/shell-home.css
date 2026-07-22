@@ -511,7 +511,7 @@ button:focus-visible {
   font-size: var(--font-size-xxs);
   font-weight: 700;
   line-height: 1;
-  border: 1.5px solid #fff;
+  border: none;
   box-shadow: 0 4px 10px rgba(56, 90, 249, 0.18);
 }
 
