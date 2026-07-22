@@ -357,6 +357,59 @@ export default function DesignSystem({ isModal = false }) {
               <span className="project-tag"><IconBuilding /> Michelin</span>
             </div>
           </div>
+
+          {/* 3. Project Filter (.project-filter) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Filtres Projets (.project-filter)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Boutons d'onglets de filtrage utilisés sur la page Projets avec état sélectionné `aria-pressed="true"`.
+            </p>
+            <div className="project-filters__list" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {[
+                { id: 'all', label: 'Tous les projets', count: 6 },
+                { id: 'b2c', label: 'B2C', count: 3 },
+                { id: 'ai', label: 'IA & Chatbot', count: 2 },
+              ].map((f) => (
+                <button
+                  key={f.id}
+                  className={`project-filter${activeFilter === f.id ? ' project-filter--active' : ''}`}
+                  type="button"
+                  aria-pressed={activeFilter === f.id}
+                  onClick={() => setActiveFilter(f.id)}
+                >
+                  <span>{f.label}</span>
+                  <span className="project-filter__count">({f.count})</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 4. Bottom Nav Items (.nav-item) */}
+          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <h4 style={{ marginBottom: '8px' }}>Barre de Navigation Mobile (.bottom-nav & .nav-item)</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+              Composants de la barre de navigation inférieure mobile (src/components/BottomNav.jsx).
+            </p>
+            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', background: 'var(--color-surface)', padding: '16px', borderRadius: '18px', border: '1px solid var(--color-border)' }}>
+              <div className="nav-item nav-item--active">
+                <span className="nav-item__icon"><IconHome /></span>
+                <span className="nav-item__label">Accueil</span>
+              </div>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconProfile /></span>
+                <span className="nav-item__label">Profil</span>
+              </div>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconFolderOpen /></span>
+                <span className="nav-item__badge">6</span>
+                <span className="nav-item__label">Projets</span>
+              </div>
+              <div className="nav-item">
+                <span className="nav-item__icon"><IconMessagesSquare /></span>
+                <span className="nav-item__label">Contact</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
