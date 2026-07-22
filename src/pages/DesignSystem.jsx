@@ -20,6 +20,8 @@ import {
   IconBuilding,
   IconPhone,
   IconMail,
+  IconArrowLeft,
+  IconCode,
 } from '../components/icons.jsx';
 import '../styles/pages.css';
 import '../styles/shell-home.css';
@@ -532,6 +534,54 @@ export default function DesignSystem({ isModal = false }) {
               <p style={{ color: 'var(--color-body)', fontSize: 'var(--font-size-md)', lineHeight: '1.5' }}>{item.note}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Navigation Footer (Structure Case Studies) */}
+      <div style={{ marginTop: 'var(--space-8)' }}>
+        <div className="case-study__next-projects">
+          <div className="case-study__next-projects-left">
+            <div className="case-study__next-projects-tertiary">
+              <Button
+                variant="tertiary"
+                icon={IconArrowLeft}
+                to="/"
+                state={isModal ? location.state : undefined}
+              >
+                Retour au portfolio
+              </Button>
+              <Button
+                variant="tertiary"
+                to="/404-secret"
+              >
+                Découvre un dernier secret
+              </Button>
+            </div>
+          </div>
+
+          <div className="case-study__next-projects-right">
+            <div className="case-study__next-projects-right-secondary">
+              <Button
+                variant="secondary"
+                icon={IconCode}
+                href="https://github.com/frederick-armando/react_portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub Repository
+              </Button>
+            </div>
+
+            <div className="case-study__next-projects-right-primary">
+              <Button
+                variant="primary"
+                icon={IconMail}
+                to="/contact"
+              >
+                Contact Me
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
