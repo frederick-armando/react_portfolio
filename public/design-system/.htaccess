@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Redirect ds.frederickarmando.fr (subdomain) to the /design-system page
+RewriteCond %{HTTP_HOST} ^ds\.frederickarmando\.fr$ [NC]
+RewriteCond %{REQUEST_URI} !^/design-system [NC]
+RewriteRule ^(.*)$ /design-system [R=301,L]
+
+# SPA fallback: serve index.html for any unmatched route under /design-system
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.html [L]
