@@ -778,7 +778,7 @@ export default function DesignSystem({ isModal = false }) {
   // Standalone Page Mode
   return (
     <section className="section design-system-page">
-      <div className="section__header" style={{ marginBottom: '32px' }}>
+      <div className="section__header" style={{ marginTop: '32px', marginBottom: 0 }}>
         <IconLibraryBig />
         <h1>{t.title}</h1>
         <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600', marginLeft: '4px' }}>
