@@ -62,6 +62,47 @@ const changelogData = [
   }
 ];
 
+function TooltipDemo({ t }) {
+  const [visible, setVisible] = useState(false);
+  const timerRef = useRef(null);
+
+  const startLongPress = () => {
+    timerRef.current = setTimeout(() => setVisible(true), 500);
+  };
+
+  const cancelLongPress = () => {
+    clearTimeout(timerRef.current);
+  };
+
+  const handlePointerUp = () => {
+    cancelLongPress();
+    // hide after a short delay so the user can read it
+    if (visible) setTimeout(() => setVisible(false), 1500);
+  };
+
+  return (
+    <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+      <h4 style={{ marginBottom: '8px' }}>{t.tooltipTitle}</h4>
+      <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
+        {t.tooltipDesc}
+      </p>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Button
+          variant="secondary"
+          icon={IconSettings}
+          iconOnly={true}
+          title={t.tooltipNativeTitle}
+          data-tooltip-show={visible || undefined}
+          onPointerDown={startLongPress}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={cancelLongPress}
+          onPointerLeave={cancelLongPress}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
@@ -507,7 +548,6 @@ export default function DesignSystem({ isModal = false }) {
               {[
                 { id: 'all', label: t.filterAll, count: 6 },
                 { id: 'b2c', label: t.filterB2C, count: 3 },
-                { id: 'ai', label: t.filterAI, count: 2 },
               ].map((f) => (
                 <button
                   key={f.id}
@@ -535,17 +575,9 @@ export default function DesignSystem({ isModal = false }) {
                 <span className="nav-item__label">{t.navHome}</span>
               </div>
               <div className="nav-item">
-                <span className="nav-item__icon"><IconProfile /></span>
-                <span className="nav-item__label">{t.navProfile}</span>
-              </div>
-              <div className="nav-item">
                 <span className="nav-item__icon"><IconFolderOpen /></span>
                 <span className="nav-item__badge">6</span>
                 <span className="nav-item__label">{t.navProjects}</span>
-              </div>
-              <div className="nav-item">
-                <span className="nav-item__icon"><IconMessagesSquare /></span>
-                <span className="nav-item__label">{t.navContact}</span>
               </div>
             </div>
           </div>
@@ -593,22 +625,7 @@ export default function DesignSystem({ isModal = false }) {
           </div>
 
           {/* 7. Tooltip ([data-tooltip]) */}
-          <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '8px' }}>{t.tooltipTitle}</h4>
-            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
-              {t.tooltipDesc}
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'center' }}>
-              <button
-                type="button"
-                data-tooltip={t.tooltipBtnTooltip}
-                style={{ padding: '10px 20px', borderRadius: '999px', background: 'var(--color-surface)', border: '1px solid var(--color-border)', cursor: 'pointer', fontSize: 'var(--font-size-sm)', color: 'var(--color-ink)' }}
-              >
-                {t.tooltipBtnText}
-              </button>
-              <Button variant="secondary" icon={IconSettings} iconOnly={true} title={t.tooltipNativeTitle} />
-            </div>
-          </div>
+          <TooltipDemo t={t} />
         </div>
       </div>
 
