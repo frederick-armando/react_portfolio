@@ -689,7 +689,7 @@ export default function DesignSystem({ isModal = false }) {
               <Button
                 variant="tertiary"
                 icon={IconWandSparkles}
-                to="/404-secret"
+                to="/404"
               >
                 {t.secretBtn}
               </Button>
