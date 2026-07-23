@@ -631,8 +631,7 @@ export default function DesignSystem({ isModal = false }) {
 
       {/* Future Proofing IA */}
       <div style={{ background: 'rgba(56, 90, 249, 0.03)', border: '1px dashed var(--color-primary)', padding: '32px', borderRadius: 'var(--radius-lg)' }}>
-        <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--color-primary)' }}>
-          <IconBotMessageSquare />
+        <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '12px', color: 'var(--color-primary)' }}>
           {t.futureProofingTitle}
         </h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.futureProofingText}</p>
@@ -672,8 +671,7 @@ export default function DesignSystem({ isModal = false }) {
 
       {/* System Changelog */}
       <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-        <h3 style={{ marginBottom: '20px', fontSize: 'var(--font-size-2xl)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <IconMessagesSquare style={{ width: '24px', height: '24px', flexShrink: 0, color: 'var(--color-primary)' }} />
+        <h3 style={{ marginBottom: '20px', fontSize: 'var(--font-size-2xl)' }}>
           {t.changelogTitle}
         </h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
