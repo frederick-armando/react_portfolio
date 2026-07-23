@@ -556,7 +556,7 @@ export default function DesignSystem({ isModal = false }) {
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '16px' }}>
               {t.tldrDesc}
             </p>
-            <section className="case-study-section case-study-section--summary">
+            <section className="case-study-section case-study-section--summary" style={{ marginTop: 0, marginBottom: 0 }}>
               <h3 className="case-study-summary__title">TL;DR</h3>
               <p className="case-study-summary__body" dangerouslySetInnerHTML={{ __html: t.tldrBody }} />
             </section>
