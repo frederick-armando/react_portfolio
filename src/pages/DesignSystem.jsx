@@ -22,7 +22,7 @@ import {
   IconMail,
   IconArrowLeft,
   IconCode,
-  IconEgg,
+  IconWandSparkles,
 } from '../components/icons.jsx';
 import '../styles/pages.css';
 import '../styles/shell-home.css';
@@ -202,7 +202,7 @@ export default function DesignSystem({ isModal = false }) {
         changelogTitle: 'Changelog System',
         currentVer: 'Version active',
         backToHome: 'Retour au portfolio',
-        secretBtn: 'Découvre un dernier secret',
+        secretBtn: 'Chemin de Traverse',
         githubBtn: 'Dépôt GitHub',
         contactBtn: 'Me contacter',
         closeModal: 'Fermer le Design System',
@@ -281,7 +281,7 @@ export default function DesignSystem({ isModal = false }) {
         changelogTitle: 'System Changelog',
         currentVer: 'Active Version',
         backToHome: 'Back to portfolio',
-        secretBtn: 'Discover one last secret',
+        secretBtn: 'Diagon Alley',
         githubBtn: 'GitHub Repository',
         contactBtn: 'Contact Me',
         closeModal: 'Close Design System',
@@ -688,7 +688,7 @@ export default function DesignSystem({ isModal = false }) {
               </Button>
               <Button
                 variant="tertiary"
-                icon={IconEgg}
+                icon={IconWandSparkles}
                 to="/404-secret"
               >
                 {t.secretBtn}
@@ -712,7 +712,7 @@ export default function DesignSystem({ isModal = false }) {
             <div className="case-study__next-projects-right-primary">
               <Button
                 variant="primary"
-                icon={IconMail}
+                icon={IconMessagesSquare}
                 to="/contact"
               >
                 {t.contactBtn}

@@ -35,6 +35,7 @@ import {
   X,
   Egg,
   Sparkles,
+  WandSparkles,
 } from 'lucide-react';
 
 const baseProps = {
@@ -311,3 +312,4 @@ export const IconBotMessageSquare = withLucideScale(BotMessageSquare);
 export const IconTruck = withLucideScale(Truck);
 export const IconEgg = withLucideScale(Egg);
 export const IconSparkles = withLucideScale(Sparkles);
+export const IconWandSparkles = withLucideScale(WandSparkles);
