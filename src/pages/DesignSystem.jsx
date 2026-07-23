@@ -352,7 +352,7 @@ export default function DesignSystem({ isModal = false }) {
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.tokensTitle}</h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.tokensText}</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px' }}>
           {/* Colors Light */}
           <div className="ds-card" style={{ padding: '20px', background: '#ffffff', color: '#12131a', borderRadius: 'var(--radius-lg)', border: '1px solid #e6e8ef' }}>
             <h4 style={{ marginBottom: '16px', color: '#12131a' }}>{t.colorsLight}</h4>
@@ -778,17 +778,12 @@ export default function DesignSystem({ isModal = false }) {
   // Standalone Page Mode
   return (
     <section className="section design-system-page">
-      <div className="section__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <IconLibraryBig />
-          <h1>{t.title}</h1>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600' }}>
-            v{currentVersion}
-          </span>
-          <Button variant="tertiary" onClick={() => navigate(-1)} icon={IconClose} iconOnly={true} title={t.backToHome} />
-        </div>
+      <div className="section__header" style={{ marginBottom: '32px' }}>
+        <IconLibraryBig />
+        <h1>{t.title}</h1>
+        <span className="chip" style={{ background: 'var(--color-primary-100)', color: 'var(--color-primary)', fontWeight: '600', marginLeft: '4px' }}>
+          v{currentVersion}
+        </span>
       </div>
       {contentMarkup}
     </section>
