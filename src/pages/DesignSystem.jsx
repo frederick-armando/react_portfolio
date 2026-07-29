@@ -170,7 +170,8 @@ export default function DesignSystem({ isModal = false }) {
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);   // ref instead of state → no stale closure in handlers
+  const [isDraggingStyle, setIsDraggingStyle] = useState(false); // state only for CSS transition
   const startYRef = useRef(0);
   const modalRef = useRef(null);
   const shellRef = useRef(null);
@@ -202,19 +203,24 @@ export default function DesignSystem({ isModal = false }) {
   }, [isModal, navigate]);
 
   const handlePointerDown = (e) => {
-    setIsDragging(true);
+    // Don't hijack clicks on buttons/links inside the header
+    if (e.target.closest('button, a, input, select, textarea')) return;
+    isDraggingRef.current = true;
+    setIsDraggingStyle(true);
     startYRef.current = e.clientY - translateY;
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
     const newY = Math.max(0, e.clientY - startYRef.current);
     setTranslateY(newY);
   };
 
   const handlePointerUp = (e) => {
-    setIsDragging(false);
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setIsDraggingStyle(false);
     e.currentTarget.releasePointerCapture(e.pointerId);
     if (translateY > window.innerHeight * 0.25) {
       navigate(-1);
@@ -839,12 +845,12 @@ export default function DesignSystem({ isModal = false }) {
           aria-modal="true"
           style={{
             transform: `translateY(${translateY}px)`,
-            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: isDraggingStyle ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="case-study__header case-study__header--modal">
-            <div className="case-study__handle-area" {...dragHandlers}>
+          <div className="case-study__header case-study__header--modal" {...dragHandlers}>
+            <div className="case-study__handle-area">
               <div className="case-study__handle" />
             </div>
             <div className="case-study__header-content">
