@@ -40,8 +40,8 @@ const changelogData = [
   {
     version: '1.9.4',
     date: '2026-07-16',
-    noteFr: 'Refonte complète du catalogue du Design System : rationalisation des badges et tags (<Badge />), intégration des blocs TL;DR, cards métriques et tooltips, mise à jour de la navigation footer selon la structure des cas d\'études, et internationalisation bilingue intégrale (FR/EN).',
-    noteEn: 'Complete Design System catalog revamp: badge/tag rationalization (<Badge />), integration of TL;DR blocks, metric cards, tooltips, footer CTA navigation matching case study layout, and full bilingual i18n support (FR/EN).'
+    noteFr: 'Refonte complète du catalogue du Design System : intégration des composants, cartes métriques, navigation et i18n FR/EN.',
+    noteEn: 'Complete Design System catalog revamp: component integration, metric cards, navigation, and FR/EN i18n.'
   },
   {
     version: '1.9.3',
