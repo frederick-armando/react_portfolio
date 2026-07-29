@@ -170,11 +170,17 @@ export default function DesignSystem({ isModal = false }) {
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
-  const isDraggingRef = useRef(false);   // ref instead of state → no stale closure in handlers
-  const [isDraggingStyle, setIsDraggingStyle] = useState(false); // state only for CSS transition
+  const translateYRef = useRef(0);        // mirror of translateY for use inside closures
+  const [isDraggingStyle, setIsDraggingStyle] = useState(false);
   const startYRef = useRef(0);
   const modalRef = useRef(null);
   const shellRef = useRef(null);
+
+  // Keep translateYRef in sync
+  const setDragY = (y) => {
+    translateYRef.current = y;
+    setTranslateY(y);
+  };
 
   // Active filter state for auditing ProjectFilter real component
   const [activeFilter, setActiveFilter] = useState('all');
@@ -202,39 +208,38 @@ export default function DesignSystem({ isModal = false }) {
     };
   }, [isModal, navigate]);
 
+  // Window-level drag: attach move/up on window so the sheet follows
+  // the finger/cursor regardless of what element is under the pointer.
   const handlePointerDown = (e) => {
-    // Don't hijack clicks on buttons/links inside the header
     if (e.target.closest('button, a, input, select, textarea')) return;
-    isDraggingRef.current = true;
+
+    const startY = e.clientY - translateYRef.current;
     setIsDraggingStyle(true);
-    startYRef.current = e.clientY - translateY;
-    e.currentTarget.setPointerCapture(e.pointerId);
+
+    const onMove = (moveEvt) => {
+      const newY = Math.max(0, moveEvt.clientY - startY);
+      setDragY(newY);
+    };
+
+    const onUp = () => {
+      setIsDraggingStyle(false);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+
+      if (translateYRef.current > window.innerHeight * 0.25) {
+        navigate(-1);
+      } else {
+        setDragY(0);
+      }
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
   };
 
-  const handlePointerMove = (e) => {
-    if (!isDraggingRef.current) return;
-    const newY = Math.max(0, e.clientY - startYRef.current);
-    setTranslateY(newY);
-  };
-
-  const handlePointerUp = (e) => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    setIsDraggingStyle(false);
-    e.currentTarget.releasePointerCapture(e.pointerId);
-    if (translateY > window.innerHeight * 0.25) {
-      navigate(-1);
-    } else {
-      setTranslateY(0);
-    }
-  };
-
-  const dragHandlers = {
-    onPointerDown: handlePointerDown,
-    onPointerMove: handlePointerMove,
-    onPointerUp: handlePointerUp,
-    onPointerCancel: handlePointerUp,
-  };
+  const dragHandlers = { onPointerDown: handlePointerDown };
 
   const t = useMemo(() => {
     const dict = {

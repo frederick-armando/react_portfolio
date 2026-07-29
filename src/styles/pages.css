@@ -1252,8 +1252,6 @@
   margin-bottom: var(--space-4);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
-  /* Drag zone now covers the whole header */
-  touch-action: none;
   cursor: grab;
 }
 
@@ -1267,11 +1265,11 @@
   align-items: center;
   height: 24px;
   margin: 0 -16px;
+  touch-action: none;
 }
 
 @media (min-width: 768px) {
   .case-study__header--modal {
-    touch-action: auto;
     cursor: auto;
   }
 
