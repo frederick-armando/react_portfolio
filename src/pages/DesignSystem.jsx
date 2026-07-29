@@ -33,13 +33,13 @@ import '../styles/Accessibility.css';
 const changelogData = [
   {
     version: '1.9.5',
-    date: '2026-07-29',
+    date: '2026-07-22',
     noteFr: 'Badge pill dans les filtres projets, tooltip long-press global (mobile), et ajout du sous-domaine ds.frederickarmando.fr.',
     noteEn: 'Badge pill inside project filters, global long-press tooltip (mobile), and ds.frederickarmando.fr subdomain redirect.'
   },
   {
     version: '1.9.4',
-    date: '2026-07-22',
+    date: '2026-07-16',
     noteFr: 'Refonte complète du catalogue du Design System : rationalisation des badges et tags (<Badge />), intégration des blocs TL;DR, cards métriques et tooltips, mise à jour de la navigation footer selon la structure des cas d\'études, et internationalisation bilingue intégrale (FR/EN).',
     noteEn: 'Complete Design System catalog revamp: badge/tag rationalization (<Badge />), integration of TL;DR blocks, metric cards, tooltips, footer CTA navigation matching case study layout, and full bilingual i18n support (FR/EN).'
   },
@@ -51,31 +51,31 @@ const changelogData = [
   },
   {
     version: '1.9.2',
-    date: '2026-07-15',
+    date: '2026-07-16',
     noteFr: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.',
     noteEn: 'Advanced SEO/GEO optimization, enriched structured data with semantic abstract and seeks.'
   },
   {
     version: '1.9.1',
-    date: '2026-07-10',
+    date: '2026-07-15',
     noteFr: 'Résolution des conflits d\'initialisation du carrousel de projets sur mobile.',
     noteEn: 'Fixed project carousel initialization conflicts on mobile devices.'
   },
   {
     version: '1.9.0',
-    date: '2026-07-04',
+    date: '2026-07-13',
     noteFr: 'Intégration du système de pré-rendu statique postbuild.js et configuration du routage SPA Apache.',
     noteEn: 'Integrated postbuild.js static pre-rendering system and configured Apache SPA routing.'
   },
   {
     version: '1.8.5',
-    date: '2026-07-16',
+    date: '2026-07-12',
     noteFr: 'Affinage de l\'expérience utilisateur, fluidification des parcours et ajustement des micro-interactions.',
     noteEn: 'User experience refinement, smoother user flows, and micro-interaction adjustments.'
   },
   {
     version: '1.8.0',
-    date: '2026-07-16',
+    date: '2026-07-12',
     noteFr: 'Implémentation du support GeoJSON pour le traitement et l\'affichage des données géographiques.',
     noteEn: 'Implementation of GeoJSON support for processing and displaying geographic data.'
   },
@@ -87,25 +87,25 @@ const changelogData = [
   },
   {
     version: '1.6.5',
-    date: '2026-07-05',
+    date: '2026-07-04',
     noteFr: 'Amélioration continue de la qualité du code (refactoring, renforcement du typage et nettoyage technique).',
     noteEn: 'Continuous code quality improvement (refactoring, stricter typing, and technical cleanup).'
   },
   {
     version: '1.6.0',
-    date: '2026-07-03',
-    noteFr: 'Optimisation des performances globales, réduction du bundle size et amélioration des temps de chargement.',
-    noteEn: 'Overall performance optimization, bundle size reduction, and page load time improvements.'
-  },
-  {
-    version: '1.5.0',
     date: '2026-07-04',
     noteFr: 'Révision, enrichissement et optimisation de la structure des contenus textuels et médias.',
     noteEn: 'Review, enrichment, and structural optimization of textual and media content.'
   },
   {
+    version: '1.5.0',
+    date: '2026-07-03',
+    noteFr: 'Optimisation des performances globales, réduction du bundle size et amélioration des temps de chargement.',
+    noteEn: 'Overall performance optimization, bundle size reduction, and page load time improvements.'
+  },
+  {
     version: '1.4.0',
-    date: '2026-04-20',
+    date: '2026-04-19',
     noteFr: 'Renforcement de l\'accessibilité globale (navigation au clavier, contrastes, attributs ARIA) pour un portfolio plus inclusif.',
     noteEn: 'Global accessibility enhancement (keyboard navigation, color contrast, ARIA attributes) for a more inclusive portfolio.'
   },
@@ -117,7 +117,7 @@ const changelogData = [
   },
   {
     version: '1.2.0',
-    date: '2026-04-18',
+    date: '2026-04-08',
     noteFr: 'Refonte visuelle des arrière-plans avec l\'intégration de mesh gradients dynamiques.',
     noteEn: 'Visual background redesign featuring dynamic mesh gradient integration.'
   },
