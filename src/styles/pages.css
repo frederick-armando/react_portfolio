@@ -651,7 +651,7 @@
 /* Node indicator dot on the continuous line, horizontally aligned with version title */
 .ds-changelog__node {
   position: absolute;
-  left: -20px;
+  left: -14px;
   top: 6px;
   transform: translateX(-50%);
   width: 8px;
