@@ -303,7 +303,11 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Gestionnaire de flux conversationnel alternant entre les messages utilisateur (`user-bubble` alignée à droite) et les réponses de l’agent (`bot-bubble` alignée à gauche avec avatar).',
         
         changelogTitle: 'Changelog System',
-        expandChangelog: (ver) => `Historique des versions (${ver} et inférieures)`,
+        expandChangelog: (ver) => (
+          <>
+            Historique des versions<span className="ds-changelog__btn-suffix"> ({ver} et inférieures)</span>
+          </>
+        ),
         collapseChangelog: 'Réduire l\'historique',
         currentVer: 'Version active',
         backToHome: 'Dépôt GitHub',
@@ -385,7 +389,11 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Conversational stream manager alternating user messages (`user-bubble` aligned right) and agent responses (`bot-bubble` aligned left with avatar).',
 
         changelogTitle: 'System Changelog',
-        expandChangelog: (ver) => `Version history (${ver} and earlier)`,
+        expandChangelog: (ver) => (
+          <>
+            Version history<span className="ds-changelog__btn-suffix"> ({ver} and earlier)</span>
+          </>
+        ),
         collapseChangelog: 'Collapse history',
         currentVer: 'Active Version',
         backToHome: 'GitHub Repository',

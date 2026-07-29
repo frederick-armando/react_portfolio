@@ -689,6 +689,16 @@
   color: var(--color-muted);
 }
 
+.ds-changelog__btn-suffix {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .ds-changelog__btn-suffix {
+    display: none;
+  }
+}
+
 
 
 .project-filter-empty {
