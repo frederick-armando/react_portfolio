@@ -12,6 +12,8 @@ import {
   IconChartArea,
   IconFolderOpen,
   IconDownload,
+  IconChevronDown,
+  IconChevronUp,
 } from '../components/icons-shell.jsx';
 import {
   IconSettings,
@@ -301,7 +303,7 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Gestionnaire de flux conversationnel alternant entre les messages utilisateur (`user-bubble` alignée à droite) et les réponses de l’agent (`bot-bubble` alignée à gauche avec avatar).',
         
         changelogTitle: 'Changelog System',
-        expandChangelog: 'Historique des versions (v1.9.0 et inférieures)',
+        expandChangelog: (ver) => `Historique des versions (${ver} et inférieures)`,
         collapseChangelog: 'Réduire l\'historique',
         currentVer: 'Version active',
         backToHome: 'Dépôt GitHub',
@@ -383,7 +385,7 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Conversational stream manager alternating user messages (`user-bubble` aligned right) and agent responses (`bot-bubble` aligned left with avatar).',
 
         changelogTitle: 'System Changelog',
-        expandChangelog: 'Version history (v1.9.0 and earlier)',
+        expandChangelog: (ver) => `Version history (${ver} and earlier)`,
         collapseChangelog: 'Collapse history',
         currentVer: 'Active Version',
         backToHome: 'GitHub Repository',
@@ -756,10 +758,15 @@ export default function DesignSystem({ isModal = false }) {
         {changelogData.length > 5 && (
           <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>
             <Button
-              variant="tertiary"
+              variant="secondary"
+              className="btn--full-width"
+              icon={showAllChangelog ? IconChevronUp : IconChevronDown}
+              iconPosition="right"
               onClick={() => setShowAllChangelog((prev) => !prev)}
             >
-              {showAllChangelog ? t.collapseChangelog : t.expandChangelog}
+              {showAllChangelog
+                ? t.collapseChangelog
+                : t.expandChangelog(`v${changelogData[5]?.version}`)}
             </Button>
           </div>
         )}

@@ -235,3 +235,19 @@ export function IconPlay(props) {
     </IconBase>
   );
 }
+
+export function IconChevronDown(props) {
+  return (
+    <IconBase {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </IconBase>
+  );
+}
+
+export function IconChevronUp(props) {
+  return (
+    <IconBase {...props}>
+      <path d="m18 15-6-6-6 6" />
+    </IconBase>
+  );
+}

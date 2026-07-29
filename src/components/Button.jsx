@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Button = forwardRef(function Button({
   children,
   icon: Icon,
+  iconPosition = 'left', // 'left' | 'right'
   variant = 'primary', // 'primary' | 'secondary' | 'tertiary'
   reverse = false,     // true for color-inverted tertiary on dark backgrounds
   href,
@@ -27,8 +28,9 @@ const Button = forwardRef(function Button({
   const content = (
     <>
       <span className="btn__ripple" />
-      {Icon && <Icon className="btn__icon" />}
+      {Icon && iconPosition === 'left' && <Icon className="btn__icon" />}
       {children && <span className="btn__label">{children}</span>}
+      {Icon && iconPosition === 'right' && <Icon className="btn__icon" />}
       {badge !== undefined && <span className="btn__badge">{badge}</span>}
     </>
   );

@@ -480,6 +480,11 @@ button:focus-visible {
   width: 48px;
 }
 
+.btn--full-width {
+  width: 100%;
+  justify-content: space-between;
+}
+
 .btn__icon {
   width: 20px;
   height: 20px;
