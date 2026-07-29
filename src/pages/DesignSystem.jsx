@@ -92,7 +92,7 @@ export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const currentVersion = __APP_VERSION__ || '1.9.4';
+  const currentVersion = __APP_VERSION__ || '1.9.5';
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
