@@ -529,6 +529,23 @@
   color: var(--color-primary-action, var(--color-primary));
 }
 
+@media (forced-colors: active) {
+  .project-filter__badge {
+    forced-color-adjust: none;
+    background: ButtonText;
+    color: ButtonFace;
+    outline: 1px solid ButtonText;
+  }
+
+  .project-filter--active .project-filter__badge,
+  .project-filter[aria-pressed="true"] .project-filter__badge {
+    forced-color-adjust: none;
+    background: HighlightText;
+    color: Highlight;
+    outline: 1px solid HighlightText;
+  }
+}
+
 
 .project-filter-empty {
   display: grid;
