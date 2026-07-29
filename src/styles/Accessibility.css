@@ -261,6 +261,16 @@ body.a11y-high-contrast .case-study-page {
   background-color: #111 !important;
   border: 1px solid #fff !important;
 }
+/* Navigation: use background shorthand to also kill gradient background-images */
+body.a11y-high-contrast .topbar {
+  background: #000 !important;
+  border-bottom: 2px solid #fff !important;
+}
+body.a11y-high-contrast .bottom-nav {
+  background: #000 !important;
+  border-top: 2px solid #fff !important;
+  box-shadow: none !important;
+}
 body.a11y-high-contrast .a11y-btn.active,
 body.a11y-high-contrast .a11y-btn.active * {
   background-color: #fff !important;
