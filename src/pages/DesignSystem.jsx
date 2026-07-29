@@ -32,6 +32,12 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
+    version: '1.9.6',
+    date: '2026-07-29',
+    noteFr: 'Divulgation progressive (progressive disclosure) du Changelog dans le Design System et bouton de bascule d\'historique.',
+    noteEn: 'Progressive disclosure for the Design System Changelog with historical versions toggle button.'
+  },
+  {
     version: '1.9.5',
     date: '2026-07-22',
     noteFr: 'Badge pill dans les filtres projets, tooltip long-press global (mobile), et ajout du sous-domaine ds.frederickarmando.fr.',
@@ -158,7 +164,7 @@ export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const currentVersion = __APP_VERSION__ || '1.9.5';
+  const currentVersion = __APP_VERSION__ || '1.9.6';
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
@@ -169,6 +175,9 @@ export default function DesignSystem({ isModal = false }) {
 
   // Active filter state for auditing ProjectFilter real component
   const [activeFilter, setActiveFilter] = useState('all');
+
+  // Progressive disclosure for Changelog entries
+  const [showAllChangelog, setShowAllChangelog] = useState(false);
 
   useEffect(() => {
     if (!isModal) return undefined;
@@ -292,6 +301,8 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Gestionnaire de flux conversationnel alternant entre les messages utilisateur (`user-bubble` alignée à droite) et les réponses de l’agent (`bot-bubble` alignée à gauche avec avatar).',
         
         changelogTitle: 'Changelog System',
+        expandChangelog: 'Historique des versions (v1.9.0 et inférieures)',
+        collapseChangelog: 'Réduire l\'historique',
         currentVer: 'Version active',
         backToHome: 'Dépôt GitHub',
         secretBtn: 'Le côté obscur',
@@ -372,6 +383,8 @@ export default function DesignSystem({ isModal = false }) {
         flowDesc: 'Conversational stream manager alternating user messages (`user-bubble` aligned right) and agent responses (`bot-bubble` aligned left with avatar).',
 
         changelogTitle: 'System Changelog',
+        expandChangelog: 'Version history (v1.9.0 and earlier)',
+        collapseChangelog: 'Collapse history',
         currentVer: 'Active Version',
         backToHome: 'GitHub Repository',
         secretBtn: 'The Dark Side',
@@ -728,7 +741,7 @@ export default function DesignSystem({ isModal = false }) {
           {t.changelogTitle}
         </h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {changelogData.map((item) => (
+          {(showAllChangelog ? changelogData : changelogData.slice(0, 5)).map((item) => (
             <div key={item.version} style={{ display: 'flex', gap: '16px', borderLeft: '2px solid var(--color-primary-100)', paddingLeft: '16px' }}>
               <div style={{ minWidth: '80px' }}>
                 <strong style={{ color: 'var(--color-primary)', fontSize: 'var(--font-size-lg)' }}>v{item.version}</strong>
@@ -740,6 +753,16 @@ export default function DesignSystem({ isModal = false }) {
             </div>
           ))}
         </div>
+        {changelogData.length > 5 && (
+          <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>
+            <Button
+              variant="tertiary"
+              onClick={() => setShowAllChangelog((prev) => !prev)}
+            >
+              {showAllChangelog ? t.collapseChangelog : t.expandChangelog}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Navigation Footer (Structure Case Studies) */}
