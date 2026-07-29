@@ -172,7 +172,7 @@ export default function DesignSystem({ isModal = false }) {
   const [translateY, setTranslateY] = useState(0);
   const translateYRef = useRef(0);        // mirror of translateY for use inside closures
   const [isDraggingStyle, setIsDraggingStyle] = useState(false);
-  const startYRef = useRef(0);
+  const [isEntering, setIsEntering] = useState(true); // removed after entrance animation
   const modalRef = useRef(null);
   const shellRef = useRef(null);
 
@@ -845,13 +845,14 @@ export default function DesignSystem({ isModal = false }) {
       <div className="case-study-backdrop" onClick={() => navigate(-1)}>
         <div
           ref={modalRef}
-          className="case-study-modal case-study-modal--entering"
+          className={`case-study-modal${isEntering ? ' case-study-modal--entering' : ''}`}
           role="dialog"
           aria-modal="true"
           style={{
             transform: `translateY(${translateY}px)`,
             transition: isDraggingStyle ? 'none' : 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
+          onAnimationEnd={(e) => { if (e.target === e.currentTarget) setIsEntering(false); }}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="case-study__header case-study__header--modal" {...dragHandlers}>
