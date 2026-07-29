@@ -32,6 +32,12 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
+    version: '1.9.5',
+    date: '2026-07-29',
+    noteFr: 'Badge pill dans les filtres projets, tooltip long-press global (mobile), et ajout du sous-domaine ds.frederickarmando.fr.',
+    noteEn: 'Badge pill inside project filters, global long-press tooltip (mobile), and ds.frederickarmando.fr subdomain redirect.'
+  },
+  {
     version: '1.9.4',
     date: '2026-07-22',
     noteFr: 'Refonte complète du catalogue du Design System : rationalisation des badges et tags (<Badge />), intégration des blocs TL;DR, cards métriques et tooltips, mise à jour de la navigation footer selon la structure des cas d\'études, et internationalisation bilingue intégrale (FR/EN).',
@@ -64,23 +70,6 @@ const changelogData = [
 ];
 
 function TooltipDemo({ t }) {
-  const [visible, setVisible] = useState(false);
-  const timerRef = useRef(null);
-
-  const startLongPress = () => {
-    timerRef.current = setTimeout(() => setVisible(true), 500);
-  };
-
-  const cancelLongPress = () => {
-    clearTimeout(timerRef.current);
-  };
-
-  const handlePointerUp = () => {
-    cancelLongPress();
-    // hide after a short delay so the user can read it
-    if (visible) setTimeout(() => setVisible(false), 1500);
-  };
-
   return (
     <div className="ds-card" style={{ padding: '24px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
       <h4 style={{ marginBottom: '8px' }}>{t.tooltipTitle}</h4>
@@ -93,11 +82,6 @@ function TooltipDemo({ t }) {
           icon={IconSettings}
           iconOnly={true}
           title={t.tooltipNativeTitle}
-          data-tooltip-show={visible || undefined}
-          onPointerDown={startLongPress}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={cancelLongPress}
-          onPointerLeave={cancelLongPress}
         />
       </div>
     </div>
@@ -560,7 +544,7 @@ export default function DesignSystem({ isModal = false }) {
                   onClick={() => setActiveFilter(f.id)}
                 >
                   <span>{f.label}</span>
-                  <span className="project-filter__count">({f.count})</span>
+              <span className="project-filter__badge">{f.count}</span>
                 </button>
               ))}
             </div>

@@ -165,8 +165,8 @@ function ProjectFilters({ activeFilter, content, filterCounts, onFilterChange })
               onClick={() => onFilterChange(filter.id)}
             >
               <span>{content.filters.options[filter.id] ?? filter.id}</span>
-              <span className="project-filter__count" aria-hidden="true">
-                ({count})
+              <span className="project-filter__badge" aria-hidden="true">
+                {count}
               </span>
             </button>
           );

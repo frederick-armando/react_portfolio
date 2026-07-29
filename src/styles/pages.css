@@ -506,6 +506,30 @@
   font-weight: 700;
 }
 
+.project-filter__badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-action, var(--color-primary));
+  color: var(--color-primary-action-text, #fff);
+  font-size: var(--font-size-xxs);
+  font-weight: 700;
+  line-height: 1;
+  transition: background var(--motion-duration-short) var(--motion-standard),
+              color var(--motion-duration-short) var(--motion-standard);
+}
+
+.project-filter--active .project-filter__badge,
+.project-filter[aria-pressed="true"] .project-filter__badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+
 .project-filter-empty {
   display: grid;
   justify-items: center;

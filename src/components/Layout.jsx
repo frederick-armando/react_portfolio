@@ -75,6 +75,65 @@ export default function Layout({ children }) {
     };
   }, []);
 
+  // Global long-press tooltip for touch devices
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    // Only activate on devices without fine hover (touch/mobile)
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (finePointer.matches) return undefined;
+
+    let pressTimer = null;
+    let dismissTimer = null;
+    let activeEl = null;
+
+    const dismiss = () => {
+      if (activeEl) {
+        activeEl.removeAttribute('data-tooltip-show');
+        activeEl = null;
+      }
+    };
+
+    const handleDown = (e) => {
+      const el = e.target.closest('[data-tooltip]');
+      if (!el) return;
+      clearTimeout(pressTimer);
+      pressTimer = setTimeout(() => {
+        dismiss();
+        activeEl = el;
+        el.setAttribute('data-tooltip-show', '');
+        clearTimeout(dismissTimer);
+        dismissTimer = setTimeout(dismiss, 1500);
+      }, 500);
+    };
+
+    const handleUp = () => {
+      clearTimeout(pressTimer);
+      if (activeEl) {
+        clearTimeout(dismissTimer);
+        dismissTimer = setTimeout(dismiss, 1500);
+      }
+    };
+
+    const handleCancel = () => {
+      clearTimeout(pressTimer);
+      clearTimeout(dismissTimer);
+      dismiss();
+    };
+
+    window.addEventListener('pointerdown', handleDown, { passive: true });
+    window.addEventListener('pointerup', handleUp, { passive: true });
+    window.addEventListener('pointermove', handleCancel, { passive: true });
+
+    return () => {
+      clearTimeout(pressTimer);
+      clearTimeout(dismissTimer);
+      window.removeEventListener('pointerdown', handleDown);
+      window.removeEventListener('pointerup', handleUp);
+      window.removeEventListener('pointermove', handleCancel);
+      dismiss();
+    };
+  }, []);
+
   return (
     <div className="app">
       <div className="mesh-gradient" aria-hidden="true">
