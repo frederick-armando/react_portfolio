@@ -23,6 +23,7 @@ import {
   IconArrowLeft,
   IconCode,
   IconWandSparkles,
+  IconEclipse,
 } from '../components/icons.jsx';
 import '../styles/pages.css';
 import '../styles/shell-home.css';
@@ -242,8 +243,9 @@ export default function DesignSystem({ isModal = false }) {
         
         changelogTitle: 'Changelog System',
         currentVer: 'Version active',
-        backToHome: 'Retour au portfolio',
-        secretBtn: 'Chemin de Traverse',
+        backToHome: 'Dépôt GitHub',
+        secretBtn: 'Le côté obscur',
+        projectsBtn: 'Découvrir mes projets',
         githubBtn: 'Dépôt GitHub',
         contactBtn: 'Me contacter',
         closeModal: 'Fermer le Design System',
@@ -321,8 +323,9 @@ export default function DesignSystem({ isModal = false }) {
 
         changelogTitle: 'System Changelog',
         currentVer: 'Active Version',
-        backToHome: 'Back to portfolio',
-        secretBtn: 'Diagon Alley',
+        backToHome: 'GitHub Repository',
+        secretBtn: 'The Dark Side',
+        projectsBtn: 'Discover my projects',
         githubBtn: 'GitHub Repository',
         contactBtn: 'Contact Me',
         closeModal: 'Close Design System',
@@ -695,15 +698,16 @@ export default function DesignSystem({ isModal = false }) {
             <div className="case-study__next-projects-tertiary">
               <Button
                 variant="tertiary"
-                icon={IconHome}
-                to="/"
-                state={isModal ? location.state : undefined}
+                icon={IconCode}
+                href="https://github.com/frederick-armando/react_portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {t.backToHome}
+                {t.githubBtn}
               </Button>
               <Button
                 variant="tertiary"
-                icon={IconWandSparkles}
+                icon={IconEclipse}
                 to="/404"
               >
                 {t.secretBtn}
@@ -715,12 +719,10 @@ export default function DesignSystem({ isModal = false }) {
             <div className="case-study__next-projects-right-secondary">
               <Button
                 variant="secondary"
-                icon={IconCode}
-                href="https://github.com/frederick-armando/react_portfolio"
-                target="_blank"
-                rel="noopener noreferrer"
+                icon={IconFolderOpen}
+                to="/projets"
               >
-                {t.githubBtn}
+                {t.projectsBtn}
               </Button>
             </div>
 
