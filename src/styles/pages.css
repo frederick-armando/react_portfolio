@@ -506,6 +506,7 @@
   font-weight: 700;
 }
 
+/* Default (light mode): primary fill so badge is visible on the light surface */
 .project-filter__badge {
   min-width: 20px;
   height: 20px;
@@ -514,7 +515,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--color-primary-action);
   color: #fff;
   font-size: var(--font-size-xxs);
   font-weight: 700;
@@ -523,13 +524,37 @@
               color var(--motion-duration-short) var(--motion-standard);
 }
 
+/* Dark mode: semi-transparent white blends naturally on dark filter surface */
+[data-theme="dark"] .project-filter__badge,
+:root.dark .project-filter__badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .project-filter__badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+}
+
+/* Active state (both modes): white pill + primary text */
 .project-filter--active .project-filter__badge,
 .project-filter[aria-pressed="true"] .project-filter__badge {
   background: #fff;
   color: var(--color-primary-action, var(--color-primary));
 }
 
+/* ── Forced-colors (high-contrast) ───────────────────────────────────────── */
 @media (forced-colors: active) {
+  /* Active filter button: replace stripped box-shadow with a visible outline */
+  .project-filter--active,
+  .project-filter[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: 1px;
+  }
+
+  /* Inactive badge: dark pill on button surface */
   .project-filter__badge {
     forced-color-adjust: none;
     background: ButtonText;
@@ -537,12 +562,13 @@
     outline: 1px solid ButtonText;
   }
 
+  /* Active badge: use HighlightText bg + Highlight text, outlined in Highlight */
   .project-filter--active .project-filter__badge,
   .project-filter[aria-pressed="true"] .project-filter__badge {
     forced-color-adjust: none;
     background: HighlightText;
     color: Highlight;
-    outline: 1px solid HighlightText;
+    outline: 1px solid Highlight;
   }
 }
 
