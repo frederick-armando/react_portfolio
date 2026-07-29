@@ -294,7 +294,7 @@ export default function AccessibilityPanel({
               <div className="a11y-button-group a11y-button-group--stacked">
                 <Button
                   variant={bigCursor ? 'primary' : 'tertiary'}
-                  className={`a11y-btn ${bigCursor ? 'active' : ''}`}
+                  className={`a11y-btn a11y-btn--big-cursor ${bigCursor ? 'active' : ''}`}
                   icon={IconMousePointer2}
                   onClick={() => updateSetting('bigCursor', !bigCursor)}
                   aria-pressed={bigCursor}

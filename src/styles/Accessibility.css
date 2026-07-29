@@ -436,6 +436,13 @@ body.a11y-no-animations *::after {
    BIG CURSOR & ENHANCED FOCUS
    ========================================================================== */
 
+/* Hide Big Cursor button on touch/mobile devices */
+@media (pointer: coarse), (max-width: 768px) {
+  .a11y-btn--big-cursor {
+    display: none !important;
+  }
+}
+
 /* Big Cursor */
 body.a11y-big-cursor,
 body.a11y-big-cursor *:not(a):not(button):not([role="button"]):not(input):not(select):not(textarea) {
