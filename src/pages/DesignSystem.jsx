@@ -739,24 +739,25 @@ export default function DesignSystem({ isModal = false }) {
 
       {/* System Changelog */}
       <div id="changelog" className="ds-card" style={{ padding: '28px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-        <h3 style={{ marginBottom: '20px', fontSize: 'var(--font-size-2xl)' }}>
+        <h3 style={{ marginBottom: '24px', fontSize: 'var(--font-size-2xl)' }}>
           {t.changelogTitle}
         </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div className="ds-changelog__timeline">
           {(showAllChangelog ? changelogData : changelogData.slice(0, 5)).map((item) => (
-            <div key={item.version} style={{ display: 'flex', gap: '16px', borderLeft: '2px solid var(--color-primary-100)', paddingLeft: '16px' }}>
-              <div style={{ minWidth: '80px' }}>
-                <strong style={{ color: 'var(--color-primary)', fontSize: 'var(--font-size-lg)' }}>v{item.version}</strong>
-                <span style={{ display: 'block', fontSize: 'var(--font-size-xs)', color: 'var(--color-muted)' }}>{item.date}</span>
+            <div key={item.version} className="ds-changelog__item">
+              <span className="ds-changelog__node" aria-hidden="true" />
+              <div className="ds-changelog__version">
+                <strong className="ds-changelog__version-tag">v{item.version}</strong>
+                <span className="ds-changelog__date">{item.date}</span>
               </div>
-              <p style={{ color: 'var(--color-body)', fontSize: 'var(--font-size-md)', lineHeight: '1.5' }}>
+              <p className="ds-changelog__description">
                 {language === 'fr' ? item.noteFr : item.noteEn}
               </p>
             </div>
           ))}
         </div>
         {changelogData.length > 5 && (
-          <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>
+          <div style={{ marginTop: '24px' }}>
             <Button
               variant="secondary"
               className="btn--full-width"

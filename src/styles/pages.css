@@ -621,6 +621,75 @@
   }
 }
 
+/* ── Design System Changelog Timeline ───────────────────────────────────── */
+.ds-changelog__timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-left: 20px;
+}
+
+/* Continuous vertical axis line */
+.ds-changelog__timeline::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 5px;
+  width: 2px;
+  background: var(--color-primary-100);
+}
+
+.ds-changelog__item {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+/* Node indicator dot on the continuous line, horizontally aligned with version title */
+.ds-changelog__node {
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-surface);
+  z-index: 1;
+}
+
+.ds-changelog__version {
+  min-width: 84px;
+  flex-shrink: 0;
+}
+
+.ds-changelog__version-tag {
+  display: block;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ds-changelog__date {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.ds-changelog__description {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+
 
 .project-filter-empty {
   display: grid;
