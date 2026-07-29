@@ -545,7 +545,7 @@
   color: var(--color-primary-action, var(--color-primary));
 }
 
-/* ── Forced-colors (high-contrast) ───────────────────────────────────────── */
+/* ── Forced-colors (high-contrast, Windows) ──────────────────────────────── */
 @media (forced-colors: active) {
   /* Active filter button: replace stripped box-shadow with a visible outline */
   .project-filter--active,
@@ -569,6 +569,55 @@
     background: HighlightText;
     color: Highlight;
     outline: 1px solid Highlight;
+  }
+}
+
+/* ── High contrast (macOS "Increase Contrast") ───────────────────────────── */
+@media (prefers-contrast: more) {
+  /* Solid background + strong border so filter is never blanc sur blanc */
+  .project-filter {
+    background: var(--color-surface);
+    border-color: var(--color-ink);
+    border-width: 1.5px;
+    color: var(--color-ink);
+  }
+
+  .project-filter:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: none;
+  }
+
+  .project-filter:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  /* Active filter: strong primary fill + opaque border + extra outline */
+  .project-filter--active,
+  .project-filter[aria-pressed="true"] {
+    background: var(--color-primary-action);
+    border-color: var(--color-primary-action);
+    color: var(--color-primary-action-text);
+    box-shadow: none;
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+
+  /* Inactive badge: solid primary fill ensures readability on any surface */
+  .project-filter__badge {
+    background: var(--color-primary);
+    color: #fff;
+    outline: 1px solid var(--color-primary);
+  }
+
+  /* Active badge: white + primary text, outlined in white for contrast */
+  .project-filter--active .project-filter__badge,
+  .project-filter[aria-pressed="true"] .project-filter__badge {
+    background: #fff;
+    color: var(--color-primary-action);
+    outline: 1px solid #fff;
   }
 }
 
