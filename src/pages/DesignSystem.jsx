@@ -74,13 +74,13 @@ const changelogData = [
     noteEn: 'User experience refinement, smoother user flows, and micro-interaction adjustments.'
   },
   {
-    version: '1.8',
+    version: '1.8.0',
     date: '2026-07-16',
     noteFr: 'Implémentation du support GeoJSON pour le traitement et l\'affichage des données géographiques.',
     noteEn: 'Implementation of GeoJSON support for processing and displaying geographic data.'
   },
   {
-    version: '1.7',
+    version: '1.7.0',
     date: '2026-07-05',
     noteFr: 'Restructuration globale de l\'architecture du projet, des dossiers et des composants pour une meilleure maintenabilité.',
     noteEn: 'Comprehensive restructuring of project architecture, folder structure, and components for better maintainability.'
@@ -92,43 +92,43 @@ const changelogData = [
     noteEn: 'Continuous code quality improvement (refactoring, stricter typing, and technical cleanup).'
   },
   {
-    version: '1.6',
+    version: '1.6.0',
     date: '2026-07-03',
     noteFr: 'Optimisation des performances globales, réduction du bundle size et amélioration des temps de chargement.',
     noteEn: 'Overall performance optimization, bundle size reduction, and page load time improvements.'
   },
   {
-    version: '1.5',
+    version: '1.5.0',
     date: '2026-07-04',
     noteFr: 'Révision, enrichissement et optimisation de la structure des contenus textuels et médias.',
     noteEn: 'Review, enrichment, and structural optimization of textual and media content.'
   },
   {
-    version: '1.4',
+    version: '1.4.0',
     date: '2026-04-20',
     noteFr: 'Renforcement de l\'accessibilité globale (navigation au clavier, contrastes, attributs ARIA) pour un portfolio plus inclusif.',
     noteEn: 'Global accessibility enhancement (keyboard navigation, color contrast, ARIA attributes) for a more inclusive portfolio.'
   },
   {
-    version: '1.3',
+    version: '1.3.0',
     date: '2026-04-18',
     noteFr: 'Configuration complète des métadonnées Open Graph pour optimiser les aperçus lors du partage sur les réseaux sociaux.',
     noteEn: 'Complete Open Graph metadata setup to optimize preview cards across social media networks.'
   },
   {
-    version: '1.2',
+    version: '1.2.0',
     date: '2026-04-18',
     noteFr: 'Refonte visuelle des arrière-plans avec l\'intégration de mesh gradients dynamiques.',
     noteEn: 'Visual background redesign featuring dynamic mesh gradient integration.'
   },
   {
-    version: '1.1',
+    version: '1.1.0',
     date: '2026-03-31',
     noteFr: 'Ajout d\'easter eggs interactifs pour récompenser l\'exploration et enrichir l\'expérience de découverte.',
     noteEn: 'Added interactive easter eggs to reward exploration and enrich the discovery experience.'
   },
   {
-    version: '1.0',
+    version: '1.0.0',
     date: '2026-03-30',
     noteFr: 'Lancement de la refonte du portfolio propulsé par React. Intégration d\'un mode Light/Dark, d\'un système de traductions dynamiques et migration de la quasi-intégralité du contenu historique.',
     noteEn: 'Launch of the React-powered portfolio redesign. Integrated Light/Dark modes, dynamic translation system, and migrated nearly all historical content.'
