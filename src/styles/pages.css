@@ -458,7 +458,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
   min-height: 40px;
   min-width: 0;
   border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
@@ -525,8 +525,8 @@
 
 .project-filter--active .project-filter__badge,
 .project-filter[aria-pressed="true"] .project-filter__badge {
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  background: #fff;
+  color: var(--color-primary-action, var(--color-primary));
 }
 
 
