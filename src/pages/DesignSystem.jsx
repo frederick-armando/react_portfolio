@@ -47,7 +47,7 @@ const changelogData = [
   },
   {
     version: '1.9.4',
-    date: '2026-07-16',
+    date: '2026-07-21',
     noteFr: 'Refonte complète du catalogue du Design System : intégration des composants, cartes métriques, navigation et i18n FR/EN.',
     noteEn: 'Complete Design System catalog revamp: component integration, metric cards, navigation, and FR/EN i18n.'
   },
@@ -59,7 +59,7 @@ const changelogData = [
   },
   {
     version: '1.9.2',
-    date: '2026-07-16',
+    date: '2026-07-15',
     noteFr: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.',
     noteEn: 'Advanced SEO/GEO optimization, enriched structured data with semantic abstract and seeks.'
   },
