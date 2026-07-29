@@ -514,8 +514,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary-action, var(--color-primary));
-  color: var(--color-primary-action-text, #fff);
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
   font-size: var(--font-size-xxs);
   font-weight: 700;
   line-height: 1;
