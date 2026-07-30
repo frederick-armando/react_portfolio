@@ -459,7 +459,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#385AF9', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Primary Blue</strong>
-                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-primary (#385AF9)</code>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-primary (#385AF9)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(56, 90, 249, 0.1)', color: '#385AF9', border: '1px solid rgba(56, 90, 249, 0.2)' }}>
@@ -471,7 +471,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#12131a', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Ink Text</strong>
-                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-ink (#12131a)</code>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-ink (#12131a)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(18, 19, 26, 0.08)', color: '#12131a', border: '1px solid rgba(18, 19, 26, 0.15)' }}>
@@ -483,7 +483,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#3e4250', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Body Text</strong>
-                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-body (#3e4250)</code>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-body (#3e4250)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(62, 66, 80, 0.08)', color: '#3e4250', border: '1px solid rgba(62, 66, 80, 0.15)' }}>
@@ -495,7 +495,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e6e8ef', border: '1px solid #7a8192', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Border Color</strong>
-                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-border (#e6e8ef)</code>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-border (#e6e8ef)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: '#f4f5f8', color: '#7a8192', border: '1px solid #e6e8ef' }}>
@@ -507,7 +507,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#ede9ff', border: '1px solid #6f5cff', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Purple Accent</strong>
-                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-purple-500 (#6f5cff)</code>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-purple-500 (#6f5cff)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: '#ede9ff', color: '#5542e0', border: '1px solid rgba(111, 92, 255, 0.3)' }}>
@@ -526,7 +526,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#8DA2FF', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Primary Blue</strong>
-                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-primary (#8DA2FF)</code>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-primary (#8DA2FF)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(141, 162, 255, 0.15)', color: '#8DA2FF', border: '1px solid rgba(141, 162, 255, 0.3)' }}>
@@ -538,7 +538,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e4e5ed', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Ink Text</strong>
-                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-ink (#e4e5ed)</code>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-ink (#e4e5ed)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(228, 229, 237, 0.12)', color: '#e4e5ed', border: '1px solid rgba(228, 229, 237, 0.25)' }}>
@@ -550,7 +550,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#b0b3c4', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Body Text</strong>
-                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-body (#b0b3c4)</code>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-body (#b0b3c4)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(176, 179, 196, 0.12)', color: '#b0b3c4', border: '1px solid rgba(176, 179, 196, 0.25)' }}>
@@ -562,7 +562,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.08)', border: '1px solid #7c809a', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Border Color</strong>
-                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-border (rgba white 8%)</code>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-border (rgba white 8%)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(255, 255, 255, 0.05)', color: '#7c809a', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
@@ -574,7 +574,7 @@ export default function DesignSystem({ isModal = false }) {
                   <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(111, 92, 255, 0.12)', border: '1px solid #8a7aff', flexShrink: 0 }} />
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Purple Accent</strong>
-                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>--color-purple-500 (#8a7aff)</code>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-purple-500 (#8a7aff)</code>
                   </div>
                 </div>
                 <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(138, 122, 255, 0.15)', color: '#a295ff', border: '1px solid rgba(138, 122, 255, 0.3)' }}>
