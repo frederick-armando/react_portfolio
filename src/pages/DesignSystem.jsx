@@ -449,7 +449,7 @@ export default function DesignSystem({ isModal = false }) {
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.tokensTitle}</h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.tokensText}</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '24px' }}>
           {/* Colors Light */}
           <div className="ds-card" style={{ padding: '20px', background: '#ffffff', color: '#12131a', borderRadius: 'var(--radius-lg)', border: '1px solid #e6e8ef' }}>
             <h4 style={{ marginBottom: '16px', color: '#12131a' }}>{t.colorsLight}</h4>
