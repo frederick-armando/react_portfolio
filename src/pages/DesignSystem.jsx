@@ -259,6 +259,11 @@ export default function DesignSystem({ isModal = false }) {
         colorsLight: 'Palette Mode Clair (Light)',
         colorsDark: 'Palette Mode Sombre (Dark)',
         typography: 'Typographie (Core Sans C)',
+        typographyScaleTitle: 'Échelle de taille',
+        typographyWeightsTitle: 'Graisses (Font Weights)',
+        typographyLineHeightTitle: 'Interlignage (Line Height)',
+        typographyLineHeightBody: 'Corps de texte',
+        typographyLineHeightHeading: 'Titres',
         spacing: 'Grille d\'Espacement (8pt Grid)',
         spacingText: 'Valeurs régulières d\'espacement basées sur la grille 8pt.',
         breakpoints: 'Breakpoints Responsive CSS',
@@ -347,6 +352,11 @@ export default function DesignSystem({ isModal = false }) {
         colorsLight: 'Light Mode Palette',
         colorsDark: 'Dark Mode Palette',
         typography: 'Typography (Core Sans C)',
+        typographyScaleTitle: 'Type Scale',
+        typographyWeightsTitle: 'Font Weights',
+        typographyLineHeightTitle: 'Line Height',
+        typographyLineHeightBody: 'Body text',
+        typographyLineHeightHeading: 'Headings',
         spacing: 'Spacing System (8pt Grid)',
         spacingText: 'Regular spacing values based on the 8pt grid.',
         breakpoints: 'Responsive CSS Breakpoints',
@@ -585,24 +595,81 @@ export default function DesignSystem({ isModal = false }) {
           </div>
 
           {/* Typography */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>{t.typography}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Font Family</span>
-                <p style={{ fontFamily: 'var(--font-family)', fontWeight: '600' }}>'Core Sans C', sans-serif</p>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', gridColumn: '1 / -1' }}>
+            <h4 style={{ marginBottom: '20px' }}>{t.typography}</h4>
+
+            {/* Font Family */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '10px' }}>Font Family</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '12px 16px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                <code style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>--font-family</code>
+                <span style={{ fontFamily: 'var(--font-family)', fontWeight: 600, fontSize: 'var(--font-size-lg)' }}>'Core Sans C', system-ui, sans-serif</span>
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H1 Title</span>
-                <p style={{ fontSize: 'var(--font-size-4xl)', fontWeight: '800', margin: 0 }}>H1 Title 1.5rem</p>
+            </div>
+
+            {/* Type Scale */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyScaleTitle}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {[
+                  { token: '--font-size-xxs', value: '0.6875rem', px: '11px', label: 'XXS — Labels, badges, captions', weight: 400 },
+                  { token: '--font-size-xs',  value: '0.75rem',   px: '12px', label: 'XS — Microcopy, timestamps',     weight: 400 },
+                  { token: '--font-size-sm',  value: '0.8125rem', px: '13px', label: 'SM — Tags, secondary text',       weight: 400 },
+                  { token: '--font-size-md',  value: '0.875rem',  px: '14px', label: 'MD — Body text (default)',        weight: 400 },
+                  { token: '--font-size-lg',  value: '0.9375rem', px: '15px', label: 'LG — Body large / intro',         weight: 400 },
+                  { token: '--font-size-xl',  value: '1rem',      px: '16px', label: 'XL — H4 / section labels',        weight: 600 },
+                  { token: '--font-size-2xl', value: '1.125rem',  px: '18px', label: '2XL — H3 / card titles',         weight: 600 },
+                  { token: '--font-size-3xl', value: '1.25rem',   px: '20px', label: '3XL — H2 Subtitles',             weight: 700 },
+                  { token: '--font-size-4xl', value: '1.5rem',    px: '24px', label: '4XL — H1 Title',                 weight: 800 },
+                ].map(({ token, value, px, label, weight }) => (
+                  <div key={token} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '8px', background: 'var(--color-surface)' }}>
+                    <code style={{ fontSize: '10px', color: 'var(--color-primary)', fontWeight: 700, whiteSpace: 'nowrap', width: '136px', flexShrink: 0 }}>{token}</code>
+                    <span style={{ fontSize: '10px', color: 'var(--color-muted)', whiteSpace: 'nowrap', width: '90px', flexShrink: 0 }}>{value} ({px})</span>
+                    <span style={{ fontSize: value, fontWeight: weight, lineHeight: 1.2, minWidth: 0 }}>{label}</span>
+                  </div>
+                ))}
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H2 Subtitle</span>
-                <p style={{ fontSize: 'var(--font-size-3xl)', fontWeight: '700', margin: 0 }}>H2 Subtitle 1.25rem</p>
+            </div>
+
+            {/* Font Weights */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyWeightsTitle}</span>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 160px), 1fr))', gap: '8px' }}>
+                {[
+                  { weight: 400, name: 'Regular',    usage: 'Body text' },
+                  { weight: 500, name: 'Medium',     usage: 'Nav links, labels' },
+                  { weight: 600, name: 'SemiBold',   usage: 'Buttons, chips' },
+                  { weight: 700, name: 'Bold',       usage: 'H2, card titles' },
+                  { weight: 800, name: 'ExtraBold',  usage: 'H1, hero' },
+                ].map(({ weight, name, usage }) => (
+                  <div key={weight} style={{ padding: '12px', background: 'var(--color-primary-100)', borderRadius: '10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: weight, lineHeight: 1.1, marginBottom: '6px' }}>Ag</div>
+                    <code style={{ fontSize: '10px', color: 'var(--color-primary)', fontWeight: 700, display: 'block' }}>{weight}</code>
+                    <span style={{ fontSize: '11px', fontWeight: 600, display: 'block' }}>{name}</span>
+                    <span style={{ fontSize: '10px', color: 'var(--color-muted)', display: 'block', marginTop: '2px' }}>{usage}</span>
+                  </div>
+                ))}
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Body Regular</span>
-                <p style={{ fontSize: 'var(--font-size-md)', color: 'var(--color-body)', margin: 0 }}>Body regular text 0.875rem</p>
+            </div>
+
+            {/* Line Heights */}
+            <div>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyLineHeightTitle}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                  <div>
+                    <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', display: 'block' }}>{t.typographyLineHeightBody}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--font-size-md → --font-size-lg</span>
+                  </div>
+                  <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>1.6</code>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                  <div>
+                    <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', display: 'block' }}>{t.typographyLineHeightHeading}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--font-size-3xl → --font-size-4xl</span>
+                  </div>
+                  <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>1.2 – 1.3</code>
+                </div>
               </div>
             </div>
           </div>
