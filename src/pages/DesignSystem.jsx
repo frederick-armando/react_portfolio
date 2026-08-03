@@ -34,6 +34,12 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
+    version: '1.9.7',
+    date: '2026-07-30',
+    noteFr: 'Ajout des indicateurs de conformité et ratios de contraste WCAG sur les palettes de couleurs, documentation des breakpoints CSS responsive et structuration des fondations.',
+    noteEn: 'Added WCAG compliance indicators and contrast ratios on color palettes, documented responsive CSS breakpoints, and structured foundations.'
+  },
+  {
     version: '1.9.6',
     date: '2026-07-29',
     noteFr: 'Divulgation progressive (progressive disclosure) du Changelog dans le Design System et bouton de bascule d\'historique.',
@@ -166,7 +172,7 @@ export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const currentVersion = __APP_VERSION__ || '1.9.6';
+  const currentVersion = __APP_VERSION__ || '1.9.7';
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);
@@ -253,8 +259,15 @@ export default function DesignSystem({ isModal = false }) {
         colorsLight: 'Palette Mode Clair (Light)',
         colorsDark: 'Palette Mode Sombre (Dark)',
         typography: 'Typographie (Core Sans C)',
+        typographyScaleTitle: 'Échelle de taille',
+        typographyWeightsTitle: 'Graisses (Font Weights)',
+        typographyLineHeightTitle: 'Interlignage (Line Height)',
+        typographyLineHeightBody: 'Corps de texte',
+        typographyLineHeightHeading: 'Titres',
         spacing: 'Grille d\'Espacement (8pt Grid)',
         spacingText: 'Valeurs régulières d\'espacement basées sur la grille 8pt.',
+        breakpoints: 'Breakpoints Responsive CSS',
+        breakpointsText: 'Seuils officiels de mise en page réactive utilisés à travers le site.',
         componentsTitle: 'Catalogue de Composants Réels',
         componentsText: 'Les composants React authentiques extraits du codebase sans altération.',
         
@@ -339,8 +352,15 @@ export default function DesignSystem({ isModal = false }) {
         colorsLight: 'Light Mode Palette',
         colorsDark: 'Dark Mode Palette',
         typography: 'Typography (Core Sans C)',
+        typographyScaleTitle: 'Type Scale',
+        typographyWeightsTitle: 'Font Weights',
+        typographyLineHeightTitle: 'Line Height',
+        typographyLineHeightBody: 'Body text',
+        typographyLineHeightHeading: 'Headings',
         spacing: 'Spacing System (8pt Grid)',
         spacingText: 'Regular spacing values based on the 8pt grid.',
+        breakpoints: 'Responsive CSS Breakpoints',
+        breakpointsText: 'Official layout breakpoint thresholds used across the application.',
         componentsTitle: 'Real Components Catalog',
         componentsText: 'Authentic React components extracted directly from the existing codebase.',
         
@@ -439,45 +459,70 @@ export default function DesignSystem({ isModal = false }) {
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.tokensTitle}</h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.tokensText}</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))', gap: '24px' }}>
           {/* Colors Light */}
           <div className="ds-card" style={{ padding: '20px', background: '#ffffff', color: '#12131a', borderRadius: 'var(--radius-lg)', border: '1px solid #e6e8ef' }}>
             <h4 style={{ marginBottom: '16px', color: '#12131a' }}>{t.colorsLight}</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#385AF9' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Primary Blue</strong>
-                  <code style={{ fontSize: '11px', color: '#7a8192' }}>--color-primary (#385AF9)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#385AF9', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Primary Blue</strong>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-primary (#385AF9)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(56, 90, 249, 0.1)', color: '#385AF9', border: '1px solid rgba(56, 90, 249, 0.2)' }}>
+                  AA (4.8:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#12131a' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Ink Text</strong>
-                  <code style={{ fontSize: '11px', color: '#7a8192' }}>--color-ink (#12131a)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#12131a', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Ink Text</strong>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-ink (#12131a)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(18, 19, 26, 0.08)', color: '#12131a', border: '1px solid rgba(18, 19, 26, 0.15)' }}>
+                  AAA (18.6:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#3e4250' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Body Text</strong>
-                  <code style={{ fontSize: '11px', color: '#7a8192' }}>--color-body (#3e4250)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#3e4250', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Body Text</strong>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-body (#3e4250)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(62, 66, 80, 0.08)', color: '#3e4250', border: '1px solid rgba(62, 66, 80, 0.15)' }}>
+                  AAA (10.2:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e6e8ef', border: '1px solid #7a8192' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Border Color</strong>
-                  <code style={{ fontSize: '11px', color: '#7a8192' }}>--color-border (#e6e8ef)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e6e8ef', border: '1px solid #7a8192', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Border Color</strong>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-border (#e6e8ef)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: '#f4f5f8', color: '#7a8192', border: '1px solid #e6e8ef' }}>
+                  UI Border
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#ede9ff', border: '1px solid #6f5cff' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Purple Accent</strong>
-                  <code style={{ fontSize: '11px', color: '#7a8192' }}>--color-purple-500 (#6f5cff)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#ede9ff', border: '1px solid #6f5cff', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#12131a' }}>Purple Accent</strong>
+                    <code style={{ fontSize: '11px', color: '#7a8192', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-purple-500 (#6f5cff)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: '#ede9ff', color: '#5542e0', border: '1px solid rgba(111, 92, 255, 0.3)' }}>
+                  AA (4.6:1)
+                </span>
               </div>
             </div>
           </div>
@@ -486,72 +531,153 @@ export default function DesignSystem({ isModal = false }) {
           <div className="ds-card" style={{ padding: '20px', background: '#14151f', color: '#e4e5ed', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
             <h4 style={{ marginBottom: '16px', color: '#e4e5ed' }}>{t.colorsDark}</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#8DA2FF' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Primary Blue</strong>
-                  <code style={{ fontSize: '11px', color: '#7c809a' }}>--color-primary (#8DA2FF)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#8DA2FF', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Primary Blue</strong>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-primary (#8DA2FF)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(141, 162, 255, 0.15)', color: '#8DA2FF', border: '1px solid rgba(141, 162, 255, 0.3)' }}>
+                  AAA (10.5:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e4e5ed' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Ink Text</strong>
-                  <code style={{ fontSize: '11px', color: '#7c809a' }}>--color-ink (#e4e5ed)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#e4e5ed', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Ink Text</strong>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-ink (#e4e5ed)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(228, 229, 237, 0.12)', color: '#e4e5ed', border: '1px solid rgba(228, 229, 237, 0.25)' }}>
+                  AAA (16.2:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#b0b3c4' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Body Text</strong>
-                  <code style={{ fontSize: '11px', color: '#7c809a' }}>--color-body (#b0b3c4)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#b0b3c4', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Body Text</strong>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-body (#b0b3c4)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(176, 179, 196, 0.12)', color: '#b0b3c4', border: '1px solid rgba(176, 179, 196, 0.25)' }}>
+                  AAA (9.8:1)
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.08)', border: '1px solid #7c809a' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Border Color</strong>
-                  <code style={{ fontSize: '11px', color: '#7c809a' }}>--color-border (rgba white 8%)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.08)', border: '1px solid #7c809a', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Border Color</strong>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-border (rgba white 8%)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(255, 255, 255, 0.05)', color: '#7c809a', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  UI Border
+                </span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(111, 92, 255, 0.12)', border: '1px solid #8a7aff' }} />
-                <div>
-                  <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Purple Accent</strong>
-                  <code style={{ fontSize: '11px', color: '#7c809a' }}>--color-purple-500 (#8a7aff)</code>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: 'rgba(111, 92, 255, 0.12)', border: '1px solid #8a7aff', flexShrink: 0 }} />
+                  <div style={{ minWidth: 0 }}>
+                    <strong style={{ display: 'block', fontSize: 'var(--font-size-md)', color: '#e4e5ed' }}>Purple Accent</strong>
+                    <code style={{ fontSize: '11px', color: '#7c809a', display: 'block', wordBreak: 'break-word', lineHeight: 1.3 }}>--color-purple-500 (#8a7aff)</code>
+                  </div>
                 </div>
+                <span className="chip" style={{ fontSize: '10px', padding: '2px 6px', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0, background: 'rgba(138, 122, 255, 0.15)', color: '#a295ff', border: '1px solid rgba(138, 122, 255, 0.3)' }}>
+                  AAA (7.2:1)
+                </span>
               </div>
             </div>
           </div>
 
           {/* Typography */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
-            <h4 style={{ marginBottom: '16px' }}>{t.typography}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Font Family</span>
-                <p style={{ fontFamily: 'var(--font-family)', fontWeight: '600' }}>'Core Sans C', sans-serif</p>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', gridColumn: '1 / -1' }}>
+            <h4 style={{ marginBottom: '20px' }}>{t.typography}</h4>
+
+            {/* Font Family */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '10px' }}>Font Family</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '12px 16px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                <code style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>--font-family</code>
+                <span style={{ fontFamily: 'var(--font-family)', fontWeight: 600, fontSize: 'var(--font-size-lg)' }}>'Core Sans C', system-ui, sans-serif</span>
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H1 Title</span>
-                <p style={{ fontSize: 'var(--font-size-4xl)', fontWeight: '800', margin: 0 }}>H1 Title 1.5rem</p>
+            </div>
+
+            {/* Type Scale */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyScaleTitle}</span>
+              <div className="ds-type-scale">
+                {[
+                  { token: '--font-size-xs',  value: '0.75rem',   px: '12px', label: 'XS - Microcopy, timestamps',     weight: 400 },
+                  { token: '--font-size-sm',  value: '0.8125rem', px: '13px', label: 'SM - Tags, secondary text',       weight: 400 },
+                  { token: '--font-size-md',  value: '0.875rem',  px: '14px', label: 'MD - Body text (default)',        weight: 400 },
+                  { token: '--font-size-lg',  value: '0.9375rem', px: '15px', label: 'LG - Body large / intro',         weight: 400 },
+                  { token: '--font-size-xl',  value: '1rem',      px: '16px', label: 'XL - H4 / section labels',        weight: 600 },
+                  { token: '--font-size-2xl', value: '1.125rem', px: '18px', label: '2XL - H3 / card titles',         weight: 600 },
+                  { token: '--font-size-3xl', value: '1.25rem',   px: '20px', label: '3XL - H2 / subtitles',            weight: 700 },
+                  { token: '--font-size-4xl', value: '1.5rem',    px: '24px', label: '4XL - H1 / title',               weight: 800 },
+                ].map(({ token, value, px, label, weight }) => (
+                  <div key={token} className="ds-type-scale__row">
+                    <code className="ds-type-scale__token">{token}</code>
+                    <span className="ds-type-scale__val">{value} ({px})</span>
+                    <span className="ds-type-scale__label" style={{ fontSize: value, fontWeight: weight }}>{label}</span>
+                  </div>
+                ))}
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>H2 Subtitle</span>
-                <p style={{ fontSize: 'var(--font-size-3xl)', fontWeight: '700', margin: 0 }}>H2 Subtitle 1.25rem</p>
+            </div>
+
+            {/* Font Weights */}
+            <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyWeightsTitle}</span>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 160px), 1fr))', gap: '8px' }}>
+                {[
+                  { weight: 400, name: 'Regular',    usage: 'Body text' },
+                  { weight: 500, name: 'Medium',     usage: 'Nav links, labels' },
+                  { weight: 600, name: 'SemiBold',   usage: 'Buttons, chips' },
+                  { weight: 700, name: 'Bold',       usage: 'H2, card titles' },
+                  { weight: 800, name: 'ExtraBold',  usage: 'H1, hero' },
+                ].map(({ weight, name, usage }) => (
+                  <div key={weight} style={{ padding: '12px', background: 'var(--color-primary-100)', borderRadius: '10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: weight, lineHeight: 1.1, marginBottom: '6px' }}>Ag</div>
+                    <code style={{ fontSize: '10px', color: 'var(--color-primary)', fontWeight: 700, display: 'block' }}>{weight}</code>
+                    <span style={{ fontSize: '11px', fontWeight: 600, display: 'block' }}>{name}</span>
+                    <span style={{ fontSize: '10px', color: 'var(--color-muted)', display: 'block', marginTop: '2px' }}>{usage}</span>
+                  </div>
+                ))}
               </div>
-              <div>
-                <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>Body Regular</span>
-                <p style={{ fontSize: 'var(--font-size-md)', color: 'var(--color-body)', margin: 0 }}>Body regular text 0.875rem</p>
+            </div>
+
+            {/* Line Heights */}
+            <div>
+              <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyLineHeightTitle}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                  <div>
+                    <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', display: 'block' }}>{t.typographyLineHeightBody}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--font-size-md → --font-size-lg</span>
+                  </div>
+                  <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>1.6</code>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: 'var(--color-primary-100)', borderRadius: '10px' }}>
+                  <div>
+                    <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)', display: 'block' }}>{t.typographyLineHeightHeading}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--color-muted)' }}>--font-size-3xl → --font-size-4xl</span>
+                  </div>
+                  <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>1.2 – 1.3</code>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Spacing Grid (using grid-template-columns: auto) */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+          {/* Spacing Grid & Responsive Breakpoints */}
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', gridColumn: '1 / -1' }}>
             <h4 style={{ marginBottom: '16px' }}>{t.spacing}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '12px' }}>{t.spacingText}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto auto auto', gap: '8px', textAlign: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '24px' }}>
               <div style={{ background: 'var(--color-primary-100)', padding: '8px', borderRadius: '6px' }}>
                 <strong>4px</strong>
                 <div style={{ height: '4px', background: 'var(--color-primary)', marginTop: '8px' }} />
@@ -571,6 +697,23 @@ export default function DesignSystem({ isModal = false }) {
               <div style={{ background: 'var(--color-primary-100)', padding: '8px', borderRadius: '4px' }}>
                 <strong>32px</strong>
                 <div style={{ height: '32px', background: 'var(--color-primary)', marginTop: '8px' }} />
+              </div>
+            </div>
+
+            <h4 style={{ marginBottom: '8px', paddingTop: '16px', borderTop: '1px solid var(--color-border)' }}>{t.breakpoints}</h4>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '12px' }}>{t.breakpointsText}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--color-primary-100)', borderRadius: '8px' }}>
+                <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)' }}>Mobile</span>
+                <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>&lt; 768px</code>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--color-primary-100)', borderRadius: '8px' }}>
+                <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)' }}>Tablet</span>
+                <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>768px – 1023px</code>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--color-primary-100)', borderRadius: '8px' }}>
+                <span style={{ fontWeight: 600, fontSize: 'var(--font-size-sm)' }}>Desktop</span>
+                <code style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 700 }}>1024px+</code>
               </div>
             </div>
           </div>

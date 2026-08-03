@@ -517,7 +517,7 @@
   justify-content: center;
   background: var(--color-primary-100);
   color: var(--color-primary);
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   line-height: 1;
   transition: background var(--motion-duration-short) var(--motion-standard),
@@ -699,6 +699,74 @@
   }
 }
 
+
+/* ── Design System — Type Scale rows ─────────────────────────────────────── */
+.ds-type-scale {
+  display: grid;
+  gap: 6px;
+}
+
+.ds-type-scale__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--color-surface);
+  min-width: 0; /* allow the row to shrink instead of overflowing the card */
+}
+
+.ds-type-scale__token {
+  font-size: 10px;
+  color: var(--color-primary);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.ds-type-scale__val {
+  font-size: 10px;
+  color: var(--color-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.ds-type-scale__label {
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Mobile: wrap the preview text onto its own line so token + value never
+   overflow the card on narrow screens. */
+@media (max-width: 560px) {
+  .ds-type-scale__row {
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    padding: 10px 12px;
+  }
+
+  .ds-type-scale__label {
+    flex-basis: 100%;
+    order: 3;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
+
+/* Desktop: split into two columns to save vertical space. */
+@media (min-width: 720px) {
+  .ds-type-scale {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+}
 
 
 .project-filter-empty {
