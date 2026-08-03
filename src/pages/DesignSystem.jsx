@@ -34,6 +34,12 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
+    version: '1.9.8',
+    date: '2026-08-03',
+    noteFr: "Optimisation des assets : conversion des illustrations de projet en WebP (fallback PNG préservé) avec transparence alpha conservée, réduisant le poids de transfert d'environ 6,4x. Refonte de la section Type Scale du Design System (correction du dépassement mobile, mise en page 2 colonnes sur desktop) et migration des micro-textes xxs vers xs.",
+    noteEn: "Asset optimization: project artwork converted to WebP (PNG fallback preserved) with alpha transparency kept intact, cutting transfer weight by ~6.4x. Design System Type Scale rework (mobile overflow fix, 2-column desktop layout) and migration of xxs micro-text tokens to xs."
+  },
+  {
     version: '1.9.7',
     date: '2026-07-30',
     noteFr: 'Ajout des indicateurs de conformité et ratios de contraste WCAG sur les palettes de couleurs, documentation des breakpoints CSS responsive et structuration des fondations.',
@@ -172,7 +178,7 @@ export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const currentVersion = __APP_VERSION__ || '1.9.7';
+  const currentVersion = __APP_VERSION__ || '1.9.8';
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);

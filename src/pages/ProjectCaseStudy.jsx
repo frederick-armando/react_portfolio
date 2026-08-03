@@ -57,11 +57,13 @@ import mobioosMockup2 from '../assets/projects/mobioos/mobioos-mockup-2.png';
 import myxpertFlow from '../assets/projects/myxpert/MyXpert Flow.png';
 import myxpertLegacyVsNew from '../assets/projects/myxpert/MyTechXpert vs MyXpert.png';
 import myxpertLegacyVsNew2x from '../assets/projects/myxpert/MyTechXpert vs MyXpert@2x.png';
-import myxpertLegacyVsNew3x from '../assets/projects/myxpert/MyTechXpert vs MyXpert@3x.png';
+import myxpertLegacyVsNewWebp from '../assets/projects/myxpert/MyTechXpert vs MyXpert.webp';
+import myxpertLegacyVsNew2xWebp from '../assets/projects/myxpert/MyTechXpert vs MyXpert@2x.webp';
 import tireAssistantABTest from '../assets/projects/tire-assistant/Chatbot ABTest AU.png';
 import tireAssistantHighFidelity from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap.png';
 import tireAssistantHighFidelity2x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@2x.png';
-import tireAssistantHighFidelity3x from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@3x.png';
+import tireAssistantHighFidelityWebp from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap.webp';
+import tireAssistantHighFidelity2xWebp from '../assets/projects/tire-assistant/Welcome Pop-in, Contextual Notification & Tire Snap@2x.webp';
 import { getLocalizedProjects, getProjectBySlug, resolveProjectSlug } from '../data/projects.js';
 import { caseStudyContent } from '../i18n/content/caseStudies.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
@@ -310,6 +312,8 @@ const caseStudyImageRatios = {
 function CaseStudyImage({
   src,
   srcSet,
+  webpSrc,
+  webpSrcSet,
   alt,
   ratio,
   full = false,
@@ -328,6 +332,8 @@ function CaseStudyImage({
       className="case-study-device-image__media"
       src={src}
       srcSet={srcSet}
+      webpSrc={webpSrc}
+      webpSrcSet={webpSrcSet}
       alt={alt}
       width={width}
       height={height}
@@ -998,7 +1004,9 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         <figure className="case-study-device-mockup">
           <CaseStudyImage
             src={tireAssistantHighFidelity}
-            srcSet={`${tireAssistantHighFidelity2x} 2x, ${tireAssistantHighFidelity3x} 3x`}
+            srcSet={`${tireAssistantHighFidelity2x} 2x`}
+            webpSrc={tireAssistantHighFidelityWebp}
+            webpSrcSet={`${tireAssistantHighFidelity2xWebp} 2x`}
             alt={content.captions.highFidelity}
             ratio={caseStudyImageRatios.tireAssistantHighFidelity}
             full
@@ -1131,7 +1139,9 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
         <figure className="case-study-device-mockup">
           <CaseStudyImage
             src={myxpertLegacyVsNew}
-            srcSet={`${myxpertLegacyVsNew2x} 2x, ${myxpertLegacyVsNew3x} 3x`}
+            srcSet={`${myxpertLegacyVsNew2x} 2x`}
+            webpSrc={myxpertLegacyVsNewWebp}
+            webpSrcSet={`${myxpertLegacyVsNew2xWebp} 2x`}
             alt={content.captions.legacyVsNew}
             ratio={caseStudyImageRatios.myxpertLegacyVsNew}
             full
