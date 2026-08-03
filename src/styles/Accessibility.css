@@ -234,6 +234,14 @@ body.a11y-readable-font * {
   word-spacing: 0.1em !important;
 }
 
+/* Exception: keep the hero name tightly set (its design relies on a
+   compressed line-height) instead of the 1.6 applied globally above. */
+body.a11y-readable-font .hero__name,
+body.a11y-readable-font .hero__name-first,
+body.a11y-readable-font .hero__name-last {
+  line-height: 0.95 !important;
+}
+
 /* High Contrast Mode */
 body.a11y-high-contrast {
   background-color: #000 !important;
