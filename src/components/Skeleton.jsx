@@ -22,16 +22,22 @@ export function SkeletonImage({
   onError,
   src,
   srcSet,
+  webpSrc,
+  webpSrcSet,
   ...props
 }) {
   const imgRef = useRef(null);
   const [status, setStatus] = useState('loading');
   const { 'aria-hidden': ariaHidden, ...imageProps } = props;
 
+  // When a WebP source is provided, we render a <picture> so browsers that
+  // support WebP pick it up, while the PNG fallback stays for everyone else.
+  const usePicture = Boolean(webpSrc || webpSrcSet);
+
   useEffect(() => {
     const img = imgRef.current;
 
-    if (!src) {
+    if (!src && !webpSrc) {
       setStatus('error');
       return;
     }
@@ -42,7 +48,7 @@ export function SkeletonImage({
     }
 
     setStatus('loading');
-  }, [src, srcSet]);
+  }, [src, srcSet, webpSrc, webpSrcSet]);
 
   const handleLoad = (event) => {
     setStatus('loaded');
@@ -56,6 +62,21 @@ export function SkeletonImage({
 
   const isLoading = status === 'loading';
   const hasError = status === 'error';
+
+  const imgEl = (
+    <img
+      {...imageProps}
+      ref={imgRef}
+      src={src}
+      srcSet={srcSet}
+      alt={alt}
+      className={className}
+      style={imgStyle}
+      onLoad={handleLoad}
+      onError={handleError}
+      aria-hidden={hasError ? 'true' : ariaHidden}
+    />
+  );
 
   return (
     <span
@@ -74,18 +95,14 @@ export function SkeletonImage({
           aria-hidden={alt ? undefined : 'true'}
         />
       )}
-      <img
-        {...imageProps}
-        ref={imgRef}
-        src={src}
-        srcSet={srcSet}
-        alt={alt}
-        className={className}
-        style={imgStyle}
-        onLoad={handleLoad}
-        onError={handleError}
-        aria-hidden={hasError ? 'true' : ariaHidden}
-      />
+      {usePicture ? (
+        <picture>
+          <source srcSet={webpSrcSet || webpSrc} type="image/webp" />
+          {imgEl}
+        </picture>
+      ) : (
+        imgEl
+      )}
     </span>
   );
 }

@@ -1,66 +1,98 @@
 import chatbotBg from '../assets/projects/Chatbot-bg.png';
 import chatbotDevice from '../assets/projects/Chatbot (update 2).png';
 import chatbotDevice2x from '../assets/projects/Chatbot (update 2)@2x.png';
-import chatbotDevice3x from '../assets/projects/Chatbot (update 2)@3x.png';
+import chatbotBgWebp from '../assets/projects/Chatbot-bg.webp';
+import chatbotDeviceWebp from '../assets/projects/Chatbot (update 2).webp';
+import chatbotDevice2xWebp from '../assets/projects/Chatbot (update 2)@2x.webp';
 
 import myxpertBg from '../assets/projects/MyXpert-bg.png';
 import myxpertDevice from '../assets/projects/MyXpert.png';
 import myxpertDevice2x from '../assets/projects/MyXpert@2x.png';
-import myxpertDevice3x from '../assets/projects/MyXpert@3x.png';
+import myxpertBgWebp from '../assets/projects/MyXpert-bg.webp';
+import myxpertDeviceWebp from '../assets/projects/MyXpert.webp';
+import myxpertDevice2xWebp from '../assets/projects/MyXpert@2x.webp';
+
 import masteosBg from '../assets/projects/masteos-bg.png';
 import masteosDevice from '../assets/projects/Masteos.png';
 import masteosDevice2x from '../assets/projects/Masteos@2x.png';
-import masteosDevice3x from '../assets/projects/Masteos@3x.png';
+import masteosBgWebp from '../assets/projects/masteos-bg.webp';
+import masteosDeviceWebp from '../assets/projects/Masteos.webp';
+import masteosDevice2xWebp from '../assets/projects/Masteos@2x.webp';
 
 import heliosBg from '../assets/projects/helios-bg.png';
 import heliosDevice from '../assets/projects/Helios.png';
 import heliosDevice2x from '../assets/projects/Helios@2x.png';
-import heliosDevice3x from '../assets/projects/Helios@3x.png';
+import heliosBgWebp from '../assets/projects/helios-bg.webp';
+import heliosDeviceWebp from '../assets/projects/Helios.webp';
+import heliosDevice2xWebp from '../assets/projects/Helios@2x.webp';
 
 import kirrkBg from '../assets/projects/kirrk-bg.png';
 import kirrkDevice from '../assets/projects/Kirrk.png';
 import kirrkDevice2x from '../assets/projects/Kirrk@2x.png';
-import kirrkDevice3x from '../assets/projects/Kirrk@3x.png';
+import kirrkBgWebp from '../assets/projects/kirrk-bg.webp';
+import kirrkDeviceWebp from '../assets/projects/Kirrk.webp';
+import kirrkDevice2xWebp from '../assets/projects/Kirrk@2x.webp';
 
 import mobioosBg from '../assets/projects/mobioos-bg.png';
 import mobioosDevice from '../assets/projects/Mobioos.png';
 import mobioosDevice2x from '../assets/projects/Mobioos@2x.png';
-import mobioosDevice3x from '../assets/projects/Mobioos@3x.png';
+import mobioosBgWebp from '../assets/projects/mobioos-bg.webp';
+import mobioosDeviceWebp from '../assets/projects/Mobioos.webp';
+import mobioosDevice2xWebp from '../assets/projects/Mobioos@2x.webp';
 
 import comingSoonBg from '../assets/projects/bg-last.png';
+import comingSoonBgWebp from '../assets/projects/bg-last.webp';
 import { SkeletonImage } from './Skeleton.jsx';
 
 const artworkAssets = {
   'tire-assistant': {
     bg: heliosBg,
+    bgWebp: heliosBgWebp,
     src: chatbotDevice,
-    srcSet: `${chatbotDevice2x} 2x, ${chatbotDevice3x} 3x`,
+    srcWebp: chatbotDeviceWebp,
+    srcSet: `${chatbotDevice2x} 2x`,
+    webpSrcSet: `${chatbotDevice2xWebp} 2x`,
   },
   myxpert: {
     bg: masteosBg,
+    bgWebp: masteosBgWebp,
     src: myxpertDevice,
-    srcSet: `${myxpertDevice2x} 2x, ${myxpertDevice3x} 3x`,
+    srcWebp: myxpertDeviceWebp,
+    srcSet: `${myxpertDevice2x} 2x`,
+    webpSrcSet: `${myxpertDevice2xWebp} 2x`,
   },
   masteos: {
     bg: chatbotBg,
+    bgWebp: chatbotBgWebp,
     src: masteosDevice,
-    srcSet: `${masteosDevice2x} 2x, ${masteosDevice3x} 3x`,
+    srcWebp: masteosDeviceWebp,
+    srcSet: `${masteosDevice2x} 2x`,
+    webpSrcSet: `${masteosDevice2xWebp} 2x`,
   },
   helios: {
     bg: mobioosBg,
+    bgWebp: mobioosBgWebp,
     src: heliosDevice,
-    srcSet: `${heliosDevice2x} 2x, ${heliosDevice3x} 3x`,
+    srcWebp: heliosDeviceWebp,
+    srcSet: `${heliosDevice2x} 2x`,
+    webpSrcSet: `${heliosDevice2xWebp} 2x`,
   },
   kirrk: {
     bg: kirrkBg,
+    bgWebp: kirrkBgWebp,
     src: kirrkDevice,
-    srcSet: `${kirrkDevice2x} 2x, ${kirrkDevice3x} 3x`,
+    srcWebp: kirrkDeviceWebp,
+    srcSet: `${kirrkDevice2x} 2x`,
+    webpSrcSet: `${kirrkDevice2xWebp} 2x`,
   },
   mobioos: {
     bg: myxpertBg,
-    bgStyle: {  },
+    bgWebp: myxpertBgWebp,
+    bgStyle: {},
     src: mobioosDevice,
-    srcSet: `${mobioosDevice2x} 2x, ${mobioosDevice3x} 3x`,
+    srcWebp: mobioosDeviceWebp,
+    srcSet: `${mobioosDevice2x} 2x`,
+    webpSrcSet: `${mobioosDevice2xWebp} 2x`,
   },
 };
 
@@ -77,6 +109,7 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
           wrapperClassName="project-artwork__bg-wrap"
           className="project-artwork__bg"
           src={comingSoonBg}
+          webpSrc={comingSoonBgWebp}
           alt=""
           draggable="false"
           loading={loading}
@@ -99,6 +132,7 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
         wrapperClassName="project-artwork__bg-wrap"
         className="project-artwork__bg"
         src={assets.bg}
+        webpSrc={assets.bgWebp}
         alt=""
         draggable="false"
         imgStyle={assets.bgStyle}
@@ -112,6 +146,8 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
           className="project-artwork__device"
           src={assets.src}
           srcSet={assets.srcSet || undefined}
+          webpSrc={assets.srcWebp}
+          webpSrcSet={assets.webpSrcSet || undefined}
           alt=""
           draggable="false"
           loading={loading}
