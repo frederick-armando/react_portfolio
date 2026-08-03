@@ -307,7 +307,9 @@ body.a11y-grayscale::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 900;
+  /* Above the a11y panel (10001) so the grayscale filter also applies to
+     the accessibility panel itself, not just the page behind it. */
+  z-index: 10002;
   pointer-events: none;
   backdrop-filter: grayscale(100%);
   -webkit-backdrop-filter: grayscale(100%);
