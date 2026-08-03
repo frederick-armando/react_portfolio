@@ -459,7 +459,7 @@ export default function DesignSystem({ isModal = false }) {
         <h2 style={{ fontSize: 'var(--font-size-3xl)', marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>{t.tokensTitle}</h2>
         <p style={{ color: 'var(--color-muted)', marginBottom: '24px' }}>{t.tokensText}</p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))', gap: '24px' }}>
           {/* Colors Light */}
           <div className="ds-card" style={{ padding: '20px', background: '#ffffff', color: '#12131a', borderRadius: 'var(--radius-lg)', border: '1px solid #e6e8ef' }}>
             <h4 style={{ marginBottom: '16px', color: '#12131a' }}>{t.colorsLight}</h4>
@@ -610,22 +610,21 @@ export default function DesignSystem({ isModal = false }) {
             {/* Type Scale */}
             <div style={{ marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid var(--color-border)' }}>
               <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>{t.typographyScaleTitle}</span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div className="ds-type-scale">
                 {[
-                  { token: '--font-size-xxs', value: '0.6875rem', px: '11px', label: 'XXS — Labels, badges, captions', weight: 400 },
-                  { token: '--font-size-xs',  value: '0.75rem',   px: '12px', label: 'XS — Microcopy, timestamps',     weight: 400 },
-                  { token: '--font-size-sm',  value: '0.8125rem', px: '13px', label: 'SM — Tags, secondary text',       weight: 400 },
-                  { token: '--font-size-md',  value: '0.875rem',  px: '14px', label: 'MD — Body text (default)',        weight: 400 },
-                  { token: '--font-size-lg',  value: '0.9375rem', px: '15px', label: 'LG — Body large / intro',         weight: 400 },
-                  { token: '--font-size-xl',  value: '1rem',      px: '16px', label: 'XL — H4 / section labels',        weight: 600 },
-                  { token: '--font-size-2xl', value: '1.125rem',  px: '18px', label: '2XL — H3 / card titles',         weight: 600 },
-                  { token: '--font-size-3xl', value: '1.25rem',   px: '20px', label: '3XL — H2 Subtitles',             weight: 700 },
-                  { token: '--font-size-4xl', value: '1.5rem',    px: '24px', label: '4XL — H1 Title',                 weight: 800 },
+                  { token: '--font-size-xs',  value: '0.75rem',   px: '12px', label: 'XS - Microcopy, timestamps',     weight: 400 },
+                  { token: '--font-size-sm',  value: '0.8125rem', px: '13px', label: 'SM - Tags, secondary text',       weight: 400 },
+                  { token: '--font-size-md',  value: '0.875rem',  px: '14px', label: 'MD - Body text (default)',        weight: 400 },
+                  { token: '--font-size-lg',  value: '0.9375rem', px: '15px', label: 'LG - Body large / intro',         weight: 400 },
+                  { token: '--font-size-xl',  value: '1rem',      px: '16px', label: 'XL - H4 / section labels',        weight: 600 },
+                  { token: '--font-size-2xl', value: '1.125rem', px: '18px', label: '2XL - H3 / card titles',         weight: 600 },
+                  { token: '--font-size-3xl', value: '1.25rem',   px: '20px', label: '3XL - H2 / subtitles',            weight: 700 },
+                  { token: '--font-size-4xl', value: '1.5rem',    px: '24px', label: '4XL - H1 / title',               weight: 800 },
                 ].map(({ token, value, px, label, weight }) => (
-                  <div key={token} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 12px', borderRadius: '8px', background: 'var(--color-surface)' }}>
-                    <code style={{ fontSize: '10px', color: 'var(--color-primary)', fontWeight: 700, whiteSpace: 'nowrap', width: '136px', flexShrink: 0 }}>{token}</code>
-                    <span style={{ fontSize: '10px', color: 'var(--color-muted)', whiteSpace: 'nowrap', width: '90px', flexShrink: 0 }}>{value} ({px})</span>
-                    <span style={{ fontSize: value, fontWeight: weight, lineHeight: 1.2, minWidth: 0 }}>{label}</span>
+                  <div key={token} className="ds-type-scale__row">
+                    <code className="ds-type-scale__token">{token}</code>
+                    <span className="ds-type-scale__val">{value} ({px})</span>
+                    <span className="ds-type-scale__label" style={{ fontSize: value, fontWeight: weight }}>{label}</span>
                   </div>
                 ))}
               </div>
@@ -675,7 +674,7 @@ export default function DesignSystem({ isModal = false }) {
           </div>
 
           {/* Spacing Grid & Responsive Breakpoints */}
-          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+          <div className="ds-card" style={{ padding: '20px', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)', gridColumn: '1 / -1' }}>
             <h4 style={{ marginBottom: '16px' }}>{t.spacing}</h4>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-muted)', marginBottom: '12px' }}>{t.spacingText}</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '24px' }}>

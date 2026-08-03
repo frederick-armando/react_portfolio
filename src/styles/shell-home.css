@@ -513,7 +513,7 @@ button:focus-visible {
   justify-content: center;
   background: var(--color-primary-action, var(--color-primary));
   color: var(--color-primary-action-text, #fff);
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   line-height: 1;
   border: none;
@@ -590,7 +590,7 @@ button:focus-visible {
   gap: 6px;
   padding: 6px 8px;
   border-radius: 18px;
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   color: var(--color-nav-muted);
   min-width: 64px;
   transform: translateY(0);
@@ -649,7 +649,7 @@ button:focus-visible {
   left: calc(50% + 8px);
   background: var(--color-nav-muted);
   color: #fff;
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   min-width: 22px;
   height: 18px;
   padding: 0 6px;
