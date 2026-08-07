@@ -1,6 +1,6 @@
 # Frederick Armando — Portfolio Context
 
-> Extended machine-readable summary of Frederick Armando's public portfolio, positioning, methods and selected case studies. Intended for generative engines (ChatGPT Search, Perplexity, Claude, Gemini) and LLM agents.
+> Frederick Armando is a Lead Product Designer based in France who turns complex constraints into clear, usable and measurable product experiences. He designs at systems scale — building token-based design systems with built-in accessibility, leading product strategy through discovery and framing, and shipping conversational AI products that drive business impact. Expertise in design systems, AI/conversational UX, mobile/web, accessibility (WCAG), B2B/B2C/B2E, and cross-functional product delivery.
 
 ## Quick reference
 
@@ -62,6 +62,20 @@ Frederick describes his product design approach through five steps:
 - Design: move from hypothesis to prototype while structuring flows, interactions and interfaces with clarity, accessibility and scalability in mind.
 - Delivery: document behaviors, states, usage rules and guidelines to support handoff with product and engineering teams.
 - Measurement: evaluate impact through user feedback, usage signals and available KPIs to prioritize future iterations.
+
+## Design systems & technical foundation
+
+Frederick designs at systems scale, not just screens. He maintains a token-based design system with CSS custom properties for theming, WCAG accessibility built into the architecture, and atomic component patterns.
+
+- **Token-based architecture:** color, typography, spacing (8pt grid), radius, motion
+- **Accessibility-first:** WCAG AAA contrast, dyslexia-friendly mode, grayscale mode, reduced-motion support
+- **Dual theming:** light and dark modes via token variables
+- **Component atomization:** Button, Chip, Badge, BottomNav, ProjectFilter as reusable patterns
+- **Performance:** CLS prevention via `font-face` fallback, optimized motion
+- **Cross-platform:** mobile-first responsive design with a clear breakpoint strategy
+
+Full technical reference: https://frederickarmando.fr/design.md
+Short TL;DR: https://frederickarmando.fr/design-summary.md
 
 ## Selected projects
 

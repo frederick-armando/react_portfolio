@@ -1,5 +1,16 @@
 # Design System — Frederick Armando Portfolio
 
+**Version:** v1.9.9
+**Last updated:** August 2026
+**Status:** Public
+**Access:** https://frederickarmando.fr/design.md
+
+> This is the source of truth for the visual and interaction language of
+> frederickarmando.fr. It serves as both a component guide and a technical
+> reference for anyone building interfaces within this ecosystem.
+
+---
+
 > **Source of truth** for the visual language of frederickarmando.fr and any
 > derived pages, themes or spin-off products. Values below are extracted
 > directly from `src/styles/tokens.css` and the live components. Keep this file

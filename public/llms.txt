@@ -1,6 +1,6 @@
 # Frederick Armando — Lead Product Designer
 
-> Portfolio of Frederick Armando, a Lead Product Designer based in France. He turns complex user, business and technical constraints into clear, usable and measurable product experiences — with a focus on AI-powered products, conversational UX, design systems, SaaS and B2B/B2C/B2E mobile and web applications.
+> Frederick Armando is a Lead Product Designer based in France who turns complex constraints into clear, usable and measurable product experiences. He designs at systems scale — building token-based design systems with built-in accessibility, leading product strategy through discovery and framing, and shipping conversational AI products that drive business impact. Expertise in design systems, AI/conversational UX, mobile/web, accessibility (WCAG), B2B/B2C/B2E, and cross-functional product delivery.
 
 ## Quick reference
 
@@ -35,6 +35,21 @@ Frederick is best suited for:
 - Accessibility (WCAG)
 - UX research, product discovery & UX audits
 - Prototyping and design handoff
+
+## Technical depth & design systems
+
+Frederick designs at systems scale — not just screens. He maintains a token-based design system with CSS custom properties for theming, WCAG accessibility built into the architecture, and atomic component patterns.
+
+### Key systems & patterns
+
+- **Token-based architecture:** color, typography, spacing (8pt grid), radius, motion
+- **Accessibility-first:** WCAG AAA contrast, dyslexia-friendly mode, grayscale mode, reduced-motion support
+- **Dual theming:** light and dark modes via token variables
+- **Component atomization:** Button, Chip, Badge, BottomNav, ProjectFilter as reusable patterns
+- **Performance:** CLS prevention via `font-face` fallback, optimized motion
+- **Cross-platform:** mobile-first responsive design with a clear breakpoint strategy
+
+[Full design system reference](https://frederickarmando.fr/design.md)
 
 ## Demonstrated impact
 
@@ -98,6 +113,8 @@ These are not yet published. Contact Frederick for an early discussion: https://
 - [Kirrk summary](https://frederickarmando.fr/projects/kirrk.md): Markdown summary of the Kirrk case study.
 - [Mobioos summary](https://frederickarmando.fr/projects/mobioos.md): Markdown summary of the Mobioos case study.
 - [Contact summary](https://frederickarmando.fr/contact.md): Markdown summary of the contact page.
+- [Design system reference](https://frederickarmando.fr/design.md): Token architecture, component patterns, accessibility guardrails and technical foundation.
+- [Design system summary](https://frederickarmando.fr/design-summary.md): Short technical TL;DR of the design system.
 
 ## External profiles
 
