@@ -36,14 +36,14 @@ const changelogData = [
   {
     version: '2.5.2',
     date: '2026-08-07',
-    noteFr: "Renumérotation de l'historique des versions (refonte React ancrée en 2.0.0) et corrections de bugs mineurs.",
-    noteEn: "Version history renumbering (React redesign anchored at 2.0.0) and minor bug fixes.",
+    noteFr: "Renumérotation de l'historique des versions (refonte React ancrée en 2.0.0). Ajout d'une entrée indexable pour les études de cas 'Coming Soon' afin d'éviter les trous d'information pour les assistants IA, et publication de design.md et design-summary.md (Design System rendu public).",
+    noteEn: "Version history renumbering (React redesign anchored at 2.0.0). Added an indexable entry for 'Coming Soon' case studies to avoid information gaps for AI assistants, and published design.md and design-summary.md (Design System made public).",
   },
   {
     version: '2.5.1',
     date: '2026-08-03',
-    noteFr: "Generative Engine Optimization (GEO) : robots.txt autorisant explicitement les bots IA (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enrichissement du JSON-LD Person (hasOccupation, Conversational UI) et génération d'une entrée indexable pour les études de cas 'Coming Soon' afin d'éviter les trous d'information pour les assistants IA. llms.txt et llms-full.txt enrichis (métriques Michelin explicites, section 'Coming soon'), publication de design.md et design-summary.md.",
-    noteEn: "Generative Engine Optimization (GEO): robots.txt explicitly allowing AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enriched Person JSON-LD (hasOccupation, Conversational UI), and an indexable entry for 'Coming Soon' case studies to avoid information gaps for AI assistants. llms.txt and llms-full.txt enriched (explicit Michelin metrics, 'Coming soon' section), design.md and design-summary.md published.",
+    noteFr: "Generative Engine Optimization (GEO) : robots.txt autorisant explicitement les bots IA (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended) et enrichissement du JSON-LD Person (hasOccupation, Conversational UI). llms.txt et llms-full.txt enrichis (métriques Michelin explicites, section 'Coming soon').",
+    noteEn: "Generative Engine Optimization (GEO): robots.txt explicitly allowing AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended) and enriched Person JSON-LD (hasOccupation, Conversational UI). llms.txt and llms-full.txt enriched (explicit Michelin metrics, 'Coming soon' section).",
   },
   {
     version: '2.5.0',
