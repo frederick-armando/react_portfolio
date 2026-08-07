@@ -34,131 +34,137 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
-    version: '1.9.9',
-    date: '2026-08-03',
-    noteFr: "Generative Engine Optimization (GEO) : robots.txt autorisant explicitement les bots IA (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enrichissement du JSON-LD Person (hasOccupation, Conversational UI) et génération d'une entrée indexable pour les études de cas 'Coming Soon' afin d'éviter les trous d'information pour les assistants IA. llms.txt et llms-full.txt enrichis (métriques Michelin explicites, section 'Coming soon').",
-    noteEn: "Generative Engine Optimization (GEO): robots.txt explicitly allowing AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enriched Person JSON-LD (hasOccupation, Conversational UI), and an indexable entry for 'Coming Soon' case studies to avoid information gaps for AI assistants. llms.txt and llms-full.txt enriched (explicit Michelin metrics, 'Coming soon' section)."
+    version: '2.5.2',
+    date: '2026-08-07',
+    noteFr: "Renumérotation de l'historique des versions (refonte React ancrée en 2.0.0) et corrections de bugs mineurs.",
+    noteEn: "Version history renumbering (React redesign anchored at 2.0.0) and minor bug fixes.",
   },
   {
-    version: '1.9.8',
+    version: '2.5.1',
+    date: '2026-08-03',
+    noteFr: "Generative Engine Optimization (GEO) : robots.txt autorisant explicitement les bots IA (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enrichissement du JSON-LD Person (hasOccupation, Conversational UI) et génération d'une entrée indexable pour les études de cas 'Coming Soon' afin d'éviter les trous d'information pour les assistants IA. llms.txt et llms-full.txt enrichis (métriques Michelin explicites, section 'Coming soon'), publication de design.md et design-summary.md.",
+    noteEn: "Generative Engine Optimization (GEO): robots.txt explicitly allowing AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enriched Person JSON-LD (hasOccupation, Conversational UI), and an indexable entry for 'Coming Soon' case studies to avoid information gaps for AI assistants. llms.txt and llms-full.txt enriched (explicit Michelin metrics, 'Coming soon' section), design.md and design-summary.md published.",
+  },
+  {
+    version: '2.5.0',
     date: '2026-08-03',
     noteFr: "Optimisation des assets : conversion des illustrations de projet en WebP (fallback PNG préservé) avec transparence alpha conservée, réduisant le poids de transfert d'environ 6,4x. Refonte de la section Type Scale du Design System (correction du dépassement mobile, mise en page 2 colonnes sur desktop) et migration des micro-textes xxs vers xs.",
-    noteEn: "Asset optimization: project artwork converted to WebP (PNG fallback preserved) with alpha transparency kept intact, cutting transfer weight by ~6.4x. Design System Type Scale rework (mobile overflow fix, 2-column desktop layout) and migration of xxs micro-text tokens to xs."
+    noteEn: "Asset optimization: project artwork converted to WebP (PNG fallback preserved) with alpha transparency kept intact, cutting transfer weight by ~6.4x. Design System Type Scale rework (mobile overflow fix, 2-column desktop layout) and migration of xxs micro-text tokens to xs.",
   },
   {
-    version: '1.9.7',
+    version: '2.4.4',
     date: '2026-07-30',
     noteFr: 'Ajout des indicateurs de conformité et ratios de contraste WCAG sur les palettes de couleurs, documentation des breakpoints CSS responsive et structuration des fondations.',
-    noteEn: 'Added WCAG compliance indicators and contrast ratios on color palettes, documented responsive CSS breakpoints, and structured foundations.'
+    noteEn: 'Added WCAG compliance indicators and contrast ratios on color palettes, documented responsive CSS breakpoints, and structured foundations.',
   },
   {
-    version: '1.9.6',
+    version: '2.4.3',
     date: '2026-07-29',
     noteFr: 'Divulgation progressive (progressive disclosure) du Changelog dans le Design System et bouton de bascule d\'historique.',
-    noteEn: 'Progressive disclosure for the Design System Changelog with historical versions toggle button.'
+    noteEn: 'Progressive disclosure for the Design System Changelog with historical versions toggle button.',
   },
   {
-    version: '1.9.5',
+    version: '2.4.2',
     date: '2026-07-22',
     noteFr: 'Badge pill dans les filtres projets, tooltip long-press global (mobile), et ajout du sous-domaine ds.frederickarmando.fr.',
-    noteEn: 'Badge pill inside project filters, global long-press tooltip (mobile), and ds.frederickarmando.fr subdomain redirect.'
+    noteEn: 'Badge pill inside project filters, global long-press tooltip (mobile), and ds.frederickarmando.fr subdomain redirect.',
   },
   {
-    version: '1.9.4',
+    version: '2.4.1',
     date: '2026-07-21',
     noteFr: 'Refonte complète du catalogue du Design System : intégration des composants, cartes métriques, navigation et i18n FR/EN.',
-    noteEn: 'Complete Design System catalog revamp: component integration, metric cards, navigation, and FR/EN i18n.'
+    noteEn: 'Complete Design System catalog revamp: component integration, metric cards, navigation, and FR/EN i18n.',
   },
   {
-    version: '1.9.3',
+    version: '2.4.0',
     date: '2026-07-16',
-    noteFr: 'Ajout du Design System stable (v1.9.3), refonte du panel d\'accessibilité et mise à jour du CV.',
-    noteEn: 'Added stable Design System (v1.9.3), revamped accessibility panel, and updated resume.'
+    noteFr: 'Ajout du Design System stable (v2.4.0), refonte du panel d\'accessibilité et mise à jour du CV.',
+    noteEn: 'Added stable Design System (v2.4.0), revamped accessibility panel, and updated resume.',
   },
   {
-    version: '1.9.2',
+    version: '2.3.4',
     date: '2026-07-15',
     noteFr: 'Optimisation SEO/GEO avancée, structured data enrichi avec abstract sémantique et seeks.',
-    noteEn: 'Advanced SEO/GEO optimization, enriched structured data with semantic abstract and seeks.'
+    noteEn: 'Advanced SEO/GEO optimization, enriched structured data with semantic abstract and seeks.',
   },
   {
-    version: '1.9.1',
+    version: '2.3.3',
     date: '2026-07-15',
     noteFr: 'Résolution des conflits d\'initialisation du carrousel de projets sur mobile.',
-    noteEn: 'Fixed project carousel initialization conflicts on mobile devices.'
+    noteEn: 'Fixed project carousel initialization conflicts on mobile devices.',
   },
   {
-    version: '1.9.0',
+    version: '2.3.2',
     date: '2026-07-13',
     noteFr: 'Intégration du système de pré-rendu statique postbuild.js et configuration du routage SPA Apache.',
-    noteEn: 'Integrated postbuild.js static pre-rendering system and configured Apache SPA routing.'
+    noteEn: 'Integrated postbuild.js static pre-rendering system and configured Apache SPA routing.',
   },
   {
-    version: '1.8.5',
+    version: '2.3.1',
     date: '2026-07-12',
     noteFr: 'Affinage de l\'expérience utilisateur, fluidification des parcours et ajustement des micro-interactions.',
-    noteEn: 'User experience refinement, smoother user flows, and micro-interaction adjustments.'
+    noteEn: 'User experience refinement, smoother user flows, and micro-interaction adjustments.',
   },
   {
-    version: '1.8.0',
+    version: '2.3.0',
     date: '2026-07-12',
     noteFr: 'Implémentation du support GeoJSON pour le traitement et l\'affichage des données géographiques.',
-    noteEn: 'Implementation of GeoJSON support for processing and displaying geographic data.'
+    noteEn: 'Implementation of GeoJSON support for processing and displaying geographic data.',
   },
   {
-    version: '1.7.0',
+    version: '2.2.4',
     date: '2026-07-05',
     noteFr: 'Restructuration globale de l\'architecture du projet, des dossiers et des composants pour une meilleure maintenabilité.',
-    noteEn: 'Comprehensive restructuring of project architecture, folder structure, and components for better maintainability.'
+    noteEn: 'Comprehensive restructuring of project architecture, folder structure, and components for better maintainability.',
   },
   {
-    version: '1.6.5',
+    version: '2.2.3',
     date: '2026-07-04',
     noteFr: 'Amélioration continue de la qualité du code (refactoring, renforcement du typage et nettoyage technique).',
-    noteEn: 'Continuous code quality improvement (refactoring, stricter typing, and technical cleanup).'
+    noteEn: 'Continuous code quality improvement (refactoring, stricter typing, and technical cleanup).',
   },
   {
-    version: '1.6.0',
+    version: '2.2.2',
     date: '2026-07-04',
     noteFr: 'Révision, enrichissement et optimisation de la structure des contenus textuels et médias.',
-    noteEn: 'Review, enrichment, and structural optimization of textual and media content.'
+    noteEn: 'Review, enrichment, and structural optimization of textual and media content.',
   },
   {
-    version: '1.5.0',
+    version: '2.2.1',
     date: '2026-07-03',
     noteFr: 'Optimisation des performances globales, réduction du bundle size et amélioration des temps de chargement.',
-    noteEn: 'Overall performance optimization, bundle size reduction, and page load time improvements.'
+    noteEn: 'Overall performance optimization, bundle size reduction, and page load time improvements.',
   },
   {
-    version: '1.4.0',
+    version: '2.2.0',
     date: '2026-04-19',
     noteFr: 'Renforcement de l\'accessibilité globale (navigation au clavier, contrastes, attributs ARIA) pour un portfolio plus inclusif.',
-    noteEn: 'Global accessibility enhancement (keyboard navigation, color contrast, ARIA attributes) for a more inclusive portfolio.'
+    noteEn: 'Global accessibility enhancement (keyboard navigation, color contrast, ARIA attributes) for a more inclusive portfolio.',
   },
   {
-    version: '1.3.0',
+    version: '2.1.0',
     date: '2026-04-18',
     noteFr: 'Configuration complète des métadonnées Open Graph pour optimiser les aperçus lors du partage sur les réseaux sociaux.',
-    noteEn: 'Complete Open Graph metadata setup to optimize preview cards across social media networks.'
+    noteEn: 'Complete Open Graph metadata setup to optimize preview cards across social media networks.',
   },
   {
-    version: '1.2.0',
+    version: '2.0.2',
     date: '2026-04-08',
     noteFr: 'Refonte visuelle des arrière-plans avec l\'intégration de mesh gradients dynamiques.',
-    noteEn: 'Visual background redesign featuring dynamic mesh gradient integration.'
+    noteEn: 'Visual background redesign featuring dynamic mesh gradient integration.',
   },
   {
-    version: '1.1.0',
+    version: '2.0.1',
     date: '2026-03-31',
     noteFr: 'Ajout d\'easter eggs interactifs pour récompenser l\'exploration et enrichir l\'expérience de découverte.',
-    noteEn: 'Added interactive easter eggs to reward exploration and enrich the discovery experience.'
+    noteEn: 'Added interactive easter eggs to reward exploration and enrich the discovery experience.',
   },
   {
-    version: '1.0.0',
+    version: '2.0.0',
     date: '2026-03-30',
     noteFr: 'Lancement de la refonte du portfolio propulsé par React. Intégration d\'un mode Light/Dark, d\'un système de traductions dynamiques et migration de la quasi-intégralité du contenu historique.',
-    noteEn: 'Launch of the React-powered portfolio redesign. Integrated Light/Dark modes, dynamic translation system, and migrated nearly all historical content.'
-  }
+    noteEn: 'Launch of the React-powered portfolio redesign. Integrated Light/Dark modes, dynamic translation system, and migrated nearly all historical content.',
+  },
 ];
 
 function TooltipDemo({ t }) {
@@ -184,7 +190,7 @@ export default function DesignSystem({ isModal = false }) {
   const { language } = useLanguage();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const currentVersion = __APP_VERSION__ || '1.9.8';
+  const currentVersion = __APP_VERSION__ || '2.5.2';
 
   // Modal swipe-down drag state
   const [translateY, setTranslateY] = useState(0);

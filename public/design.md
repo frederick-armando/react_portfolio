@@ -1,6 +1,6 @@
 # Design System — Frederick Armando Portfolio
 
-**Version:** v1.9.9
+**Version:** v2.5.2
 **Last updated:** August 2026
 **Status:** Public
 **Access:** https://frederickarmando.fr/design.md
@@ -16,7 +16,7 @@
 > directly from `src/styles/tokens.css` and the live components. Keep this file
 > in sync with the code; treat it as the canonical reference, not a copy.
 
-Last synced with: **v1.9.9**
+Last synced with: **v2.5.2**
 
 ---
 
