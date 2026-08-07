@@ -644,8 +644,17 @@
 .ds-changelog__item {
   position: relative;
   display: flex;
-  gap: var(--space-4);
+  flex-direction: column;
+  gap: var(--space-2);
   align-items: flex-start;
+}
+
+/* Desktop: restore horizontal two-column layout (version/date | description) */
+@media (min-width: 768px) {
+  .ds-changelog__item {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
 }
 
 /* Node indicator dot on the continuous line, horizontally aligned with version title */
@@ -665,6 +674,13 @@
 .ds-changelog__version {
   min-width: 84px;
   flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .ds-changelog__version {
+    width: auto;
+  }
 }
 
 .ds-changelog__version-tag {
