@@ -324,7 +324,7 @@ export default function AccessibilityPanel({
               }}
               onClick={onClose}
             >
-              v{__APP_VERSION__ || '1.9.7'}
+              v{__APP_VERSION__ || '2.5.2'}
             </Link>
           </div>
 

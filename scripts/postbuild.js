@@ -273,6 +273,38 @@ try {
   const parentFolder = path.join(distDir, 'projets');
   fs.mkdirSync(parentFolder, { recursive: true });
 
+  // --- Upcoming / "Coming Soon" case studies: keep an indexable, LLM-friendly
+  // entry so generative engines don't hit an information gap. ---
+  const upcomingProject = projectEntries.find((p) => p.detailStatus === 'placeholder');
+  if (upcomingProject) {
+    const upMeta = {
+      title: upcomingProject.translations.fr?.detailTitle || upcomingProject.translations.fr?.title || 'Études de cas à venir',
+      description: stripHtml(
+        upcomingProject.translations.fr?.detailSummary ||
+          upcomingProject.translations.fr?.description ||
+          'Nouvelles études de cas en préparation.',
+      ),
+      image: '/assets/OG_Main.png',
+      path: `/projets/${upcomingProject.slug}`,
+    };
+    const upImage = resolveBuiltAsset(upMeta.image);
+    const upHtml = forceAbsoluteAssetPaths(
+      injectPageSeo(baseHtml, {
+        ...upMeta,
+        structuredData: createProjectStructuredData({
+          project: { ...upcomingProject, company: upcomingProject.translations.fr?.company || 'Various' },
+          title: upMeta.title,
+          description: upMeta.description,
+          image: upImage,
+        }),
+      }),
+    );
+    const upFolder = path.join(distDir, 'projets', upcomingProject.slug);
+    fs.mkdirSync(upFolder, { recursive: true });
+    fs.writeFileSync(path.join(upFolder, 'index.html'), upHtml);
+    console.log(`✅ Généré: /projets/${upcomingProject.slug}/index.html (upcoming)`);
+  }
+
   const localizedProjects = getLocalizedProjects('fr');
   const projectsImage = resolveBuiltAsset(projectsMeta.image);
   const projectsHtml = forceAbsoluteAssetPaths(
@@ -306,6 +338,9 @@ try {
     '/contact',
     '/design-system',
     ...projectRoutes.map((route) => `/projets/${route.slug}`),
+    ...(projectEntries.some((p) => p.detailStatus === 'placeholder')
+      ? [`/projets/${projectEntries.find((p) => p.detailStatus === 'placeholder').slug}`]
+      : []),
   ]);
 
   const phpFile = path.join(distDir, 'index.php');
