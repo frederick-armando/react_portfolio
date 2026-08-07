@@ -35,6 +35,8 @@ function personData() {
       'Product Design',
       'Artificial Intelligence (AI)',
       'Generative UI (GenUI)',
+      'Conversational UI',
+      'Conversational AI',
       'UX/UI Design',
       'Accessibility (WCAG)',
       'Product Strategy',
@@ -42,6 +44,15 @@ function personData() {
       'Design Systems',
       'UX Research',
     ],
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Lead Product Designer',
+      occupationLocation: {
+        '@type': 'Country',
+        name: 'France',
+      },
+      industry: ['Product Design', 'Software', 'Artificial Intelligence'],
+    },
     seeks: [
       {
         '@type': 'Demand',

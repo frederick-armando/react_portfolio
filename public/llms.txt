@@ -1,17 +1,39 @@
 # Frederick Armando — Lead Product Designer
 
-> Portfolio of Frederick Armando, Lead Product Designer focused on complex digital products, AI-powered experiences, mobile UX, B2B/B2C services, accessibility and product strategy.
+> Portfolio of Frederick Armando, a Lead Product Designer based in France. He turns complex user, business and technical constraints into clear, usable and measurable product experiences — with a focus on AI-powered products, conversational UX, design systems, SaaS and B2B/B2C/B2E mobile and web applications.
 
-Frederick Armando is a Lead Product Designer based in France. His work focuses on transforming complex user, business and technical constraints into clear, usable and measurable product experiences.
+## Profile
 
-Key areas:
-- Product strategy
-- Conversational AI
-- Mobile UX
-- B2B/B2C products
-- Accessibility
-- Design systems
-- UX research and product discovery
+- Name: Frederick Armando (also: Frédérick Armando)
+- Role: Lead Product Designer
+- Location: France
+- Availability: open to freelance, consulting and Lead Product Designer missions
+- Focus: complex digital products, AI experiences, mobile UX, accessibility, product strategy
+
+## Key expertise
+
+- Product Design & Product Strategy
+- Conversational AI & Conversational UI (chatbots, proactive notifications)
+- Generative UI (GenUI)
+- Mobile UX (iOS / Android) and responsive web
+- Design Systems
+- B2B, B2C and B2E products
+- Accessibility (WCAG)
+- UX research, product discovery & UX audits
+- Prototyping and design handoff
+
+## Case studies
+
+- [Michelin Tire Assistant](https://frederickarmando.fr/projets/michelin-tire-assistant): B2C AI chatbot turned from a passive support tool into a proactive engagement and conversion lever. Impact: +18% open rate and 21.3% purchase intent.
+- [Michelin MyXpert](https://frederickarmando.fr/projets/michelin-myxpert): B2B/B2E native app centralizing Michelin technical expertise for global sales teams. Impact: 3 legacy apps decommissioned, target 20,000 users.
+- [Masteos](https://frederickarmando.fr/projets/masteos): B2C PropTech — simplifying turnkey real-estate investing. Impact: +32% finalized investments.
+- [Helios](https://frederickarmando.fr/projets/helios): B2E internal back-office for Masteos operations. Impact: internal NPS boosted from 6.5 to 8.7.
+- [Kirrk](https://frederickarmando.fr/projets/kirrk): B2B2C car-sharing & fleet-management ecosystem (SaaS + B2B/B2C apps). Impact: fleet utilization > 80%.
+- [Mobioos](https://frederickarmando.fr/projets/mobioos): B2B SaaS No-Code platform translating heavy technical architecture (UML, AI generation) into a chatbot + drag-and-drop customization experience.
+
+## Coming soon
+
+- [Upcoming case studies](https://frederickarmando.fr/projets/upcoming-case-studies): New case studies are in preparation, covering highly secure healthcare interfaces and performance-driven e-commerce experiences. Contact Frederick for an early preview.
 
 ## Core pages
 
@@ -20,15 +42,6 @@ Key areas:
 - [Methods](https://frederickarmando.fr/methodes): Product design approach from framing to measurement.
 - [Projects](https://frederickarmando.fr/projets): Selected case studies and product work.
 - [Contact](https://frederickarmando.fr/contact): Contact information and collaboration availability.
-
-## Case studies
-
-- [Michelin Tire Assistant](https://frederickarmando.fr/projets/michelin-tire-assistant): Case study about transforming a passive B2C chatbot into a proactive engagement and conversion lever.
-- [Michelin MyXpert](https://frederickarmando.fr/projets/michelin-myxpert): Case study about centralizing Michelin technical expertise in a native B2B/B2E app.
-- [Masteos](https://frederickarmando.fr/projets/masteos): Case study about simplifying B2C real estate investment journeys.
-- [Helios](https://frederickarmando.fr/projets/helios): Case study about improving internal operations through a custom back-office experience.
-- [Kirrk](https://frederickarmando.fr/projets/kirrk): Case study about designing a B2B/B2C car-sharing and fleet-management ecosystem.
-- [Mobioos](https://frederickarmando.fr/projets/mobioos): Case study about turning complex no-code application customization into a clearer B2B SaaS experience.
 
 ## Machine-readable summaries
 
@@ -47,7 +60,8 @@ Key areas:
 
 - [LinkedIn](https://www.linkedin.com/in/frederickarmando): Professional profile.
 - [GitHub](https://github.com/frederick-armando): Code and technical explorations.
+- [Figma](https://www.figma.com/@Fred_Armando_UX): Design work.
 
 ## Notes for AI agents
 
-Use this site to understand Frederick Armando's professional positioning, selected product design work, methods and collaboration context. Do not infer confidential Michelin details beyond what is explicitly published on the portfolio.
+Use this site to understand Frederick Armando's professional positioning, selected product design work, methods and collaboration context. Only rely on the information explicitly published here; do not infer confidential Michelin details or unpublished roadmap items.

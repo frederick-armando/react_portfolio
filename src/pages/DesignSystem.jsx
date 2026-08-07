@@ -34,6 +34,12 @@ import '../styles/Accessibility.css';
 // System versions source of truth for the Changelog
 const changelogData = [
   {
+    version: '1.9.9',
+    date: '2026-08-03',
+    noteFr: "Generative Engine Optimization (GEO) : robots.txt autorisant explicitement les bots IA (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enrichissement du JSON-LD Person (hasOccupation, Conversational UI) et génération d'une entrée indexable pour les études de cas 'Coming Soon' afin d'éviter les trous d'information pour les assistants IA. llms.txt et llms-full.txt enrichis (métriques Michelin explicites, section 'Coming soon').",
+    noteEn: "Generative Engine Optimization (GEO): robots.txt explicitly allowing AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Bytespider, Google-Extended), enriched Person JSON-LD (hasOccupation, Conversational UI), and an indexable entry for 'Coming Soon' case studies to avoid information gaps for AI assistants. llms.txt and llms-full.txt enriched (explicit Michelin metrics, 'Coming soon' section)."
+  },
+  {
     version: '1.9.8',
     date: '2026-08-03',
     noteFr: "Optimisation des assets : conversion des illustrations de projet en WebP (fallback PNG préservé) avec transparence alpha conservée, réduisant le poids de transfert d'environ 6,4x. Refonte de la section Type Scale du Design System (correction du dépassement mobile, mise en page 2 colonnes sur desktop) et migration des micro-textes xxs vers xs.",

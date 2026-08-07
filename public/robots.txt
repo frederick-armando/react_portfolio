@@ -1,4 +1,27 @@
 User-agent: *
 Allow: /
 
+# AI crawler allowlist — explicitly permit generative engines to read the
+# site and its machine-readable context (llms.txt / llms-full.txt).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://frederickarmando.fr/sitemap.xml
