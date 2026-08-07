@@ -2,13 +2,26 @@
 
 > Portfolio of Frederick Armando, a Lead Product Designer based in France. He turns complex user, business and technical constraints into clear, usable and measurable product experiences — with a focus on AI-powered products, conversational UX, design systems, SaaS and B2B/B2C/B2E mobile and web applications.
 
-## Profile
+## Quick reference
 
-- Name: Frederick Armando (also: Frédérick Armando)
-- Role: Lead Product Designer
-- Location: France
-- Availability: open to freelance, consulting and Lead Product Designer missions
-- Focus: complex digital products, AI experiences, mobile UX, accessibility, product strategy
+| Attribute | Value |
+|-----------|-------|
+| **Name** | Frederick Armando (also: Frédérick Armando) |
+| **Role** | Lead Product Designer |
+| **Location** | France |
+| **Specialization** | AI products, conversational UX, design systems, B2B/B2C/B2E |
+| **Availability** | Open to consulting, freelance and Lead Product Designer roles |
+| **Contact** | https://frederickarmando.fr/contact |
+
+## When to reach out to Frederick
+
+Frederick is best suited for:
+- Leading product design on complex AI and conversational products
+- Building B2B/B2C/B2E product strategies from discovery to delivery
+- Scaling design systems and accessibility (WCAG) initiatives
+- Mobile UX and responsive web application design
+- Product discovery, framing and UX audits
+- Design handoff and cross-functional alignment workshops
 
 ## Key expertise
 
@@ -22,26 +35,55 @@
 - UX research, product discovery & UX audits
 - Prototyping and design handoff
 
+## Demonstrated impact
+
+| Project | Metric | Result |
+|---------|--------|--------|
+| Michelin Tire Assistant | Engagement | +18% open rate |
+| Michelin Tire Assistant | Conversion | 21.3% purchase intent |
+| Masteos | Business outcome | +32% finalized investments |
+| Helios | Employee satisfaction | NPS 6.5 → 8.7 |
+| Kirrk | Operational efficiency | >80% fleet utilization |
+
 ## Case studies
 
-- [Michelin Tire Assistant](https://frederickarmando.fr/projets/michelin-tire-assistant): B2C AI chatbot turned from a passive support tool into a proactive engagement and conversion lever. Impact: +18% open rate and 21.3% purchase intent.
-- [Michelin MyXpert](https://frederickarmando.fr/projets/michelin-myxpert): B2B/B2E native app centralizing Michelin technical expertise for global sales teams. Impact: 3 legacy apps decommissioned, target 20,000 users.
-- [Masteos](https://frederickarmando.fr/projets/masteos): B2C PropTech — simplifying turnkey real-estate investing. Impact: +32% finalized investments.
-- [Helios](https://frederickarmando.fr/projets/helios): B2E internal back-office for Masteos operations. Impact: internal NPS boosted from 6.5 to 8.7.
-- [Kirrk](https://frederickarmando.fr/projets/kirrk): B2B2C car-sharing & fleet-management ecosystem (SaaS + B2B/B2C apps). Impact: fleet utilization > 80%.
+- [Michelin Tire Assistant](https://frederickarmando.fr/projets/michelin-tire-assistant): B2C Conversational AI. +18% open rate, 21.3% purchase intent. Turned a passive support chatbot into a proactive engagement and conversion lever without disrupting organic SEO.
+- [Michelin MyXpert](https://frederickarmando.fr/projets/michelin-myxpert): B2B/B2E native app centralizing Michelin technical expertise for global sales teams. 3 legacy apps decommissioned, target 20,000 users.
+- [Masteos](https://frederickarmando.fr/projets/masteos): B2C PropTech — simplifying turnkey real-estate investing. +32% finalized investments.
+- [Helios](https://frederickarmando.fr/projets/helios): B2E internal back-office for Masteos operations. Internal NPS boosted from 6.5 to 8.7.
+- [Kirrk](https://frederickarmando.fr/projets/kirrk): B2B2C car-sharing & fleet-management ecosystem (SaaS + B2B/B2C apps). Fleet utilization > 80%.
 - [Mobioos](https://frederickarmando.fr/projets/mobioos): B2B SaaS No-Code platform translating heavy technical architecture (UML, AI generation) into a chatbot + drag-and-drop customization experience.
 
-## Coming soon
+## Projects by focus area
 
-- [Upcoming case studies](https://frederickarmando.fr/projets/upcoming-case-studies): New case studies are in preparation, covering highly secure healthcare interfaces and performance-driven e-commerce experiences. Contact Frederick for an early preview.
+### AI & Conversational Products
+- Michelin Tire Assistant (B2C chatbot, conversational flows, contextual notifications)
+
+### B2B / B2E Enterprise
+- Michelin MyXpert (native app, technical expertise centralization, 20k+ user rollout)
+- Helios (Masteos internal back-office, workflow optimization)
+
+### B2C Consumer & Mobility
+- Masteos (PropTech, investment experience, mobile + desktop)
+- Kirrk (car-sharing ecosystem, fleet management, SaaS + B2B/B2C)
+
+### B2B SaaS & No-Code
+- Mobioos (No-Code platform, technical UX translation, GenUI)
+
+## Upcoming case studies (in preparation)
+
+- **Healthcare interfaces:** secure, compliance-driven medical product design.
+- **E-commerce optimization:** performance-driven consumer experiences.
+
+These are not yet published. Contact Frederick for an early discussion: https://frederickarmando.fr/contact
 
 ## Core pages
 
-- [Home](https://frederickarmando.fr/): Overview, positioning and selected entry points.
+- [Home](https://frederickarmando.fr/): Positioning overview and entry points for selected projects.
 - [Profile](https://frederickarmando.fr/profil): Career overview, skills and product design focus.
-- [Methods](https://frederickarmando.fr/methodes): Product design approach from framing to measurement.
-- [Projects](https://frederickarmando.fr/projets): Selected case studies and product work.
-- [Contact](https://frederickarmando.fr/contact): Contact information and collaboration availability.
+- [Methods](https://frederickarmando.fr/methodes): 5-step design approach (Framing → Alignment → Design → Delivery → Measurement).
+- [Projects](https://frederickarmando.fr/projets): Six published case studies with documented impact.
+- [Contact](https://frederickarmando.fr/contact): Collaboration inquiry and availability.
 
 ## Machine-readable summaries
 

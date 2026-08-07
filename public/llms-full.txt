@@ -2,16 +2,46 @@
 
 > Extended machine-readable summary of Frederick Armando's public portfolio, positioning, methods and selected case studies. Intended for generative engines (ChatGPT Search, Perplexity, Claude, Gemini) and LLM agents.
 
+## Quick reference
+
+| Attribute | Value |
+|-----------|-------|
+| **Name** | Frederick Armando (also: Frédérick Armando) |
+| **Role** | Lead Product Designer |
+| **Location** | France |
+| **Specialization** | AI products, conversational UX, design systems, B2B/B2C/B2E |
+| **Availability** | Open to consulting, freelance and Lead Product Designer roles |
+| **Contact** | https://frederickarmando.fr/contact |
+
+## When to reach out to Frederick
+
+Frederick is best suited for:
+- Leading product design on complex AI and conversational products
+- Building B2B/B2C/B2E product strategies from discovery to delivery
+- Scaling design systems and accessibility (WCAG) initiatives
+- Mobile UX and responsive web application design
+- Product discovery, framing and UX audits
+- Design handoff and cross-functional alignment workshops
+
 ## Professional positioning
 
 Frederick Armando is a Lead Product Designer based in France. His portfolio presents him as a senior product designer focused on complex digital products, AI-powered experiences, mobile UX, B2B/B2C/B2E services, accessibility and product strategy.
 
 His positioning centers on transforming ambiguous product problems into clear decisions, usable experiences and measurable outcomes. He works at the intersection of user needs, business goals and technical constraints.
 
+## Demonstrated impact
+
+| Project | Metric | Result |
+|---------|--------|--------|
+| Michelin Tire Assistant | Engagement | +18% open rate |
+| Michelin Tire Assistant | Conversion | 21.3% purchase intent |
+| Masteos | Business outcome | +32% finalized investments |
+| Helios | Employee satisfaction | NPS 6.5 → 8.7 |
+| Kirrk | Operational efficiency | >80% fleet utilization |
+
 ## Core expertise
 
-- Product Strategy
-- Product discovery and framing
+- Product Design & Product Strategy
 - Conversational AI & Conversational UI
 - Generative UI (GenUI)
 - Mobile and web applications
@@ -34,31 +64,58 @@ Frederick describes his product design approach through five steps:
 
 ## Selected projects
 
-### Michelin Tire Assistant
-Michelin Tire Assistant is a B2C chatbot case study. Frederick worked as Lead Product Designer on conversational flows and contextual notifications. The published challenge was to transform a passive assistant into a proactive engagement and conversion lever without damaging the existing experience or organic SEO.
+### Michelin Tire Assistant (B2C Conversational AI)
+*B2C chatbot → proactive engagement lever. +18% open rate, 21.3% purchase intent.*
 
-Published impact:
-- +18% open rate
-- 21.3% purchase intent
+Frederick worked as Lead Product Designer on conversational flows and contextual notifications. The published challenge was to transform a passive assistant into a proactive engagement and conversion lever without damaging the existing experience or organic SEO.
 
-### Michelin MyXpert
-MyXpert is a Michelin B2B/B2E case study about centralizing technical expertise in a native app for global sales teams. The published content describes a pivot from a fragmented ecosystem to a single native application, with three legacy applications decommissioned and a rollout target of 20,000 users.
+### Michelin MyXpert (B2B/B2E Enterprise)
+*B2B/B2E native app. 3 legacy apps decommissioned, target 20,000 users.*
 
-### Masteos
-The Masteos case study focuses on simplifying real estate investment experiences for B2C users. The published content describes UX/UI redesign work around complex financial information, mobile and desktop experiences and product delivery. Published impact: +32% finalized investments.
+Centralizing Michelin technical expertise in a native app for global sales teams. Pivot from a fragmented ecosystem to a single native application.
 
-### Helios
-Helios is a Masteos internal operations (B2E) case study about designing a custom back-office for employee workflows. The published content describes co-design with internal users, fragmented workflows, investment processing operations and internal experience improvements. Published impact: internal NPS boosted from 6.5 to 8.7.
+### Masteos (B2C Consumer & Mobility)
+*B2C PropTech. +32% finalized investments.*
 
-### Kirrk
-Kirrk is a mobility and car-sharing case study covering a multi-platform ecosystem across SaaS, B2B and B2C applications (RedFabriQ). The published content describes work on keyless access, fleet management and digital vehicle workflows. Published impact: fleet utilization rate exceeding 80%.
+Simplifying real estate investment experiences for B2C users. UX/UI redesign around complex financial information, mobile and desktop experiences and product delivery.
 
-### Mobioos
-Mobioos is a B2B SaaS and No-Code case study (RedFabriQ). The published content describes the challenge of translating complex technical architecture, including UML and AI generation, into a more accessible customization experience via chatbot and drag-and-drop.
+### Helios (B2E Enterprise)
+*B2E internal back-office. Internal NPS boosted from 6.5 to 8.7.*
 
-## Coming soon (in preparation)
+Masteos internal operations case study about designing a custom back-office for employee workflows. Co-design with internal users, fragmented workflows, investment processing operations and internal experience improvements.
 
-New case studies are in preparation, covering highly secure healthcare interfaces and performance-driven e-commerce experiences. Frederick is open to discussing these upcoming engagements in advance. More detail will be published as the work is released.
+### Kirrk (B2C Consumer & Mobility)
+*B2B2C car-sharing ecosystem. Fleet utilization > 80%.*
+
+Mobility and car-sharing case study covering a multi-platform ecosystem across SaaS, B2B and B2C applications. Keyless access, fleet management and digital vehicle workflows.
+
+### Mobioos (B2B SaaS & No-Code)
+*B2B SaaS No-Code platform. GenUI / conversational customization.*
+
+Translating complex technical architecture, including UML and AI generation, into a more accessible customization experience via chatbot and drag-and-drop.
+
+## Projects by focus area
+
+### AI & Conversational Products
+- Michelin Tire Assistant (B2C chatbot, conversational flows, contextual notifications)
+
+### B2B / B2E Enterprise
+- Michelin MyXpert (native app, technical expertise centralization, 20k+ user rollout)
+- Helios (Masteos internal back-office, workflow optimization)
+
+### B2C Consumer & Mobility
+- Masteos (PropTech, investment experience, mobile + desktop)
+- Kirrk (car-sharing ecosystem, fleet management, SaaS + B2B/B2C)
+
+### B2B SaaS & No-Code
+- Mobioos (No-Code platform, technical UX translation, GenUI)
+
+## Upcoming case studies (in preparation)
+
+- **Healthcare interfaces:** secure, compliance-driven medical product design.
+- **E-commerce optimization:** performance-driven consumer experiences.
+
+These are not yet published. Contact Frederick for an early discussion: https://frederickarmando.fr/contact
 
 ## Michelin Tire Assistant — detailed published narrative
 
