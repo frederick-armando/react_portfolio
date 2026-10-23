@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { AsciiReveal } from 'ascii-reveal';
 import TopBar from './TopBar.jsx';
 import BottomNav from './BottomNav.jsx';
 
 export default function Layout({ children }) {
+  const location = useLocation();
+
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
 
@@ -143,7 +147,19 @@ export default function Layout({ children }) {
       </div>
       <TopBar />
       <main className="main">
-        <div className="container">{children}</div>
+        <div className="container">
+          <AsciiReveal
+            key={location.pathname}
+            preset="terminal"
+            origin="top-left"
+            speed={0.4}
+            revealOnHydrate={true}
+            fallback={false}
+            lazy={false}
+          >
+            {children}
+          </AsciiReveal>
+        </div>
       </main>
       <BottomNav />
     </div>

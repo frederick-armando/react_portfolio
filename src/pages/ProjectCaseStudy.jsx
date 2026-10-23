@@ -37,6 +37,7 @@ import {
 import Button from '../components/Button.jsx';
 import ProjectArtwork from '../components/ProjectArtwork.jsx';
 import { SkeletonImage } from '../components/Skeleton.jsx';
+import { AsciiReveal } from 'ascii-reveal';
 import heliosMockup1 from '../assets/projects/helios/helios-mockup-1.png';
 import heliosMockup2 from '../assets/projects/helios/helios-mockup-2.png';
 import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
@@ -384,7 +385,7 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? IconNote;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -514,7 +515,7 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.learningCards.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? IconNote;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -621,7 +622,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.metrics.slice(0, 4).map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -648,7 +649,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.metrics.slice(4, 8).map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -753,7 +754,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -823,7 +824,7 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -969,7 +970,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1025,7 +1026,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1084,7 +1085,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1170,7 +1171,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1233,7 +1234,7 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title}>
+            <article className="case-study-metric" key={title} data-ascii="surface">
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1604,27 +1605,37 @@ function ProjectCaseStudyContent({ isModal, slug }) {
     >
       <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
       <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
-        {contentKey === 'tire-assistant' ? (
-          <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : currentProject.slug === 'masteos' ? (
-          <MasteosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : currentProject.slug === 'helios' ? (
-          <HeliosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : currentProject.slug === 'kirrk' ? (
-          <KirrkCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : currentProject.slug === 'mobioos' ? (
-          <MobioosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : contentKey === 'myxpert' ? (
-          <MyxpertCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-        ) : (
-          <PlaceholderCaseStudy
-            project={currentProject}
-            projects={localizedProjects}
-            content={globalContent}
-            isModal={isModal}
-            onNavigateToProject={handleNavigateToProject}
-          />
-        )}
+        <AsciiReveal
+          key={currentProject.slug}
+          preset="terminal"
+          origin="top-left"
+          speed={0.4}
+          revealOnHydrate={true}
+          fallback={false}
+          lazy={false}
+        >
+          {contentKey === 'tire-assistant' ? (
+            <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : currentProject.slug === 'masteos' ? (
+            <MasteosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : currentProject.slug === 'helios' ? (
+            <HeliosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : currentProject.slug === 'kirrk' ? (
+            <KirrkCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : currentProject.slug === 'mobioos' ? (
+            <MobioosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : contentKey === 'myxpert' ? (
+            <MyxpertCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+          ) : (
+            <PlaceholderCaseStudy
+              project={currentProject}
+              projects={localizedProjects}
+              content={globalContent}
+              isModal={isModal}
+              onNavigateToProject={handleNavigateToProject}
+            />
+          )}
+        </AsciiReveal>
       </div>
     </div>
   );

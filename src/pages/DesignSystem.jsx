@@ -1,4 +1,5 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
+import { AsciiReveal } from 'ascii-reveal';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useSEO } from '../hooks/useSEO.js';
 import { useTheme } from '../theme/ThemeContext.jsx';
@@ -1032,7 +1033,17 @@ export default function DesignSystem({ isModal = false }) {
             </div>
           </div>
           <div ref={shellRef} className="case-study-shell case-study-shell--scrollable">
-            {contentMarkup}
+            <AsciiReveal
+              key="design-system-modal"
+              preset="terminal"
+              origin="top-left"
+              speed={0.4}
+              revealOnHydrate={true}
+              fallback={false}
+              lazy={false}
+            >
+              {contentMarkup}
+            </AsciiReveal>
           </div>
         </div>
       </div>

@@ -186,6 +186,13 @@
     0 18px 30px rgba(18, 19, 26, 0.18),
     0 10px 12px rgba(18, 19, 26, 0.12);
   --focus-ring: 0 0 0 3px rgba(56, 90, 249, 0.28);
+
+  /* ASCII Reveal & Skeleton Tokens */
+  --ascii-accent: #385AF9;
+  --ascii-skeleton: rgba(18, 19, 26, 0.38);
+  --ascii-flash: #385AF9;
+  --ascii-glyph: rgba(18, 19, 26, 0.32);
+  --ascii-font: "SF Mono", Monaco, Inconsolata, "Fira Code", ui-monospace, monospace;
 }
 
 @media (max-width: 720px) {
@@ -244,6 +251,12 @@
     0 18px 30px rgba(0, 0, 0, 0.52),
     0 10px 12px rgba(0, 0, 0, 0.34);
   --focus-ring: 0 0 0 3px rgba(165, 180, 255, 0.42);
+
+  /* ASCII Reveal & Skeleton Tokens (Dark Mode) */
+  --ascii-accent: #8DA2FF;
+  --ascii-skeleton: rgba(228, 229, 237, 0.35);
+  --ascii-flash: #8DA2FF;
+  --ascii-glyph: rgba(228, 229, 237, 0.28);
 }
 
 /* No-JS fallback: respect system preference */

@@ -4,8 +4,6 @@ import Button from './components/Button.jsx';
 import Layout from './components/Layout.jsx';
 import RouteErrorBoundary from './components/RouteErrorBoundary.jsx';
 import Home from './pages/Home.jsx';
-import { CaseStudyModalSkeleton, PageSkeleton } from './components/Skeleton.jsx';
-import { useLanguage } from './i18n/LanguageContext.jsx';
 
 const Profil = lazy(() => import('./pages/Profil.jsx'));
 const Methodes = lazy(() => import('./pages/Methodes.jsx'));
@@ -77,8 +75,6 @@ function RouteLoadError({ isModal = false, onRetry }) {
 
 export default function App() {
   const location = useLocation();
-  const { language } = useLanguage();
-  const content = loadingContent[language] ?? loadingContent.fr;
   let backgroundLocation = location.state?.backgroundLocation;
 
   if (!backgroundLocation && location.pathname.startsWith('/projets/') && location.pathname !== '/projets') {
@@ -92,7 +88,7 @@ export default function App() {
           resetKey={(backgroundLocation || location).key ?? (backgroundLocation || location).pathname}
           fallback={({ onRetry }) => <RouteLoadError onRetry={onRetry} />}
         >
-          <Suspense fallback={<PageSkeleton route={(backgroundLocation || location).pathname} />}>
+          <Suspense fallback={null}>
             <Routes location={backgroundLocation || location}>
               <Route path="/" element={<Home />} />
               <Route path="/profil" element={<Profil />} />
@@ -112,7 +108,7 @@ export default function App() {
           resetKey={`modal-${location.key ?? location.pathname}`}
           fallback={({ onRetry }) => <RouteLoadError isModal onRetry={onRetry} />}
         >
-          <Suspense fallback={<CaseStudyModalSkeleton label={content.caseStudy} />}>
+          <Suspense fallback={null}>
             <Routes>
               <Route path="/projets/:slug" element={<ProjectCaseStudy isModal />} />
               <Route path="/design-system" element={<DesignSystem isModal={true} />} />

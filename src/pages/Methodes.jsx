@@ -44,6 +44,7 @@ export default function Methodes() {
           <div
             className={`methods-card${hoveredIndex !== null && hoveredIndex !== index ? ' methods-card--inactive' : ''}`}
             key={item.title}
+            data-ascii="surface"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
