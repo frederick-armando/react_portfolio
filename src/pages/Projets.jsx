@@ -118,19 +118,36 @@ function ProjectTag({ tag }) {
   return (
     <span className="project-tag">
       {tag.image ? (
-        <img className="project-tag__image" src={tag.image} alt="" aria-hidden="true" />
+        <img className="project-tag__image" src={tag.image} alt="" aria-hidden="true" loading="eager" decoding="async" />
       ) : (
-        <Icon />
+        <Icon aria-hidden="true" />
       )}
-      {tag.label}
+      <span className="project-tag__label">{tag.label}</span>
     </span>
   );
 }
 
 function ProjectSlideCopy({ project, content }) {
+  const [isFirefox, setIsFirefox] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      const firefox = navigator.userAgent.includes('Firefox');
+      setIsFirefox(firefox);
+      if (firefox && typeof document !== 'undefined') {
+        document.documentElement.classList.add('is-firefox');
+      }
+    }
+  }, []);
+
   return (
     <div className="project-showcase__copy" key={project.slug}>
-      <div className="project-showcase__tags" aria-label={content.tagsLabel}>
+      <div
+        className="project-showcase__tags"
+        aria-label={content.tagsLabel}
+        data-ascii={isFirefox ? undefined : 'surface'}
+        style={isFirefox ? { visibility: 'visible' } : undefined}
+      >
         {project.tags.map((tag) => (
           <ProjectTag key={`${project.slug}-${tag.label}`} tag={tag} />
         ))}

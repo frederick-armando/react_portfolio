@@ -28,9 +28,9 @@ const Button = forwardRef(function Button({
   const content = (
     <>
       <span className="btn__ripple" />
-      {Icon && iconPosition === 'left' && <Icon className="btn__icon" />}
+      {Icon && iconPosition === 'left' && <span data-ascii="fade" className="btn__icon-wrap"><Icon className="btn__icon" /></span>}
       {children && <span className="btn__label">{children}</span>}
-      {Icon && iconPosition === 'right' && <Icon className="btn__icon" />}
+      {Icon && iconPosition === 'right' && <span data-ascii="fade" className="btn__icon-wrap"><Icon className="btn__icon" /></span>}
       {badge !== undefined && <span className="btn__badge">{badge}</span>}
     </>
   );

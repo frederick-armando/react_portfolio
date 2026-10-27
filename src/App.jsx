@@ -2,7 +2,9 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Button from './components/Button.jsx';
 import Layout from './components/Layout.jsx';
+import AsciiRouteReveal from './components/AsciiRouteReveal.jsx';
 import RouteErrorBoundary from './components/RouteErrorBoundary.jsx';
+import { useLanguage } from './i18n/LanguageContext.jsx';
 import Home from './pages/Home.jsx';
 
 const Profil = lazy(() => import('./pages/Profil.jsx'));
@@ -81,15 +83,20 @@ export default function App() {
     backgroundLocation = { pathname: '/projets', search: '', hash: '', state: null, key: 'default' };
   }
 
+  // The route actually rendered behind any modal. Opening `/projets/:slug` from
+  // `/projets` must not re-key the reveal, or the projects page replays its
+  // animation behind the modal.
+  const renderedLocation = backgroundLocation || location;
+
   return (
     <>
       <Layout>
         <RouteErrorBoundary
-          resetKey={(backgroundLocation || location).key ?? (backgroundLocation || location).pathname}
+          resetKey={renderedLocation.key ?? renderedLocation.pathname}
           fallback={({ onRetry }) => <RouteLoadError onRetry={onRetry} />}
         >
-          <Suspense fallback={null}>
-            <Routes location={backgroundLocation || location}>
+          <AsciiRouteReveal routeKey={renderedLocation.pathname}>
+            <Routes location={renderedLocation}>
               <Route path="/" element={<Home />} />
               <Route path="/profil" element={<Profil />} />
               <Route path="/methodes" element={<Methodes />} />
@@ -99,7 +106,7 @@ export default function App() {
               <Route path="/design-system" element={<DesignSystem />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </Suspense>
+          </AsciiRouteReveal>
         </RouteErrorBoundary>
       </Layout>
 

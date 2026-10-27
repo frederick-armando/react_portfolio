@@ -35,6 +35,7 @@ export default function MethodsWave({ hoveredIndex, onHover }) {
       aria-hidden="true"
       focusable="false"
       tabIndex="-1"
+      data-ascii="fade"
     >
       <defs>
         <filter id="activeShadow" x="-20%" y="-20%" width="140%" height="140%">

@@ -6,7 +6,6 @@ import AccessibilityWidget from './AccessibilityWidget.jsx';
 import { IconDownload } from './icons-shell.jsx';
 import { uiContent } from '../i18n/content/ui.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import logoWhiteMobile from '../assets/Logo_White_V3.svg';
 
 const Logo = (props) => (
   <svg width="270" height="147" viewBox="0 0 270 147" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>

@@ -839,8 +839,8 @@
 .project-showcase__copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: var(--space-6);
+  justify-content: flex-start;
+  gap: 0;
   width: 100%;
   min-width: 0;
   padding-block: var(--space-2);
@@ -850,6 +850,7 @@
 .project-showcase__body {
   display: grid;
   gap: var(--space-5);
+  margin-top: var(--space-6);
 }
 
 .project-showcase__tags {
@@ -857,6 +858,24 @@
   align-items: center;
   gap: var(--space-5);
   color: var(--color-ink);
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 18px;
+  min-height: 18px;
+  max-height: 18px;
+  box-sizing: border-box;
+}
+
+html:not(.is-firefox) .project-showcase__tags[data-ar-s] {
+  visibility: hidden !important;
+}
+
+html:not(.is-firefox) .project-showcase__tags:not([data-ar-s]) {
+  visibility: visible !important;
+}
+
+html.is-firefox .project-showcase__tags {
+  visibility: visible !important;
 }
 
 .project-tag {
@@ -865,15 +884,39 @@
   gap: 10px;
   font-size: 0.8125rem;
   font-weight: 600;
+  white-space: nowrap;
+  line-height: 18px;
+  height: 18px;
+  max-height: 18px;
+  min-height: 18px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  transition: none;
 }
 
 .project-tag svg {
   width: 18px;
   height: 18px;
+  flex: 0 0 18px;
+  display: block;
 }
 
 .project-tag__image {
+  display: block;
+  width: auto;
+  height: 18px;
+  max-height: 18px;
   max-width: 32px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.project-tag__label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 18px;
+  height: 18px;
 }
 
 .project-showcase h1 {

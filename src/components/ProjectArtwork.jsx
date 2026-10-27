@@ -43,6 +43,8 @@ import mobioosDevice2xWebp from '../assets/projects/Mobioos@2x.webp';
 import comingSoonBg from '../assets/projects/bg-last.png';
 import comingSoonBgWebp from '../assets/projects/bg-last.webp';
 import { SkeletonImage } from './Skeleton.jsx';
+import { AsciiReveal } from 'ascii-reveal';
+import { REVEAL_PROPS } from '../config/reveal.js';
 
 const artworkAssets = {
   'tire-assistant': {
@@ -116,12 +118,14 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
           fetchPriority={fetchPriority}
           decoding="async"
         />
-        <div className={`project-artwork__canvas project-artwork__canvas--coming-soon project-artwork--${mode}`} aria-hidden="true">
-          <div className="project-soon">
-            <p>Coming</p>
-            <p>Soon</p>
+        <AsciiReveal {...REVEAL_PROPS} surfaces=".project-artwork__canvas" fades="" revealOnMount={mode === 'main'} style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <div className={`project-artwork__canvas project-artwork__canvas--coming-soon project-artwork--${mode}`} data-ascii="surface" aria-hidden="true">
+            <div className="project-soon">
+              <p>Coming</p>
+              <p>Soon</p>
+            </div>
           </div>
-        </div>
+        </AsciiReveal>
       </div>
     );
   }
@@ -140,21 +144,23 @@ export default function ProjectArtwork({ project, mode = 'main' }) {
         fetchPriority={fetchPriority}
         decoding="async"
       />
-      <div className={`project-artwork__canvas project-artwork__canvas--${project.preview} project-artwork--${mode}`} aria-hidden="true">
-        <SkeletonImage
-          wrapperClassName="project-artwork__device-wrap"
-          className="project-artwork__device"
-          src={assets.src}
-          srcSet={assets.srcSet || undefined}
-          webpSrc={assets.srcWebp}
-          webpSrcSet={assets.webpSrcSet || undefined}
-          alt=""
-          draggable="false"
-          loading={loading}
-          fetchPriority={fetchPriority}
-          decoding="async"
-        />
-      </div>
+      <AsciiReveal {...REVEAL_PROPS} surfaces=".project-artwork__canvas" fades="" revealOnMount={mode === 'main'} style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <div className={`project-artwork__canvas project-artwork__canvas--${project.preview} project-artwork--${mode}`} data-ascii="surface" aria-hidden="true">
+          <SkeletonImage
+            wrapperClassName="project-artwork__device-wrap"
+            className="project-artwork__device"
+            src={assets.src}
+            srcSet={assets.srcSet || undefined}
+            webpSrc={assets.srcWebp}
+            webpSrcSet={assets.webpSrcSet || undefined}
+            alt=""
+            draggable="false"
+            loading={loading}
+            fetchPriority={fetchPriority}
+            decoding="async"
+          />
+        </div>
+      </AsciiReveal>
     </div>
   );
 }

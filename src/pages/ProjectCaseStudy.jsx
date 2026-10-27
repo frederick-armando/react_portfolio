@@ -38,6 +38,7 @@ import Button from '../components/Button.jsx';
 import ProjectArtwork from '../components/ProjectArtwork.jsx';
 import { SkeletonImage } from '../components/Skeleton.jsx';
 import { AsciiReveal } from 'ascii-reveal';
+import { REVEAL_PROPS } from '../config/reveal.js';
 import heliosMockup1 from '../assets/projects/helios/helios-mockup-1.png';
 import heliosMockup2 from '../assets/projects/helios/helios-mockup-2.png';
 import heliosWireframe1 from '../assets/projects/helios/helios-wireframe-1.png';
@@ -385,7 +386,7 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? IconNote;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -515,7 +516,7 @@ function MasteosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.learningCards.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? IconNote;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -622,7 +623,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.metrics.slice(0, 4).map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -649,7 +650,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.metrics.slice(4, 8).map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -754,7 +755,7 @@ function HeliosCaseStudy({ project, projects, content, isModal, onNavigateToProj
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -824,7 +825,7 @@ function KirrkCaseStudy({ project, projects, content, isModal, onNavigateToProje
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -970,7 +971,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1026,7 +1027,7 @@ function TireAssistantCaseStudy({ project, projects, content, isModal, onNavigat
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1085,7 +1086,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1171,7 +1172,7 @@ function MyxpertCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.tools.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1234,7 +1235,7 @@ function MobioosCaseStudy({ project, projects, content, isModal, onNavigateToPro
         {content.metrics.map(({ iconKey, title, detail }) => {
           const Icon = metricIcons[iconKey] ?? metricIcons.note;
           return (
-            <article className="case-study-metric" key={title} data-ascii="surface">
+            <article className="case-study-metric" key={title}>
               <Icon />
               <h3>{title}</h3>
               <p>{detail}</p>
@@ -1588,6 +1589,42 @@ function ProjectCaseStudyContent({ isModal, slug }) {
     }
   };
 
+  // The case study is rendered as a modal, outside <Layout>, so it needs its
+  // own reveal. As a full page it already sits inside AsciiRouteReveal and
+  // nesting a second reveal would descramble the same text twice.
+  const caseStudyBody = contentKey === 'tire-assistant' ? (
+    <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : currentProject.slug === 'masteos' ? (
+    <MasteosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : currentProject.slug === 'helios' ? (
+    <HeliosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : currentProject.slug === 'kirrk' ? (
+    <KirrkCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : currentProject.slug === 'mobioos' ? (
+    <MobioosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : contentKey === 'myxpert' ? (
+    <MyxpertCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
+  ) : (
+    <PlaceholderCaseStudy
+      project={currentProject}
+      projects={localizedProjects}
+      content={globalContent}
+      isModal={isModal}
+      onNavigateToProject={handleNavigateToProject}
+    />
+  );
+
+  // Tout le contenu de la modale est placé dans un AsciiReveal unique qui en
+  // recouvre l'en-tête + le corps, afin que chaque texte/image soit décodé.
+  const modalChildren = (
+    <>
+      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
+      <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
+        {caseStudyBody}
+      </div>
+    </>
+  );
+
   const contentBlock = (
     <div 
       ref={isModal ? modalRef : null}
@@ -1603,40 +1640,7 @@ function ProjectCaseStudyContent({ isModal, slug }) {
       onClick={(e) => e.stopPropagation()}
       onAnimationEnd={handleAnimationEnd}
     >
-      <CaseStudyHeader project={currentProject} content={globalContent} isModal={isModal} dragHandlers={dragHandlers} titleId={modalTitleId} closeButtonRef={closeButtonRef} />
-      <div ref={shellRef} className={`case-study-shell ${isModal ? 'case-study-shell--scrollable' : ''}`}>
-        <AsciiReveal
-          key={currentProject.slug}
-          preset="terminal"
-          origin="top-left"
-          speed={0.4}
-          revealOnHydrate={true}
-          fallback={false}
-          lazy={false}
-        >
-          {contentKey === 'tire-assistant' ? (
-            <TireAssistantCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : currentProject.slug === 'masteos' ? (
-            <MasteosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : currentProject.slug === 'helios' ? (
-            <HeliosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : currentProject.slug === 'kirrk' ? (
-            <KirrkCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : currentProject.slug === 'mobioos' ? (
-            <MobioosCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : contentKey === 'myxpert' ? (
-            <MyxpertCaseStudy project={currentProject} projects={localizedProjects} content={projectContent} isModal={isModal} onNavigateToProject={handleNavigateToProject} />
-          ) : (
-            <PlaceholderCaseStudy
-              project={currentProject}
-              projects={localizedProjects}
-              content={globalContent}
-              isModal={isModal}
-              onNavigateToProject={handleNavigateToProject}
-            />
-          )}
-        </AsciiReveal>
-      </div>
+      {isModal ? modalChildren : modalChildren}
     </div>
   );
 

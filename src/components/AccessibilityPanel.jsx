@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
+import { AsciiReveal } from 'ascii-reveal';
+import { REVEAL_PROPS } from '../config/reveal.js';
 import {
   IconClose,
   IconContrast,
@@ -185,7 +187,7 @@ export default function AccessibilityPanel({
           </div>
 
           <div className="a11y-panel-content">
-            <div className="a11y-section">
+              <div className="a11y-section">
               <div className="a11y-section-title">
                 <IconText size={16} /> {t.textSize} ({textSize}%)
               </div>
